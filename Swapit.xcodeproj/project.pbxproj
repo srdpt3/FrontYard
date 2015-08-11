@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
+		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
+		DAF94C8C1B7981F6004D2660 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C8B1B7981F6004D2660 /* ViewController.swift */; };
+		DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF94C8D1B7981F6004D2660 /* Main.storyboard */; };
+		DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF94C901B7981F6004D2660 /* Images.xcassets */; };
+		DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF94C921B7981F6004D2660 /* LaunchScreen.xib */; };
+		DAF94CA01B7981F6004D2660 /* SwapitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C9F1B7981F6004D2660 /* SwapitTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAF94C9A1B7981F6004D2660 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAF94C791B7981F5004D2660 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DAF94C801B7981F5004D2660;
+			remoteInfo = Swapit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF94C851B7981F6004D2660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAF94C861B7981F6004D2660 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAF94C891B7981F6004D2660 /* Swapit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swapit.xcdatamodel; sourceTree = "<group>"; };
+		DAF94C8B1B7981F6004D2660 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAF94C8E1B7981F6004D2660 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAF94C901B7981F6004D2660 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DAF94C931B7981F6004D2660 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DAF94C991B7981F6004D2660 /* SwapitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwapitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF94C9E1B7981F6004D2660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAF94C9F1B7981F6004D2660 /* SwapitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapitTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAF94C7E1B7981F5004D2660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF94C961B7981F6004D2660 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAF94C781B7981F5004D2660 = {
+			isa = PBXGroup;
+			children = (
+				DAF94C831B7981F5004D2660 /* Swapit */,
+				DAF94C9C1B7981F6004D2660 /* SwapitTests */,
+				DAF94C821B7981F5004D2660 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAF94C821B7981F5004D2660 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAF94C811B7981F5004D2660 /* Swapit.app */,
+				DAF94C991B7981F6004D2660 /* SwapitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAF94C831B7981F5004D2660 /* Swapit */ = {
+			isa = PBXGroup;
+			children = (
+				DAF94C861B7981F6004D2660 /* AppDelegate.swift */,
+				DAF94C8B1B7981F6004D2660 /* ViewController.swift */,
+				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
+				DAF94C901B7981F6004D2660 /* Images.xcassets */,
+				DAF94C921B7981F6004D2660 /* LaunchScreen.xib */,
+				DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */,
+				DAF94C841B7981F6004D2660 /* Supporting Files */,
+			);
+			path = Swapit;
+			sourceTree = "<group>";
+		};
+		DAF94C841B7981F6004D2660 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAF94C851B7981F6004D2660 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DAF94C9C1B7981F6004D2660 /* SwapitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DAF94C9F1B7981F6004D2660 /* SwapitTests.swift */,
+				DAF94C9D1B7981F6004D2660 /* Supporting Files */,
+			);
+			path = SwapitTests;
+			sourceTree = "<group>";
+		};
+		DAF94C9D1B7981F6004D2660 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAF94C9E1B7981F6004D2660 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAF94C801B7981F5004D2660 /* Swapit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF94CA31B7981F6004D2660 /* Build configuration list for PBXNativeTarget "Swapit" */;
+			buildPhases = (
+				DAF94C7D1B7981F5004D2660 /* Sources */,
+				DAF94C7E1B7981F5004D2660 /* Frameworks */,
+				DAF94C7F1B7981F5004D2660 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Swapit;
+			productName = Swapit;
+			productReference = DAF94C811B7981F5004D2660 /* Swapit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DAF94C981B7981F6004D2660 /* SwapitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF94CA61B7981F6004D2660 /* Build configuration list for PBXNativeTarget "SwapitTests" */;
+			buildPhases = (
+				DAF94C951B7981F6004D2660 /* Sources */,
+				DAF94C961B7981F6004D2660 /* Frameworks */,
+				DAF94C971B7981F6004D2660 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAF94C9B1B7981F6004D2660 /* PBXTargetDependency */,
+			);
+			name = SwapitTests;
+			productName = SwapitTests;
+			productReference = DAF94C991B7981F6004D2660 /* SwapitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAF94C791B7981F5004D2660 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Dustin Yang";
+				TargetAttributes = {
+					DAF94C801B7981F5004D2660 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					DAF94C981B7981F6004D2660 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = DAF94C801B7981F5004D2660;
+					};
+				};
+			};
+			buildConfigurationList = DAF94C7C1B7981F5004D2660 /* Build configuration list for PBXProject "Swapit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAF94C781B7981F5004D2660;
+			productRefGroup = DAF94C821B7981F5004D2660 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAF94C801B7981F5004D2660 /* Swapit */,
+				DAF94C981B7981F6004D2660 /* SwapitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAF94C7F1B7981F5004D2660 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
+				DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */,
+				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF94C971B7981F6004D2660 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAF94C7D1B7981F5004D2660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF94C8C1B7981F6004D2660 /* ViewController.swift in Sources */,
+				DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */,
+				DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAF94C951B7981F6004D2660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAF94CA01B7981F6004D2660 /* SwapitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAF94C9B1B7981F6004D2660 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DAF94C801B7981F5004D2660 /* Swapit */;
+			targetProxy = DAF94C9A1B7981F6004D2660 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DAF94C8D1B7981F6004D2660 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAF94C8E1B7981F6004D2660 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DAF94C921B7981F6004D2660 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAF94C931B7981F6004D2660 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAF94CA11B7981F6004D2660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DAF94CA21B7981F6004D2660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAF94CA41B7981F6004D2660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Swapit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DAF94CA51B7981F6004D2660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Swapit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DAF94CA71B7981F6004D2660 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwapitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swapit.app/Swapit";
+			};
+			name = Debug;
+		};
+		DAF94CA81B7981F6004D2660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwapitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swapit.app/Swapit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAF94C7C1B7981F5004D2660 /* Build configuration list for PBXProject "Swapit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF94CA11B7981F6004D2660 /* Debug */,
+				DAF94CA21B7981F6004D2660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAF94CA31B7981F6004D2660 /* Build configuration list for PBXNativeTarget "Swapit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF94CA41B7981F6004D2660 /* Debug */,
+				DAF94CA51B7981F6004D2660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DAF94CA61B7981F6004D2660 /* Build configuration list for PBXNativeTarget "SwapitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAF94CA71B7981F6004D2660 /* Debug */,
+				DAF94CA81B7981F6004D2660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DAF94C891B7981F6004D2660 /* Swapit.xcdatamodel */,
+			);
+			currentVersion = DAF94C891B7981F6004D2660 /* Swapit.xcdatamodel */;
+			path = Swapit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DAF94C791B7981F5004D2660 /* Project object */;
+}
