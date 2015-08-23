@@ -101,6 +101,7 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
         
     }
     
+    //Will Move searchBar
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchString = searchText
         searchInProgress = true
