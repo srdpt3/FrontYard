@@ -54,12 +54,20 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
+        
+    //    tabBarController2.tabBarView.hidden = true
+        
+        
+        
+        
         if PFUser.currentUser() != nil{
         var user1 = PFUser.currentUser()!
         var user2 = self.objects?[indexPath.row] as! PFUser
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+            
             
             
         var room = PFObject(className: "Room")
@@ -87,7 +95,8 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
                             messageVC!.room = room
                             messageVC?.incomingUser = user2
                             
-                            self.navigationController?.pushViewController(messageVC!, animated: true)
+                         self.navigationController?.pushViewController(messageVC!, animated: true)
+
                         }
                         
                     })
@@ -100,6 +109,8 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
         }
         
     }
+    
+
     
     //Will Move searchBar
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

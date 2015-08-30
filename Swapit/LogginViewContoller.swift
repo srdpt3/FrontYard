@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FoldingTabBar
+
+
+
 
 class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
    
@@ -55,14 +59,31 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     }*/
     func showChatOverview()
     {
-        
+        /*
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let overViewVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as! OverViewTableViewController
         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.pushViewController(overViewVC, animated: true)
+        */
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
+
+ 
         
         
         
+      //  self.parentViewController?.presentViewController(overViewVC, animated: true, completion: nil)
+
+    
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        appDelegate.setup()
+        appDelegate.window?.rootViewController  = appDelegate.tabBarController
+        println("afdasfdsadfasfdsafd")
+
     }
   
 
@@ -76,7 +97,17 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
     }
     
-    
+    func setupYALTabBarController()
+    {
+        
+        //YALFoldingTabBarController *tabBarController = (YALFoldingTabBarController *) self.window.rootViewController;
+        //
+      //  var tabBarController: YALFoldingTabBarController = self.view.window?.rootViewController as! YALFoldingTabBarController
+        
+        // var tabBarController: YALFoldingTabBarController =
+        
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

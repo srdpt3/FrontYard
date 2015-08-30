@@ -19,6 +19,19 @@ class OverViewTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        var nav = self.navigationController?.navigationBar
+        //nav?.appearance().backgroundColor = UIColor.greenColor()
+        // 2
+        // nav?.barStyle = UIBarStyle.BlackTranslucent
+        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+        
+        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+
+        
+        
         self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
         self.navigationItem.setLeftBarButtonItem(logout, animated: false)
         loadData()
@@ -120,7 +133,22 @@ class OverViewTableViewController: UITableViewController {
         SettingactionSheet.addAction(UIAlertAction(title: "Log out(로그아웃)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
                 PFUser.logOut()
-                self.navigationController?.popViewControllerAnimated(true)
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            
+            let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.tabBarController.tabBarView.hidden = true
+            
+            
+          appDelegate.window?.makeKeyAndVisible()
+
+          // self.navigationController?.pushViewController(logginVC, animated: true)
+           self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
+            
+            
+            
+            println("logout")
             
         }))
         
@@ -270,9 +298,16 @@ class OverViewTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
         
+     
+        
+     //   tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeigh
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+       let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = true
+
+      
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
@@ -285,7 +320,6 @@ class OverViewTableViewController: UITableViewController {
             {
                 let room = results!.last as! PFObject
                 messageVC!.room = room
-                // println("room is \(room)")
                 messageVC?.incomingUser = user2
                 
                 let unreadQuery = PFQuery(className: "UnreadMessage")
@@ -308,10 +342,15 @@ class OverViewTableViewController: UITableViewController {
                     }
                 })
                 
-                
-                
-                
                 self.navigationController?.pushViewController(messageVC!, animated: true)
+
+              //  let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+              //  appDelegate.window?.rootViewController =  messageVC
+                
+               // appDelegate.window?.makeKeyAndVisible()
+                
+
+                
             }
         }
     }

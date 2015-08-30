@@ -12,4 +12,8 @@
 #import<ParseUI/ParseUI.h>
 #import "JSQMessages.h"
 #import "NSDate+Utilities.h"
+#import "FoldingTabBar/YALTabBarItem.h"
 
+#import "FoldingTabBar/YALFoldingTabBarController.h"
+
+#import "FoldingTabBar/YALAnimatingTabBarConstants.h"

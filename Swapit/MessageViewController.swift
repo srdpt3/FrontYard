@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FoldingTabBar
 
 class MessageViewController:JSQMessagesViewController {
 
@@ -24,11 +25,10 @@ class MessageViewController:JSQMessagesViewController {
     var selfAvartar : JSQMessagesAvatarImage!
     var incomingAvartar: JSQMessagesAvatarImage!
 
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(animated: Bool) {
+        
+        
         self.title = "Messages"
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
@@ -41,17 +41,17 @@ class MessageViewController:JSQMessagesViewController {
         
         selfAvartar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(selfUsername.substringWithRange(NSMakeRange(0, 2)), backgroundColor: UIColor.blackColor(), textColor: UIColor.whiteColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
-         incomingAvartar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(incomingUsername.substringWithRange(NSMakeRange(0, 2)), backgroundColor: UIColor.blackColor(), textColor: UIColor.whiteColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        incomingAvartar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(incomingUsername.substringWithRange(NSMakeRange(0, 2)), backgroundColor: UIColor.blackColor(), textColor: UIColor.whiteColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
         //Chat image
-     //   let selfProfileImageFile = PFUser.currentUser()["profileImage"] as? PFFile!
-       // let otherUserProfileImageFile = incomingUser["profileImage"] as? PFFile!
+        //   let selfProfileImageFile = PFUser.currentUser()["profileImage"] as? PFFile!
+        // let otherUserProfileImageFile = incomingUser["profileImage"] as? PFFile!
         
         if let selfProfileImageFile = currentUser["profileImage"] as? PFFile{
             if  let otherUserProfileImageFile = incomingUser["profileImage"] as? PFFile
             {
-               selfProfileImageFile.getDataInBackgroundWithBlock({ (result, error) -> Void in
-                
+                selfProfileImageFile.getDataInBackgroundWithBlock({ (result, error) -> Void in
+                    
                     if error == nil
                     {
                         
@@ -68,16 +68,16 @@ class MessageViewController:JSQMessagesViewController {
                         })
                         
                     }
-                
-                
-               })
+                    
+                    
+                })
                 
             }
             
             
         }
-
-    
+        
+        
         
         
         
@@ -87,9 +87,18 @@ class MessageViewController:JSQMessagesViewController {
         outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
         incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.grayColor())
         
-
+     
         
-        loadMessages()
+      
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.loadMessages()
+        })
+
         
         }
 
@@ -324,7 +333,11 @@ class MessageViewController:JSQMessagesViewController {
         return messages.count
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = false
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -1,0 +1,10 @@
+PODS:
+  - FoldingTabBar (1.0.1)
+
+DEPENDENCIES:
+  - FoldingTabBar (~> 1.0.1)
+
+SPEC CHECKSUMS:
+  FoldingTabBar: 3e04c49dbe2b02c529561a4182bf017b928d04d2
+
+COCOAPODS: 0.38.2
