@@ -124,5 +124,16 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func extraLeftItemDidPressed()
+    {
+        
+        println("left oressss")
+        
+    }
+    func extraRightItemDidPressed()
+    {
+        println("left oressss")
+        
+    }
 
 }

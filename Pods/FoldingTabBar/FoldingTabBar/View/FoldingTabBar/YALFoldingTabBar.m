@@ -462,6 +462,9 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
     if ([self.delegate respondsToSelector:@selector(extraLeftItemDidPressInTabBarView:)]) {
         [self.delegate extraLeftItemDidPressInTabBarView:self];
     }
+    
+    NSLog(@"left pressed");
+ 
 }
 
 - (void)extraRightButtonDidPress {

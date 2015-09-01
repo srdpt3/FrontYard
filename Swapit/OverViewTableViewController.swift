@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import FoldingTabBar
 
 
-class OverViewTableViewController: UITableViewController {
+class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
 
     @IBOutlet var choosePartnerButoon: UIBarButtonItem!
     @IBOutlet var logout: UIBarButtonItem!
@@ -20,7 +21,7 @@ class OverViewTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+       // self.view.backgroundColor    = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
         
         var nav = self.navigationController?.navigationBar
         //nav?.appearance().backgroundColor = UIColor.greenColor()
@@ -57,6 +58,17 @@ class OverViewTableViewController: UITableViewController {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ds", object: nil)
 
+    }
+    func extraLeftItemDidPressed()
+    {
+        
+            println("left oressss")
+        
+    }
+    func extraRightItemDidPressed()
+    {
+        println("left oressss")
+        
     }
     
     func displayPushMessages(notification:NSNotification)

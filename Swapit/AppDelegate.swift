@@ -161,7 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         
         tabBarController = YALFoldingTabBarController()
- 
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let signUPVC = sb.instantiateViewControllerWithIdentifier("ChatOverViewNav") as! nav
@@ -170,36 +169,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         signUPVC.navigationController?.navigationBar.hidden = false
         signUPVC.navigationItem.hidesBackButton = false
         
+  
         
-        
-        
-        let sb2 = UIStoryboard(name: "Main", bundle: nil)
-        let photoview = sb2.instantiateViewControllerWithIdentifier("photoViewController") as! photoViewController
+        let photoview = sb.instantiateViewControllerWithIdentifier("photoViewController") as! photoViewController
  
-       // let sb3 = UIStoryboard(name: "Main", bundle: nil)
-       // let SwapItMain = sb2.instantiateViewControllerWithIdentifier("SwapItMainViewController") as! SwapItMainViewController
+        let SwapItMain = sb.instantiateViewControllerWithIdentifier("SwapItMainViewController") as! SwapItMainNav
+        let settingPage = sb.instantiateViewControllerWithIdentifier("SettingVCNav") as! SettingVCNav
+
         
         
         
         var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: nil, rightItemImage: nil)
-        var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
+       // var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
+        var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: nil, rightItemImage: nil)
         var item3 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "chats_icon"), leftItemImage: UIImage(named: "search_icon"), rightItemImage: UIImage(named: "new_chat_icon"))
         var item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "settings_icon"), leftItemImage: nil, rightItemImage: nil)
+        
+             
+    
         
         tabBarController.leftBarItems = [item1, item2];
         tabBarController.rightBarItems = [item3, item4];
         
-        tabBarController.centerButtonImage = UIImage(named:"plus_icon")
-        tabBarController.viewControllers = [signUPVC,photoview]
+       // tabBarController.centerButtonImage = UIImage(named:"plus_icon")
+        tabBarController.centerButtonImage = UIImage(named:"bar.gif")
+        
+        
+        tabBarController.viewControllers = [photoview,SwapItMain,signUPVC,settingPage]
         
         //   tabBarController.tabBarView.counzz
-        tabBarController.selectedIndex = 0;
+        tabBarController.selectedIndex = 1;
         
         //customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
         tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
-        tabBarController.tabBarView.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-        tabBarController.tabBarView.tabBarColor = UIColor(red: 72.0/255.0, green: 211.0/255.0, blue: 178.0/255.0, alpha: 1)
+     //   tabBarController.tabBarView.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        tabBarController.tabBarView.backgroundColor = UIColor(red: 170.0/255.0, green: 171.0/255.0 , blue: 172.0/255.0, alpha: 1)
+     //   tabBarController.tabBarView.tabBarColor = UIColor(red: 72.0/255.0, green: 211.0/255.0, blue: 178.0/255.0, alpha: 1)
+         tabBarController.tabBarView.tabBarColor = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
+        
         tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight;
         tabBarController.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets;
         tabBarController.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets;
@@ -211,5 +219,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     }
+    
+
+
 }
 

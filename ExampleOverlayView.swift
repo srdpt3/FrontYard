@@ -17,6 +17,11 @@ class ExampleOverlayView: OverlayView {
         [unowned self] in
         
         var imageView = UIImageView(frame: self.bounds)
+        
+     //   var imageView = UIImageView(frame: CGRectMake(0, 50, 339, 382))
+        imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+
         self.addSubview(imageView)
         
         return imageView

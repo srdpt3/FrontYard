@@ -13,7 +13,15 @@
 		DA5363F81B8F95CF00A5B911 /* photoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363F71B8F95CF00A5B911 /* photoViewController.swift */; };
 		DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363F91B8F9EB700A5B911 /* nav.swift */; };
 		DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */; };
+		DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */; };
+		DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */; };
+		DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA53642B1B92B8D500A5B911 /* OverlayView.xib */; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
+		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
+		DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */ = {isa = PBXBuildFile; fileRef = DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */; };
+		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
+		DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA321B955CEB00B76458 /* RangeSlider.swift */; };
+		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -108,11 +116,19 @@
 		837A97BFD1CA9F0BAD26B812 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		897F3CA997405CFBDC87CD9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DA5363BF1B860F0200A5B911 /* photoUploadPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoUploadPageVC.swift; sourceTree = "<group>"; };
-		DA5363F31B8E276D00A5B911 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		DA5363F31B8E276D00A5B911 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA5363F71B8F95CF00A5B911 /* photoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewController.swift; sourceTree = "<group>"; };
 		DA5363F91B8F9EB700A5B911 /* nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nav.swift; sourceTree = "<group>"; };
 		DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainViewController.swift; path = ../mainViewController.swift; sourceTree = "<group>"; };
+		DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainViewController.swift; sourceTree = "<group>"; };
+		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
+		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
+		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainNav.swift; sourceTree = "<group>"; };
+		DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mainlogo.png.gif; sourceTree = "<group>"; };
+		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
+		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,12 +316,19 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
+				DA76EA301B955C0900B76458 /* settingVC.swift */,
+				DA76EA321B955CEB00B76458 /* RangeSlider.swift */,
+				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
+				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
+				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
+				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
 				DA5363F71B8F95CF00A5B911 /* photoViewController.swift */,
-				DA5363F31B8E276D00A5B911 /* Podfile */,
 				DAF94CD21B7A0AC8004D2660 /* Helper */,
 				DAF94CCD1B7A0448004D2660 /* FrameWorks */,
+				DA5363F31B8E276D00A5B911 /* Podfile */,
 				DAF94C831B7981F5004D2660 /* Swapit */,
 				DAF94C9C1B7981F6004D2660 /* SwapitTests */,
 				DAF94C821B7981F5004D2660 /* Products */,
@@ -336,6 +359,7 @@
 				DAF94C901B7981F6004D2660 /* Images.xcassets */,
 				DAF94D761B7AF451004D2660 /* main.gif */,
 				DAF94D781B7AF46D004D2660 /* bar.gif */,
+				DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */,
 				DAF94D7A1B7AF472004D2660 /* barButton.gif */,
 				DAF94C921B7981F6004D2660 /* LaunchScreen.xib */,
 				DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */,
@@ -656,11 +680,13 @@
 				DAF94D491B7A12EC004D2660 /* JSQMessagesAssets.bundle in Resources */,
 				DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */,
 				DAF94D6E1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
+				DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
 			);
@@ -729,6 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF94D5C1B7A12EC004D2660 /* JSQLocationMediaItem.m in Sources */,
+				DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */,
 				DAF94D511B7A12EC004D2660 /* JSQMessagesKeyboardController.m in Sources */,
 				DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */,
 				DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */,
@@ -736,12 +763,15 @@
 				DA5363F81B8F95CF00A5B911 /* photoViewController.swift in Sources */,
 				DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */,
 				DAF94D681B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
+				DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */,
 				DAF94D5F1B7A12EC004D2660 /* JSQMessagesAvatarImage.m in Sources */,
 				DAF94D631B7A12EC004D2660 /* JSQMessagesCellTextView.m in Sources */,
 				DAF94D701B7A12EC004D2660 /* JSQMessagesToolbarContentView.m in Sources */,
 				DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */,
+				DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */,
 				DAF94D6B1B7A12EC004D2660 /* JSQMessagesInputToolbar.m in Sources */,
 				DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */,
+				DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */,
 				DAF94D581B7A12EC004D2660 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				DAF94D4C1B7A12EC004D2660 /* NSString+JSQMessages.m in Sources */,
 				DAF94D7D1B7B58EA004D2660 /* OverViewTableViewController.swift in Sources */,
@@ -755,6 +785,7 @@
 				DAF94D751B7AF27F004D2660 /* LogginViewContoller.swift in Sources */,
 				DAF94D501B7A12EC004D2660 /* UIView+JSQMessages.m in Sources */,
 				DAF94CD71B7A0B4B004D2660 /* JSQSystemSoundPlayer.m in Sources */,
+				DA76EA311B955C0900B76458 /* settingVC.swift in Sources */,
 				DAF94D5D1B7A12EC004D2660 /* JSQMediaItem.m in Sources */,
 				DAF94D6C1B7A12EC004D2660 /* JSQMessagesLabel.m in Sources */,
 				DAF94D4E1B7A12EC004D2660 /* UIDevice+JSQMessages.m in Sources */,
@@ -775,6 +806,7 @@
 				DAF94D611B7A12EC004D2660 /* JSQPhotoMediaItem.m in Sources */,
 				DAF94D4F1B7A12EC004D2660 /* UIImage+JSQMessages.m in Sources */,
 				DAF94D551B7A12EC004D2660 /* JSQMessagesBubbleImageFactory.m in Sources */,
+				DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */,
 				DAF94D811B7CB3B8004D2660 /* OverviewTableViewCell.swift in Sources */,
 				DAF94D601B7A12EC004D2660 /* JSQMessagesBubbleImage.m in Sources */,
 				DAF94D4B1B7A12EC004D2660 /* NSBundle+JSQMessages.m in Sources */,

@@ -9,6 +9,7 @@
 import UIKit
 import FoldingTabBar
 
+
 class MessageViewController:JSQMessagesViewController {
 
     
@@ -104,7 +105,10 @@ class MessageViewController:JSQMessagesViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = true
+        self.tabBarController?.tabBar.hidden = true
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadMessages", name: "reloadMessages", object: nil)
         
     }
