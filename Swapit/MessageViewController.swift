@@ -30,6 +30,11 @@ class MessageViewController:JSQMessagesViewController {
     override func viewWillAppear(animated: Bool) {
         
         
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = true
+        self.tabBarController?.tabBar.hidden = true
+        
+        
         self.title = "Messages"
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
@@ -88,6 +93,9 @@ class MessageViewController:JSQMessagesViewController {
         outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
         incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.grayColor())
         
+      //  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.loadMessages()
+       // })
      
         
       
@@ -96,23 +104,18 @@ class MessageViewController:JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.loadMessages()
-        })
-
         
         }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.tabBarController.tabBarView.hidden = true
-        self.tabBarController?.tabBar.hidden = true
-
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadMessages", name: "reloadMessages", object: nil)
+    
         
     }
     
+
     
     override func viewDidDisappear(animated: Bool) {
        // super.viewDidAppear(animated)
@@ -300,7 +303,7 @@ class MessageViewController:JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        if (indexPath.item) % 3 == 0
+        if (indexPath.item) % 2 == 0
         {
             let message = messages[indexPath.row]
             return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
@@ -308,7 +311,7 @@ class MessageViewController:JSQMessagesViewController {
         return nil
     }
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        if (indexPath.item) % 3 == 0
+        if (indexPath.item) % 2 == 0
         {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }

@@ -86,6 +86,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             self.tableView.reloadData()
         }
         
+        
     }
     
     func loadData()
@@ -127,7 +128,6 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     @IBAction func settingButtonPressed(sender: AnyObject) {
         
-        println("setting pressed")
         let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         SettingactionSheet.addAction(UIAlertAction(title: "Chane profile(프로필 사진번경)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in

@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
 
+        self.tabBarController?.tabBar.hidden = true
+        
         return true
     }
     
@@ -170,9 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         signUPVC.navigationItem.hidesBackButton = false
         
   
-        
-        let photoview = sb.instantiateViewControllerWithIdentifier("photoViewController") as! photoViewController
- 
+        let photoview = sb.instantiateViewControllerWithIdentifier("photoViewNav") as! photoViewNav
         let SwapItMain = sb.instantiateViewControllerWithIdentifier("SwapItMainViewController") as! SwapItMainNav
         let settingPage = sb.instantiateViewControllerWithIdentifier("SettingVCNav") as! SettingVCNav
 
@@ -198,7 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.viewControllers = [photoview,SwapItMain,signUPVC,settingPage]
         
         //   tabBarController.tabBarView.counzz
-        tabBarController.selectedIndex = 1;
+        tabBarController.selectedIndex = 2;
         
         //customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;

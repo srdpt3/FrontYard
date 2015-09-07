@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TkD-Ou-42c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Oe4-0U-2h6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14342" y="-12745"/>
+            <point key="canvasLocation" x="-14342" y="-12744.999999999998"/>
         </scene>
         <!--Sign Up Table View Controller-->
         <scene sceneID="AML-8W-5l2">
@@ -176,6 +176,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="JQb-Jd-uji"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -191,7 +192,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFS-ex-cZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15050" y="-12032"/>
+            <point key="canvasLocation" x="-15050" y="-12031.999999999998"/>
         </scene>
         <!--Over View Table View Controller-->
         <scene sceneID="39D-ww-mvp">
@@ -295,7 +296,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cf2-3i-JBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13614" y="-11955"/>
+            <point key="canvasLocation" x="-13614" y="-11954.999999999998"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="CHk-0S-5rw">
@@ -314,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgN-z5-at4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13385" y="-11345"/>
+            <point key="canvasLocation" x="-13385" y="-11344.999999999998"/>
         </scene>
         <!--Choose Table View Controller-->
         <scene sceneID="EsM-ab-Cuc">
@@ -325,7 +326,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="fVN-eW-esq">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
@@ -342,6 +343,7 @@
                             <outlet property="delegate" destination="6n7-jG-1U7" id="yWo-0q-yRw"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="U9M-fB-UOf"/>
                     <connections>
                         <outlet property="searchBar" destination="fVN-eW-esq" id="Whz-6v-Gmg"/>
                     </connections>
@@ -350,24 +352,106 @@
             </objects>
             <point key="canvasLocation" x="-12930" y="-11937"/>
         </scene>
-        <!--Item-->
+        <!--Photo Table View Controller-->
+        <scene sceneID="jkN-JD-kAZ">
+            <objects>
+                <tableViewController id="wY2-dY-Jni" customClass="photoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Bn4-Px-iZ7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Item Pictures" id="Coo-ie-DzP">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="140" id="6s2-zD-E5z" customClass="PhotoButton" customModule="Swapit" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6s2-zD-E5z" id="Vjw-ed-9Ux">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Item Information" id="Zv2-ym-dep">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1h0-Sh-BGL">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1h0-Sh-BGL" id="bfH-eV-AD7">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Item Name" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Yf-Gf-2dx">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Item Price" id="Gq3-YF-Om9">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sfL-TO-UCY">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sfL-TO-UCY" id="3AK-NG-pan">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" placeholder="Price" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="SPE-d5-aeD">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Item Description" id="8pv-Sf-KK0">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="BnK-u3-Bc2">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BnK-u3-Bc2" id="zoM-Ux-97m">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Write short description of your item" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="O6m-OT-xt8">
+                                                    <rect key="frame" x="8" y="8" width="584" height="80"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="wY2-dY-Jni" id="Pij-yE-QEN"/>
+                            <outlet property="delegate" destination="wY2-dY-Jni" id="cid-aY-Ahm"/>
+                        </connections>
+                    </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eEF-Mz-m00" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13555" y="-14064"/>
+        </scene>
+        <!--Photo Upload PageVC-->
         <scene sceneID="sOA-38-Ak8">
             <objects>
-                <viewController storyboardIdentifier="photoViewController" id="Oe4-0U-2h6" customClass="photoViewController" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoViewController" id="Oe4-0U-2h6" customClass="photoUploadPageVC" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HV3-HO-jJP"/>
                         <viewControllerLayoutGuide type="bottom" id="ug1-Ux-QaB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="egf-DP-Zis">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.76638414580000003" blue="0.70091413979999995" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="lfK-0Q-1TV"/>
+                    <navigationItem key="navigationItem" id="kiz-Vg-Te0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1M-nz-62s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12995" y="-12655"/>
+            <point key="canvasLocation" x="-12885" y="-13375"/>
         </scene>
         <!--setting-->
         <scene sceneID="C5s-9p-1Gt">
@@ -378,7 +462,7 @@
                         <viewControllerLayoutGuide type="bottom" id="A4e-8d-DQ9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IxU-hp-lsa">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <navigationItem key="navigationItem" id="RpS-og-yGv"/>
@@ -400,7 +484,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Oe4-0U-2h6" kind="relationship" relationship="viewControllers" id="9ae-bh-htc"/>
+                        <segue destination="2k3-Be-R96" kind="relationship" relationship="viewControllers" id="9ae-bh-htc"/>
                         <segue destination="wWL-eD-xm5" kind="relationship" relationship="viewControllers" id="16t-qF-Q7D"/>
                         <segue destination="aj7-ad-nMf" kind="relationship" relationship="viewControllers" id="jqS-lW-ftu"/>
                         <segue destination="tgu-2e-p7H" kind="relationship" relationship="viewControllers" id="HGd-rz-nXS"/>
@@ -408,7 +492,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wO1-tv-55d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13689" y="-12745"/>
+            <point key="canvasLocation" x="-13651" y="-12683"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="hLl-Tf-Q10">
@@ -429,7 +513,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L20-eF-gwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15017" y="-12745"/>
+            <point key="canvasLocation" x="-15017" y="-12744.999999999998"/>
         </scene>
         <!--Item-->
         <scene sceneID="OLf-ev-4GA">
@@ -448,7 +532,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWe-q7-ehd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14264" y="-11955"/>
+            <point key="canvasLocation" x="-14264" y="-11954.999999999998"/>
         </scene>
         <!--Swap It Main View Controller-->
         <scene sceneID="0jw-cx-Mwa">
@@ -529,13 +613,7 @@
                             <constraint firstItem="vVE-Uq-OAB" firstAttribute="top" secondItem="yNd-QA-0Mp" secondAttribute="bottom" constant="20" id="fIO-o2-9u5"/>
                             <constraint firstAttribute="centerX" secondItem="9Vr-hh-WCF" secondAttribute="centerX" id="sGD-ka-JOA"/>
                             <constraint firstItem="9Vr-hh-WCF" firstAttribute="top" secondItem="vVE-Uq-OAB" secondAttribute="bottom" constant="35" id="tFj-ap-PR6"/>
-                            <constraint firstItem="yNd-QA-0Mp" firstAttribute="top" secondItem="Ofe-X5-hDr" secondAttribute="bottom" id="uMm-pF-KQg"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="uMm-pF-KQg"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="s0I-Yv-zB1"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -545,7 +623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4HE-lg-Tu8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12479.5" y="-13399.5"/>
+            <point key="canvasLocation" x="-11667.5" y="-13399.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="ikK-CG-f8s">
@@ -564,7 +642,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqq-dL-xBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12990" y="-13352"/>
+            <point key="canvasLocation" x="-12178" y="-13352"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="zLQ-ky-FE4">
@@ -583,7 +661,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1x-Dq-Qht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12227" y="-12693"/>
+            <point key="canvasLocation" x="-12227" y="-12692.999999999998"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="tLu-xc-xaq">
+            <objects>
+                <navigationController storyboardIdentifier="photoViewNav" automaticallyAdjustsScrollViewInsets="NO" id="2k3-Be-R96" customClass="photoViewNav" customModule="Swapit" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="lfK-0Q-1TV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FzL-Wc-B55">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Oe4-0U-2h6" kind="relationship" relationship="rootViewController" id="Y1R-te-NW2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1N0-fZ-TpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-13561" y="-13365.999999999998"/>
         </scene>
     </scenes>
     <resources>

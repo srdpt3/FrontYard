@@ -44,9 +44,10 @@ class settingVC: UIViewController {
         
         var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         myBackButton.addTarget(self, action: "SwipeScreen:", forControlEvents: UIControlEvents.TouchUpInside)
-        myBackButton.setTitle("<<<", forState: UIControlState.Normal)
-        myBackButton.setTitleColor(UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0), forState: UIControlState.Normal)
-        myBackButton.sizeToFit()
+        myBackButton.imageView!.image = UIImage(named: "chats_icon")
+       // myBackButton.setTitle("<<", forState: UIControlState.Normal)
+       // myBackButton.setTitleColor(UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0), forState: UIControlState.Normal)
+      //  myBackButton.sizeToFit()
         var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
         
@@ -101,12 +102,7 @@ class settingVC: UIViewController {
         SearchLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         SearchLabel.font = SearchLabel.font.fontWithSize(15)
         
-        SearchLabel.frame = CGRectMake(0, rangeViewHeightOffset, width, height*(1/12))
-        
-        SearchLabel.text = "SEARCH PRICE RANGE"
-        SearchLabel.textAlignment = NSTextAlignment.Center;
-        SearchLabel.textColor = UIColor(red: 116/255, green: 116/255, blue: 116/255, alpha: 1.0)
-        SearchLabel.font = SearchLabel.font.fontWithSize(15)
+
         
         price.frame = CGRectMake(width/4, rangeViewHeightOffset+height*(1/10), width, height*(1/12))
         
