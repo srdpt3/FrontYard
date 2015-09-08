@@ -34,6 +34,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     var uploadButton:UIButton  = UIButton()
     var DescLabel : UILabel = UILabel()
     var DescTextView: UITextView! = UITextView()
+    var charRemainingLabel: UILabel! = UILabel()
  
     
     
@@ -164,8 +165,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         itemTitleText.backgroundColor = UIColor.whiteColor()
         itemTitleText.textAlignment = NSTextAlignment.Center;
 
-        itemTitleText.layer.borderWidth = 0.2
-        itemTitleText.layer.cornerRadius = 3
+        itemTitleText.layer.borderWidth = 0.0
+        itemTitleText.layer.cornerRadius = 0
         itemTitleText.placeholder = " Item Name"
 
        // itemTitleText.sizeToFit()
@@ -189,8 +190,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         Currency.backgroundColor = UIColor.whiteColor()
         Currency.textAlignment = .Center
         Currency.layer.borderColor = UIColor.grayColor().CGColor
-        Currency.layer.borderWidth = 0.2
-        Currency.layer.cornerRadius = 3
+        Currency.layer.borderWidth = 0.0
+        Currency.layer.cornerRadius = 0
      //   Currency.inputView = pickerview2
    
         
@@ -201,8 +202,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         Price.backgroundColor = UIColor.whiteColor()
         Price.textAlignment = .Center
         Price.layer.borderColor = UIColor.grayColor().CGColor
-        Price.layer.borderWidth = 0.2
-        Price.layer.cornerRadius = 3
+        Price.layer.borderWidth = 0.0
+        Price.layer.cornerRadius = 0
         Price.textAlignment = NSTextAlignment.Center;
         Price.delegate = self
         Price.keyboardType = .NumberPad
@@ -218,22 +219,31 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         DescLabel.font = itemTitleLabel.font.fontWithSize(16)
         
         
-        buttonOffsetY+=(Price.frame.height)
+        buttonOffsetY+=(DescLabel.frame.height)
 
         DescTextView = UITextView(frame: CGRect(x: 0, y: buttonOffsetY, width: width, height: height/6));
         self.view.addSubview(DescTextView)
         DescTextView.layer.borderColor = UIColor.grayColor().CGColor
-        DescTextView.layer.borderWidth = 0.2
-        DescTextView.layer.cornerRadius = 3
-
+        DescTextView.layer.borderWidth = 0.0
+        DescTextView.layer.cornerRadius = 0
+        DescTextView.delegate = self
           DescTextView.becomeFirstResponder()
         var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         self.view.addGestureRecognizer(tap)
         self.view.addSubview(DescTextView)
         
-        // upload Button Frame
         
         buttonOffsetY+=(DescTextView.frame.height)
+        charRemainingLabel.frame = CGRectMake(width*0.5, buttonOffsetY, width*0.4, height/30)
+        
+        //charRemainingLabel.text = "Remaining Characters"
+        charRemainingLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
+        charRemainingLabel.font = itemTitleLabel.font.fontWithSize(11)
+        
+        
+        
+        // upload Button Frame
+        
         uploadButton.frame = CGRectMake(0, CGFloat(height-height/12), width, (height/12))
         uploadButton.setTitle(" Upload product", forState: UIControlState.Normal)
         uploadButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
@@ -260,7 +270,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         self.view.addSubview(DescLabel)
         self.view.addSubview(DescTextView)
         self.view.addSubview(uploadButton)
+        self.view.addSubview(charRemainingLabel)
 
+        
+        
         var pickerview2: UIPickerView = UIPickerView()
         pickerview2 = UIPickerView()
         pickerview2.delegate = self
@@ -401,13 +414,22 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                 image3.currentImage == defaultbuttonImage &&
                 image4.currentImage == defaultbuttonImage)
         {
-                println("no pics selected")
+            var controller : UIAlertController = UIAlertController(title: "Error", message: "Please select pictures", preferredStyle: UIAlertControllerStyle.Alert)
+            var alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
+            controller.addAction(alertAction)
+            self.presentViewController(controller, animated: true, completion: nil)
         }
         else if (   itemTitleText.text == "" ||
                     DescTextView.text  == "" ||
                     Price.text  == ""   )
         {
-                println("No item info")
+            
+            var controller : UIAlertController = UIAlertController(title: "Error", message: "Please fill out item information", preferredStyle: UIAlertControllerStyle.Alert)
+            var alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
+            controller.addAction(alertAction)
+            self.presentViewController(controller, animated: true, completion: nil)
+            
+            
         }
         else{
                 PFUser.currentUser()!.save()
@@ -417,8 +439,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         imageDBTable["user"] = PFUser.currentUser()!
         imageDBTable["image"] = imageFiles[0]
         imageDBTable["description"] =  DescTextView.text
-        imageDBTable["itemname"] =  DescTextView.text
-        imageDBTable["price"] =  DescTextView.text
+        imageDBTable["itemname"] =  itemTitleText.text
+        imageDBTable["price"] =  Price.text
         for (i,image) in enumerate(imageFiles)
         {
             println("i is \(image)")
@@ -574,7 +596,25 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         }
     }
     
+    func textView(textView: UITextView,
+        shouldChangeTextInRange range: NSRange,
+        replacementText text: String) -> Bool{
+            
+            var newLength:Int = (textView.text as NSString).length + (text as NSString).length - range.length
+            var remainingChar:Int = 150 - newLength+1
+            
+            charRemainingLabel.text = "\(remainingChar)"
+            
+             let currentText:NSString = textView.text
+            let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
+            
+            
+             return (newLength > 150) ? false : true
+            
+            
+    }
     
+
     
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

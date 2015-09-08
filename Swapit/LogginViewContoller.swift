@@ -65,6 +65,14 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.pushViewController(overViewVC, animated: true)
         */
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        appDelegate.setup()
+        appDelegate.window?.rootViewController  = appDelegate.tabBarController
+        appDelegate.tabBarController.selectedIndex = 1;
+        
+        println("afdasfdsadfasfdsafd")
+        
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
@@ -78,11 +86,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
       //  self.parentViewController?.presentViewController(overViewVC, animated: true, completion: nil)
 
     
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        appDelegate.setup()
-        appDelegate.window?.rootViewController  = appDelegate.tabBarController
-        println("afdasfdsadfasfdsafd")
+
 
     }
   
@@ -113,4 +117,8 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         super.didReceiveMemoryWarning()
         
     }
+    
+
+    
+      
 }

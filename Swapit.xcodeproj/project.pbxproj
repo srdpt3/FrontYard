@@ -23,6 +23,16 @@
 		DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA321B955CEB00B76458 /* RangeSlider.swift */; };
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA361B960B5100B76458 /* photoViewNav.swift */; };
+		DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */; };
+		DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */; };
+		DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */; };
+		DAE7864C1B9E748E0077EAA2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786481B9E748E0077EAA2 /* Extension.swift */; };
+		DAE7864D1B9E748E0077EAA2 /* NTTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786491B9E748E0077EAA2 /* NTTransition.swift */; };
+		DAE7864E1B9E748E0077EAA2 /* NTTransitionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7864A1B9E748E0077EAA2 /* NTTransitionProtocol.swift */; };
+		DAE7864F1B9E748E0077EAA2 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7864B1B9E748E0077EAA2 /* Macro.swift */; };
+		DAE786511B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */; };
+		DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */; };
+		DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -131,6 +141,16 @@
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
+		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
+		DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTNavigationController.swift; sourceTree = "<group>"; };
+		DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewController.swift; sourceTree = "<group>"; };
+		DAE786481B9E748E0077EAA2 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		DAE786491B9E748E0077EAA2 /* NTTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTTransition.swift; sourceTree = "<group>"; };
+		DAE7864A1B9E748E0077EAA2 /* NTTransitionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTTransitionProtocol.swift; sourceTree = "<group>"; };
+		DAE7864B1B9E748E0077EAA2 /* Macro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewCell.swift; sourceTree = "<group>"; };
+		DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewCell.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +345,24 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		DAE786221B9E21140077EAA2 /* SwipedItems */ = {
+			isa = PBXGroup;
+			children = (
+				DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */,
+				DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */,
+				DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */,
+				DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */,
+				DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */,
+				DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */,
+				DAE786481B9E748E0077EAA2 /* Extension.swift */,
+				DAE786491B9E748E0077EAA2 /* NTTransition.swift */,
+				DAE7864A1B9E748E0077EAA2 /* NTTransitionProtocol.swift */,
+				DAE7864B1B9E748E0077EAA2 /* Macro.swift */,
+			);
+			name = SwipedItems;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +399,7 @@
 		DAF94C831B7981F5004D2660 /* Swapit */ = {
 			isa = PBXGroup;
 			children = (
+				DAE786221B9E21140077EAA2 /* SwipedItems */,
 				DAE7860D1B9DBB1F0077EAA2 /* photo Upload */,
 				DA5364011B925B7800A5B911 /* Login&SignUp */,
 				DAF94C861B7981F6004D2660 /* AppDelegate.swift */,
@@ -767,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF94D5C1B7A12EC004D2660 /* JSQLocationMediaItem.m in Sources */,
+				DAE786511B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */,
 				DAF94D511B7A12EC004D2660 /* JSQMessagesKeyboardController.m in Sources */,
 				DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */,
@@ -783,12 +823,14 @@
 				DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */,
 				DAF94D6B1B7A12EC004D2660 /* JSQMessagesInputToolbar.m in Sources */,
 				DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */,
+				DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */,
 				DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */,
 				DAF94D581B7A12EC004D2660 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				DAF94D4C1B7A12EC004D2660 /* NSString+JSQMessages.m in Sources */,
 				DAF94D7D1B7B58EA004D2660 /* OverViewTableViewController.swift in Sources */,
 				DAF94D571B7A12EC004D2660 /* JSQMessagesTimestampFormatter.m in Sources */,
 				DAF94D4A1B7A12EC004D2660 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
+				DAE7864F1B9E748E0077EAA2 /* Macro.swift in Sources */,
 				DAF94D6D1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				DAF94D561B7A12EC004D2660 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				DAF94D521B7A12EC004D2660 /* JSQMessagesViewController.m in Sources */,
@@ -807,10 +849,15 @@
 				DAF94D5A1B7A12EC004D2660 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */,
 				DAF94D541B7A12EC004D2660 /* JSQMessagesAvatarImageFactory.m in Sources */,
+				DAE7864C1B9E748E0077EAA2 /* Extension.swift in Sources */,
 				DAF94D5E1B7A12EC004D2660 /* JSQMessage.m in Sources */,
+				DAE7864D1B9E748E0077EAA2 /* NTTransition.swift in Sources */,
+				DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */,
+				DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */,
 				DAF94D6F1B7A12EC004D2660 /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */,
 				DA5363C01B860F0200A5B911 /* photoUploadPageVC.swift in Sources */,
+				DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */,
 				DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */,
 				DAF94D641B7A12EC004D2660 /* JSQMessagesCollectionView.m in Sources */,
 				DAF94D4D1B7A12EC004D2660 /* UIColor+JSQMessages.m in Sources */,
@@ -823,6 +870,8 @@
 				DAF94D811B7CB3B8004D2660 /* OverviewTableViewCell.swift in Sources */,
 				DAF94D601B7A12EC004D2660 /* JSQMessagesBubbleImage.m in Sources */,
 				DAF94D4B1B7A12EC004D2660 /* NSBundle+JSQMessages.m in Sources */,
+				DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */,
+				DAE7864E1B9E748E0077EAA2 /* NTTransitionProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

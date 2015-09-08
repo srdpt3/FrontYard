@@ -67,6 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().postNotificationName("reloadMessages", object: nil)
         
+      
+
+        
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -176,8 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let SwapItMain = sb.instantiateViewControllerWithIdentifier("SwapItMainViewController") as! SwapItMainNav
         let settingPage = sb.instantiateViewControllerWithIdentifier("SettingVCNav") as! SettingVCNav
 
-        
-        
+        let favoriteView = sb.instantiateViewControllerWithIdentifier("WaterfallViewController") as! NTNavigationController
         
         var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: nil, rightItemImage: nil)
        // var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
@@ -195,10 +197,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.centerButtonImage = UIImage(named:"bar.gif")
         
         
-        tabBarController.viewControllers = [photoview,SwapItMain,signUPVC,settingPage]
+        tabBarController.viewControllers = [favoriteView,SwapItMain,signUPVC,settingPage]
         
         //   tabBarController.tabBarView.counzz
-        tabBarController.selectedIndex = 2;
+        tabBarController.selectedIndex = 1;
         
         //customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
