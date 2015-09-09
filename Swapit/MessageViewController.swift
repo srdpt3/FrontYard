@@ -31,19 +31,25 @@ class MessageViewController:JSQMessagesViewController {
         
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.tabBarController.tabBarView.hidden = true
+    appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
         
         
         self.title = "Messages"
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
+    println("incomingUser\(incomingUser)")
         
+        
+     //  println("senderDisplayName\(senderDisplayName)")
+
         var currentUser = PFUser.currentUser()!
         self.inputToolbar.contentView.leftBarButtonItem = nil
         
         let selfUsername = PFUser.currentUser()!.username! as NSString
         let incomingUsername = incomingUser.username! as NSString
+     // /  let incomingUsername = "ds"
+        
         
         selfAvartar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(selfUsername.substringWithRange(NSMakeRange(0, 2)), backgroundColor: UIColor.blackColor(), textColor: UIColor.whiteColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
@@ -343,6 +349,7 @@ class MessageViewController:JSQMessagesViewController {
     override func viewWillDisappear(animated: Bool) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = false
+
 
     }
     override func didReceiveMemoryWarning() {

@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 class NTNavigationController : UINavigationController{
+       /*
     override func popViewControllerAnimated(animated: Bool) -> UIViewController
     {
+     
         //viewWillAppearWithPageIndex
         let childrenCount = self.viewControllers.count
         let toViewController = self.viewControllers[childrenCount-2] as! NTWaterFallViewControllerProtocol
@@ -21,7 +23,8 @@ class NTNavigationController : UINavigationController{
         toViewController.viewWillAppearWithPageIndex(indexPath.row)
         toView.setToIndexPath(indexPath)
         return super.popViewControllerAnimated(animated)!
-    }
+
+    }*/
     
 //    override func pushViewController(viewController: UIViewController!, animated: Bool) {
 //        let childrenCount = self.viewControllers.count

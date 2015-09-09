@@ -25,7 +25,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     
     var otherImageFiles = [PFFile]()
     var otherObjID = [String]()
-    var otherUsername = [String]()
+    var otherUsers = [String]()
     var pricelabel = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
@@ -37,8 +37,9 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationController!.delegate = delegateHolder
-        
+       // self.navigationController!.delegate = delegateHolder
+        self.navigationController!.delegate = nil
+
         self.view.backgroundColor = UIColor.whiteColor()
         var nav = self.navigationController?.navigationBar
         
@@ -107,7 +108,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pageViewController.pricelabel = pricelabel
         pageViewController.itemTitle = itemTitle
         pageViewController.itemDesc = itemDesc
-
+        pageViewController.otherusers = otherUsers
 
         collectionView.setToIndexPath(indexPath)
         navigationController!.pushViewController(pageViewController, animated: true)
@@ -173,7 +174,10 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                    // let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
-                    let thumbNail = obj["image"] as! PFFile
+                    let otheruser = obj["user"] as! PFObject
+                    println("other user uis \(otheruser.objectId!)")
+                    self.otherUsers.append(otheruser.objectId!)
+                                        let thumbNail = obj["image"] as! PFFile
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil
@@ -184,7 +188,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                           //  self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
-
+                           // self.otherUsers.append(otheruser)
                             
                             var objId = obj.objectId! as String
                             self.otherObjID.append(objId)

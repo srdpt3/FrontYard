@@ -33,6 +33,7 @@
 		DAE786511B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */; };
 		DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */; };
 		DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */; };
+		DAE786731B9FEAA50077EAA2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786721B9FEAA50077EAA2 /* LocationManager.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -151,6 +152,7 @@
 		DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
 		DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewCell.swift; sourceTree = "<group>"; };
 		DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewCell.swift; sourceTree = "<group>"; };
+		DAE786721B9FEAA50077EAA2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
+				DAE786721B9FEAA50077EAA2 /* LocationManager.swift */,
 				DA76EA301B955C0900B76458 /* settingVC.swift */,
 				DA76EA321B955CEB00B76458 /* RangeSlider.swift */,
 				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
@@ -857,6 +860,7 @@
 				DAF94D6F1B7A12EC004D2660 /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */,
 				DA5363C01B860F0200A5B911 /* photoUploadPageVC.swift in Sources */,
+				DAE786731B9FEAA50077EAA2 /* LocationManager.swift in Sources */,
 				DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */,
 				DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */,
 				DAF94D641B7A12EC004D2660 /* JSQMessagesCollectionView.m in Sources */,

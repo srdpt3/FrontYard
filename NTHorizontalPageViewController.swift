@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
@@ -15,13 +16,9 @@ let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
 
 
-class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol{
+class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate{
     
     var indexnum : Int = Int()
-    
-    
- 
-    
     var imageFile = [UIImage]()
     var pricelabel = [String]()
     var itemTitle = [String]()
@@ -35,7 +32,20 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var itemNameLabel: UILabel = UILabel()
     var PriceLabel: UILabel = UILabel()
     var descLabel: UILabel = UILabel()
+    var otherusers = [String]()
+
+    
+    
+    var coreLocationManager = CLLocationManager()
+    var locationManager : LocationManager!
+    
+    
     var map:MKMapView!  = MKMapView()
+    
+    
+    
+    
+    
     
     init(collectionViewLayout layout: UICollectionViewLayout!, currentIndexPath indexPath: NSIndexPath){
         super.init(collectionViewLayout:layout)
@@ -43,9 +53,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
        
        
-        var offsetY = screenHeight/2
+        var offsetY = screenHeight/2.2
         PassButton = UIButton(frame: CGRectMake(screenWidth*0.05, CGFloat(offsetY), screenWidth*0.4 , screenHeight/20))
-        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.5, screenHeight/2, screenWidth*0.45 , screenHeight/20))
+        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.5, CGFloat(offsetY), screenWidth*0.45 , screenHeight/20))
         
         
         PassButton.setTitle(" X Pass", forState: UIControlState.Normal)
@@ -90,7 +100,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/10))
         
         descLabel.text = "description"
-        descLabel.font = UIFont(name: "YourFontName-Bold", size: 11)
+        descLabel.font = UIFont(name: "YourFontName-Bold", size: 10)
 
         
         descLabel.numberOfLines = 5
@@ -98,10 +108,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         descLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
         descLabel.textAlignment = NSTextAlignment.Left;
-        descLabel.textColor = UIColor.grayColor()
+        descLabel.textColor = UIColor.blackColor()
         
         offsetY+=(descLabel.frame.height)
-        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/5))
+        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/4.5))
 
         
         //  LabelFrame.addSubview(imageLabel)
@@ -111,22 +121,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
       //  self.view.addSubview(DistanceLabel)
 
-        
-        
-        let location = CLLocationCoordinate2D(
-           // latitude: otherlocation.latitude,
-           // longitude: otherlocation.longitude
-        )
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: location, span: span)
-        map.setRegion(region, animated: true)
-        
-        
-        let annotation = MKPointAnnotation()
-        //  annotation.setCoordinate(location)
-        //  annotation.title = ""
-        //  annotation.subtitle = " NY"
-        map.addAnnotation(annotation)
         
         
         
@@ -145,13 +139,70 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        coreLocationManager.delegate = self
+        locationManager = LocationManager.sharedInstance
+        
+        let autorizationCode = CLLocationManager.authorizationStatus()
+        if autorizationCode == CLAuthorizationStatus.NotDetermined && coreLocationManager.respondsToSelector("requestAlwaysAuthorization") ||
+        coreLocationManager.respondsToSelector("requestWhenInUseAuthorization")
+        {
+            if NSBundle.mainBundle().objectForInfoDictionaryKey("NSLocationAlwaysUsageDescription") != nil
+            {
+                coreLocationManager.requestAlwaysAuthorization()
+            }
+            else
+            {
+                println("No description Provided")
+            }
+        }
+        else
+        {
+            getLocation()
+        }
+        
     }
+    
+    func getLocation()
+    {
+        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+            self.displayLocation(CLLocation(latitude: latitude, longitude: longitude))
+        }
+    }
+    
+    func displayLocation(location:CLLocation)
+    {
+    
+        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude),
+            span: MKCoordinateSpanMake(0.05, 0.05)), animated: true)
+        let locationPinCoord = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationPinCoord
+        map.addAnnotation(annotation)
+        map.showAnnotations([annotation], animated: true)
+        
+        locationManager.reverseGeocodeLocationWithCoordinates(location, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+            println(reverseGecodeInfo)
+            let addr = reverseGecodeInfo?.objectForKey("locality") as! String
+            println("addr is \(addr)")
+        })
+ 
+    }
+    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status != CLAuthorizationStatus.NotDetermined ||
+           status != CLAuthorizationStatus.Denied || status != CLAuthorizationStatus.Restricted
+        {
+            getLocation()
+        }
+    }
+    
     
     override func viewDidAppear(animated: Bool) {
         
        // NSNotificationCenter.defaultCenter().postNotificationName("loaditems", object: nil)
 
-        
+        getLocation()
         
         
         var reportButton = UIButton(frame: CGRectMake(0 , screenHeight-(screenHeight/12), screenWidth,screenHeight/12))
@@ -187,14 +238,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         collectionCell.imageFile = self.imageFile[indexPath.row]
         
       //  itemNameLabel.text = pricelabel[indexPath.row]
-              indexnum = indexPath.row
-        println(pricelabel[indexPath.row])
-        println(itemDesc[indexPath.row])
-        
-        
-        self.PriceLabel.text = pricelabel[indexPath.row]
-            self.descLabel.text = itemDesc[indexnum] as String
-
+        indexnum = indexPath.row
+        self.PriceLabel.text = pricelabel[indexPath.row]as String
+        self.descLabel.text = itemDesc[indexPath.row] as String
 
         collectionCell.tappedAction = {}
         collectionCell.pullAction = { offset in
@@ -206,13 +252,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     }
     
     
-    func iteminfo()
-    {
-        PriceLabel.text = pricelabel[indexnum]as String
-        descLabel.text = itemDesc[indexnum] as String
-        println("asdfasdf")
-    }
-    
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return imageFile.count;
     }
@@ -223,5 +263,77 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     func pageViewCellScrollViewContentOffset() -> CGPoint{
         return self.pullOffset
+    }
+    func LikeButtonPressed(sender:UIButton!)
+    {
+        println("indexnum \(indexnum)")
+        if PFUser.currentUser() != nil{
+            var user1 = PFUser.currentUser()!
+           // var user2 = otherusers[indexnum] as! AnyObject
+            //     var object: PFObject = PFObject(withoutDataWithClassName: "User", objectId: otheruser)
+            var query2 = PFQuery(className: "_User")
+            query2.whereKey("objectId", equalTo: otherusers[indexnum])
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+            
+
+            
+            query2.findObjectsInBackgroundWithBlock({ (result, error1) -> Void in
+                if error1 == nil
+                {
+                    if let userObject: AnyObject = result?[0] {
+                        var user2 = userObject as! PFUser
+                        
+                        var room = PFObject(className: "Room")
+                        
+                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+                        let roomQuery = PFQuery(className:"Room", predicate: pred)
+                        roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                            if error == nil
+                            {
+                                if results!.count > 0
+                                {
+                                    room = results?.last as! PFObject
+                                    messageVC!.room = room
+                                    messageVC?.incomingUser = user2
+                                    self.navigationController?.pushViewController(messageVC!, animated: true)
+                                    
+                                }
+                                else
+                                {
+                                    room["user1"] = user1
+                                    room["user2"] = user2
+                                    
+                                    room.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                        if error == nil{
+                                            messageVC!.room = room
+                                            messageVC?.incomingUser = user2
+                                            
+                                            
+                                           self.navigationController?.popToViewController(messageVC!, animated: true)
+                                        }
+                                        
+                                    })
+                                }
+                                
+                                
+                            }
+                            
+                        })
+                        
+                        
+                    }
+                   
+                    
+                    
+             
+                }
+            })
+            
+            
+            
+  
+        }
+        
     }
 }
