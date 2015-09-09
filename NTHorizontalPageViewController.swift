@@ -87,31 +87,31 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         PriceLabel = UILabel(frame: CGRectMake(screenWidth*0.52, offsetY, screenWidth*0.3, screenHeight/26))
         
         
-        itemNameLabel.font = UIFont(name: "YourFontName-Bold", size: 12)
+        itemNameLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
         
         
         PriceLabel.text="123 "
-        PriceLabel.font = UIFont(name: "YourFontName-Bold", size: 12)
+        PriceLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
         PriceLabel.textAlignment = NSTextAlignment.Right;
         PriceLabel.textColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
         
         
         offsetY+=(itemNameLabel.frame.height)
-        descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/10))
+        descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/9))
         
         descLabel.text = "description"
-        descLabel.font = UIFont(name: "YourFontName-Bold", size: 10)
+        descLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 10)
 
-        
+       // descLabel.sizeToFit()
         descLabel.numberOfLines = 5
-        descLabel.preferredMaxLayoutWidth = 150
+       // descLabel.preferredMaxLayoutWidth = 150
         descLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         
         descLabel.textAlignment = NSTextAlignment.Left;
         descLabel.textColor = UIColor.blackColor()
         
         offsetY+=(descLabel.frame.height)
-        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/4.5))
+        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/4))
 
         
         //  LabelFrame.addSubview(imageLabel)
