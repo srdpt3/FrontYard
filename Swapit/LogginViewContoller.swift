@@ -33,8 +33,11 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
         self.logInView?.signUpButton?.addTarget(self, action: "displaySignUpbutton", forControlEvents: UIControlEvents.TouchUpInside)
         
+     //   let loader = LiquidLoader(frame: CGRectMake(100, 100, 100, 100), effect: .GrowCircle(UIColor.whiteColor()))
+        //    var loader = LiquidLoader(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height), effect: .GrowCircle(UIColor.whiteColor()))
         
         
+
         if PFUser.currentUser() != nil
         {
            
@@ -75,9 +78,11 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.setup()
 
-        
+        //  JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor.whiteColor(), circleSize: 200)
+
         
 
+        JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
 
 
         imagesToswipe.removeAll(keepCapacity: false)
@@ -101,6 +106,11 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
                             var objId = obj.objectId! as String
                             otherObjID.append(objId)
                             if(objects.count == imagesToswipe.count ){
+                                
+                                JTSplashView.finishWithCompletion { () -> Void in
+                                    UIApplication.sharedApplication().statusBarHidden = false
+                                }
+                                
                                 println("imagesToswipe.count \(imagesToswipe.count)")
                                 appDelegate.window?.rootViewController  = appDelegate.tabBarController
                                 appDelegate.tabBarController.selectedIndex = 1;

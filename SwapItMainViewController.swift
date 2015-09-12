@@ -9,6 +9,8 @@
 import UIKit
 import Koloda
 import pop
+import LiquidLoader
+import JTSplashView
 
 private var numberOfCards: UInt = UInt(imagesToswipe.count)
 
@@ -24,7 +26,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         kolodaView.dataSource = self
         kolodaView.delegate = self
       //  self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
-
+ 
+        // loader.hide()
+        
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
     }
 
@@ -78,6 +82,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
+       
         var imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
         imageView.backgroundColor = UIColor.whiteColor()
         

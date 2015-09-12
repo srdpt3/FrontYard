@@ -17,3 +17,12 @@
 #import "FoldingTabBar/YALFoldingTabBarController.h"
 
 #import "FoldingTabBar/YALAnimatingTabBarConstants.h"
+
+
+
+#import "PulsingHaloLayer.h"
+#include "FBShimmering.h"
+#include "FBShimmeringLayer.h"
+#include "FBShimmeringView.h"
+
+

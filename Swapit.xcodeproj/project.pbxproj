@@ -34,6 +34,10 @@
 		DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */; };
 		DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */; };
 		DAE786731B9FEAA50077EAA2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786721B9FEAA50077EAA2 /* LocationManager.swift */; };
+		DAE7867A1BA486E00077EAA2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE786771BA486E00077EAA2 /* FBShimmeringLayer.m */; };
+		DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE786791BA486E00077EAA2 /* FBShimmeringView.m */; };
+		DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */; };
+		DAE786811BA48F020077EAA2 /* JTSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786801BA48F020077EAA2 /* JTSplashView.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -153,6 +157,15 @@
 		DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewCell.swift; sourceTree = "<group>"; };
 		DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewCell.swift; sourceTree = "<group>"; };
 		DAE786721B9FEAA50077EAA2 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DAE786741BA486E00077EAA2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		DAE786751BA486E00077EAA2 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		DAE786761BA486E00077EAA2 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		DAE786771BA486E00077EAA2 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		DAE786781BA486E00077EAA2 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		DAE786791BA486E00077EAA2 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
+		DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
+		DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
+		DAE786801BA48F020077EAA2 /* JTSplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSplashView.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,9 +378,24 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		DAE7867C1BA486E60077EAA2 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				DAE786741BA486E00077EAA2 /* FBShimmering-Prefix.pch */,
+				DAE786751BA486E00077EAA2 /* FBShimmering.h */,
+				DAE786761BA486E00077EAA2 /* FBShimmeringLayer.h */,
+				DAE786771BA486E00077EAA2 /* FBShimmeringLayer.m */,
+				DAE786781BA486E00077EAA2 /* FBShimmeringView.h */,
+				DAE786791BA486E00077EAA2 /* FBShimmeringView.m */,
+			);
+			name = FBShimmering;
+			path = Swapit;
+			sourceTree = "<group>";
+		};
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DAE786801BA48F020077EAA2 /* JTSplashView.swift */,
 				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
 				DAE786721B9FEAA50077EAA2 /* LocationManager.swift */,
 				DA76EA301B955C0900B76458 /* settingVC.swift */,
@@ -476,6 +504,9 @@
 		DAF94CD21B7A0AC8004D2660 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */,
+				DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */,
+				DAE7867C1BA486E60077EAA2 /* FBShimmering */,
 				DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */,
 				DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */,
 				DAF94CD51B7A0B4B004D2660 /* JSQSystemSoundPlayer.h */,
@@ -811,6 +842,7 @@
 				DAF94D5C1B7A12EC004D2660 /* JSQLocationMediaItem.m in Sources */,
 				DAE786511B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */,
+				DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */,
 				DAF94D511B7A12EC004D2660 /* JSQMessagesKeyboardController.m in Sources */,
 				DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */,
 				DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */,
@@ -845,6 +877,7 @@
 				DA76EA311B955C0900B76458 /* settingVC.swift in Sources */,
 				DAF94D5D1B7A12EC004D2660 /* JSQMediaItem.m in Sources */,
 				DAF94D6C1B7A12EC004D2660 /* JSQMessagesLabel.m in Sources */,
+				DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */,
 				DAF94D4E1B7A12EC004D2660 /* UIDevice+JSQMessages.m in Sources */,
 				DAF94D651B7A12EC004D2660 /* JSQMessagesCollectionViewCell.m in Sources */,
 				DAF94D6A1B7A12EC004D2660 /* JSQMessagesComposerTextView.m in Sources */,
@@ -863,11 +896,13 @@
 				DAE786731B9FEAA50077EAA2 /* LocationManager.swift in Sources */,
 				DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */,
 				DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */,
+				DAE786811BA48F020077EAA2 /* JTSplashView.swift in Sources */,
 				DAF94D641B7A12EC004D2660 /* JSQMessagesCollectionView.m in Sources */,
 				DAF94D4D1B7A12EC004D2660 /* UIColor+JSQMessages.m in Sources */,
 				DAF94D5B1B7A12EC004D2660 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				DAF94D621B7A12EC004D2660 /* JSQVideoMediaItem.m in Sources */,
 				DAF94D611B7A12EC004D2660 /* JSQPhotoMediaItem.m in Sources */,
+				DAE7867A1BA486E00077EAA2 /* FBShimmeringLayer.m in Sources */,
 				DAF94D4F1B7A12EC004D2660 /* UIImage+JSQMessages.m in Sources */,
 				DAF94D551B7A12EC004D2660 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */,
