@@ -9,7 +9,13 @@
 import UIKit
 import FoldingTabBar
 
-
+var otherImageFiles = [PFFile]()
+var otherObjID = [String]()
+var otherUsers = [String]()
+var pricelabel = [String]()
+var itemTitle = [String]()
+var itemDesc = [String]()
+var imagesToswipe = [UIImage]()
 
 
 class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
@@ -31,6 +37,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
         if PFUser.currentUser() != nil
         {
+           
             showChatOverview()
             
         }
@@ -66,21 +73,67 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         self.navigationController?.pushViewController(overViewVC, animated: true)
         */
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         appDelegate.setup()
-        appDelegate.window?.rootViewController  = appDelegate.tabBarController
-        appDelegate.tabBarController.selectedIndex = 1;
-        
-        println("afdasfdsadfasfdsafd")
-        
-        
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
 
- 
         
+        
+
+
+
+        imagesToswipe.removeAll(keepCapacity: false)
+        otherObjID.removeAll(keepCapacity: false)
+        var query:PFQuery = PFQuery(className: "imageUpload")
+        query.addAscendingOrder("createdAt")
+        query.whereKey("user", notEqualTo: PFUser.currentUser()!)
+        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if error == nil
+            {
+                let objects = results as! [PFObject]
+                for obj in objects{
+                    let thumbNail = obj["image"] as! PFFile
+                    thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
+                        
+                        if error2 == nil
+                        {
+                            let image = UIImage(data:imageData!)
+                            //image object implementation
+                            imagesToswipe.append(image!)
+                            var objId = obj.objectId! as String
+                            otherObjID.append(objId)
+                            if(objects.count == imagesToswipe.count ){
+                                println("imagesToswipe.count \(imagesToswipe.count)")
+                                appDelegate.window?.rootViewController  = appDelegate.tabBarController
+                                appDelegate.tabBarController.selectedIndex = 1;
+
+                                let sb = UIStoryboard(name: "Main", bundle: nil)
+                                let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+                                overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                                self.navigationController?.pushViewController(overViewVC, animated: true)
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        
+                    })
+                    
+                }
+                
+                
+            }
+            else
+            {
+                println("erorr in getfavoritelist ")
+            }
+            
+            
+        }
+        
+        
+
+            
         
         
       //  self.parentViewController?.presentViewController(overViewVC, animated: true, completion: nil)
@@ -118,7 +171,10 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
     }
     
+    
+
 
     
-      
+    
+    
 }

@@ -60,7 +60,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         PassButton.setTitle(" X Pass", forState: UIControlState.Normal)
         PassButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
-        PassButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        PassButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Highlighted)
         PassButton.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
         
         PassButton.clipsToBounds = true
@@ -269,8 +269,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         println("indexnum \(indexnum)")
         if PFUser.currentUser() != nil{
             var user1 = PFUser.currentUser()!
-           // var user2 = otherusers[indexnum] as! AnyObject
-            //     var object: PFObject = PFObject(withoutDataWithClassName: "User", objectId: otheruser)
             var query2 = PFQuery(className: "_User")
             query2.whereKey("objectId", equalTo: otherusers[indexnum])
             let sb = UIStoryboard(name: "Main", bundle: nil)

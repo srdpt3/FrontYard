@@ -9,16 +9,16 @@
 import UIKit
 import Koloda
 
-private let overlayRightImageName = "yesOverlayImage"
-private let overlayLeftImageName = "noOverlayImage"
+private let overlayRightImageName = "overlay_like-1"
+private let overlayLeftImageName = "overlay_skip-1"
 
 class ExampleOverlayView: OverlayView {
     @IBOutlet lazy var overlayImageView: UIImageView! = {
         [unowned self] in
         
-        var imageView = UIImageView(frame: self.bounds)
+       // var imageView = UIImageView(frame: self.bounds)
         
-     //   var imageView = UIImageView(frame: CGRectMake(0, 50, 339, 382))
+      var imageView = UIImageView(frame: CGRectMake(0, 50, 339, 382))
         imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
 

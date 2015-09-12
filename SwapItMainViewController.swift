@@ -10,18 +10,21 @@ import UIKit
 import Koloda
 import pop
 
-private var numberOfCards: UInt = 5
+private var numberOfCards: UInt = UInt(imagesToswipe.count)
 
 class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaViewDelegate {
     
     @IBOutlet weak var kolodaView: KolodaView!
+    
+
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        
+      //  self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
+
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
     }
 
@@ -75,18 +78,24 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
-     //   println(kolodaView.frame.size.width)
-      //  println(kolodaView.frame.size.height)
-
-        var imageView = UIImageView(frame: CGRectMake(0, 50, 339, 382))
-        imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
-        imageView.image = UIImage(named: "Card_like_\(index + 1)")!
+        var imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
+        imageView.backgroundColor = UIColor.whiteColor()
         
-        //var image :UIImage =
-        //image.imag
+        imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+        
+    //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
 
-       // return UIImageView(image: image)
+            var index2 = Int(index)
+     // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
+        imageView.image = imagesToswipe[index2]
+        
+        imageView.layer.cornerRadius = 5
+        imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+        imageView.layer.borderWidth = 2;
+        
+        imageView.clipsToBounds = true
+
+        
         return imageView
 
         
@@ -100,10 +109,13 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView, index: UInt, direction: SwipeResultDirection) {
         //Example: loading more cards
-       // if index >= 3 {
-            numberOfCards = 7
+       if index >= 1 {
+          // numberOfCards = 7
             kolodaView.reloadData()
-       // }
+        }
+
+        println("direction is \(direction.hashValue)")
+
     }
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
@@ -114,7 +126,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://yalantis.com/")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "starcraft.com")!)
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
@@ -134,6 +146,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
     
-    
+
 }
 

@@ -76,6 +76,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
     private(set) public var countOfCards = 0
     
     public var countOfVisibleCards = defaultCountOfVisibleCards
+   // public var action =
     private var visibleCards = [DraggableCardView]()
     private var animating = false
     private var configured = false
@@ -492,6 +493,8 @@ public class KolodaView: UIView, DraggableCardDelegate {
             if !visibleCards.isEmpty {
                 loadMissingCards(missingCards)
             } else {
+                
+                
                 setupDeck()
                 layoutDeck()
                 
@@ -504,6 +507,8 @@ public class KolodaView: UIView, DraggableCardDelegate {
         } else {
             
             reconfigureCards()
+            
+            
         }
     }
     
@@ -526,8 +531,11 @@ public class KolodaView: UIView, DraggableCardDelegate {
                     return
                 case SwipeResultDirection.Left:
                     frontCard.swipeLeft()
+                    println("lf")
                 case SwipeResultDirection.Right:
                     frontCard.swipeRight()
+                    println("rg")
+
                 }
             }
         }
@@ -537,5 +545,11 @@ public class KolodaView: UIView, DraggableCardDelegate {
         clear()
         reloadData()
     }
+    
+ 
+    
+    
+    
+    
     
 }

@@ -1,4 +1,5 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+
 
 
 //
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("3YIT5b7gX4993SswqN3qAVq0mk8sOrXgn8o7cpE1",clientKey:"FuVje4F5el2mWCwFtMMClnxdbwAUsNeK6y7tyDid")
 
+                
         let notificationTypes:UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
         let notificationSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
@@ -181,11 +183,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let favoriteView = sb.instantiateViewControllerWithIdentifier("WaterfallViewController") as! NTNavigationController
         
-        var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: nil, rightItemImage: nil)
+    //    var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: nil, rightItemImage: nil)
+        var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "star"), leftItemImage: nil, rightItemImage: nil)
+
        // var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
         var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: nil, rightItemImage: nil)
         var item3 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "chats_icon"), leftItemImage: UIImage(named: "search_icon"), rightItemImage: UIImage(named: "new_chat_icon"))
-        var item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "settings_icon"), leftItemImage: nil, rightItemImage: nil)
+    //    var item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "settings_icon"), leftItemImage: nil, rightItemImage: nil)
+        var item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "gear"), leftItemImage: nil, rightItemImage: nil)
+
         
              
     

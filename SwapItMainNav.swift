@@ -10,6 +10,11 @@ import UIKit
 
 class SwapItMainNav: UINavigationController {
 
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

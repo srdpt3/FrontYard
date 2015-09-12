@@ -244,8 +244,12 @@ public class DraggableCardView: UIView {
     private func swipeMadeAction() {
         if xDistanceFromCenter > actionMargin {
             rightAction()
+            println("ges right")
+
         } else if xDistanceFromCenter < -actionMargin {
             leftAction()
+            println("ges right")
+
         } else {
             resetViewPositionAndTransformations()
         }
@@ -271,7 +275,6 @@ public class DraggableCardView: UIView {
                 self.dragBegin = false
                 self.removeFromSuperview()
         })
-        println("Swipe right gesture")
     }
     
     private func leftAction() {
@@ -357,8 +360,7 @@ public class DraggableCardView: UIView {
                     return
             })
         }
-        println("Swipe Left")
-
+        println("button left")
     }
     
     func swipeRight () {
@@ -380,5 +382,7 @@ public class DraggableCardView: UIView {
                     return
             })
         }
+        println("button right")
+
     }
 }
