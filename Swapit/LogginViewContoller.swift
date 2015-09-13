@@ -16,7 +16,7 @@ var pricelabel = [String]()
 var itemTitle = [String]()
 var itemDesc = [String]()
 var imagesToswipe = [UIImage]()
-
+var numberOfCards: UInt = UInt(imagesToswipe.count)
 
 class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
    
@@ -36,11 +36,12 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
      //   let loader = LiquidLoader(frame: CGRectMake(100, 100, 100, 100), effect: .GrowCircle(UIColor.whiteColor()))
         //    var loader = LiquidLoader(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height), effect: .GrowCircle(UIColor.whiteColor()))
         
-        
+        imagesToswipe.removeAll(keepCapacity: false)
+        otherObjID.removeAll(keepCapacity: false)
 
         if PFUser.currentUser() != nil
         {
-           
+            
             showChatOverview()
             
         }
@@ -50,6 +51,8 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
         var installation:PFInstallation = PFInstallation.currentInstallation()
         installation["user"] = PFUser.currentUser()
+
+
         installation.saveInBackgroundWithBlock(nil)
             showChatOverview()
     }
@@ -75,16 +78,13 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.pushViewController(overViewVC, animated: true)
         */
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.setup()
 
-        //  JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor.whiteColor(), circleSize: 200)
 
+        //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
         
 
-        JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
-
-
+        
+        
         imagesToswipe.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         var query:PFQuery = PFQuery(className: "imageUpload")
@@ -107,18 +107,28 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
                             otherObjID.append(objId)
                             if(objects.count == imagesToswipe.count ){
                                 
-                                JTSplashView.finishWithCompletion { () -> Void in
-                                    UIApplication.sharedApplication().statusBarHidden = false
-                                }
-                                
-                                println("imagesToswipe.count \(imagesToswipe.count)")
-                                appDelegate.window?.rootViewController  = appDelegate.tabBarController
-                                appDelegate.tabBarController.selectedIndex = 1;
 
-                                let sb = UIStoryboard(name: "Main", bundle: nil)
-                                let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
-                                overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-                                self.navigationController?.pushViewController(overViewVC, animated: true)
+                                println("imagesToswipe.count \(imagesToswipe.count)")
+                                numberOfCards = UInt(imagesToswipe.count)
+              
+                                
+                          
+                                
+                              //  JTSplashView.finishWithCompletion { () -> Void in
+                                    
+                                    println("imagesToswipe.countasdfasd")
+
+                                   let sb = UIStoryboard(name: "Main", bundle: nil)
+                                  let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+                                    overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                              self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+  
+
+                                    
+                                    
+                                  //  UIApplication.sharedApplication().statusBarHidden = true
+                               // }
+                                
                                 
                             }
                             
@@ -182,9 +192,18 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     }
     
     
+    override func viewDidDisappear(animated: Bool) {
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.setup()
+        appDelegate.window?.rootViewController  = appDelegate.tabBarController
+        appDelegate.tabBarController.selectedIndex = 1;
+    }
 
+    override func viewWillDisappear(animated: Bool) {
+        
 
-    
+    }
     
     
 }

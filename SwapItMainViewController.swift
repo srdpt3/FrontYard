@@ -12,19 +12,23 @@ import pop
 import LiquidLoader
 import JTSplashView
 
-private var numberOfCards: UInt = UInt(imagesToswipe.count)
+//var numberOfCards: UInt = UInt(imagesToswipe.count)
 
 class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaViewDelegate {
     
     @IBOutlet weak var kolodaView: KolodaView!
     
-
+    
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println("numberOfCards \(numberOfCards)")
         kolodaView.dataSource = self
         kolodaView.delegate = self
+        
+
       //  self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
  
         // loader.hide()
@@ -56,6 +60,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
         self.navigationItem.titleView = followButton
         self.tabBarController?.tabBar.hidden = false
+        
+        println("imagesToswipe.count2 \(imagesToswipe.count)")
+
         
     }
 
@@ -91,6 +98,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
 
             var index2 = Int(index)
+        println(index2)
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
         imageView.image = imagesToswipe[index2]
         

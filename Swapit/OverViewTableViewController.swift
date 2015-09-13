@@ -145,6 +145,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         SettingactionSheet.addAction(UIAlertAction(title: "Log out(로그아웃)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
                 PFUser.logOut()
+            imagesToswipe.removeAll(keepCapacity: false)
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
             
