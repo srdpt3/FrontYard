@@ -72,16 +72,15 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     }*/
     func showChatOverview()
     {
-        /*
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as! OverViewTableViewController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
-        */
 
-
-        //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
-        
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                PFUser.currentUser()!.saveInBackground()
+            }
+        }
+       
 
         
         
@@ -93,6 +92,8 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
+                JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
+
                 let objects = results as! [PFObject]
                 for obj in objects{
                     let thumbNail = obj["image"] as! PFFile
@@ -114,20 +115,15 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
                                 
                           
                                 
-                              //  JTSplashView.finishWithCompletion { () -> Void in
+                                JTSplashView.finishWithCompletion { () -> Void in
                                     
-                                    println("imagesToswipe.countasdfasd")
-
                                    let sb = UIStoryboard(name: "Main", bundle: nil)
                                   let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
                                     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
                               self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
   
-
-                                    
-                                    
-                                  //  UIApplication.sharedApplication().statusBarHidden = true
-                               // }
+                                    UIApplication.sharedApplication().statusBarHidden = false
+                                }
                                 
                                 
                             }
