@@ -239,11 +239,26 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
     }
     func showChatOverview()
     {
-        
+     /*
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let overViewVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as! OverViewTableViewController
         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationController?.pushViewController(overViewVC, animated: true)
+       */
+        
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                PFUser.currentUser()!.saveInBackground()
+            }
+        }
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+        //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
+        
+        
         
         
         

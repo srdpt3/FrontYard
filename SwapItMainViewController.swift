@@ -24,6 +24,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         println("numberOfCards \(numberOfCards)")
         kolodaView.dataSource = self
         kolodaView.delegate = self
@@ -61,7 +63,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         self.navigationItem.titleView = followButton
         self.tabBarController?.tabBar.hidden = false
         
-        println("imagesToswipe.count2 \(imagesToswipe.count)")
+        
 
         
     }
@@ -158,7 +160,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         return nil
     }
     
-    
+
 
 }
 

@@ -38,6 +38,9 @@
 		DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE786791BA486E00077EAA2 /* FBShimmeringView.m */; };
 		DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */; };
 		DAE786811BA48F020077EAA2 /* JTSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786801BA48F020077EAA2 /* JTSplashView.swift */; };
+		DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE786821BA87F310077EAA2 /* ImageIO.framework */; };
+		DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */; };
+		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -166,6 +169,9 @@
 		DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
 		DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
 		DAE786801BA48F020077EAA2 /* JTSplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSplashView.swift; sourceTree = "<group>"; };
+		DAE786821BA87F310077EAA2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
+		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loaddataViewController.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */,
 				DAF94CCC1B7A043F004D2660 /* Social.framework in Frameworks */,
 				DAF94CCA1B7A043A004D2660 /* Accounts.framework in Frameworks */,
 				DAF94CC81B7A0430004D2660 /* libsqlite3.dylib in Frameworks */,
@@ -335,6 +342,7 @@
 		988E4C82F2193E2DDDD24941 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAE786821BA87F310077EAA2 /* ImageIO.framework */,
 				837A97BFD1CA9F0BAD26B812 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -395,6 +403,8 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */,
+				DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */,
 				DAE786801BA48F020077EAA2 /* JTSplashView.swift */,
 				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
 				DAE786721B9FEAA50077EAA2 /* LocationManager.swift */,
@@ -864,6 +874,7 @@
 				DAF94D4C1B7A12EC004D2660 /* NSString+JSQMessages.m in Sources */,
 				DAF94D7D1B7B58EA004D2660 /* OverViewTableViewController.swift in Sources */,
 				DAF94D571B7A12EC004D2660 /* JSQMessagesTimestampFormatter.m in Sources */,
+				DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */,
 				DAF94D4A1B7A12EC004D2660 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				DAE7864F1B9E748E0077EAA2 /* Macro.swift in Sources */,
 				DAF94D6D1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
@@ -882,6 +893,7 @@
 				DAF94D651B7A12EC004D2660 /* JSQMessagesCollectionViewCell.m in Sources */,
 				DAF94D6A1B7A12EC004D2660 /* JSQMessagesComposerTextView.m in Sources */,
 				DAF94D721B7A12EC004D2660 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
+				DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */,
 				DAF94D5A1B7A12EC004D2660 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */,
 				DAF94D541B7A12EC004D2660 /* JSQMessagesAvatarImageFactory.m in Sources */,

@@ -9,20 +9,16 @@
 import UIKit
 import FoldingTabBar
 
-var otherImageFiles = [PFFile]()
-var otherObjID = [String]()
-var otherUsers = [String]()
-var pricelabel = [String]()
-var itemTitle = [String]()
-var itemDesc = [String]()
-var imagesToswipe = [UIImage]()
-var numberOfCards: UInt = UInt(imagesToswipe.count)
 
-class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
+class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate{
    
+
+    
     override func viewDidLoad() {
+
         super.viewDidLoad()
         self.delegate = self
+
         //self.signUpController?.delegate = self
         self.logInView?.logo = UIImageView(image: UIImage(named: "main.gif"))
        // self.signUpController?.signUpView?.logo = UIImageView(image: UIImage(named: "main.gif"))
@@ -35,17 +31,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
      //   let loader = LiquidLoader(frame: CGRectMake(100, 100, 100, 100), effect: .GrowCircle(UIColor.whiteColor()))
         //    var loader = LiquidLoader(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height), effect: .GrowCircle(UIColor.whiteColor()))
-        
-        imagesToswipe.removeAll(keepCapacity: false)
-        otherObjID.removeAll(keepCapacity: false)
-
-        if PFUser.currentUser() != nil
-        {
-            
-            showChatOverview()
-            
-        }
-
+     
     }
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         
@@ -72,7 +58,6 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     }*/
     func showChatOverview()
     {
-
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
             if error == nil {
@@ -80,82 +65,11 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
                 PFUser.currentUser()!.saveInBackground()
             }
         }
-       
-
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+   //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
         
-        
-        imagesToswipe.removeAll(keepCapacity: false)
-        otherObjID.removeAll(keepCapacity: false)
-        var query:PFQuery = PFQuery(className: "imageUpload")
-        query.addAscendingOrder("createdAt")
-        query.whereKey("user", notEqualTo: PFUser.currentUser()!)
-        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-            if error == nil
-            {
-                JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
-
-                let objects = results as! [PFObject]
-                for obj in objects{
-                    let thumbNail = obj["image"] as! PFFile
-                    thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
-                        
-                        if error2 == nil
-                        {
-                            let image = UIImage(data:imageData!)
-                            //image object implementation
-                            imagesToswipe.append(image!)
-                            var objId = obj.objectId! as String
-                            otherObjID.append(objId)
-                            if(objects.count == imagesToswipe.count ){
-                                
-
-                                println("imagesToswipe.count \(imagesToswipe.count)")
-                                numberOfCards = UInt(imagesToswipe.count)
-              
-                                
-                          
-                                
-                                JTSplashView.finishWithCompletion { () -> Void in
-                                    
-                                   let sb = UIStoryboard(name: "Main", bundle: nil)
-                                  let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
-                                    overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-                              self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
-  
-                                    UIApplication.sharedApplication().statusBarHidden = false
-                                }
-                                
-                                
-                            }
-                            
-                            
-                        }
-                        
-                        
-                        
-                    })
-                    
-                }
-                
-                
-            }
-            else
-            {
-                println("erorr in getfavoritelist ")
-            }
-            
-            
-        }
-        
-        
-
-            
-        
-        
-      //  self.parentViewController?.presentViewController(overViewVC, animated: true, completion: nil)
-
-    
-
 
     }
   
@@ -170,30 +84,40 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
     }
     
-    func setupYALTabBarController()
-    {
-        
-        //YALFoldingTabBarController *tabBarController = (YALFoldingTabBarController *) self.window.rootViewController;
-        //
-      //  var tabBarController: YALFoldingTabBarController = self.view.window?.rootViewController as! YALFoldingTabBarController
-        
-        // var tabBarController: YALFoldingTabBarController =
-        
-        
-    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
     
-    
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+        imagesToswipe.removeAll(keepCapacity: false)
+        otherObjID.removeAll(keepCapacity: false)
         
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.setup()
-        appDelegate.window?.rootViewController  = appDelegate.tabBarController
-        appDelegate.tabBarController.selectedIndex = 1;
+        
+        
+        if PFUser.currentUser() != nil
+        {
+            //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
+            PFGeoPoint.geoPointForCurrentLocationInBackground {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                if error == nil {
+                    PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                    PFUser.currentUser()!.saveInBackground()
+                }
+            }
+            
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+            //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationController?.pushViewController(overViewVC, animated: true)
+            
+            
+            
+        }
+
     }
 
     override func viewWillDisappear(animated: Bool) {
