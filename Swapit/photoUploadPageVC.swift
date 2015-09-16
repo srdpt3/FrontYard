@@ -381,30 +381,31 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         //let defaultbuttonImage = UIImage(named: "upload.png")
         
+        
         if (image1.currentImage != defaultbuttonImage)
         {
-            let imageData = UIImagePNGRepresentation(image1.imageView?.image)
+            let imageData = UIImageJPEGRepresentation(image1.imageView?.image, 1)
             let imageFile = PFFile(name: "image.png", data: imageData)
             imageFiles.append(imageFile)
             
         }
         if (image2.currentImage != defaultbuttonImage)
         {
-            let imageData2 = UIImagePNGRepresentation(image2.imageView?.image)
+            let imageData2 = UIImageJPEGRepresentation(image2.imageView?.image, 1)
             let imageFile2 = PFFile(name: "image2.png", data: imageData2)
             imageFiles.append(imageFile2)
             
         }
         if (image3.currentImage != defaultbuttonImage)
         {
-            let imageData3 = UIImagePNGRepresentation(image3.imageView?.image)
+            let imageData3 = UIImageJPEGRepresentation(image3.imageView?.image, 1)
             let imageFile3 = PFFile(name: "image3.png", data: imageData3)
             imageFiles.append(imageFile3)
             
         }
         if (image4.currentImage != defaultbuttonImage)
         {
-            let imageData4 = UIImagePNGRepresentation(image4.imageView?.image)
+            let imageData4 = UIImageJPEGRepresentation(image4.imageView?.image, 1)
             let imageFile4 = PFFile(name: "image4.png", data: imageData4)
             imageFiles.append(imageFile4)
             
@@ -432,6 +433,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             
         }
         else{
+            ViewControllerUtils().showActivityIndicator(self.view)
+
                 PFUser.currentUser()!.save()
         
                 var imageDBTable = PFObject(className: "imageUpload")
@@ -467,7 +470,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             //  myPost.addUniqueObject(imageFile, forKey: "images")
             
         }
-        
+            ViewControllerUtils().hideActivityIndicator(self.view)
+
                 self.navigationController?.popToRootViewControllerAnimated(true)
         }
         
@@ -514,10 +518,20 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = true
+        self.tabBarController?.tabBar.hidden = true
+        
+        
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
     
+        
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController.tabBarView.hidden = false
+        self.tabBarController?.tabBar.hidden = true
         
     }
 

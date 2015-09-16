@@ -141,6 +141,16 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             
         }))
         
+        SettingactionSheet.addAction(UIAlertAction(title: "Upload my item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let photoUploadVC = sb.instantiateViewControllerWithIdentifier("photoViewController") as! photoUploadPageVC
+            //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationController?.pushViewController(photoUploadVC, animated: true)
+            
+            
+        }))
+        
         
         SettingactionSheet.addAction(UIAlertAction(title: "Log out(로그아웃)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             

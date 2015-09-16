@@ -18,7 +18,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     @IBOutlet weak var kolodaView: KolodaView!
     
-    
+    var index2:Int = 0
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -99,7 +99,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
     //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
 
-            var index2 = Int(index)
+        index2 = Int(index)
         println(index2)
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
         imageView.image = imagesToswipe[index2]
@@ -130,6 +130,20 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         }
 
         println("direction is \(direction.hashValue)")
+        // index2 = Int(index)
+        
+        if (direction.hashValue == 2)
+        {
+            var imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[Int(index)] as String)
+            imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"interesting")
+            imageDBTable.saveEventually({ (success, error) -> Void in
+                if success == true {
+                    println("You liked: \(otherObjID[Int(index)])")
+                }
+            })
+       
+        }
+        
 
     }
     
