@@ -165,12 +165,16 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         otherObjID.removeAll(keepCapacity: false)
         var query:PFQuery = PFQuery(className: "imageUpload")
         query.addAscendingOrder("createdAt")
-        query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+       query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+      //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
+       // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
+        
    //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
                 let objects = results as! [PFObject]
+    
                 for obj in objects{
                    // let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String

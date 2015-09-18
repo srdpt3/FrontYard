@@ -41,6 +41,9 @@
 		DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE786821BA87F310077EAA2 /* ImageIO.framework */; };
 		DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */; };
 		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
+		DAE786DE1BABCA960077EAA2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */; };
+		DAE786DF1BABCA960077EAA2 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */; };
+		DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DD1BABCA960077EAA2 /* Interest.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -172,6 +175,9 @@
 		DAE786821BA87F310077EAA2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loaddataViewController.swift; sourceTree = "<group>"; };
+		DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAE786DD1BABCA960077EAA2 /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,6 +419,9 @@
 				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
 				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
+				DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */,
+				DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */,
+				DAE786DD1BABCA960077EAA2 /* Interest.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
@@ -861,6 +870,8 @@
 				DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */,
 				DAF94D681B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */,
+				DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */,
+				DAE786DF1BABCA960077EAA2 /* InterestCollectionViewCell.swift in Sources */,
 				DAF94D5F1B7A12EC004D2660 /* JSQMessagesAvatarImage.m in Sources */,
 				DAF94D631B7A12EC004D2660 /* JSQMessagesCellTextView.m in Sources */,
 				DAF94D701B7A12EC004D2660 /* JSQMessagesToolbarContentView.m in Sources */,
@@ -899,6 +910,7 @@
 				DAF94D541B7A12EC004D2660 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				DAE7864C1B9E748E0077EAA2 /* Extension.swift in Sources */,
 				DAF94D5E1B7A12EC004D2660 /* JSQMessage.m in Sources */,
+				DAE786DE1BABCA960077EAA2 /* HomeViewController.swift in Sources */,
 				DAE7864D1B9E748E0077EAA2 /* NTTransition.swift in Sources */,
 				DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */,
 				DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */,
