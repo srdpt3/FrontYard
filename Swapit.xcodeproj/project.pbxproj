@@ -41,9 +41,15 @@
 		DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE786821BA87F310077EAA2 /* ImageIO.framework */; };
 		DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */; };
 		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
-		DAE786DE1BABCA960077EAA2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */; };
-		DAE786DF1BABCA960077EAA2 /* InterestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */; };
 		DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DD1BABCA960077EAA2 /* Interest.swift */; };
+		DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E11BAC78E20077EAA2 /* photo1.png */; };
+		DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E21BAC78E20077EAA2 /* photo2.png */; };
+		DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E31BAC78E20077EAA2 /* photo3.png */; };
+		DAE786E91BAC78E20077EAA2 /* photo4.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E41BAC78E20077EAA2 /* photo4.png */; };
+		DAE786EA1BAC78E20077EAA2 /* photo5.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E51BAC78E20077EAA2 /* photo5.png */; };
+		DAE786EF1BAC799B0077EAA2 /* CustomScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */; };
+		DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */; };
+		DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -175,9 +181,15 @@
 		DAE786821BA87F310077EAA2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loaddataViewController.swift; sourceTree = "<group>"; };
-		DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAE786DD1BABCA960077EAA2 /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
+		DAE786E11BAC78E20077EAA2 /* photo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo1.png; sourceTree = "<group>"; };
+		DAE786E21BAC78E20077EAA2 /* photo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo2.png; sourceTree = "<group>"; };
+		DAE786E31BAC78E20077EAA2 /* photo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo3.png; sourceTree = "<group>"; };
+		DAE786E41BAC78E20077EAA2 /* photo4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo4.png; sourceTree = "<group>"; };
+		DAE786E51BAC78E20077EAA2 /* photo5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo5.png; sourceTree = "<group>"; };
+		DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomScrollViewController.swift; sourceTree = "<group>"; };
+		DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollViewController.swift; sourceTree = "<group>"; };
+		DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewContainer.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -419,8 +431,14 @@
 				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
 				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
-				DAE786DB1BABCA960077EAA2 /* HomeViewController.swift */,
-				DAE786DC1BABCA960077EAA2 /* InterestCollectionViewCell.swift */,
+				DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */,
+				DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */,
+				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
+				DAE786E11BAC78E20077EAA2 /* photo1.png */,
+				DAE786E21BAC78E20077EAA2 /* photo2.png */,
+				DAE786E31BAC78E20077EAA2 /* photo3.png */,
+				DAE786E41BAC78E20077EAA2 /* photo4.png */,
+				DAE786E51BAC78E20077EAA2 /* photo5.png */,
 				DAE786DD1BABCA960077EAA2 /* Interest.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
@@ -778,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
+				DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
 				DAF94D7B1B7AF472004D2660 /* barButton.gif in Resources */,
 				DAF94D731B7A12EC004D2660 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
@@ -787,12 +806,16 @@
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
+				DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */,
+				DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
+				DAE786E91BAC78E20077EAA2 /* photo4.png in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
 				DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
+				DAE786EA1BAC78E20077EAA2 /* photo5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +886,7 @@
 				DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */,
 				DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */,
 				DAF94D511B7A12EC004D2660 /* JSQMessagesKeyboardController.m in Sources */,
+				DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */,
 				DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */,
 				DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */,
 				DAF94D661B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
@@ -871,7 +895,6 @@
 				DAF94D681B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */,
 				DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */,
-				DAE786DF1BABCA960077EAA2 /* InterestCollectionViewCell.swift in Sources */,
 				DAF94D5F1B7A12EC004D2660 /* JSQMessagesAvatarImage.m in Sources */,
 				DAF94D631B7A12EC004D2660 /* JSQMessagesCellTextView.m in Sources */,
 				DAF94D701B7A12EC004D2660 /* JSQMessagesToolbarContentView.m in Sources */,
@@ -909,8 +932,8 @@
 				DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */,
 				DAF94D541B7A12EC004D2660 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				DAE7864C1B9E748E0077EAA2 /* Extension.swift in Sources */,
+				DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */,
 				DAF94D5E1B7A12EC004D2660 /* JSQMessage.m in Sources */,
-				DAE786DE1BABCA960077EAA2 /* HomeViewController.swift in Sources */,
 				DAE7864D1B9E748E0077EAA2 /* NTTransition.swift in Sources */,
 				DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */,
 				DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */,
@@ -926,6 +949,7 @@
 				DAF94D5B1B7A12EC004D2660 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				DAF94D621B7A12EC004D2660 /* JSQVideoMediaItem.m in Sources */,
 				DAF94D611B7A12EC004D2660 /* JSQPhotoMediaItem.m in Sources */,
+				DAE786EF1BAC799B0077EAA2 /* CustomScrollViewController.swift in Sources */,
 				DAE7867A1BA486E00077EAA2 /* FBShimmeringLayer.m in Sources */,
 				DAF94D4F1B7A12EC004D2660 /* UIImage+JSQMessages.m in Sources */,
 				DAF94D551B7A12EC004D2660 /* JSQMessagesBubbleImageFactory.m in Sources */,

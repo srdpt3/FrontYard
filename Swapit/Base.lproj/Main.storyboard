@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="idl-N2-HYs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yzf-gw-o84">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -648,91 +648,24 @@
             </objects>
             <point key="canvasLocation" x="-14084" y="-11438"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="D7D-r4-B0h">
+        <!--Paged Scroll View Controller-->
+        <scene sceneID="iWe-AO-9Qd">
             <objects>
-                <viewController id="idl-N2-HYs" customClass="HomeViewController" customModule="Interests" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yzf-gw-o84" customClass="PagedScrollViewController" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lt0-uc-JgQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="9c4-Bt-V76"/>
+                        <viewControllerLayoutGuide type="top" id="Nkb-q6-hId"/>
+                        <viewControllerLayoutGuide type="bottom" id="z6L-uV-9ku"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iDe-yg-shp">
+                    <view key="view" contentMode="scaleToFill" id="2Hl-Qc-Gyc">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="Cd6-Ms-K2v">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSH-Kg-Vcy">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bhD-n7-1Jy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FzG-g3-8MA">
-                                            <rect key="frame" x="0.0" y="87" width="600" height="452"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="10" id="dwA-ng-Lei">
-                                                <size key="itemSize" width="280" height="380"/>
-                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                            </collectionViewFlowLayout>
-                                            <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Interest Cell" id="ZmC-45-eDC" customClass="InterestCollectionViewCell" customModule="Interests" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="36" width="280" height="380"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="j52-hw-H2V">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                    <constraints>
-                                                        <constraint firstItem="j52-hw-H2V" firstAttribute="top" secondItem="ZmC-45-eDC" secondAttribute="top" id="Hoc-b8-SUY"/>
-                                                        <constraint firstAttribute="bottom" secondItem="j52-hw-H2V" secondAttribute="bottom" id="bx3-7J-sWG"/>
-                                                        <constraint firstItem="j52-hw-H2V" firstAttribute="leading" secondItem="ZmC-45-eDC" secondAttribute="leading" id="fXK-7m-YxY"/>
-                                                        <constraint firstAttribute="trailing" secondItem="j52-hw-H2V" secondAttribute="trailing" id="qow-dK-DIu"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <outlet property="featuredImageView" destination="j52-hw-H2V" id="PZL-I1-iBP"/>
-                                                    </connections>
-                                                </collectionViewCell>
-                                            </cells>
-                                            <connections>
-                                                <outlet property="dataSource" destination="idl-N2-HYs" id="l1d-KL-dXf"/>
-                                                <outlet property="delegate" destination="idl-N2-HYs" id="b9Y-pM-C3A"/>
-                                            </connections>
-                                        </collectionView>
-                                    </subviews>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="bSH-Kg-Vcy" firstAttribute="top" secondItem="iDe-yg-shp" secondAttribute="top" id="6lV-h4-pwF"/>
-                            <constraint firstItem="bSH-Kg-Vcy" firstAttribute="leading" secondItem="iDe-yg-shp" secondAttribute="leading" id="8vL-Cw-qcc"/>
-                            <constraint firstItem="9c4-Bt-V76" firstAttribute="top" secondItem="Cd6-Ms-K2v" secondAttribute="bottom" id="Hdr-s3-URb"/>
-                            <constraint firstAttribute="trailing" secondItem="bSH-Kg-Vcy" secondAttribute="trailing" id="JTr-u5-8lP"/>
-                            <constraint firstItem="Cd6-Ms-K2v" firstAttribute="leading" secondItem="iDe-yg-shp" secondAttribute="leading" id="TeD-IB-5g4"/>
-                            <constraint firstItem="Cd6-Ms-K2v" firstAttribute="top" secondItem="iDe-yg-shp" secondAttribute="top" id="WxJ-QT-rt0"/>
-                            <constraint firstItem="9c4-Bt-V76" firstAttribute="top" secondItem="bSH-Kg-Vcy" secondAttribute="bottom" id="hEF-KM-1os"/>
-                            <constraint firstAttribute="trailing" secondItem="Cd6-Ms-K2v" secondAttribute="trailing" id="kcQ-Sw-ncd"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="Cd6-Ms-K2v" id="8Sd-10-VRy"/>
-                        <outlet property="collectionView" destination="FzG-g3-8MA" id="lik-XO-ocl"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="M7t-kQ-TGM"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G8O-2a-8FH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlq-lK-zSn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="104"/>
+            <point key="canvasLocation" x="-489" y="-178"/>
         </scene>
     </scenes>
     <resources>
@@ -743,6 +676,5 @@
         <image name="btn_skip_normal" width="32" height="32"/>
         <image name="btn_skip_pressed" width="32" height="32"/>
         <image name="btn_undo" width="21" height="21"/>
-        <image name="r1" width="1500" height="1026"/>
     </resources>
 </document>
