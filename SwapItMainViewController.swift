@@ -157,6 +157,10 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://us.blizzard.com/en-us/games/hots/landing/")!)
         
+        
+        
+        
+        
         println("card tabbed")
     }
     

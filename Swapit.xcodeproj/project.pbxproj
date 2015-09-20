@@ -50,6 +50,11 @@
 		DAE786EF1BAC799B0077EAA2 /* CustomScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */; };
 		DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */; };
 		DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */; };
+		DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */; };
+		DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */; };
+		DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */; };
+		DAE786FB1BAE3C780077EAA2 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */; };
+		DAE786FC1BAE3C780077EAA2 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
 		DAF94C8A1B7981F6004D2660 /* Swapit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */; };
@@ -190,6 +195,11 @@
 		DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomScrollViewController.swift; sourceTree = "<group>"; };
 		DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollViewController.swift; sourceTree = "<group>"; };
 		DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewContainer.swift; sourceTree = "<group>"; };
+		DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPad.xib; sourceTree = "<group>"; };
+		DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6.xib; sourceTree = "<group>"; };
+		DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6Plus.xib; sourceTree = "<group>"; };
+		DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		DAF94C811B7981F5004D2660 /* Swapit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swapit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -421,6 +431,11 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */,
+				DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */,
+				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
+				DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */,
+				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */,
 				DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */,
 				DAE786801BA48F020077EAA2 /* JTSplashView.swift */,
@@ -795,6 +810,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
 				DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
@@ -805,13 +821,16 @@
 				DAF94D6E1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				DAE786FB1BAE3C780077EAA2 /* PopUpViewController.xib in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
 				DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */,
 				DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */,
+				DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				DAE786E91BAC78E20077EAA2 /* photo4.png in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
+				DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
@@ -886,6 +905,7 @@
 				DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */,
 				DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */,
 				DAF94D511B7A12EC004D2660 /* JSQMessagesKeyboardController.m in Sources */,
+				DAE786FC1BAE3C780077EAA2 /* PopUpViewControllerSwift.swift in Sources */,
 				DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */,
 				DA5363FC1B8FB0A300A5B911 /* mainViewController.swift in Sources */,
 				DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */,
