@@ -15,17 +15,16 @@ import JTSplashView
 //var numberOfCards: UInt = UInt(imagesToswipe.count)
 
 class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaViewDelegate {
-    
+    var popview : PagedScrollViewController!
     @IBOutlet weak var kolodaView: KolodaView!
     
     var index2:Int = 0
-    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+
+        popview = PagedScrollViewController()
         println("numberOfCards \(numberOfCards)")
         kolodaView.dataSource = self
         kolodaView.delegate = self
@@ -155,9 +154,11 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://us.blizzard.com/en-us/games/hots/landing/")!)
-        
-        
+       // UIApplication.sharedApplication().openURL(NSURL(string: "http://us.blizzard.com/en-us/games/hots/landing/")!)
+  
+
+       popview.showInView(self.view, animated: true)
+
         
         
         

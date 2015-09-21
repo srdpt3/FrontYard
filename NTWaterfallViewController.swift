@@ -42,27 +42,22 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
 
         self.view.backgroundColor = UIColor.whiteColor()
         var nav = self.navigationController?.navigationBar
-        
-        var logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-        //followButton.setTitle(" Swit", forState: UIControlState.Normal)
-        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
-        logoButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
-        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        logoButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.navigationItem.titleView = logoButton
-        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+
+        self.navigationItem.title = "asdfasdfasd"
+        if let font = UIFont(name: "Lato-Light.ttf", size: 34) {
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        }
         
 
-     /*
-        var index = 0
-        while(index<14){
-            let imageName = NSString(format: "%d.jpg", index)
-            imageNameList.append(imageName)
-            index++
-        }
-       */
+   
+    nav?.barStyle = UIBarStyle.Default
+      //  nav!.backgroundColor = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
+    nav?.tintColor = UIColor.whiteColor()
+      nav!.barTintColor = UIColor(red: 142.0/255.0, green: 138.0/255.0, blue: 222.0/255.0, alpha: 1)     //  appearance. setBarTintColor:[UIColor yellowColor]];
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        
+
         let collection :UICollectionView = collectionView!;
        // collection.frame = screenBounds
         

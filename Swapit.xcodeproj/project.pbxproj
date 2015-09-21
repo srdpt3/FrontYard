@@ -37,11 +37,9 @@
 		DAE7867A1BA486E00077EAA2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE786771BA486E00077EAA2 /* FBShimmeringLayer.m */; };
 		DAE7867B1BA486E00077EAA2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE786791BA486E00077EAA2 /* FBShimmeringView.m */; };
 		DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */; };
-		DAE786811BA48F020077EAA2 /* JTSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786801BA48F020077EAA2 /* JTSplashView.swift */; };
 		DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE786821BA87F310077EAA2 /* ImageIO.framework */; };
 		DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */; };
 		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
-		DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786DD1BABCA960077EAA2 /* Interest.swift */; };
 		DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E11BAC78E20077EAA2 /* photo1.png */; };
 		DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E21BAC78E20077EAA2 /* photo2.png */; };
 		DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E31BAC78E20077EAA2 /* photo3.png */; };
@@ -153,11 +151,11 @@
 		DA5363F71B8F95CF00A5B911 /* photoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewController.swift; sourceTree = "<group>"; };
 		DA5363F91B8F9EB700A5B911 /* nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nav.swift; sourceTree = "<group>"; };
 		DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainViewController.swift; path = ../mainViewController.swift; sourceTree = "<group>"; };
-		DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainViewController.swift; sourceTree = "<group>"; };
+		DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainViewController.swift; path = ../SwapItMainViewController.swift; sourceTree = "<group>"; };
 		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
-		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainNav.swift; sourceTree = "<group>"; };
+		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mainlogo.png.gif; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
@@ -182,11 +180,9 @@
 		DAE786791BA486E00077EAA2 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
 		DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
-		DAE786801BA48F020077EAA2 /* JTSplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSplashView.swift; sourceTree = "<group>"; };
 		DAE786821BA87F310077EAA2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
-		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loaddataViewController.swift; sourceTree = "<group>"; };
-		DAE786DD1BABCA960077EAA2 /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
+		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = loaddataViewController.swift; path = ../loaddataViewController.swift; sourceTree = "<group>"; };
 		DAE786E11BAC78E20077EAA2 /* photo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo1.png; sourceTree = "<group>"; };
 		DAE786E21BAC78E20077EAA2 /* photo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo2.png; sourceTree = "<group>"; };
 		DAE786E31BAC78E20077EAA2 /* photo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo3.png; sourceTree = "<group>"; };
@@ -376,9 +372,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DA3109411BAEE9BF00DD9F26 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
+				DA76EA301B955C0900B76458 /* settingVC.swift */,
+				DA76EA321B955CEB00B76458 /* RangeSlider.swift */,
+			);
+			name = Setting;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		DA3109421BAF040D00DD9F26 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */,
+				DAE786721B9FEAA50077EAA2 /* LocationManager.swift */,
+				DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */,
+			);
+			name = Utils;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		DA5364011B925B7800A5B911 /* Login&SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */,
 				DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */,
 				DAF94D741B7AF27F004D2660 /* LogginViewContoller.swift */,
 				DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */,
@@ -436,25 +455,14 @@
 				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
 				DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */,
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
-				DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */,
-				DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */,
-				DAE786801BA48F020077EAA2 /* JTSplashView.swift */,
-				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
-				DAE786721B9FEAA50077EAA2 /* LocationManager.swift */,
-				DA76EA301B955C0900B76458 /* settingVC.swift */,
-				DA76EA321B955CEB00B76458 /* RangeSlider.swift */,
-				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
-				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAE786EB1BAC799A0077EAA2 /* CustomScrollViewController.swift */,
-				DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
 				DAE786E11BAC78E20077EAA2 /* photo1.png */,
 				DAE786E21BAC78E20077EAA2 /* photo2.png */,
 				DAE786E31BAC78E20077EAA2 /* photo3.png */,
 				DAE786E41BAC78E20077EAA2 /* photo4.png */,
 				DAE786E51BAC78E20077EAA2 /* photo5.png */,
-				DAE786DD1BABCA960077EAA2 /* Interest.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
@@ -482,6 +490,10 @@
 		DAF94C831B7981F5004D2660 /* Swapit */ = {
 			isa = PBXGroup;
 			children = (
+				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
+				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
+				DA3109421BAF040D00DD9F26 /* Utils */,
+				DA3109411BAEE9BF00DD9F26 /* Setting */,
 				DAE786221B9E21140077EAA2 /* SwipedItems */,
 				DAE7860D1B9DBB1F0077EAA2 /* photo Upload */,
 				DA5364011B925B7800A5B911 /* Login&SignUp */,
@@ -773,6 +785,7 @@
 		DAF94C791B7981F5004D2660 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Dustin Yang";
 				TargetAttributes = {
@@ -914,7 +927,6 @@
 				DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */,
 				DAF94D681B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */,
-				DAE786E01BABCA960077EAA2 /* Interest.swift in Sources */,
 				DAF94D5F1B7A12EC004D2660 /* JSQMessagesAvatarImage.m in Sources */,
 				DAF94D631B7A12EC004D2660 /* JSQMessagesCellTextView.m in Sources */,
 				DAF94D701B7A12EC004D2660 /* JSQMessagesToolbarContentView.m in Sources */,
@@ -963,7 +975,6 @@
 				DAE786731B9FEAA50077EAA2 /* LocationManager.swift in Sources */,
 				DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */,
 				DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */,
-				DAE786811BA48F020077EAA2 /* JTSplashView.swift in Sources */,
 				DAF94D641B7A12EC004D2660 /* JSQMessagesCollectionView.m in Sources */,
 				DAF94D4D1B7A12EC004D2660 /* UIColor+JSQMessages.m in Sources */,
 				DAF94D5B1B7A12EC004D2660 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,

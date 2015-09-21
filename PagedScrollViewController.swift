@@ -24,20 +24,20 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // Initialization of UIScrollView
+        
+        
+            // Initialization of UIScrollView
         self.scrollView = UIScrollView()
         let width = self.view.frame.width
         let height = self.view.frame.height
-        self.scrollView.frame = CGRect(x: 0, y: height*0.1, width: width, height: height*0.8)
+        self.scrollView.frame = CGRect(x: 0, y: height*0.15, width: width, height: height*0.65)
         self.scrollView.pagingEnabled = true
         self.scrollView.scrollEnabled = true
         self.scrollView.showsHorizontalScrollIndicator = false
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.delegate = self
         
-        
-        
-        self.pageControl.frame = CGRectMake(0, view.frame.size.height - 50, view.frame.size.width, 25)
+        self.pageControl.frame = CGRectMake(0, height*0.8, view.frame.size.width, 25)
 
         
         
@@ -48,6 +48,15 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
         
         self.view.addSubview(scrollView)
+        
+        
+        
+        var doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.numberOfTouchesRequired = 1
+        self.view.addGestureRecognizer(doubleTapRecognizer)
+        
+        
    //     self.view.addSubview(pageControl)
         // 1
         pageImages = [UIImage(named:"photo1.png")!,
@@ -93,7 +102,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
             
             // 3
             let newPageView = UIImageView(image: pageImages[page])
-            newPageView.contentMode = UIViewContentMode.ScaleToFill
+            newPageView.contentMode = UIViewContentMode.ScaleAspectFit
             newPageView.frame = frame
             
             newPageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
@@ -182,9 +191,33 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
                     self.view.removeFromSuperview()
                 }
         });
-        self.scrollView.removeFromSuperview()
     }
 
+
+    func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
+        // 1
+            removeAnimate()
+    }
+
+   
+    override func viewWillAppear(animated: Bool) {
+        var nav = self.navigationController?.navigationBar
+        
+        self.navigationController?.navigationBar
+        //  self.navigationItem.titleView = logoButton
+        nav?.backgroundColor = UIColor(red: 233/255, green: 143/255, blue: 143/255, alpha: 1.0)
+        //nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        
+        
+        
+        self.view.backgroundColor = UIColor.blackColor()
+
+    }
+    override func viewWillDisappear(animated: Bool) {
+ 
+        
+        
+    }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // Load the pages that are now on screen
