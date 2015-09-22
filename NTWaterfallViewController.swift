@@ -42,27 +42,22 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
+        let navigationBarAppearace = UINavigationBar.appearance()
+       // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+       // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        self.navigationItem.title = "My Favorites"
         
-        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-        //followButton.setTitle(" Swit", forState: UIControlState.Normal)
-        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
-        logoButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
-        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        logoButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.navigationItem.titleView = logoButton
-        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+
         
         
-        /*
-        var index = 0
-        while(index<14){
-        let imageName = NSString(format: "%d.jpg", index)
-        imageNameList.append(imageName)
-        index++
-        }
-        */
+        
+        
+        
+        
+   
         let collection :UICollectionView = collectionView!;
         // collection.frame = screenBounds
         

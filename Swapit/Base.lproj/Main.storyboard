@@ -266,7 +266,7 @@
                                                 <constraint firstAttribute="width" constant="8" id="E2B-RH-Ssf"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="08/11/2015" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-ay-yDJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-ay-yDJ">
                                             <rect key="frame" x="456" y="9" width="136" height="21"/>
                                             <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -310,12 +310,14 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="All Users(testing*)" id="ObL-OR-NQA">
+                        <barButtonItem systemItem="add" id="ObL-OR-NQA">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="6n7-jG-1U7" kind="show" id="cwj-Wz-KyZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Setting" id="hxY-J6-Zzq">
+                        <barButtonItem systemItem="action" id="hxY-J6-Zzq">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="settingButtonPressed:" destination="Zcu-04-hgw" id="TPP-fa-xFd"/>
                             </connections>

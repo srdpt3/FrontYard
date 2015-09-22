@@ -67,8 +67,8 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         }
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-        //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.presentViewController(overViewVC, animated: true, completion: nil)
+        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
         
         
     }
