@@ -38,13 +38,13 @@ class MessageViewController:JSQMessagesViewController {
         self.title = "Messages"
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
-    println("incomingUser\(incomingUser)")
+    print("incomingUser\(incomingUser)")
         
         
      //  println("senderDisplayName\(senderDisplayName)")
 
-        var currentUser = PFUser.currentUser()!
-        self.inputToolbar.contentView.leftBarButtonItem = nil
+        let currentUser = PFUser.currentUser()!
+        self.inputToolbar!.contentView!.leftBarButtonItem = nil
         
         let selfUsername = PFUser.currentUser()!.username! as NSString
         let incomingUsername = incomingUser.username! as NSString
@@ -196,7 +196,7 @@ class MessageViewController:JSQMessagesViewController {
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
-                let room = results!.last as! PFObject
+               // let room = results!.last as! PFObject
            //     messageVC!.room = room
                 // println("room is \(room)")
             //    messageVC?.incomingUser = user2
@@ -234,7 +234,7 @@ class MessageViewController:JSQMessagesViewController {
         message["room"] = room
         message["user"] = PFUser.currentUser()!
         
-        var currentUser = PFUser.currentUser()!
+        let currentUser = PFUser.currentUser()!
        let msgACL = PFACL()
         msgACL.setReadAccess(true, forRoleWithName: currentUser.objectId!)
        msgACL.setReadAccess(true, forRoleWithName: incomingUser.objectId!)
@@ -274,7 +274,7 @@ class MessageViewController:JSQMessagesViewController {
             else
             {
                 
-                println("Error sending msg\(error?.localizedDescription)")
+                print("Error sending msg\(error?.localizedDescription)")
                 
             }
             
@@ -331,14 +331,15 @@ class MessageViewController:JSQMessagesViewController {
         if message.senderId == self.senderId
         {
             
-            cell.textView.textColor = UIColor.blackColor()
+            cell.textView!.textColor = UIColor.blackColor()
         }
         else
         {
-            cell.textView.textColor = UIColor.whiteColor()
+            cell.textView!.textColor = UIColor.whiteColor()
         }
-        cell.textView.linkTextAttributes = [NSForegroundColorAttributeName:cell.textView.textColor]
+ //       let attributes  = [NSForegroundColorAttributeName:cell.textView!.textColor]
         
+  //      cell.textView!.linkTextAttributes = attributes
         return cell
     }
     

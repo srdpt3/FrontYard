@@ -21,7 +21,7 @@ import QuartzCore
     var pageImages: [UIImage] = []
     var pageViews: [UIImageView?] = []
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {

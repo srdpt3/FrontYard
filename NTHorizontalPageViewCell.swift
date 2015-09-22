@@ -30,7 +30,7 @@ class NTTableViewCell : UITableViewCell{
             let imageHeight = imageView.image!.size.height*screenWidth/imageView.image!.size.width
             imageView.frame = CGRectMake(0, 0, screenWidth, screenHeight/2.5)
             
-            imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+         //   imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
          //  imageView.contentMode = UIViewContentMode.ScaleAspectFit
           imageView.contentMode = UIViewContentMode.ScaleAspectFill
             
@@ -61,7 +61,7 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
         tableView.delegate = self
         tableView.dataSource = self
         
-        var backgroundView = UIView(frame:CGRectZero)
+        let backgroundView = UIView(frame:CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.backgroundColor = UIColor.clearColor()
         self.tableView.separatorColor = UIColor.clearColor()
@@ -88,8 +88,6 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
         cell.textLabel?.text = nil
         if indexPath.row == 0 {
             
-            let image = imageFile
-            
             cell.imageView?.image = imageFile
             
             
@@ -112,7 +110,7 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tappedAction?()
-        println("tabbed")
+        print("tabbed")
 
     }
     

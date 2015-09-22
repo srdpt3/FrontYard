@@ -11,26 +11,26 @@ import FoldingTabBar
 
 
 class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
-
+    
     @IBOutlet var choosePartnerButoon: UIBarButtonItem!
     @IBOutlet var logout: UIBarButtonItem!
     
     var rooms = [PFObject]()
     var users = [PFUser]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // self.view.backgroundColor    = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
+        // self.view.backgroundColor    = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
         
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         //nav?.appearance().backgroundColor = UIColor.greenColor()
         // 2
         // nav?.barStyle = UIBarStyle.BlackTranslucent
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-
+        
         
         
         self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
@@ -41,33 +41,33 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if PFUser.currentUser() != nil{
-            println("load data")
-
+            print("load data")
+            
             loadData()
-       }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayPushMessages:", name: "ds", object: nil)
-
+        
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ds", object: nil)
-
+        
     }
     func extraLeftItemDidPressed()
     {
         
-            println("left oressss")
+        print("left oressss")
         
     }
     func extraRightItemDidPressed()
     {
-        println("left oressss")
+        print("left oressss")
         
     }
     
@@ -91,8 +91,8 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     func loadData()
     {
-         rooms = [PFObject]()
-         users = [PFUser]()
+        rooms = [PFObject]()
+        users = [PFUser]()
         
         self.tableView.reloadData()
         
@@ -101,7 +101,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         roomQuery.orderByDescending("lastUpdated")
         roomQuery.includeKey("user1")
         roomQuery.includeKey("user2")
-       
+        
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil{
                 self.rooms = results as! [PFObject]
@@ -117,20 +117,20 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                     if user2.objectId != PFUser.currentUser()?.objectId
                     {
                         self.users.append(user2)
-
+                        
                     }
                 }
                 self.tableView.reloadData()
             }
         }
-
+        
     }
     
     @IBAction func settingButtonPressed(sender: AnyObject) {
         
         let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Chane profile(프로필 사진번경)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "Chane profile", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
@@ -152,9 +152,9 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         }))
         
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Log out(로그아웃)", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
-                PFUser.logOut()
+            PFUser.logOut()
             imagesToswipe.removeAll(keepCapacity: false)
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -164,19 +164,19 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             appDelegate.tabBarController.tabBarView.hidden = true
             
             
-          appDelegate.window?.makeKeyAndVisible()
-
-          // self.navigationController?.pushViewController(logginVC, animated: true)
-           self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
+            appDelegate.window?.makeKeyAndVisible()
+            
+            // self.navigationController?.pushViewController(logginVC, animated: true)
+            self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
             
             
             
-            println("logout")
+            print("logout")
             
         }))
         
         SettingactionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel  , handler: nil))
-         self.presentViewController(SettingactionSheet, animated: true, completion: nil)
+        self.presentViewController(SettingactionSheet, animated: true, completion: nil)
         
     }
     
@@ -189,21 +189,21 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return rooms.count
     }
-
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 70
         
@@ -218,17 +218,17 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
-      //  let profileImageFile : PFFile! = user2["profileImage"] as! PFFile
+        //  let profileImageFile : PFFile! = user2["profileImage"] as! PFFile
         
         if let userImageFile = user2["profileImage"] as? PFFile {
-
-        userImageFile.getDataInBackgroundWithBlock { (data, error) -> Void in
-            if error == nil{
-                
-                cell.profileImageView.image = UIImage(data:data!)
-                
+            
+            userImageFile.getDataInBackgroundWithBlock { (data, error) -> Void in
+                if error == nil{
+                    
+                    cell.profileImageView.image = UIImage(data:data!)
+                    
+                }
             }
-        }
         }
         
         
@@ -239,13 +239,13 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
-               if results!.count > 0
-               {
+                if results!.count > 0
+                {
                     let messageQuery = PFQuery(className: "Message")
                     let room = results?.last as? PFObject
-                
+                    
                     //New MSG avail
-                
+                    
                     let unreadQuery = PFQuery(className: "UnreadMessage")
                     unreadQuery.whereKey("user", equalTo: PFUser.currentUser()!)
                     unreadQuery.whereKey("room", equalTo: room!)
@@ -259,8 +259,8 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                             
                         }
                     })
-                
-                
+                    
+                    
                     messageQuery.whereKey("room", equalTo: room!)
                     messageQuery.limit = 1
                     messageQuery.orderByDescending("createdAt")
@@ -270,25 +270,25 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                             if results!.count > 0
                             {
                                 let message = results?.last as? PFObject
-                               // var contentString : NSString! = message["content"] as! NSString!
-                         
+                                // var contentString : NSString! = message["content"] as! NSString!
+                                
                                 cell.lastMessageLabel.text  = message?["content"]  as? String
-                            
+                                
                                 
                                 let date = message?.createdAt
                                 let interval = NSDate().daysAfterDate(date)
-                                println("interval\(interval)")
+                                print("interval\(interval)")
                                 var dateString = ""
                                 
                                 if interval == 0
                                 {
                                     dateString = "today"
                                 }
-                               // }else if interval == 1
-                              //  {
-                              //      dateString = "yesterday"
-                              //  }else if interval > 1
-                               // {
+                                    // }else if interval == 1
+                                    //  {
+                                    //      dateString = "yesterday"
+                                    //  }else if interval > 1
+                                    // {
                                 else
                                 {
                                     let dateFormat = NSDateFormatter()
@@ -301,36 +301,36 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                             }
                             else
                             {
-                                cell.lastMessageLabel.text = "메세지가 없습니다 시박"
+                                cell.lastMessageLabel.text = "No messages"
                             }
                             
                             
                         }
                         
                     })
-                
-                
-                
+                    
+                    
+                    
                 }
                 
             }
         }
-
+        
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-     
         
-     //   tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeigh
+        
+        //   tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeigh
         let sb = UIStoryboard(name: "Main", bundle: nil)
-       let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
+        let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
-
-      
+        
+        
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
@@ -353,11 +353,11 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                     {
                         if results!.count > 0{
                             let unreadMessages = results! as? [PFObject]
-                        //    println(unreadMessges)
-                           for msg in unreadMessages! {
+                            //    println(unreadMessges)
+                            for msg in unreadMessages! {
                                 msg.deleteInBackgroundWithBlock(nil)
                                 
-                           }
+                            }
                             
                             
                         }
@@ -366,19 +366,19 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                 })
                 
                 self.navigationController?.pushViewController(messageVC!, animated: true)
-
-              //  let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-              //  appDelegate.window?.rootViewController =  messageVC
                 
-               // appDelegate.window?.makeKeyAndVisible()
+                //  let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                //  appDelegate.window?.rootViewController =  messageVC
                 
-
+                // appDelegate.window?.makeKeyAndVisible()
+                
+                
                 
             }
         }
     }
-   
     
-   
-
+    
+    
+    
 }

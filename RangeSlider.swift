@@ -12,7 +12,7 @@ import QuartzCore
 class RangeSliderTrackLayer: CALayer {
     weak var rangeSlider: RangeSlider?
 
-    override func drawInContext(ctx: CGContext!) {
+    override func drawInContext(ctx: CGContext) {
         if let slider = rangeSlider {
             // Clip
             let cornerRadius = bounds.height * slider.curvaceousness / 4.0
@@ -43,9 +43,9 @@ class RangeSliderThumbLayer: CALayer {
     weak var rangeSlider: RangeSlider?
 
     
-    override func drawInContext(ctx: CGContext!) {
+    override func drawInContext(ctx: CGContext) {
         if let slider = rangeSlider {
-            let thumbFrame = bounds.rectByInsetting(dx: 2.0, dy: 2.0)
+            let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
             let cornerRadius = thumbFrame.height * slider.curvaceousness / 2.0
             let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
             
@@ -184,14 +184,14 @@ class RangeSlider: UIControl {
     }
     
     required init(coder: NSCoder) {
-        super.init(coder: coder)
+        super.init(coder: coder)!
     }
     
     func updateLayerFrames() {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        trackLayer.frame = bounds.rectByInsetting(dx: 0.0, dy: bounds.height/3)
+        trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height/3)
         trackLayer.setNeedsDisplay()
         
         let lowerThumbCenter = CGFloat(positionForValue(lowerValue))
@@ -208,7 +208,6 @@ class RangeSlider: UIControl {
     }
     
     func positionForValue(value: Double) -> Double {
-        let widthDouble = Double(thumbWidth)
         return Double(bounds.width - thumbWidth) * (value - minimumValue) /
             (maximumValue - minimumValue) + Double(thumbWidth / 2.0)
         
@@ -219,7 +218,7 @@ class RangeSlider: UIControl {
     }
 
     // MARK: - Touches
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         previouslocation = touch.locationInView(self)
         
         // Hit test the thumb layers
@@ -232,7 +231,7 @@ class RangeSlider: UIControl {
         return lowerThumbLayer.highlighted || upperThumbLayer.highlighted
     }
     
-    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
         let location = touch.locationInView(self)
         
         // Determine by how much the user has dragged
@@ -252,9 +251,9 @@ class RangeSlider: UIControl {
         
         return true
     }
-    
-    override func endTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) {
+    override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
         lowerThumbLayer.highlighted = false
         upperThumbLayer.highlighted = false
     }
+   
 }

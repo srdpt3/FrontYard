@@ -15,7 +15,7 @@ let animationScale = screenWidth/gridWidth // screenWidth / the width of waterfa
 class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
     var presenting = false
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval{
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
         return animationDuration
     }
     
@@ -23,10 +23,10 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
         let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UIViewController!
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
         let containerView = transitionContext.containerView()
-
+        
         if presenting {
             let toView = toViewController.view
-            containerView.addSubview(toView)
+            containerView!.addSubview(toView)
             toView.hidden = true
             
             let waterFallView = (toViewController as! NTTransitionProtocol).transitionCollectionView()
@@ -35,13 +35,13 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
             let indexPath = pageView.fromPageIndexPath()
             let gridView = waterFallView.cellForItemAtIndexPath(indexPath)
             let leftUpperPoint = gridView!.convertPoint(CGPointZero, toView: nil)
-
+            
             let snapShot = (gridView as! NTTansitionWaterfallGridViewProtocol).snapShotForTransition()
             snapShot.transform = CGAffineTransformMakeScale(animationScale, animationScale)
             let pullOffsetY = (fromViewController as! NTHorizontalPageViewControllerProtocol).pageViewCellScrollViewContentOffset().y
             let offsetY : CGFloat = fromViewController.navigationController!.navigationBarHidden ? 0.0 : navigationHeaderAndStatusbarHeight
             snapShot.origin(CGPointMake(0, -pullOffsetY+offsetY))
-            containerView.addSubview(snapShot)
+            containerView!.addSubview(snapShot)
             
             toView.hidden = false
             toView.alpha = 0
@@ -50,8 +50,8 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
                 toView.frame.size.width, toView.frame.size.height)
             let whiteViewContainer = UIView(frame: screenBounds)
             whiteViewContainer.backgroundColor = UIColor.whiteColor()
-            containerView.addSubview(snapShot)
-            containerView.insertSubview(whiteViewContainer, belowSubview: toView)
+            containerView!.addSubview(snapShot)
+            containerView!.insertSubview(whiteViewContainer, belowSubview: toView)
             
             UIView.animateWithDuration(animationDuration, animations: {
                 snapShot.transform = CGAffineTransformIdentity
@@ -65,7 +65,7 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
                         whiteViewContainer.removeFromSuperview()
                         transitionContext.completeTransition(true)
                     }
-                })
+            })
         }else{
             let fromView = fromViewController.view
             let toView = toViewController.view
@@ -73,8 +73,8 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
             let waterFallView : UICollectionView = (fromViewController as! NTTransitionProtocol).transitionCollectionView()
             let pageView : UICollectionView = (toViewController as! NTTransitionProtocol).transitionCollectionView()
             
-            containerView.addSubview(fromView)
-            containerView.addSubview(toView)
+            containerView!.addSubview(fromView)
+            containerView!.addSubview(toView)
             
             let indexPath = waterFallView.toIndexPath()
             let gridView = waterFallView.cellForItemAtIndexPath(indexPath)
@@ -85,9 +85,9 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
             
             let offsetY : CGFloat = fromViewController.navigationController!.navigationBarHidden ? 0.0 : navigationHeaderAndStatusbarHeight
             let offsetStatuBar : CGFloat = fromViewController.navigationController!.navigationBarHidden ? 0.0 :
-                statubarHeight;
+            statubarHeight;
             let snapShot = (gridView as! NTTansitionWaterfallGridViewProtocol).snapShotForTransition()
-            containerView.addSubview(snapShot)
+            containerView!.addSubview(snapShot)
             snapShot.origin(leftUpperPoint)
             UIView.animateWithDuration(animationDuration, animations: {
                 snapShot.transform = CGAffineTransformMakeScale(animationScale,
@@ -107,7 +107,7 @@ class NTTransition : NSObject , UIViewControllerAnimatedTransitioning{
                         fromView.transform = CGAffineTransformIdentity
                         transitionContext.completeTransition(true)
                     }
-                })
+            })
         }
     }
 }

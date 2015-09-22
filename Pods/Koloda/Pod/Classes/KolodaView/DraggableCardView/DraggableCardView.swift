@@ -45,6 +45,7 @@ public class DraggableCardView: UIView {
     private var xDistanceFromCenter: CGFloat = 0.0
     private var yDistanceFromCenter: CGFloat = 0.0
     private var actionMargin: CGFloat = 0.0
+    private var firstTouch = true
     
     //MARK: Lifecycle
     init() {
@@ -52,7 +53,7 @@ public class DraggableCardView: UIView {
         setup()
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -101,7 +102,7 @@ public class DraggableCardView: UIView {
     
     private func configureOverlayView() {
         if let overlay = self.overlayView {
-            overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+            overlay.translatesAutoresizingMaskIntoConstraints = false
             
             let width = NSLayoutConstraint(
                 item: overlay,
@@ -141,7 +142,7 @@ public class DraggableCardView: UIView {
     
     private func configureContentView() {
         if let contentView = self.contentView {
-            contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            contentView.translatesAutoresizingMaskIntoConstraints = false
             
             let width = NSLayoutConstraint(
                 item: contentView,
@@ -190,7 +191,10 @@ public class DraggableCardView: UIView {
         
         switch gestureRecognizer.state {
         case .Began:
-            originalLocation = center
+            if firstTouch {
+                originalLocation = center
+                firstTouch = false
+            }
             dragBegin = true
             
             animationDirection = touchLocation.y >= frame.size.height / 2 ? -1.0 : 1.0
@@ -244,12 +248,8 @@ public class DraggableCardView: UIView {
     private func swipeMadeAction() {
         if xDistanceFromCenter > actionMargin {
             rightAction()
-            println("ges right")
-
         } else if xDistanceFromCenter < -actionMargin {
             leftAction()
-            println("ges right")
-
         } else {
             resetViewPositionAndTransformations()
         }
@@ -300,7 +300,6 @@ public class DraggableCardView: UIView {
     }
     
     private func resetViewPositionAndTransformations() {
-        userInteractionEnabled = false
         self.delegate?.cardWasReset(self)
         
         let resetPositionAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPosition)
@@ -311,7 +310,6 @@ public class DraggableCardView: UIView {
         resetPositionAnimation.completionBlock = {
             (_, _) in
             
-            self.userInteractionEnabled = true
             self.dragBegin = false
         }
         
@@ -319,7 +317,7 @@ public class DraggableCardView: UIView {
         
         UIView.animateWithDuration(cardResetAnimationDuration,
             delay: 0.0,
-            options: .CurveLinear,
+            options: [.CurveLinear, .AllowUserInteraction],
             animations: {
                 self.transform = CGAffineTransformMakeRotation(0)
                 self.overlayView?.alpha = 0
@@ -360,7 +358,6 @@ public class DraggableCardView: UIView {
                     return
             })
         }
-        println("button left")
     }
     
     func swipeRight () {
@@ -382,7 +379,5 @@ public class DraggableCardView: UIView {
                     return
             })
         }
-        println("button right")
-
     }
 }

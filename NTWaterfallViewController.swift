@@ -19,7 +19,7 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate{
 }
 
 class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDelegateWaterfallLayout, NTTransitionProtocol, NTWaterFallViewControllerProtocol{
-//    class var sharedInstance: NSInteger = 0 Are u kidding me?
+    //    class var sharedInstance: NSInteger = 0 Are u kidding me?
     var imageNameList : Array <NSString> = []
     let delegateHolder = NavigationControllerDelegate()
     
@@ -37,44 +37,49 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-       // self.navigationController!.delegate = delegateHolder
+        // self.navigationController!.delegate = delegateHolder
         self.navigationController!.delegate = nil
-
+        
         self.view.backgroundColor = UIColor.whiteColor()
-        var nav = self.navigationController?.navigationBar
-
-        self.navigationItem.title = "asdfasdfasd"
-        if let font = UIFont(name: "Lato-Light.ttf", size: 34) {
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
+        let nav = self.navigationController?.navigationBar
+        
+        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
+        //followButton.setTitle(" Swit", forState: UIControlState.Normal)
+        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
+        logoButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
+        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
+        logoButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.navigationItem.titleView = logoButton
+        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        
+        
+        /*
+        var index = 0
+        while(index<14){
+        let imageName = NSString(format: "%d.jpg", index)
+        imageNameList.append(imageName)
+        index++
         }
-        
-
-   
-    nav?.barStyle = UIBarStyle.Default
-      //  nav!.backgroundColor = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
-    nav?.tintColor = UIColor.whiteColor()
-      nav!.barTintColor = UIColor(red: 142.0/255.0, green: 138.0/255.0, blue: 222.0/255.0, alpha: 1)     //  appearance. setBarTintColor:[UIColor yellowColor]];
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
-        
-
+        */
         let collection :UICollectionView = collectionView!;
-       // collection.frame = screenBounds
+        // collection.frame = screenBounds
         
         collection.frame = CGRectMake(10, 0, screenWidth-19, screenHeight)
         collection.setCollectionViewLayout(CHTCollectionViewWaterfallLayout(), animated: false)
         collection.backgroundColor = UIColor.whiteColor()
         collection.registerClass(NTWaterfallViewCell.self, forCellWithReuseIdentifier: waterfallViewCellIdentify)
-       // collection.reloadData()
+        // collection.reloadData()
         
         
         
         getfavoritelist()
-
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-    
+        
         
         let image:UIImage! = swipedImages[indexPath.row]
         let imageHeight = image.size.height*gridWidth/image.size.width
@@ -82,8 +87,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        var collectionCell: NTWaterfallViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(waterfallViewCellIdentify, forIndexPath: indexPath) as! NTWaterfallViewCell
-
+        let collectionCell: NTWaterfallViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(waterfallViewCellIdentify, forIndexPath: indexPath) as! NTWaterfallViewCell
+        
         collectionCell.imageFile =  self.swipedImages[indexPath.row]
         
         collectionCell.setNeedsLayout()
@@ -95,7 +100,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-       
+        
         
         let pageViewController =
         NTHorizontalPageViewController(collectionViewLayout: pageViewControllerLayout(), currentIndexPath:indexPath)
@@ -104,11 +109,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pageViewController.itemTitle = itemTitle
         pageViewController.itemDesc = itemDesc
         pageViewController.otherusers = otherUsers
-
+        
         collectionView.setToIndexPath(indexPath)
         navigationController!.pushViewController(pageViewController, animated: true)
         
-    
+        
         
         
     }
@@ -116,7 +121,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     func pageViewControllerLayout () -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
         let itemSize  = self.navigationController!.navigationBarHidden ?
-        CGSizeMake(screenWidth, screenHeight+20) : CGSizeMake(screenWidth, screenHeight-navigationHeaderAndStatusbarHeight)
+            CGSizeMake(screenWidth, screenHeight+20) : CGSizeMake(screenWidth, screenHeight-navigationHeaderAndStatusbarHeight)
         flowLayout.itemSize = itemSize
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
@@ -125,14 +130,14 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     
     func viewWillAppearWithPageIndex(pageIndex : NSInteger) {
-        var position : UICollectionViewScrollPosition =
-        .CenteredHorizontally & .CenteredVertically
-      //  let image:UIImage! = UIImage(named: self.imageNameList[pageIndex] as String)
+        var position : UICollectionViewScrollPosition = .CenteredHorizontally
+      //  .CenteredHorizontally & .CenteredVertically
+        //  let image:UIImage! = UIImage(named: self.imageNameList[pageIndex] as String)
         let image:UIImage! =  swipedImages[pageIndex]
-
+        
         let imageHeight = image.size.height*gridWidth/image.size.width
         if imageHeight > 400 {//whatever you like, it's the max value for height of image
-           position = .Top
+            position = .Top
         }
         let currentIndexPath = NSIndexPath(forRow: pageIndex, inSection: 0)
         let collectionView = self.collectionView!;
@@ -152,32 +157,32 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func getfavoritelist()
     {
         
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
-        var query:PFQuery = PFQuery(className: "imageUpload")
+        let query:PFQuery = PFQuery(className: "imageUpload")
         query.addAscendingOrder("createdAt")
-       query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
-      //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
-       // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
+        query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+        //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
+        // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
         
-   //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
+        //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
                 let objects = results as! [PFObject]
-    
+                
                 for obj in objects{
-                   // let itemTitle = obj["itemname"]! as! String
+                    // let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
                     let otheruser = obj["user"] as! PFObject
-                    println("other user uis \(otheruser.objectId!)")
+                    print("other user uis \(otheruser.objectId!)")
                     self.otherUsers.append(otheruser.objectId!)
-                                        let thumbNail = obj["image"] as! PFFile
+                    let thumbNail = obj["image"] as! PFFile
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil
@@ -185,18 +190,18 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let image = UIImage(data:imageData!)
                             //image object implementation
                             self.swipedImages.append(image!)
-                          //  self.itemTitle.append(itemTitle)
+                            //  self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
-                           // self.otherUsers.append(otheruser)
+                            // self.otherUsers.append(otheruser)
                             
-                            var objId = obj.objectId! as String
+                            let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.swipedImages.count ){
-                                println("objects.count \(objects.count)")
-                                println("otherImages \(self.swipedImages.count)")
-                                  var collection :UICollectionView = self.collectionView!;
-                                  collection.reloadData()
+                                print("objects.count \(objects.count)")
+                                print("otherImages \(self.swipedImages.count)")
+                                let collection :UICollectionView = self.collectionView!;
+                                collection.reloadData()
                             }
                             
                             
@@ -212,13 +217,12 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
             }
             else
             {
-                println("erorr in getfavoritelist ")
+                print("erorr in getfavoritelist ")
             }
             
             
         }
     }
-
-
+    
+    
 }
-

@@ -52,7 +52,6 @@ public protocol KolodaViewDataSource:class {
 }
 
 public protocol KolodaViewDelegate:class {
-    
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView,index: UInt, direction: SwipeResultDirection)
     func kolodaDidRunOutOfCards(koloda: KolodaView)
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt)
@@ -60,7 +59,16 @@ public protocol KolodaViewDelegate:class {
     func kolodaShouldMoveBackgroundCard(koloda: KolodaView) -> Bool
     func kolodaShouldTransparentizeNextCard(koloda: KolodaView) -> Bool
     func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation?
-    
+}
+
+public extension KolodaViewDelegate {
+    func kolodaDidSwipedCardAtIndex(koloda: KolodaView,index: UInt, direction: SwipeResultDirection) {}
+    func kolodaDidRunOutOfCards(koloda: KolodaView) {}
+    func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {}
+    func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {return true}
+    func kolodaShouldMoveBackgroundCard(koloda: KolodaView) -> Bool {return true}
+    func kolodaShouldTransparentizeNextCard(koloda: KolodaView) -> Bool {return true}
+    func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation? {return nil}
 }
 
 public class KolodaView: UIView, DraggableCardDelegate {
@@ -76,7 +84,6 @@ public class KolodaView: UIView, DraggableCardDelegate {
     private(set) public var countOfCards = 0
     
     public var countOfVisibleCards = defaultCountOfVisibleCards
-   // public var action =
     private var visibleCards = [DraggableCardView]()
     private var animating = false
     private var configured = false
@@ -86,7 +93,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
     public var alphaValueSemiTransparent: CGFloat = defaultAlphaValueSemiTransparent
     
     //MARK: Lifecycle
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configure()
     }
@@ -155,7 +162,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
     }
     
     public func layoutDeck() {
-        for (index, card) in enumerate(self.visibleCards) {
+        for (index, card) in self.visibleCards.enumerate() {
             card.frame = frameForCardAtIndex(UInt(index))
         }
     }
@@ -298,7 +305,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
     }
     
     func cardTapped(card: DraggableCardView) {
-        let index = currentCardNumber + find(visibleCards, card)!
+        let index = currentCardNumber + visibleCards.indexOf(card)!
         
         delegate?.kolodaDidSelectCardAtIndex(self, index: UInt(index))
     }
@@ -351,7 +358,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
         
         if !visibleCards.isEmpty {
             
-            for (index, currentCard) in enumerate(visibleCards) {
+            for (index, currentCard) in visibleCards.enumerate() {
                 var frameAnimation: POPPropertyAnimation
                 if let delegateAnimation = delegate?.kolodaBackgroundCardAnimation(self) where delegateAnimation.property.name == kPOPViewFrame {
                     frameAnimation = delegateAnimation
@@ -449,7 +456,6 @@ public class KolodaView: UIView, DraggableCardDelegate {
             let cardsToAdd = min(missingCardsCount, countOfCards - currentCardNumber)
             
             for index in 1...cardsToAdd {
-                let nextCardIndex = countOfVisibleCards - cardsToAdd + index - 1
                 let nextCardView = DraggableCardView(frame: frameForCardAtIndex(UInt(index)))
                 
                 nextCardView.alpha = alphaValueSemiTransparent
@@ -493,8 +499,6 @@ public class KolodaView: UIView, DraggableCardDelegate {
             if !visibleCards.isEmpty {
                 loadMissingCards(missingCards)
             } else {
-                
-                
                 setupDeck()
                 layoutDeck()
                 
@@ -507,8 +511,6 @@ public class KolodaView: UIView, DraggableCardDelegate {
         } else {
             
             reconfigureCards()
-            
-            
         }
     }
     
@@ -531,11 +533,8 @@ public class KolodaView: UIView, DraggableCardDelegate {
                     return
                 case SwipeResultDirection.Left:
                     frontCard.swipeLeft()
-                    println("lf")
                 case SwipeResultDirection.Right:
                     frontCard.swipeRight()
-                    println("rg")
-
                 }
             }
         }
@@ -545,11 +544,5 @@ public class KolodaView: UIView, DraggableCardDelegate {
         clear()
         reloadData()
     }
-    
- 
-    
-    
-    
-    
     
 }

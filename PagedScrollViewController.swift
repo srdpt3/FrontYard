@@ -51,7 +51,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
         
         
-        var doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         self.view.addGestureRecognizer(doubleTapRecognizer)
@@ -105,8 +105,8 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
             newPageView.contentMode = UIViewContentMode.ScaleAspectFit
             newPageView.frame = frame
             
-            newPageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
-            
+    
+          newPageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
             scrollView.addSubview(newPageView)
             
             // 4
@@ -201,7 +201,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
 
    
     override func viewWillAppear(animated: Bool) {
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         
         self.navigationController?.navigationBar
         //  self.navigationItem.titleView = logoButton

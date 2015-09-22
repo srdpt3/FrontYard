@@ -53,15 +53,11 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/FoldingTabBar.framework'
-  install_framework 'Pods/JTSplashView.framework'
   install_framework 'Pods/Koloda.framework'
-  install_framework 'Pods/LiquidLoader.framework'
   install_framework 'Pods/pop.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/FoldingTabBar.framework'
-  install_framework 'Pods/JTSplashView.framework'
   install_framework 'Pods/Koloda.framework'
-  install_framework 'Pods/LiquidLoader.framework'
   install_framework 'Pods/pop.framework'
 fi

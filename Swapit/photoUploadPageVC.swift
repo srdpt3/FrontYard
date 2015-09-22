@@ -29,17 +29,17 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     var PriceLabel : UILabel = UILabel()
     var Currency: UITextField = UITextField()
     var Price: UITextField = UITextField()
-
+    
     var pickerbutton:UITextView = UITextView()
     var uploadButton:UIButton  = UIButton()
     var DescLabel : UILabel = UILabel()
     var DescTextView: UITextView! = UITextView()
     var charRemainingLabel: UILabel! = UILabel()
- 
+    
     
     
     var pickerData: [String] = [String]()
-
+    
     var buttonTag : Int = 0
     var imageFiles = [PFFile]()
     var fragenImages = [UIImage] ()
@@ -47,21 +47,19 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     let defaultbuttonImage = UIImage(named: "Photo")
     
     var kPreferredTextFieldToKeyboardOffset: CGFloat = 20.0
-    var keyboardFrame: CGRect = CGRect.nullRect
+    var keyboardFrame: CGRect = CGRect.null
     var keyboardIsShowing: Bool = false
-    override func viewDidAppear(animated: Bool) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-       // appDelegate.tabBarController.tabBarView.hidden = true
-    }
 
-    override func viewDidLoad() {
-            self.view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
-            let bounds = UIScreen.mainScreen().bounds
-            var width = CGRectGetWidth(bounds)
     
-            var height = CGRectGetHeight(bounds)
-      //  DescTextView.contentVerticalAlignment = UIControlContentVerticalAlignment.Bottom
-     //   DescTextiew.contentVerticalAlignment  = scrollRangeToVisible:NSMakeRange(0, 1)
+    
+    override func viewDidLoad() {
+        self.view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
+        let bounds = UIScreen.mainScreen().bounds
+        let width = CGRectGetWidth(bounds)
+        
+        let height = CGRectGetHeight(bounds)
+        //  DescTextView.contentVerticalAlignment = UIControlContentVerticalAlignment.Bottom
+        //   DescTextiew.contentVerticalAlignment  = scrollRangeToVisible:NSMakeRange(0, 1)
         DescTextView.contentInset = UIEdgeInsetsMake(0,0,0,0.0);
         DescTextView.sizeToFit()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -76,32 +74,32 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         {
             if (subview.isKindOfClass(UITextField))
             {
-                var textField = subview as! UITextField
+                let textField = subview as! UITextField
                 textField.addTarget(self, action: "textFieldDidReturn:", forControlEvents: UIControlEvents.EditingDidEndOnExit)
                 textField.addTarget(self, action: "textFieldDidBeginEditing:", forControlEvents: UIControlEvents.EditingDidBegin)
                 
             }
         }
         
-            var buttonOffsetX = width*0.1
-            var buttonOffsetY  = width/5
-           // println(width)
-            //println(height)
-            
-            self.navigationItem.hidesBackButton = false
-            self.tabBarController?.tabBar.hidden = true
-            var nav = self.navigationController?.navigationBar
-            nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-            nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        var buttonOffsetX = width*0.1
+        var buttonOffsetY  = width/5
+        // println(width)
+        //println(height)
         
-            var logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-            logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
-            logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-            self.navigationItem.titleView = logoButton
+        self.navigationItem.hidesBackButton = false
+        self.tabBarController?.tabBar.hidden = true
+        let nav = self.navigationController?.navigationBar
+        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         
-
-            
-            
+        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
+        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
+        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
+        self.navigationItem.titleView = logoButton
+        
+        
+        
+        
         // Image1 Button Frame
         image1.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image1.tag = 1
@@ -122,13 +120,13 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         image2.layer.cornerRadius = 0.0
         image2.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         image2.layer.borderWidth = 0.5
-
+        
         buttonOffsetX = width*0.1
         buttonOffsetY+=width*0.3
         // Image3 Button Frame
         image3.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image3.tag = 3
-
+        
         image3.setImage(UIImage(named: "Photo"), forState: .Normal)
         image3.addTarget(self, action: "image3Pressed:", forControlEvents: UIControlEvents.TouchUpInside)
         image3.clipsToBounds = true
@@ -137,7 +135,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         image3.layer.borderWidth = 0.5;
         
         // Image4 Button Frame
-         buttonOffsetX=width*0.6
+        buttonOffsetX=width*0.6
         image4.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image4.tag = 4
         image4.setImage(UIImage(named: "Photo"), forState: .Normal)
@@ -146,7 +144,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         image4.layer.cornerRadius = 0.0
         image4.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         image4.layer.borderWidth = 0.3;
- 
+        
         // Item Title Label
         
         buttonOffsetY+=width*0.3
@@ -157,19 +155,19 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         itemTitleLabel.textAlignment = NSTextAlignment.Natural;
         itemTitleLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         itemTitleLabel.font = itemTitleLabel.font.fontWithSize(16)
-
+        
         
         // Item Title Text
         buttonOffsetY+=(itemTitleLabel.frame.height)
         itemTitleText = UITextField(frame: CGRect(x: 0, y: buttonOffsetY, width: width, height: height/18));
         itemTitleText.backgroundColor = UIColor.whiteColor()
         itemTitleText.textAlignment = NSTextAlignment.Center;
-
+        
         itemTitleText.layer.borderWidth = 0.0
         itemTitleText.layer.cornerRadius = 0
         itemTitleText.placeholder = " Item Name"
-
-       // itemTitleText.sizeToFit()
+        
+        // itemTitleText.sizeToFit()
         
         
         // Price  Label
@@ -180,10 +178,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         PriceLabel.textAlignment = NSTextAlignment.Natural;
         PriceLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         PriceLabel.font = PriceLabel.font.fontWithSize(16)
- 
-
+        
+        
         buttonOffsetY+=(PriceLabel.frame.height)
-       
+        
         Currency = UITextField(frame: CGRect(x: 0, y: buttonOffsetY, width: width*0.2, height: height/18));
         Currency.text = "USD($)"
         Currency.font = UIFont(name: "Verdana", size: 16)
@@ -192,11 +190,11 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         Currency.layer.borderColor = UIColor.grayColor().CGColor
         Currency.layer.borderWidth = 0.0
         Currency.layer.cornerRadius = 0
-     //   Currency.inputView = pickerview2
-   
+        //   Currency.inputView = pickerview2
+        
         
         Price = UITextField(frame: CGRect(x: width*0.2, y: buttonOffsetY, width: width*0.8, height: height/18));
-    //    Price.text = "0"
+        //    Price.text = "0"
         // Price.sizeToFit()
         Price.font = UIFont(name: "Verdana", size: 16)
         Price.backgroundColor = UIColor.whiteColor()
@@ -212,7 +210,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         buttonOffsetY+=(Price.frame.height)
         DescLabel.frame = CGRectMake(width*0.01, buttonOffsetY, width, height/25)
-
+        
         DescLabel.text = "DESCRIPTION"
         DescLabel.textAlignment = NSTextAlignment.Natural;
         DescLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
@@ -220,15 +218,15 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         
         buttonOffsetY+=(DescLabel.frame.height)
-
+        
         DescTextView = UITextView(frame: CGRect(x: 0, y: buttonOffsetY, width: width, height: height/6));
         self.view.addSubview(DescTextView)
         DescTextView.layer.borderColor = UIColor.grayColor().CGColor
         DescTextView.layer.borderWidth = 0.0
         DescTextView.layer.cornerRadius = 0
         DescTextView.delegate = self
-          DescTextView.becomeFirstResponder()
-        var tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        DescTextView.becomeFirstResponder()
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         self.view.addGestureRecognizer(tap)
         self.view.addSubview(DescTextView)
         
@@ -254,7 +252,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         uploadButton.layer.cornerRadius = 0.0
         uploadButton.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         uploadButton.layer.borderWidth = 0.5;
-
+        
         
         
         
@@ -271,7 +269,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         self.view.addSubview(DescTextView)
         self.view.addSubview(uploadButton)
         self.view.addSubview(charRemainingLabel)
-
+        
         
         
         var pickerview2: UIPickerView = UIPickerView()
@@ -280,21 +278,21 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         
         Currency.inputView = pickerview2
-
         
-
-
-      //  Price.textContainer.lineFragmentPadding = 0;
-      //  self.view.addSubview(uploadButton)
-      //  self.view.addSubview(pickerbutton)
+        
+        
+        
+        //  Price.textContainer.lineFragmentPadding = 0;
+        //  self.view.addSubview(uploadButton)
+        //  self.view.addSubview(pickerbutton)
         
         /*
-   
-
+        
+        
         
         // DescTextView.delegate = self
         buttonOffsetY+=(height/6)
-   
+        
         
         
         self.view.addSubview(image1)
@@ -304,15 +302,15 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         self.view.addSubview(uploadButton)
         self.view.addSubview(pickerbutton)
         
-   //     image1.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-    //    image1.addTarget(self, action: "image1pressed:", forControlEvents: UIControlEvents.TouchUpInside)
-   //     image1.clipsToBounds = true
-      //  image1.layer.cornerRadius = 0.0
-   //     image1.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
-      ////  image1.layer.borderWidth = 0.5;
-
+        //     image1.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        //    image1.addTarget(self, action: "image1pressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        //     image1.clipsToBounds = true
+        //  image1.layer.cornerRadius = 0.0
+        //     image1.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+        ////  image1.layer.borderWidth = 0.5;
+        
         */
-
+        
     }
     @IBAction func image1Pressed(sender: AnyObject) {
         buttonTag = image1.tag
@@ -331,7 +329,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         buttonTag = image4.tag
         alertDisplay(image4)
     }
-
+    
     
     
     func alertDisplay(image:UIButton)
@@ -361,7 +359,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             
             if image.currentImage == UIImage(named: "Photo")
             {
-                println("It's default")
+                print("It's default")
             }
             else
             {
@@ -369,7 +367,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                 image.setImage(defaultbuttonImage, forState: UIControlState.Normal)
                 
             }
-
+            
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel  , handler: nil))
@@ -384,49 +382,49 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         if (image1.currentImage != defaultbuttonImage)
         {
-            let imageData = UIImageJPEGRepresentation(image1.imageView?.image, 1)
-            let imageFile = PFFile(name: "image.png", data: imageData)
+            let imageData = UIImageJPEGRepresentation((image1.imageView?.image)!, 1)
+            let imageFile = PFFile(name: "image.png", data: imageData!)
             imageFiles.append(imageFile)
             
         }
         if (image2.currentImage != defaultbuttonImage)
         {
-            let imageData2 = UIImageJPEGRepresentation(image2.imageView?.image, 1)
-            let imageFile2 = PFFile(name: "image2.png", data: imageData2)
+            let imageData2 = UIImageJPEGRepresentation((image2.imageView?.image)!, 1)
+            let imageFile2 = PFFile(name: "image2.png", data: imageData2!)
             imageFiles.append(imageFile2)
             
         }
         if (image3.currentImage != defaultbuttonImage)
         {
-            let imageData3 = UIImageJPEGRepresentation(image3.imageView?.image, 1)
-            let imageFile3 = PFFile(name: "image3.png", data: imageData3)
+            let imageData3 = UIImageJPEGRepresentation((image3.imageView?.image)!, 1)
+            let imageFile3 = PFFile(name: "image3.png", data: imageData3!)
             imageFiles.append(imageFile3)
             
         }
         if (image4.currentImage != defaultbuttonImage)
         {
-            let imageData4 = UIImageJPEGRepresentation(image4.imageView?.image, 1)
-            let imageFile4 = PFFile(name: "image4.png", data: imageData4)
+            let imageData4 = UIImageJPEGRepresentation((image4.imageView?.image)!, 1)
+            let imageFile4 = PFFile(name: "image4.png", data: imageData4!)
             imageFiles.append(imageFile4)
             
         }
         if (image1.currentImage == defaultbuttonImage &&
-                image2.currentImage == defaultbuttonImage &&
-                image3.currentImage == defaultbuttonImage &&
-                image4.currentImage == defaultbuttonImage)
+            image2.currentImage == defaultbuttonImage &&
+            image3.currentImage == defaultbuttonImage &&
+            image4.currentImage == defaultbuttonImage)
         {
-            var controller : UIAlertController = UIAlertController(title: "Error", message: "Please select pictures", preferredStyle: UIAlertControllerStyle.Alert)
-            var alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
+            let controller : UIAlertController = UIAlertController(title: "Error", message: "Please select pictures", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
             controller.addAction(alertAction)
             self.presentViewController(controller, animated: true, completion: nil)
         }
         else if (   itemTitleText.text == "" ||
-                    DescTextView.text  == "" ||
-                    Price.text  == ""   )
+            DescTextView.text  == "" ||
+            Price.text  == ""   )
         {
             
-            var controller : UIAlertController = UIAlertController(title: "Error", message: "Please fill out item information", preferredStyle: UIAlertControllerStyle.Alert)
-            var alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
+            let controller : UIAlertController = UIAlertController(title: "Error", message: "Please fill out item information", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertAction : UIAlertAction  = UIAlertAction(title: "Dissmiss", style: UIAlertActionStyle.Destructive, handler: nil)
             controller.addAction(alertAction)
             self.presentViewController(controller, animated: true, completion: nil)
             
@@ -434,45 +432,43 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         }
         else{
             ViewControllerUtils().showActivityIndicator(self.view)
-
-                PFUser.currentUser()!.save()
-        
-                var imageDBTable = PFObject(className: "imageUpload")
-        
-        imageDBTable["user"] = PFUser.currentUser()!
-        imageDBTable["image"] = imageFiles[0]
-        imageDBTable["description"] =  DescTextView.text
-        imageDBTable["itemname"] =  itemTitleText.text
-        imageDBTable["price"] =  Price.text
-        for (i,image) in enumerate(imageFiles)
-        {
-            println("i is \(image)")
-            // Create the post
-            var myPost = PFObject(className:"Post")
-            // Add a relation between the Post and Comment
-            myPost["obj_ptr"] = imageDBTable
-            myPost["images"] = image
-            myPost.saveInBackgroundWithBlock({ (success, error) -> Void in
-                if success == true {
-                    println("image upload completes")
-                    self.image1.setImage(UIImage(named: "Photo"), forState: .Normal)
-                    self.image2.setImage(UIImage(named: "Photo"), forState: .Normal)
-                    self.image3.setImage(UIImage(named: "Photo"), forState: .Normal)
-                    self.image4.setImage(UIImage(named: "Photo"), forState: .Normal)
-                    self.Price.text = ""
-                    self.itemTitleText.text = ""
-                    self.DescTextView.text = ""
-
-                  //  updateMyImage()
-                }
-                
-            })
-            //  myPost.addUniqueObject(imageFile, forKey: "images")
             
-        }
+            PFUser.currentUser()!.save()
+            
+            let imageDBTable = PFObject(className: "imageUpload")
+            
+            imageDBTable["user"] = PFUser.currentUser()!
+            imageDBTable["image"] = imageFiles[0]
+            imageDBTable["description"] =  DescTextView.text
+            imageDBTable["itemname"] =  itemTitleText.text
+            imageDBTable["price"] =  Price.text
+            for (_,image) in imageFiles.enumerate()
+            {
+                // Create the post
+                let myPost = PFObject(className:"Post")
+                // Add a relation between the Post and Comment
+                myPost["obj_ptr"] = imageDBTable
+                myPost["images"] = image
+                myPost.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    if success == true {
+                        self.image1.setImage(UIImage(named: "Photo"), forState: .Normal)
+                        self.image2.setImage(UIImage(named: "Photo"), forState: .Normal)
+                        self.image3.setImage(UIImage(named: "Photo"), forState: .Normal)
+                        self.image4.setImage(UIImage(named: "Photo"), forState: .Normal)
+                        self.Price.text = ""
+                        self.itemTitleText.text = ""
+                        self.DescTextView.text = ""
+                        
+                        //  updateMyImage()
+                    }
+                    
+                })
+                //  myPost.addUniqueObject(imageFile, forKey: "images")
+                
+            }
             ViewControllerUtils().hideActivityIndicator(self.view)
-
-                self.navigationController?.popToRootViewControllerAnimated(true)
+            
+            self.navigationController?.popToRootViewControllerAnimated(true)
         }
         
     }
@@ -480,7 +476,6 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        println(buttonTag)
         
         switch buttonTag {
         case 1:
@@ -493,14 +488,14 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         case 4:
             image4.setImage(image, forState: UIControlState.Normal)
         default:
-            println("no Button Tag")
+            print("no Button Tag")
         }
         
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         
-        println("picker Cancel")
+        print("picker Cancel")
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }
@@ -509,11 +504,11 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         self.view.endEditing(true)
     }
-
     
     
     
-  
+    
+    
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
@@ -527,15 +522,15 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-    
+        
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = false
         self.tabBarController?.tabBar.hidden = true
         
     }
-
-
+    
+    
     func keyboardWillShow(notification: NSNotification)
     {
         self.keyboardIsShowing = true
@@ -556,17 +551,17 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     
     func arrangeViewOffsetFromKeyboard()
     {
-        var theApp: UIApplication = UIApplication.sharedApplication()
-        var windowView: UIView? = theApp.delegate!.window!
+        let theApp: UIApplication = UIApplication.sharedApplication()
+        let windowView: UIView? = theApp.delegate!.window!
         
-        var textFieldLowerPoint: CGPoint = CGPointMake(self.DescTextView.frame.origin.x, self.DescTextView.frame.origin.y + self.DescTextView.frame.size.height)
+        let textFieldLowerPoint: CGPoint = CGPointMake(self.DescTextView.frame.origin.x, self.DescTextView.frame.origin.y + self.DescTextView.frame.size.height)
         
-        var convertedTextFieldLowerPoint: CGPoint = self.view.convertPoint(textFieldLowerPoint, toView: windowView)
+        let convertedTextFieldLowerPoint: CGPoint = self.view.convertPoint(textFieldLowerPoint, toView: windowView)
         
-        var targetTextFieldLowerPoint: CGPoint = CGPointMake(self.DescTextView.frame.origin.x, self.keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
+        let targetTextFieldLowerPoint: CGPoint = CGPointMake(self.DescTextView.frame.origin.x, self.keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
         
-        var targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
-        var adjustedViewFrameCenter: CGPoint = CGPointMake(self.view.center.x, self.view.center.y + targetPointOffset)
+        let targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
+        let adjustedViewFrameCenter: CGPoint = CGPointMake(self.view.center.x, self.view.center.y + targetPointOffset)
         
         UIView.animateWithDuration(0.2, animations:  {
             self.view.center = adjustedViewFrameCenter
@@ -575,7 +570,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     
     func returnViewToInitialFrame()
     {
-        var initialViewRect: CGRect = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
+        let initialViewRect: CGRect = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
         
         if (!CGRectEqualToRect(initialViewRect, self.view.frame))
         {
@@ -585,10 +580,11 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.DescTextView.resignFirstResponder()
 
-            self.DescTextView.resignFirstResponder()
     }
+
     @IBAction func textFieldDidReturn(textField: UITextField!)
     {
         textField.resignFirstResponder()
@@ -614,21 +610,21 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         shouldChangeTextInRange range: NSRange,
         replacementText text: String) -> Bool{
             
-            var newLength:Int = (textView.text as NSString).length + (text as NSString).length - range.length
-            var remainingChar:Int = 150 - newLength+1
+            let newLength:Int = (textView.text as NSString).length + (text as NSString).length - range.length
+            let remainingChar:Int = 150 - newLength+1
             
             charRemainingLabel.text = "\(remainingChar)"
             
-             let currentText:NSString = textView.text
-            let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
+            let currentText:NSString = textView.text
+         //   let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
             
             
-             return (newLength > 150) ? false : true
+            return (newLength > 150) ? false : true
             
             
     }
     
-
+    
     
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -645,10 +641,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         return pickerData[row]
     }
     
-
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-     
+        
         if(row == 0)
         {
             self.Currency.text = "$"
@@ -661,15 +657,15 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         {
             self.Currency.text = "€"
         }
-
+        
     }
-
- 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
-  
- 
+    
+    
 }

@@ -28,27 +28,27 @@ class settingVC: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
         
-        var width = CGRectGetWidth(bounds)
-        var height = CGRectGetHeight(bounds)
+        let width = CGRectGetWidth(bounds)
+        let height = CGRectGetHeight(bounds)
         
         self.navigationItem.hidesBackButton = false
         self.tabBarController?.tabBar.hidden = true
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-        var logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
+        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
         logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
         logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
         self.navigationItem.titleView = logoButton
         
         
-        var myBackButton:UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let myBackButton:UIButton = UIButton()
         myBackButton.addTarget(self, action: "SwipeScreen:", forControlEvents: UIControlEvents.TouchUpInside)
         myBackButton.imageView!.image = UIImage(named: "chats_icon")
        // myBackButton.setTitle("<<", forState: UIControlState.Normal)
        // myBackButton.setTitleColor(UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0), forState: UIControlState.Normal)
       //  myBackButton.sizeToFit()
-        var myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
         
         let navBarHeight = nav?.frame.height
@@ -56,8 +56,8 @@ class settingVC: UIViewController {
         profileimageView.frame = CGRectMake(width/2, imageViewContent.frame.height/2, 100,100)
         
         //imageView
-        var blur:UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        var effectView:UIVisualEffectView = UIVisualEffectView (effect: blur)
+        let blur:UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let effectView:UIVisualEffectView = UIVisualEffectView (effect: blur)
         effectView.frame = CGRectMake(0, 0, width, height*(1/3))
         
         
@@ -203,7 +203,7 @@ class settingVC: UIViewController {
         
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
             // if user has logged in, get an instance for Composer
-            var fb = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            let fb = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
             // Set the text for facebook share.
             fb.setInitialText("Swapit")
@@ -215,14 +215,18 @@ class settingVC: UIViewController {
             self.presentViewController(fb, animated: true, completion:nil)
         } else {
             // Display alert if Facebook not configured.
-            var av = UIAlertView(title: "Message", message: "Facebook not configured on your device. Go to Settings >> Facebook and log in to share.", delegate: self, cancelButtonTitle: "Okay")
-            av.show()
+ 
+            let av = UIAlertController(title: "Message", message: "Facebook not configured on your device. Go to Settings -> Facebook and log in to share", preferredStyle: UIAlertControllerStyle.Alert)
+            av.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(av, animated: true, completion: nil)
+            
+          //  av.show()
         }
     }
     
     @IBAction func ratethisapp(sender:UIButton!)
     {
-        println("reportButtonPressed  tapped")
+        print("reportButtonPressed  tapped")
         
     }
     

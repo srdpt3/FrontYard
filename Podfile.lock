@@ -1,22 +1,16 @@
 PODS:
   - FoldingTabBar (1.0.1)
-  - JTSplashView (1.0.0)
-  - Koloda (1.1.2):
+  - Koloda (2.0.1):
     - pop (~> 1.0)
-  - LiquidLoader (0.1.1)
-  - pop (1.0.7)
+  - pop (1.0.8)
 
 DEPENDENCIES:
   - FoldingTabBar (~> 1.0.1)
-  - JTSplashView
-  - Koloda (~> 1.1.2)
-  - LiquidLoader
+  - Koloda (~> 2.0.1)
 
 SPEC CHECKSUMS:
   FoldingTabBar: 3e04c49dbe2b02c529561a4182bf017b928d04d2
-  JTSplashView: e7d15d11d4cba3077c9db44f1fc14de3507a12f5
-  Koloda: 19b54bfb56c3b9e4e946c750b1c3bc771298d7ca
-  LiquidLoader: cf49954a6643f610c06a7db45da2da81a68a154b
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  Koloda: e9f23f5bce90e7a0f0f5a06dfdb69e6285851895
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
 
 COCOAPODS: 0.38.2

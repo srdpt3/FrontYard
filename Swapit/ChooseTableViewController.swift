@@ -14,7 +14,7 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
     var searchString = ""
     var searchInProgress = false
     
-    required init!(coder aDecoder: NSCoder!) {
+    required init!(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.parseClassName = "User"
         self.textKey = "username"
@@ -34,7 +34,7 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
 
     override func queryForTable() -> PFQuery {
         let query = PFUser.query()
-        var currentUser = PFUser.currentUser()?.username!
+        let currentUser = PFUser.currentUser()?.username!
    
        query?.whereKey("username", notEqualTo: currentUser!)
         
@@ -62,8 +62,8 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
         
         
         if PFUser.currentUser() != nil{
-        var user1 = PFUser.currentUser()!
-        var user2 = self.objects?[indexPath.row] as! PFUser
+        let user1 = PFUser.currentUser()!
+        let user2 = self.objects?[indexPath.row] as! PFUser
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
@@ -127,12 +127,12 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
     func extraLeftItemDidPressed()
     {
         
-        println("left oressss")
+        //print("left oressss")
         
     }
     func extraRightItemDidPressed()
     {
-        println("left oressss")
+       // println("left oressss")
         
     }
 

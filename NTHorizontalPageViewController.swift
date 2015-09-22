@@ -37,7 +37,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     
     var coreLocationManager = CLLocationManager()
-    var locationManager : LocationManager!
+  //  var locationManager : LocationManager!
     
     
     var map:MKMapView!  = MKMapView()
@@ -141,7 +141,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         super.viewDidLoad()
         
         coreLocationManager.delegate = self
-        locationManager = LocationManager.sharedInstance
+    //    locationManager = LocationManager.sharedInstance
         
         let autorizationCode = CLLocationManager.authorizationStatus()
         if autorizationCode == CLAuthorizationStatus.NotDetermined && coreLocationManager.respondsToSelector("requestAlwaysAuthorization") ||
@@ -153,7 +153,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
             }
             else
             {
-                println("No description Provided")
+                print("No description Provided")
             }
         }
         else
@@ -165,9 +165,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     func getLocation()
     {
-        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
-            self.displayLocation(CLLocation(latitude: latitude, longitude: longitude))
-        }
+     //   locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+        //    self.displayLocation(CLLocation(latitude: latitude, longitude: longitude))
+       // }
     }
     
     func displayLocation(location:CLLocation)
@@ -181,15 +181,18 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         map.addAnnotation(annotation)
         map.showAnnotations([annotation], animated: true)
         
+        /*
         locationManager.reverseGeocodeLocationWithCoordinates(location, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-            println(reverseGecodeInfo)
+            print(reverseGecodeInfo)
             let addr = reverseGecodeInfo?.objectForKey("locality") as! String
-            println("addr is \(addr)")
-        })
+            print("addr is \(addr)")
+        })*/
  
     }
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    
+    /*
+    func locationManager(manager: CLLocationManager!,didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status != CLAuthorizationStatus.NotDetermined ||
            status != CLAuthorizationStatus.Denied || status != CLAuthorizationStatus.Restricted
         {
@@ -197,7 +200,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         }
     }
     
-    
+    */
     override func viewDidAppear(animated: Bool) {
         
        // NSNotificationCenter.defaultCenter().postNotificationName("loaditems", object: nil)
@@ -205,7 +208,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         getLocation()
         
         
-        var reportButton = UIButton(frame: CGRectMake(0 , screenHeight-(screenHeight/12), screenWidth,screenHeight/12))
+        let reportButton = UIButton(frame: CGRectMake(0 , screenHeight-(screenHeight/12), screenWidth,screenHeight/12))
         reportButton.setTitle(" Report this product", forState: UIControlState.Normal)
         reportButton.titleLabel?.textAlignment = NSTextAlignment.Center;
         reportButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
@@ -232,7 +235,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        var collectionCell: NTHorizontalPageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(horizontalPageViewCellIdentify, forIndexPath: indexPath) as! NTHorizontalPageViewCell
+        let collectionCell: NTHorizontalPageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(horizontalPageViewCellIdentify, forIndexPath: indexPath) as! NTHorizontalPageViewCell
       //  collectionCell.imageName = self.imageNameList[indexPath.row] as String
         
         collectionCell.imageFile = self.imageFile[indexPath.row]
@@ -266,10 +269,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     }
     func LikeButtonPressed(sender:UIButton!)
     {
-        println("indexnum \(indexnum)")
+        print("indexnum \(indexnum)")
         if PFUser.currentUser() != nil{
-            var user1 = PFUser.currentUser()!
-            var query2 = PFQuery(className: "_User")
+            let user1 = PFUser.currentUser()!
+            let query2 = PFQuery(className: "_User")
             query2.whereKey("objectId", equalTo: otherusers[indexnum])
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
@@ -280,7 +283,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                 if error1 == nil
                 {
                     if let userObject: AnyObject = result?[0] {
-                        var user2 = userObject as! PFUser
+                        let user2 = userObject as! PFUser
                         
                         var room = PFObject(className: "Room")
                         

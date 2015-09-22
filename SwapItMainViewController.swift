@@ -9,8 +9,6 @@
 import UIKit
 import Koloda
 import pop
-import LiquidLoader
-import JTSplashView
 
 //var numberOfCards: UInt = UInt(imagesToswipe.count)
 
@@ -25,7 +23,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
 
         popview = PagedScrollViewController()
-        println("numberOfCards \(numberOfCards)")
+        print("numberOfCards \(numberOfCards)")
         kolodaView.dataSource = self
         kolodaView.delegate = self
         
@@ -39,7 +37,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
 
     
     override func viewWillAppear(animated: Bool) {
-        var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
@@ -51,7 +49,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         imageView.contentMode = .ScaleAspectFit
         
         
-        var followButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
+        let followButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
         //followButton.setTitle(" Swit", forState: UIControlState.Normal)
         followButton.setImage(UIImage(named: "mainlogo.png.gif"), forState: UIControlState.Normal)
         followButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
@@ -91,15 +89,17 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
        
-        var imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
         imageView.backgroundColor = UIColor.whiteColor()
         
-        imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+
+        
+        imageView.autoresizingMask  = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
         
     //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
 
         index2 = Int(index)
-        println(index2)
+        print(index2)
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
         imageView.image = imagesToswipe[index2]
         
@@ -128,16 +128,16 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             kolodaView.reloadData()
         }
 
-        println("direction is \(direction.hashValue)")
+        print("direction is \(direction.hashValue)")
         // index2 = Int(index)
         
         if (direction.hashValue == 2)
         {
-            var imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[Int(index)] as String)
+            let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[Int(index)] as String)
             imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"interesting")
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
-                    println("You liked: \(otherObjID[Int(index)])")
+                    print("You liked: \(otherObjID[Int(index)])")
                 }
             })
        
@@ -148,7 +148,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         //Example: reloading
-        println("no card")
+        print("no card")
         kolodaView.resetCurrentCardNumber()
         
     }
@@ -159,10 +159,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
 
        popview.showInView(self.view, animated: true)
 
-        
-        
-        
-        println("card tabbed")
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {

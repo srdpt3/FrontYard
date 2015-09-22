@@ -33,14 +33,14 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         
         if change
         {
-            var currentUser = PFUser.currentUser()!
+            let currentUser = PFUser.currentUser()!
             doneBarButtonItem.action = "changeProfile"
             
             
             username.text = PFUser.currentUser()?.username
             emailTextField.text = PFUser.currentUser()?.email
-            firstnameTextField.text = currentUser["firstName"]as! String
-            lastnameTextField.text = currentUser["lastName"] as! String
+            firstnameTextField.text = currentUser["firstName"]as? String
+            lastnameTextField.text = currentUser["lastName"] as? String
             
             passwordTestField.enabled = false
             repeatPasswordTextField.enabled = false
@@ -64,9 +64,9 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
     }
     func changeProfile()
     {
-        var currentUser = PFUser.currentUser()!
-        let profileImageData = UIImageJPEGRepresentation(profileImage.image,0.6)
-        let profileImagefile = PFFile(data: profileImageData)
+        let currentUser = PFUser.currentUser()!
+        let profileImageData = UIImageJPEGRepresentation(profileImage.image!,0.6)
+        let profileImagefile = PFFile(data: profileImageData!)
         
         if (username.text != "" && emailTextField.text != "" && lastnameTextField.text != "" &&
             firstnameTextField.text != "")
@@ -130,14 +130,12 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
 
         
     }
- 
+ /*
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageSize = image.size
-        let width = imageSize.width
-        let height = imageSize.height
-        
-        
+
+        /*
         if width != height
         {
             let newDimension = min(width,height)
@@ -145,16 +143,15 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
             let heightOffset = (height - newDimension)/2
             
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(newDimension, newDimension), false, 0.0)
-            image.drawAtPoint(CGPointMake(-widthOffset, -heightOffset), blendMode: kCGBlendModeCopy, alpha: 1.0)
+           // image.drawAtPoint(CGPointMake(-widthOffset, -heightOffset), blendMode: kCGBlendModeCopy, alpha: 1.0)
             
            image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
             UIGraphicsEndImageContext()
         
             
             
-        }
+        }*/
         UIGraphicsBeginImageContext(CGSizeMake(150, 150))
-        let context = UIGraphicsGetCurrentContext()
         image.drawInRect(CGRectMake(0, 0, 150, 150))
         
         let small_Image = UIGraphicsGetImageFromCurrentImageContext()
@@ -164,7 +161,7 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         
     }
     
-    
+    */
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
 
@@ -172,14 +169,14 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
     
     @IBAction func completeSignUpButton(sender: AnyObject) {
         
-        let profileImageData = UIImageJPEGRepresentation(profileImage.image,0.6)
-        let profileImagefile = PFFile(data: profileImageData)
+        let profileImageData = UIImageJPEGRepresentation(profileImage.image!,0.6)
+        let profileImagefile = PFFile(data: profileImageData!)
         
         if (username.text != "" && passwordTestField.text != "" && emailTextField.text != "" && lastnameTextField.text != "" &&
             firstnameTextField.text != "" && repeatPasswordTextField.text != "")
         {
             
-            var user = PFUser()
+            let user = PFUser()
             user.username = username.text
             user.email = emailTextField.text
             
@@ -208,7 +205,7 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
                     
                     
                     
-                    var installation:PFInstallation = PFInstallation.currentInstallation()
+                    let installation:PFInstallation = PFInstallation.currentInstallation()
                     installation["user"] = PFUser.currentUser()
                     installation.saveInBackgroundWithBlock(nil)
                     
