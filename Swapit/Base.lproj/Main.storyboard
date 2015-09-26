@@ -229,7 +229,7 @@
         <!--Over View Table View Controller-->
         <scene sceneID="39D-ww-mvp">
             <objects>
-                <tableViewController storyboardIdentifier="ChatOverView" id="Zcu-04-hgw" customClass="OverViewTableViewController" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChatOverView" clearsSelectionOnViewWillAppear="NO" id="Zcu-04-hgw" customClass="OverViewTableViewController" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ni0-cW-kjk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,7 +324,6 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="UWI-ao-mVq"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="choosePartnerButoon" destination="ObL-OR-NQA" id="ZeN-AR-4em"/>
                         <outlet property="logout" destination="hxY-J6-Zzq" id="rHj-Iy-Kc6"/>
@@ -332,7 +331,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cf2-3i-JBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-18670" y="-12619"/>
+            <point key="canvasLocation" x="-18690" y="-12625"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="CHk-0S-5rw">

@@ -20,26 +20,19 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // self.view.backgroundColor    = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
-        
+        self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
-        //nav?.appearance().backgroundColor = UIColor.greenColor()
-        // 2
-        // nav?.barStyle = UIBarStyle.BlackTranslucent
         let navigationBarAppearace = UINavigationBar.appearance()
         // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-        self.navigationItem.title = "Conversations"
         
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.navigationItem.title = "Conversations"
+        
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-        
-        
-        
-        self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
-        self.navigationItem.setLeftBarButtonItem(logout, animated: false)
+
+
         loadData()
         
     }
@@ -47,8 +40,26 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         super.viewWillAppear(animated)
         if PFUser.currentUser() != nil{
             print("load data")
+            // self.view.backgroundColor    = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
             
-            loadData()
+            self.navigationController!.delegate = nil
+            
+            self.view.backgroundColor = UIColor.whiteColor()
+            let nav = self.navigationController?.navigationBar
+            let navigationBarAppearace = UINavigationBar.appearance()
+            // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+            // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+            
+            navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+            self.navigationItem.title = "Conversations"
+
+            nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+            nav?.barTintColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+
+            
+            self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
+            self.navigationItem.setLeftBarButtonItem(logout, animated: false)
+           loadData()
         }
     }
     
@@ -135,7 +146,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         
         let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Chane profile", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "Change profile", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController

@@ -18,6 +18,8 @@ let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
 class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate{
     
+    var popview : PagedScrollViewController!
+    
     var indexnum : Int = Int()
     var imageFile = [UIImage]()
     var pricelabel = [String]()
@@ -51,7 +53,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         super.init(collectionViewLayout:layout)
         let collectionView :UICollectionView = self.collectionView!;
         
-       
+        popview = PagedScrollViewController()
+
        
         var offsetY = screenHeight/2.2
         PassButton = UIButton(frame: CGRectMake(screenWidth*0.05, CGFloat(offsetY), screenWidth*0.4 , screenHeight/20))
@@ -249,6 +252,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         collectionCell.pullAction = { offset in
             self.pullOffset = offset
            // self.navigationController!.popViewControllerAnimated(true)
+            self.popview.showInView(self.view, animated: true)
+
+            
+            
         }
         collectionCell.setNeedsLayout()
         return collectionCell
@@ -310,6 +317,76 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                             messageVC!.room = room
                                             messageVC?.incomingUser = user2
                                             
+                                            /* msg send */
+                                            let message = PFObject(className: "Message")
+                                            message["content"] = "i am interesting in product";
+                                            message["room"] = room
+                                            message["user"] = PFUser.currentUser()!
+                                            
+                                            let msgACL = PFACL()
+                                            msgACL.setReadAccess(true, forRoleWithName: user1.objectId!)
+                                            msgACL.setReadAccess(true, forRoleWithName: user2.objectId!)
+                                            msgACL.setWriteAccess(true, forRoleWithName: user1.objectId!)
+                                            msgACL.setWriteAccess(true, forRoleWithName: user2.objectId!)
+                                            
+                                            message.ACL = msgACL
+                                            
+                                            message.saveInBackgroundWithBlock { (success, error) -> Void in
+                                                if error == nil
+                                                {
+                                                  //  self.loadMessages()
+                                                    
+                                                    let pushQuery = PFInstallation.query()
+                                                    pushQuery?.whereKey("user", equalTo: user2)
+                                                    
+                                                    let push = PFPush()
+                                                    push.setQuery(pushQuery)
+                                                    
+                                                    let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
+                                                    push.setData(pushDict)
+                                                    
+                                                    push.sendPushInBackgroundWithBlock(nil)
+                                                    
+                                                    
+                                                    room["lastUpdate"] = NSDate()
+                                                    room.saveInBackgroundWithBlock(nil)
+                                                    
+                                                    let unreadMsg = PFObject(className: "UnreadMessage")
+                                                    unreadMsg["user"] = user2
+                                                    unreadMsg["room"] = room
+                                                    
+                                                    unreadMsg.saveInBackgroundWithBlock(nil)
+                                                    
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    
+                                                    print("Error sending msg\(error?.localizedDescription)")
+                                                    
+                                                }
+                                                
+                                               // self.finishSendingMessage()
+                                            }
+
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
                                             
                                            self.navigationController?.popToViewController(messageVC!, animated: true)
                                         }
@@ -337,4 +414,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         }
         
     }
+    
+
+    
 }
