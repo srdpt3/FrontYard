@@ -153,12 +153,52 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
     }
     
+    
+    
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://us.blizzard.com/en-us/games/hots/landing/")!)
-  
+        
+        
+        
+        
+        detailImages.removeAll(keepCapacity: false)
+        let query = PFQuery(className:"Post")
+        query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[Int(index)]))
+        query.addAscendingOrder("createdAt")
+        //query.whereKey("obj_ptr", equalTo: objID[indexPath.row])
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error  == nil
+            {
+                print("count is \(objects!.count)")
+                print("Yasdfasdf: \(otherObjID[Int(index)])")
 
-       popview.showInView(self.view, animated: true)
+                //  println(["obj_ptr"])")
+                for obj in objects!{
+                    let thumbNail = obj["images"] as! PFFile
+                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            detailImages.append(image!)
+                            if(detailImages.count == objects!.count )
+                            {
+                                print("detailImages.count\(detailImages.count)")
+                                self.popview.showInView(self.view, animated: true)
 
+                            }
+                            
+                            
+                        }
+                    })//getDataInBackgroundWithBlock - end
+                }
+                
+                
+                
+            }
+            
+        }
+        
+
+      
     }
     
     func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {
@@ -178,6 +218,51 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
 
+    
+    
+    func loadMoreImages(index: Int)
+    {
+        
+        
+        detailImages.removeAll(keepCapacity: false)
+        let query = PFQuery(className:"Post")
+        query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[index]))
+        query.addAscendingOrder("createdAt")
+        //query.whereKey("obj_ptr", equalTo: objID[indexPath.row])
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error  == nil
+            {
+                print("count is \(objects!.count)")
+                
+                //  println(["obj_ptr"])")
+                for obj in objects!{
+                    let thumbNail = obj["images"] as! PFFile
+                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            detailImages.append(image!)
+                            if(detailImages.count == objects!.count )
+                            {
+                               /* do something */
+                            }
+                            
+                            
+                        }
+                    })//getDataInBackgroundWithBlock - end
+                }
+                
+                
+                
+            }
+            
+        }
+        
+        
+        
+        
+    }
+
+    
 
 }
 

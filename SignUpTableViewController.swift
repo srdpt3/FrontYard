@@ -130,12 +130,15 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
 
         
     }
- /*
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageSize = image.size
-
-        /*
+        
+        let width = imageSize.width
+        let height = imageSize.height
+        
         if width != height
         {
             let newDimension = min(width,height)
@@ -143,14 +146,14 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
             let heightOffset = (height - newDimension)/2
             
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(newDimension, newDimension), false, 0.0)
-           // image.drawAtPoint(CGPointMake(-widthOffset, -heightOffset), blendMode: kCGBlendModeCopy, alpha: 1.0)
+            image.drawAtPoint(CGPointMake(-widthOffset, -heightOffset))
+            //   image.drawAtPoint(CGPointMake(-widthOffset, -heightOffset), blendMode: kCGBlendModeCopy, alpha: 1.0)
             
-           image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+            image = UIGraphicsGetImageFromCurrentImageContext() as UIImage
             UIGraphicsEndImageContext()
-        
             
             
-        }*/
+        }
         UIGraphicsBeginImageContext(CGSizeMake(150, 150))
         image.drawInRect(CGRectMake(0, 0, 150, 150))
         
@@ -158,10 +161,8 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         profileImage.image = small_Image
         
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
-    */
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
 

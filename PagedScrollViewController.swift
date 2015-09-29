@@ -6,6 +6,8 @@
 
 import UIKit
 
+var detailImages : [UIImage] = []
+
 class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
     
   //  @IBOutlet var scrollView: UIScrollView!
@@ -25,8 +27,10 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLoad()
         
-        
-            // Initialization of UIScrollView
+    }
+    override func viewDidAppear(animated: Bool) {
+        print("popop \(detailImages.count)")
+        // Initialization of UIScrollView
         self.scrollView = UIScrollView()
         let width = self.view.frame.width
         let height = self.view.frame.height
@@ -38,12 +42,12 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.delegate = self
         
         self.pageControl.frame = CGRectMake(0, height*0.8, view.frame.size.width, 25)
-
         
         
-     //   self.pageControl.tintColor = UIColor.redColor()
-      //  self.pageControl.pageIndicatorTintColor = UIColor.blackColor()
-       // self.pageControl.currentPageIndicatorTintColor = UIColor.greenColor()
+        
+        //   self.pageControl.tintColor = UIColor.redColor()
+        //  self.pageControl.pageIndicatorTintColor = UIColor.blackColor()
+        // self.pageControl.currentPageIndicatorTintColor = UIColor.greenColor()
         self.view.addSubview(pageControl)
         
         
@@ -57,20 +61,20 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         self.view.addGestureRecognizer(doubleTapRecognizer)
         
         
-   //     self.view.addSubview(pageControl)
+        //     self.view.addSubview(pageControl)
         // 1
         pageImages = [UIImage(named:"photo1.png")!,
-        UIImage(named:"photo2.png")!,
-        UIImage(named:"photo3.png")!,
-        UIImage(named:"photo4.png")!,
-        UIImage(named:"photo5.png")!]
-
-       let pageCount = pageImages.count
-
+            UIImage(named:"photo2.png")!,
+            UIImage(named:"photo3.png")!,
+            UIImage(named:"photo4.png")!,
+            UIImage(named:"photo5.png")!]
+        
+        let pageCount = detailImages.count
+        
         // 2
         pageControl.currentPage = 0
         pageControl.numberOfPages = pageCount
-
+        
         // 3
         for _ in 0..<pageCount {
             pageViews.append(nil)
@@ -78,15 +82,16 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
         // 4
         let pagesScrollViewSize = scrollView.frame.size
-        scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * CGFloat(pageImages.count), pagesScrollViewSize.height)
-                
+        scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * CGFloat(detailImages.count), pagesScrollViewSize.height)
+        
         // 5
         loadVisiblePages()
+
     }
 
     func loadPage(page: Int) {
         
-        if page < 0 || page >= pageImages.count {
+        if page < 0 || page >= detailImages.count {
             // If it's outside the range of what you have to display, then do nothing
             return
         }
@@ -101,7 +106,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
             frame.origin.y = 0.0
             
             // 3
-            let newPageView = UIImageView(image: pageImages[page])
+            let newPageView = UIImageView(image: detailImages[page])
             newPageView.contentMode = UIViewContentMode.ScaleAspectFit
             newPageView.frame = frame
             
@@ -116,7 +121,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
     
     func purgePage(page: Int) {
 
-        if page < 0 || page >= pageImages.count {
+        if page < 0 || page >= detailImages.count {
             // If it's outside the range of what you have to display, then do nothing
             return
         }
@@ -154,7 +159,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         }
         
         // Purge anything after the last page
-        for var index = lastPage+1; index < pageImages.count; ++index {
+        for var index = lastPage+1; index < detailImages.count; ++index {
             purgePage(index)
         }
     }
@@ -211,6 +216,8 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
         
         self.view.backgroundColor = UIColor.blackColor()
+        
+     
 
     }
     override func viewWillDisappear(animated: Bool) {
@@ -219,6 +226,8 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         
     }
 
+    
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // Load the pages that are now on screen
         loadVisiblePages()
@@ -229,5 +238,10 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewDidDisappear(animated: Bool) {
+        pageViews.removeAll(keepCapacity: false)
+        self.pageControl.removeFromSuperview()
+        self.scrollView.removeFromSuperview()
+        print("did disappear")
+    }
 }

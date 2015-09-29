@@ -25,6 +25,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var pricelabel = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
+    var otherObjID = [String]()
 
     var pullOffset = CGPointZero
     
@@ -252,7 +253,38 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         collectionCell.pullAction = { offset in
             self.pullOffset = offset
            // self.navigationController!.popViewControllerAnimated(true)
-            self.popview.showInView(self.view, animated: true)
+            detailImages.removeAll(keepCapacity: false)
+            let query = PFQuery(className:"Post")
+            query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:self.otherObjID[indexPath.row]))
+            query.addAscendingOrder("createdAt")
+            //query.whereKey("obj_ptr", equalTo: objID[indexPath.row])
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                if error  == nil
+                {
+                    
+                    for obj in objects!{
+                        let thumbNail = obj["images"] as! PFFile
+                        thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                            if (error == nil) {
+                                let image = UIImage(data:imageData!)
+                                detailImages.append(image!)
+                                if(detailImages.count == objects!.count )
+                                {
+                                    print("detailImages.count\(detailImages.count)")
+                                    self.popview.showInView(self.view, animated: true)
+                                    
+                                }
+                                
+                                
+                            }
+                        })//getDataInBackgroundWithBlock - end
+                    }
+                    
+                    
+                    
+                }
+                
+            }
 
             
             
@@ -369,23 +401,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                // self.finishSendingMessage()
                                             }
 
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
                                             
                                             
                                            self.navigationController?.popToViewController(messageVC!, animated: true)

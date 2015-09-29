@@ -104,7 +104,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pageViewController.itemTitle = itemTitle
         pageViewController.itemDesc = itemDesc
         pageViewController.otherusers = otherUsers
-        
+        pageViewController.otherObjID = otherObjID
+
         collectionView.setToIndexPath(indexPath)
         navigationController!.pushViewController(pageViewController, animated: true)
         
