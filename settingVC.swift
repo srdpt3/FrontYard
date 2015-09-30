@@ -35,7 +35,7 @@ class settingVC: UIViewController {
         self.tabBarController?.tabBar.hidden = true
         let nav = self.navigationController?.navigationBar
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        nav?.tintColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0)
         let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
         logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
         logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)

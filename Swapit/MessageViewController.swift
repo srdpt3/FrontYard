@@ -11,7 +11,7 @@ import FoldingTabBar
 
 
 class MessageViewController:JSQMessagesViewController {
-
+    
     
     var room:PFObject!
     var incomingUser : PFUser!
@@ -25,31 +25,31 @@ class MessageViewController:JSQMessagesViewController {
     
     var selfAvartar : JSQMessagesAvatarImage!
     var incomingAvartar: JSQMessagesAvatarImage!
+    
+    var likedImageView : UIView = UIView()
 
+    
+    
+    var whatIinterested : [UIImage] = []
+    var whatOthersinterested : [UIImage] = []
     
     override func viewWillAppear(animated: Bool) {
         
         
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    appDelegate.tabBarController.tabBarView.hidden = true
+        appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
         
         
         self.title = "Messages"
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
-    print("incomingUser\(incomingUser)")
         
-        
-     //  println("senderDisplayName\(senderDisplayName)")
-
         let currentUser = PFUser.currentUser()!
         self.inputToolbar!.contentView!.leftBarButtonItem = nil
         
         let selfUsername = PFUser.currentUser()!.username! as NSString
         let incomingUsername = incomingUser.username! as NSString
-     // /  let incomingUsername = "ds"
-        
         
         selfAvartar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(selfUsername.substringWithRange(NSMakeRange(0, 2)), backgroundColor: UIColor.blackColor(), textColor: UIColor.whiteColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         
@@ -96,36 +96,46 @@ class MessageViewController:JSQMessagesViewController {
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         
-        outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
-        incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.grayColor())
+        outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0))
+        incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
         
-      //  dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.loadMessages()
-       // })
-     
+        //  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.loadMessages()
+        // })
         
-      
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        likedImageView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.2)
+        likedImageView.backgroundColor = UIColor.whiteColor()
+    
         
+       var xOffset  = screenWidth*0.03 as CGFloat
+        for (_,image) in whatIinterested.enumerate()
+        {
+            generateButton(xOffset, image: image)
+            xOffset+=screenWidth*0.01
         }
-
+        self.view.addSubview(likedImageView)
+        
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadMessages", name: "reloadMessages", object: nil)
-    
+        
         
     }
     
-
+    
     
     override func viewDidDisappear(animated: Bool) {
-       // super.viewDidAppear(animated)
-       super.viewDidDisappear(animated)
+        // super.viewDidAppear(animated)
+        super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadMessages", object: nil)
         
     }
@@ -145,7 +155,8 @@ class MessageViewController:JSQMessagesViewController {
         
         let messageQuery = PFQuery(className:"Message")
         messageQuery.whereKey("room", equalTo: room)
-        messageQuery.orderByAscending("createdAt")
+        messageQuery.orderByAscending("updatedAt")
+        
         messageQuery.limit = 1000
         messageQuery.includeKey("user")
         
@@ -159,13 +170,13 @@ class MessageViewController:JSQMessagesViewController {
             if error == nil
             {
                 let messages = results as! [PFObject]
-
-
+                
+                
                 for message in messages
                 {
                     self.messageObjects.append(message)
-                 let user = message["user"] as! PFUser
-                self.users.append(user)
+                    let user = message["user"] as! PFUser
+                    self.users.append(user)
                     
                     let chatMessage = JSQMessage(senderId: user.objectId, senderDisplayName: user.username, date: message.createdAt, text: message["content"] as! String)
                     self.messages.append(chatMessage)
@@ -183,8 +194,8 @@ class MessageViewController:JSQMessagesViewController {
         
         
         // Fix the bug when message is received while chatting. But unread indicator is still showing when moved to overview screen
-      //  let sb = UIStoryboard(name: "Main", bundle: nil)
-       // let messageVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as? OverViewController
+        //  let sb = UIStoryboard(name: "Main", bundle: nil)
+        // let messageVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as? OverViewController
         
         let user1 = PFUser.currentUser()!
         let user2 = incomingUser
@@ -196,10 +207,10 @@ class MessageViewController:JSQMessagesViewController {
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
-               // let room = results!.last as! PFObject
-           //     messageVC!.room = room
+                // let room = results!.last as! PFObject
+                //     messageVC!.room = room
                 // println("room is \(room)")
-            //    messageVC?.incomingUser = user2
+                //    messageVC?.incomingUser = user2
                 
                 let unreadQuery = PFQuery(className: "UnreadMessage")
                 unreadQuery.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -235,11 +246,11 @@ class MessageViewController:JSQMessagesViewController {
         message["user"] = PFUser.currentUser()!
         
         let currentUser = PFUser.currentUser()!
-       let msgACL = PFACL()
+        let msgACL = PFACL()
         msgACL.setReadAccess(true, forRoleWithName: currentUser.objectId!)
-       msgACL.setReadAccess(true, forRoleWithName: incomingUser.objectId!)
+        msgACL.setReadAccess(true, forRoleWithName: incomingUser.objectId!)
         msgACL.setWriteAccess(true, forRoleWithName: currentUser.objectId!)
-       msgACL.setWriteAccess(true, forRoleWithName: incomingUser.objectId!)
+        msgACL.setWriteAccess(true, forRoleWithName: incomingUser.objectId!)
         
         message.ACL = msgACL
         
@@ -326,7 +337,7 @@ class MessageViewController:JSQMessagesViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
-          let message = messages[indexPath.row]
+        let message = messages[indexPath.row]
         
         if message.senderId == self.senderId
         {
@@ -337,9 +348,9 @@ class MessageViewController:JSQMessagesViewController {
         {
             cell.textView!.textColor = UIColor.whiteColor()
         }
- //       let attributes  = [NSForegroundColorAttributeName:cell.textView!.textColor]
+        //       let attributes  = [NSForegroundColorAttributeName:cell.textView!.textColor]
         
-  //      cell.textView!.linkTextAttributes = attributes
+        //      cell.textView!.linkTextAttributes = attributes
         return cell
     }
     
@@ -350,14 +361,67 @@ class MessageViewController:JSQMessagesViewController {
     override func viewWillDisappear(animated: Bool) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = false
-
-
+        
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func generateButton(xOffset: CGFloat, image:UIImage) {
+        
+        let WhatMyImageView : UIImageView = UIImageView()
+        
+        //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
+        WhatMyImageView.frame = CGRectMake(xOffset, likedImageView.frame.height/1.7, likedImageView.frame.height/3,likedImageView.frame.height/3)
+        WhatMyImageView.image = image
+        WhatMyImageView.layer.cornerRadius = WhatMyImageView.frame.size.width/2
+        
+        WhatMyImageView.clipsToBounds = true
+        //  WhatMyImageView.center  = CGPointMake(xOffset, (likedImageView.frame.height)/2)
+        likedImageView.addSubview(WhatMyImageView)
+        
+    }
     
+    /* for chatting window */
 
+    
+    func getWhatIinterested(index:Int)
+    {
+        
+        whatIinterested.removeAll(keepCapacity: false)
+        let query:PFQuery = PFQuery(className: "imageUpload")
+        query.whereKey("user", equalTo: incomingUser)
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error  == nil
+            {
+                for obj in objects!{
+                    let thumbNail = obj["image"] as! PFFile
+                    print("objects cpunt \(objects!.count)")
+                    
+                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            self.whatIinterested.append(image!)
+                            print("whatIinterested \(self.whatIinterested.count)")
+                            
+                            
+                        }
+                    })
+                }
+            }
+                
+            else
+            {
+                
+                print("errror")
+            }
+            
+        }
+    }
+
+    
+    
+    
 }

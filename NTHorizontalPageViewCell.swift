@@ -27,10 +27,11 @@ class NTTableViewCell : UITableViewCell{
         let imageView :UIImageView = self.imageView!;
         imageView.frame = CGRectZero
         if (imageView.image != nil) {
-            let imageHeight = imageView.image!.size.height*screenWidth/imageView.image!.size.width
+           // let imageHeight = imageView.image!.size.height*screenWidth/imageView.image!.size.width
             imageView.frame = CGRectMake(0, 0, screenWidth, screenHeight/2.5)
             
-         //   imageView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+        imageView.autoresizingMask  = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
+            
          //  imageView.contentMode = UIViewContentMode.ScaleAspectFit
           imageView.contentMode = UIViewContentMode.ScaleAspectFill
             

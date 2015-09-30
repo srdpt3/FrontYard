@@ -49,7 +49,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-        nav?.barTintColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0)
 
         
         
@@ -172,7 +172,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                 let objects = results as! [PFObject]
                 
                 for obj in objects{
-                    // let itemTitle = obj["itemname"]! as! String
+                    let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
                     let otheruser = obj["user"] as! PFObject
@@ -186,7 +186,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let image = UIImage(data:imageData!)
                             //image object implementation
                             self.swipedImages.append(image!)
-                            //  self.itemTitle.append(itemTitle)
+                            self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
                             // self.otherUsers.append(otheruser)

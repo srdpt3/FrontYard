@@ -13,9 +13,6 @@ import MapKit
 let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
 
-
-
-
 class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate{
     
     var popview : PagedScrollViewController!
@@ -37,7 +34,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var descLabel: UILabel = UILabel()
     var otherusers = [String]()
 
-    
+
     
     var coreLocationManager = CLLocationManager()
   //  var locationManager : LocationManager!
@@ -58,12 +55,12 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
        
         var offsetY = screenHeight/2.2
-        PassButton = UIButton(frame: CGRectMake(screenWidth*0.05, CGFloat(offsetY), screenWidth*0.4 , screenHeight/20))
-        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.5, CGFloat(offsetY), screenWidth*0.45 , screenHeight/20))
+        PassButton = UIButton(frame: CGRectMake(screenWidth*0.02, CGFloat(offsetY), screenWidth*0.4 , screenHeight/20))
+        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.45, CGFloat(offsetY), screenWidth*0.5 , screenHeight/20))
         
         
-        PassButton.setTitle(" X Pass", forState: UIControlState.Normal)
-        PassButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
+        PassButton.setTitle(" I will pass", forState: UIControlState.Normal)
+        PassButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         PassButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Highlighted)
         PassButton.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
         
@@ -75,10 +72,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         
         
-        LikeButton.setTitle(" Like It", forState: UIControlState.Normal)
-        LikeButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
+        LikeButton.setTitle(" Chat with seller", forState: UIControlState.Normal)
+        LikeButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         LikeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        LikeButton.backgroundColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
+        LikeButton.backgroundColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0)
         
         LikeButton.clipsToBounds = true
         LikeButton.layer.cornerRadius = 10.0;
@@ -94,7 +91,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         itemNameLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
         
         
-        PriceLabel.text="123 "
+        PriceLabel.text="$123 "
         PriceLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
         PriceLabel.textAlignment = NSTextAlignment.Right;
         PriceLabel.textColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
@@ -220,8 +217,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         reportButton.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
         reportButton.addTarget(self, action: "reportButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
-
-        
         
         self.view.addSubview(PassButton)
         self.view.addSubview(LikeButton)
@@ -248,6 +243,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         indexnum = indexPath.row
         self.PriceLabel.text = pricelabel[indexPath.row]as String
         self.descLabel.text = itemDesc[indexPath.row] as String
+        self.itemNameLabel.text = itemTitle[indexPath.row] as String
+
 
         collectionCell.tappedAction = {}
         collectionCell.pullAction = { offset in
@@ -306,18 +303,18 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     func pageViewCellScrollViewContentOffset() -> CGPoint{
         return self.pullOffset
     }
+    
+    
+    
     func LikeButtonPressed(sender:UIButton!)
     {
-        print("indexnum \(indexnum)")
-        if PFUser.currentUser() != nil{
+            if PFUser.currentUser() != nil{
             let user1 = PFUser.currentUser()!
             let query2 = PFQuery(className: "_User")
             query2.whereKey("objectId", equalTo: otherusers[indexnum])
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
-            
-
-            
+                
             query2.findObjectsInBackgroundWithBlock({ (result, error1) -> Void in
                 if error1 == nil
                 {
@@ -429,7 +426,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         }
         
     }
-    
+  
 
-    
 }
