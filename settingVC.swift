@@ -95,7 +95,7 @@ class settingVC: UIViewController {
         
         // minPrice.text = "\(Int(round(rangeSlider1.lowerValue)))"
         // maxPrice.text = "\(Int(round(rangeSlider1.upperValue)))"
-        SearchLabel.frame = CGRectMake(0, rangeViewHeightOffset, width, height*(1/12))
+        SearchLabel.frame = CGRectMake(width*0.01, rangeViewHeightOffset, width, height*(1/12))
         
         SearchLabel.text = "SEARCH PRICE RANGE"
         SearchLabel.textAlignment = NSTextAlignment.Natural;

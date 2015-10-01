@@ -247,11 +247,10 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             }
         }
         
-        
         let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
         
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-        
+        roomQuery.orderByDescending("updatedAt")
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {

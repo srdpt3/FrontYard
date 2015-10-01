@@ -26,7 +26,8 @@ class MessageViewController:JSQMessagesViewController {
     var selfAvartar : JSQMessagesAvatarImage!
     var incomingAvartar: JSQMessagesAvatarImage!
     
-    var likedImageView : UIView = UIView()
+    var whatIlikedView : UIView = UIView()
+    var whatOtherslikedView : UIView = UIView()
 
     
     
@@ -41,7 +42,17 @@ class MessageViewController:JSQMessagesViewController {
         self.tabBarController?.tabBar.hidden = true
         
         
+        
+        
+        
         self.title = "Messages"
+
+        let nav = self.navigationController?.navigationBar
+        // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+        // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+
+        
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
         
@@ -89,11 +100,6 @@ class MessageViewController:JSQMessagesViewController {
             
         }
         
-        
-        
-        
-        
-        
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         
         outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0))
@@ -109,18 +115,6 @@ class MessageViewController:JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likedImageView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.2)
-        likedImageView.backgroundColor = UIColor.whiteColor()
-    
-        
-       var xOffset  = screenWidth*0.03 as CGFloat
-        for (_,image) in whatIinterested.enumerate()
-        {
-            generateButton(xOffset, image: image)
-            xOffset+=screenWidth*0.01
-        }
-        self.view.addSubview(likedImageView)
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -371,28 +365,40 @@ class MessageViewController:JSQMessagesViewController {
     
     func generateButton(xOffset: CGFloat, image:UIImage) {
         
-        let WhatMyImageView : UIImageView = UIImageView()
+        let MyImageView : UIImageView = UIImageView()
         
         //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
-        WhatMyImageView.frame = CGRectMake(xOffset, likedImageView.frame.height/1.7, likedImageView.frame.height/3,likedImageView.frame.height/3)
-        WhatMyImageView.image = image
-        WhatMyImageView.layer.cornerRadius = WhatMyImageView.frame.size.width/2
+        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height/1.7, whatIlikedView.frame.height/3,whatIlikedView.frame.height/3)
+        MyImageView.image = image
+        MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
         
-        WhatMyImageView.clipsToBounds = true
-        //  WhatMyImageView.center  = CGPointMake(xOffset, (likedImageView.frame.height)/2)
-        likedImageView.addSubview(WhatMyImageView)
+        MyImageView.clipsToBounds = true
+        whatIlikedView.addSubview(MyImageView)
         
     }
+
     
     /* for chatting window */
 
     
-    func getWhatIinterested(index:Int)
+    func displayProducts()
     {
+        var offsetY :CGFloat = 0
+        whatIlikedView.frame  = CGRectMake(0, offsetY, screenWidth, screenHeight*0.1)
+        whatIlikedView.backgroundColor = UIColor.whiteColor()
+        
+        offsetY+=whatIlikedView.frame.height
+        whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.3)
+        whatOtherslikedView.backgroundColor = UIColor.whiteColor()
+        
         
         whatIinterested.removeAll(keepCapacity: false)
+        whatOthersinterested.removeAll(keepCapacity: false)
+
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.whereKey("user", equalTo: incomingUser)
+        query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error  == nil
             {
@@ -405,7 +411,52 @@ class MessageViewController:JSQMessagesViewController {
                             let image = UIImage(data:imageData!)
                             self.whatIinterested.append(image!)
                             print("whatIinterested \(self.whatIinterested.count)")
+                            if(objects!.count == self.whatIinterested.count && objects!.count >= 1){
+                                
+                                var xOffset  = screenWidth*0.03 as CGFloat
+                                for (_,image) in self.whatIinterested.enumerate()
+                                {
+                                    self.generateButton(xOffset, image: image)
+                                    xOffset+=screenWidth*0.1
+                                }
+                                self.navigationController?.navigationBar.addSubview(self.whatIlikedView)
+                            }
                             
+                        }
+                    })
+                }
+            }
+                
+            else
+            {
+                
+                print("errror")
+            }
+        }
+        
+        let query2:PFQuery = PFQuery(className: "imageUpload")
+        query2.whereKey("user", equalTo: PFUser.currentUser()!)
+        query2.whereKey("interesting", equalTo: incomingUser!.username!)
+        
+        query2.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error  == nil
+            {
+                for obj in objects!{
+                    let thumbNail = obj["image"] as! PFFile
+                    
+                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            self.whatOthersinterested.append(image!)
+                            if(objects!.count == self.whatOthersinterested.count  && objects!.count >= 1){
+                                
+                                var xOffset  = screenWidth*0.85 as CGFloat
+                              //  for (_,image) in self.whatOthersinterested.enumerate()
+                              //  {
+                                //    self.generateButton(xOffset, image: image)
+                                 //   xOffset-=screenWidth*0.1
+                               // }
+                            }
                             
                         }
                     })
@@ -418,7 +469,17 @@ class MessageViewController:JSQMessagesViewController {
                 print("errror")
             }
             
+            
+            
+            
+            
+            
         }
+
+        
+        
+        
+        
     }
 
     
