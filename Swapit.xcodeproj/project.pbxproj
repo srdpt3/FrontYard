@@ -40,11 +40,6 @@
 		DAE786831BA87F310077EAA2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAE786821BA87F310077EAA2 /* ImageIO.framework */; };
 		DAE786891BA90A100077EAA2 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */; };
 		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
-		DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E11BAC78E20077EAA2 /* photo1.png */; };
-		DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E21BAC78E20077EAA2 /* photo2.png */; };
-		DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E31BAC78E20077EAA2 /* photo3.png */; };
-		DAE786E91BAC78E20077EAA2 /* photo4.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E41BAC78E20077EAA2 /* photo4.png */; };
-		DAE786EA1BAC78E20077EAA2 /* photo5.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE786E51BAC78E20077EAA2 /* photo5.png */; };
 		DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */; };
 		DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */; };
 		DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */; };
@@ -129,6 +124,7 @@
 		DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D7E1B7B5F10004D2660 /* ChooseTableViewController.swift */; };
 		DAF94D811B7CB3B8004D2660 /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */; };
 		DAF94D831B7D03A4004D2660 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D821B7D03A4004D2660 /* MessageViewController.swift */; };
+		DAFD2C021BC02FC80086E069 /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFD2C011BC02FC80086E069 /* RefreshContents.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,11 +179,6 @@
 		DAE786821BA87F310077EAA2 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = loaddataViewController.swift; path = ../loaddataViewController.swift; sourceTree = "<group>"; };
-		DAE786E11BAC78E20077EAA2 /* photo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo1.png; sourceTree = "<group>"; };
-		DAE786E21BAC78E20077EAA2 /* photo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo2.png; sourceTree = "<group>"; };
-		DAE786E31BAC78E20077EAA2 /* photo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo3.png; sourceTree = "<group>"; };
-		DAE786E41BAC78E20077EAA2 /* photo4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo4.png; sourceTree = "<group>"; };
-		DAE786E51BAC78E20077EAA2 /* photo5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo5.png; sourceTree = "<group>"; };
 		DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollViewController.swift; sourceTree = "<group>"; };
 		DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewContainer.swift; sourceTree = "<group>"; };
 		DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPad.xib; sourceTree = "<group>"; };
@@ -322,6 +313,7 @@
 		DAF94D7E1B7B5F10004D2660 /* ChooseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTableViewController.swift; sourceTree = "<group>"; };
 		DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverviewTableViewCell.swift; path = "../../../Documents/untitled folder/OverviewTableViewCell.swift"; sourceTree = "<group>"; };
 		DAF94D821B7D03A4004D2660 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		DAFD2C011BC02FC80086E069 /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,14 +444,10 @@
 				DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */,
 				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
 				DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */,
+				DAFD2C011BC02FC80086E069 /* RefreshContents.xib */,
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
-				DAE786E11BAC78E20077EAA2 /* photo1.png */,
-				DAE786E21BAC78E20077EAA2 /* photo2.png */,
-				DAE786E31BAC78E20077EAA2 /* photo3.png */,
-				DAE786E41BAC78E20077EAA2 /* photo4.png */,
-				DAE786E51BAC78E20077EAA2 /* photo5.png */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
@@ -824,29 +812,25 @@
 			files = (
 				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
-				DAE786E61BAC78E20077EAA2 /* photo1.png in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
 				DAF94D7B1B7AF472004D2660 /* barButton.gif in Resources */,
 				DAF94D731B7A12EC004D2660 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				DAF94D491B7A12EC004D2660 /* JSQMessagesAssets.bundle in Resources */,
+				DAFD2C021BC02FC80086E069 /* RefreshContents.xib in Resources */,
 				DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */,
 				DAF94D6E1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				DAE786FB1BAE3C780077EAA2 /* PopUpViewController.xib in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
-				DAE786E81BAC78E20077EAA2 /* photo3.png in Resources */,
-				DAE786E71BAC78E20077EAA2 /* photo2.png in Resources */,
 				DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				DAE786E91BAC78E20077EAA2 /* photo4.png in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
 				DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
-				DAE786EA1BAC78E20077EAA2 /* photo5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

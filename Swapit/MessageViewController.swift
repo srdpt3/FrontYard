@@ -16,6 +16,7 @@ class MessageViewController:JSQMessagesViewController {
     var room:PFObject!
     var incomingUser : PFUser!
     var users = [PFUser]()
+    var itemImageObj :String!
     
     var messages = [JSQMessage]()
     var messageObjects = [PFObject]()
@@ -146,6 +147,8 @@ class MessageViewController:JSQMessagesViewController {
             lastMessage = messages.last
         }
         
+        print("room load is \(room)")
+
         
         let messageQuery = PFQuery(className:"Message")
         messageQuery.whereKey("room", equalTo: room)
@@ -193,9 +196,10 @@ class MessageViewController:JSQMessagesViewController {
         
         let user1 = PFUser.currentUser()!
         let user2 = incomingUser
-        
-        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
-        
+ 
+     let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+      //  let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.itemImageObj!,user2,user1,self.itemImageObj!)
+
         let roomQuery = PFQuery(className: "Room", predicate: pred)
         
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in

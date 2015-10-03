@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("3YIT5b7gX4993SswqN3qAVq0mk8sOrXgn8o7cpE1",clientKey:"FuVje4F5el2mWCwFtMMClnxdbwAUsNeK6y7tyDid")
         
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-
-                
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        
         let notificationTypes:UIUserNotificationType = UIUserNotificationType.Alert.union(UIUserNotificationType.Badge ).union(UIUserNotificationType.Sound)
         let notificationSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
@@ -205,12 +205,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
         tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
-       tabBarController.tabBarView.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-     //  tabBarController.tabBarView.backgroundColor = UIColor(red: 170.0/255.0, green: 171.0/255.0 , blue: 172.0/255.0, alpha: 1)
-    //  tabBarController.tabBarView.backgroundColor = UIColor.whiteColor()
-
-     //   tabBarController.tabBarView.tabBarColor = UIColor(red: 72.0/255.0, green: 211.0/255.0, blue: 178.0/255.0, alpha: 1)
-    tabBarController.tabBarView.tabBarColor = UIColor(red: 156/255.0, green: 153/225.0, blue: 225/255.0, alpha: 1)
+       tabBarController.tabBarView.backgroundColor = backgroundColor
+        tabBarController.tabBarView.tabBarColor  =  UIColor(red: 132/255.0, green: 216/225.0, blue: 192/255.0, alpha: 1)
         
         tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight;
         tabBarController.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets;

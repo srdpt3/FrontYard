@@ -26,7 +26,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         print("numberOfCards \(numberOfCards)")
         kolodaView.dataSource = self
         kolodaView.delegate = self
-        
+      //  self.view.backgroundColor = UIColor.grayColor()
 
       //  self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
  
@@ -42,7 +42,11 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         // nav?.backgroundColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
+        let navigationBarAppearace = UINavigationBar.appearance()
+        // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+        // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         // 3
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))

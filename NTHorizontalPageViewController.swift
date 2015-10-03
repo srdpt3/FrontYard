@@ -328,7 +328,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                         
                         var room = PFObject(className: "Room")
                         
-                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@ AND item = %@", user1,user2,user2,user1,self.otherObjID[self.indexnum])
+                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
 
                         let roomQuery = PFQuery(className:"Room", predicate: pred)
                         roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
@@ -338,7 +338,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                 {
                                     room = results?.last as! PFObject
                                     messageVC!.room = room
+                                    print("room is \(room)")
                                     messageVC?.incomingUser = user2
+                                    messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
                                     self.navigationController?.pushViewController(messageVC!, animated: true)
                                     
                                 }
@@ -347,13 +349,14 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                     room["user1"] = user1
                                     room["user2"] = user2
                                     
-                               //     let query2
-                                    room["item"] = self.otherusers[self.indexnum]
+                               //
+                                    room["item"] = self.otherObjID[self.indexnum]
                                     
                                     room.saveInBackgroundWithBlock({ (success, error) -> Void in
                                         if error == nil{
                                             messageVC!.room = room
                                             messageVC?.incomingUser = user2
+                                            messageVC?.itemImageObj = self.otherObjID[self.indexnum]
                                             
                                             /* msg send */
                                             let message = PFObject(className: "Message")

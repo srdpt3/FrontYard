@@ -33,13 +33,11 @@ class settingVC: UIViewController {
         
         self.navigationItem.hidesBackButton = false
         self.tabBarController?.tabBar.hidden = true
+        
         let nav = self.navigationController?.navigationBar
-        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        nav?.tintColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0)
-        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
-        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        self.navigationItem.titleView = logoButton
+        self.navigationItem.title = "Setting"
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
         
         
         let myBackButton:UIButton = UIButton()

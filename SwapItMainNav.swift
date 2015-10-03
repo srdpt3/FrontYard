@@ -8,6 +8,8 @@
 
 import UIKit
 
+var backgroundColor : UIColor = UIColor(red: 156/255.0, green: 153/225.0, blue: 225/255.0, alpha: 1)
+
 class SwapItMainNav: UINavigationController {
 
     override func viewWillAppear(animated: Bool) {

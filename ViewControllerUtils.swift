@@ -14,7 +14,6 @@ class ViewControllerUtils {
     var container: UIView = UIView()
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    
     /*
     Show customized activity indicator,
     actually add activity indicator to passing view
