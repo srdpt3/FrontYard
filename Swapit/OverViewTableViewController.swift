@@ -9,7 +9,6 @@
 import UIKit
 import FoldingTabBar
 
-var refreshControl: UIRefreshControl!
 
 class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
@@ -21,40 +20,14 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     var itemObj = [String]()
     var itemImage : [UIImage] = []
      var actInd : UIActivityIndicatorView!
-    
-    
-    
-  //  let refreshControl: UIRefreshControl
-    
-   // var refreshControl: UIRefreshControl?
-    var customView: UIView!
-    
-    var labelsArray: Array<UILabel> = []
-    
-    var isAnimating = false
-    
-    var currentColorIndex = 0
-    
-    var currentLabelIndex = 0
-    
-    var timer: NSTimer!
+
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl = UIRefreshControl()
-        refreshControl!.backgroundColor = UIColor.clearColor()
-        refreshControl!.tintColor = UIColor.clearColor()
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
 
-        
-     //   tblDemo.addSubview(refreshControl)
-        
-        loadCustomRefreshContents()
-
-        
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
         let navigationBarAppearace = UINavigationBar.appearance()
@@ -65,12 +38,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
 
-        
-        
-      
-        self.itemImage.removeAll(keepCapacity: false)
-        loadData()
-        
+         loadData()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,17 +48,14 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             
             self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
             self.navigationItem.setLeftBarButtonItem(logout, animated: false)
-           // loadData()
-            
-            
+         self.tableView.reloadData()
+
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayPushMessages:", name: "ds", object: nil)
-        
-        self.tableView.reloadData()
         
         
     }
@@ -124,6 +89,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             alert.addAction(UIAlertAction(title: "Thanks...", style: UIAlertActionStyle.Default, handler: nil))
             
             self.presentViewController(alert, animated: true, completion: nil)
+             loadData()
             self.tableView.reloadData()
         }
         
@@ -217,26 +183,55 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! OverviewTableViewCell
         cell.unreadindicator.hidden = true
-        
-        if(itemImage.count == self.rooms.count &&  itemObj.count == self.rooms.count)
-        {
+ 
         let targetUser = users[indexPath.row]
         cell.nameLabel.text = targetUser.username
         
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
+        if(itemObj.count == self.rooms.count)
+        {
      
-        print(" cell itemImage!.count\(itemImage.count)")
-        //print(room["item"])
-            cell.profileImageView.image = itemImage[indexPath.row]
-            //self.tableView.reloadData()
-            
-            //  let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+                let query2:PFQuery = PFQuery(className: "imageUpload")
+                query2.whereKey("objectId", equalTo: itemObj[indexPath.row] as String)
+                
+                query2.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                    if error  == nil
+                    {
+                        //   print("objects?.count \(objects?.count)")
+                        for obj in objects!{
+                            
+                            
+                            let thumbNail2 = obj["image"] as! PFFile
+                            
+                            thumbNail2.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                                if (error == nil) {
+                                    
+                                    let image = UIImage(data:imageData!)
+                                    cell.profileImageView.image = image
+                                  
+
+                                }
+                                
+                            })
+                            
+                            
+                        }
+                        
+                    }
+                    else
+                    {
+                        
+                        print("errror")
+                    }
+                    
+                }
+            // let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
             let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.itemObj[indexPath.row],user2,user1,self.itemObj[indexPath.row])
             let roomQuery = PFQuery(className: "Room", predicate: pred)
-          //  roomQuery.orderByDescending("createdAt")
-            roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            // roomQuery.orderByDescending("updatedAt")
+                roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
                 if error == nil
                 {
                     if results!.count > 0
@@ -244,8 +239,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                         let messageQuery = PFQuery(className: "Message")
                         let room = results?.last as? PFObject
                         
-                        //New MSG avail
-                        
+
                         let unreadQuery = PFQuery(className: "UnreadMessage")
                         unreadQuery.whereKey("user", equalTo: PFUser.currentUser()!)
                         unreadQuery.whereKey("room", equalTo: room!)
@@ -263,7 +257,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                         
                         messageQuery.whereKey("room", equalTo: room!)
                         messageQuery.limit = 1
-                       messageQuery.orderByDescending("createdAt")
+                        messageQuery.orderByDescending("updatedAt")
                         messageQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
                             if error == nil
                             {
@@ -316,10 +310,10 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                 }
             }
 
-            
+
+            //print(room["item"])
+            //cell.profileImageView.image = itemImage[indexPath.row]
         }
-        
-    
         
         return cell
     }
@@ -345,7 +339,6 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         
         
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-        
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
@@ -388,19 +381,20 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     func loadData()
     {
-       timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "endOfWork", userInfo: nil, repeats: true)
- animateRefreshStep1()
+      // timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "endOfWork", userInfo: nil, repeats: true)
         print("load data called")
         rooms = [PFObject]()
         users = [PFUser]()
        // actInd.startAnimating()
+
         self.itemImage.removeAll(keepCapacity: false)
         self.itemObj.removeAll(keepCapacity: false)
 
-        self.tableView.reloadData()
         let pred = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-        roomQuery.orderByAscending("lastUpdated")
+      // roomQuery.orderByAscending("updatedAt")
+      roomQuery.orderByAscending("createdAt")
+      //  roomQuery.orderBySortDescriptor("updatedAt")
         roomQuery.includeKey("user1")
         roomQuery.includeKey("user2")
         
@@ -411,8 +405,6 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                     let user1 = room.objectForKey("user1") as! PFUser
                     let user2 = room["user2"] as! PFUser
                     
-          
-                    
                     let query2:PFQuery = PFQuery(className: "imageUpload")
                     query2.whereKey("objectId", equalTo: room["item"] as! String!)
     
@@ -421,8 +413,13 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                         {
                          //   print("objects?.count \(objects?.count)")
                             for obj in objects!{
-                                let thumbNail = obj["image"] as! PFFile
                                 self.itemObj.append(obj.objectId as String!)
+                                
+                                if(self.itemObj.count == self.rooms.count ){
+                                        self.tableView.reloadData()
+                                }
+                                /*
+                                let thumbNail = obj["image"] as! PFFile
 
                                 thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
                                     if (error == nil) {
@@ -431,15 +428,15 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                                         self.itemImage.append(image!)
                                         
                                         if(self.itemImage.count == self.rooms.count ){
-                                           self.tableView.reloadData()
-                                            self.refreshControl!.endRefreshing()
+                                          self.tableView.reloadData()
+                                         //   self.refreshControl!.endRefreshing()
 
                                         }
 
                                         
                                     }
  
-                                })
+                                })*/
                             }
                         }
                             
@@ -463,137 +460,15 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                         
                     }
                 }
-               //self.tableView.reloadData()
             }
         }
         
     }
 
-    
-    // MARK: UIScrollView delegate method implementation
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if refreshControl!.refreshing {
-            if !isAnimating {
-                //doSomething()
-                
-               loadData()
-               
-            }
-        }
-    }
-    
-    
-    // MARK: Custom function implementation
-    
-    func loadCustomRefreshContents() {
-        let refreshContents = NSBundle.mainBundle().loadNibNamed("RefreshContents", owner: self, options: nil)
-        
-        customView = refreshContents[0] as! UIView
-        customView.frame = refreshControl!.bounds
-        
-        for var i=0; i<customView.subviews.count; ++i {
-            labelsArray.append(customView.viewWithTag(i + 1) as! UILabel)
-        }
-        
-        refreshControl!.addSubview(customView)
-    }
-    
-    
-    func animateRefreshStep1() {
-        isAnimating = true
-        
-        UIView.animateWithDuration(0.1, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
-            self.labelsArray[self.currentLabelIndex].textColor = self.getNextColor()
-            
-            }, completion: { (finished) -> Void in
-                
-                UIView.animateWithDuration(0.05, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                    self.labelsArray[self.currentLabelIndex].transform = CGAffineTransformIdentity
-                    self.labelsArray[self.currentLabelIndex].textColor = UIColor.blackColor()
-                    
-                    }, completion: { (finished) -> Void in
-                        ++self.currentLabelIndex
-                        
-                        if self.currentLabelIndex < self.labelsArray.count {
-                            self.animateRefreshStep1()
-                        }
-                        else {
-                            self.animateRefreshStep2()
-                        }
-                })
-        })
-    }
-    
-    
-    func animateRefreshStep2() {
-        UIView.animateWithDuration(0.35, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-            self.labelsArray[0].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[1].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[2].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[3].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[4].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[5].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            self.labelsArray[6].transform = CGAffineTransformMakeScale(1.5, 1.5)
-            
-            }, completion: { (finished) -> Void in
-                UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                    self.labelsArray[0].transform = CGAffineTransformIdentity
-                    self.labelsArray[1].transform = CGAffineTransformIdentity
-                    self.labelsArray[2].transform = CGAffineTransformIdentity
-                    self.labelsArray[3].transform = CGAffineTransformIdentity
-                    self.labelsArray[4].transform = CGAffineTransformIdentity
-                    self.labelsArray[5].transform = CGAffineTransformIdentity
-                    self.labelsArray[6].transform = CGAffineTransformIdentity
-                    
-                    }, completion: { (finished) -> Void in
-                        if self.refreshControl!.refreshing {
-                            self.currentLabelIndex = 0
-                            self.animateRefreshStep1()
-                        }
-                        else {
-                            self.isAnimating = false
-                            self.currentLabelIndex = 0
-                            for var i=0; i<self.labelsArray.count; ++i {
-                                self.labelsArray[i].textColor = UIColor.blackColor()
-                                self.labelsArray[i].transform = CGAffineTransformIdentity
-                            }
-                        }
-                })
-        })
-    }
-    
-    
-    func getNextColor() -> UIColor {
-        var colorsArray: Array<UIColor> = [UIColor.magentaColor(), UIColor.brownColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.orangeColor()]
-        
-        if currentColorIndex == colorsArray.count {
-            currentColorIndex = 0
-        }
-        
-        let returnColor = colorsArray[currentColorIndex]
-        ++currentColorIndex
-        
-        return returnColor
-    }
-    
-    
-    func doSomething() {
-        loadData()
-        timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "endOfWork", userInfo: nil, repeats: true)
-    }
-    
-    
-    func endOfWork() {
-        refreshControl!.endRefreshing()
-        
-       // timer.invalidate()
-        //timer = nil
-    }
 
     
-    
+
+
     
     
     

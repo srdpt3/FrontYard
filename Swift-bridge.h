@@ -24,6 +24,6 @@
 #include "FBShimmering.h"
 #include "FBShimmeringLayer.h"
 #include "FBShimmeringView.h"
-#include "SWRevealTableViewCell.h"
+
 
 

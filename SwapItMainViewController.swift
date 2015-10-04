@@ -28,8 +28,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         kolodaView.delegate = self
       //  self.view.backgroundColor = UIColor.grayColor()
 
-      //  self.view.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
- 
+     self.view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+
         // loader.hide()
         
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
@@ -58,7 +58,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         followButton.setImage(UIImage(named: "mainlogo.png.gif"), forState: UIControlState.Normal)
         followButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
         followButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        followButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
+      //  followButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
         self.navigationItem.titleView = followButton
@@ -108,7 +108,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         imageView.image = imagesToswipe[index2]
         
         imageView.layer.cornerRadius = 5
-        imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+       imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+      //  imageView.layer.borderColor = UIColor.clearColor().CGColor
         imageView.layer.borderWidth = 2;
         
         imageView.clipsToBounds = true

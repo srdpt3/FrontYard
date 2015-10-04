@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+
+
+
 class ViewControllerUtils {
     
     var container: UIView = UIView()
@@ -27,7 +30,7 @@ class ViewControllerUtils {
         
         loadingView.frame = CGRectMake(0, 0, 80, 80)
         loadingView.center = uiView.center
-        loadingView.backgroundColor = UIColorFromHex(0x444444, alpha: 0.7)
+        loadingView.backgroundColor = backgroundColor
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
         

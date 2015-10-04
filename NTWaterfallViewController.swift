@@ -46,13 +46,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
 
-        
-        
-        
-        
-        
-        
-   
+       
         let collection :UICollectionView = collectionView!;
         // collection.frame = screenBounds
         
@@ -171,7 +165,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
                     let otheruser = obj["user"] as! PFObject
-                    print("other user uis \(otheruser.objectId!)")
                     self.otherUsers.append(otheruser.objectId!)
                     let thumbNail = obj["image"] as! PFFile
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
@@ -189,8 +182,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.swipedImages.count ){
-                                print("objects.count \(objects.count)")
-                                print("otherImages \(self.swipedImages.count)")
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
                             }

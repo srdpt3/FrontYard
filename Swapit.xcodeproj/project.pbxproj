@@ -23,7 +23,6 @@
 		DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA321B955CEB00B76458 /* RangeSlider.swift */; };
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA361B960B5100B76458 /* photoViewNav.swift */; };
-		DAB2B2FF1BB38617005383D2 /* SWRevealTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB2B2FE1BB38617005383D2 /* SWRevealTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */; };
 		DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */; };
 		DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */; };
@@ -156,8 +155,6 @@
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
-		DAB2B2FD1BB38617005383D2 /* SWRevealTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealTableViewCell.h; sourceTree = "<group>"; };
-		DAB2B2FE1BB38617005383D2 /* SWRevealTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealTableViewCell.m; sourceTree = "<group>"; };
 		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
 		DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTNavigationController.swift; sourceTree = "<group>"; };
 		DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewController.swift; sourceTree = "<group>"; };
@@ -553,8 +550,6 @@
 		DAF94CD21B7A0AC8004D2660 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				DAB2B2FD1BB38617005383D2 /* SWRevealTableViewCell.h */,
-				DAB2B2FE1BB38617005383D2 /* SWRevealTableViewCell.m */,
 				DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */,
 				DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */,
 				DAE7867C1BA486E60077EAA2 /* FBShimmering */,
@@ -950,7 +945,6 @@
 				DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */,
 				DAF94D5E1B7A12EC004D2660 /* JSQMessage.m in Sources */,
 				DAE7864D1B9E748E0077EAA2 /* NTTransition.swift in Sources */,
-				DAB2B2FF1BB38617005383D2 /* SWRevealTableViewCell.m in Sources */,
 				DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */,
 				DAE786551B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift in Sources */,
 				DAF94D6F1B7A12EC004D2660 /* JSQMessagesMediaPlaceholderView.m in Sources */,

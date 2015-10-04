@@ -338,7 +338,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                 {
                                     room = results?.last as! PFObject
                                     messageVC!.room = room
-                                    print("room is \(room)")
                                     messageVC?.incomingUser = user2
                                     messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
                                     self.navigationController?.pushViewController(messageVC!, animated: true)

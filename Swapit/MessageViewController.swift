@@ -147,8 +147,6 @@ class MessageViewController:JSQMessagesViewController {
             lastMessage = messages.last
         }
         
-        print("room load is \(room)")
-
         
         let messageQuery = PFQuery(className:"Message")
         messageQuery.whereKey("room", equalTo: room)
