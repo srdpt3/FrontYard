@@ -12,7 +12,7 @@ import FoldingTabBar
 
 class MessageViewController:JSQMessagesViewController {
     
-    
+     private let barSize : CGFloat = 100.0
     var room:PFObject!
     var incomingUser : PFUser!
     var users = [PFUser]()
@@ -35,16 +35,24 @@ class MessageViewController:JSQMessagesViewController {
     var whatIinterested : [UIImage] = []
     var whatOthersinterested : [UIImage] = []
     
+    
+    var keepRef:JSQMessagesInputToolbar!
+    var searchBar:UISearchBar!
+    /*
+    override func viewWillLayoutSubviews() {
+        let frame = self.view.frame
+        self.collectionView!.frame = CGRectMake(frame.origin.x, 100.0, frame.size.width, frame.size.height-barSize)
+    }
+    */
     override func viewWillAppear(animated: Bool) {
+
         
         
+       print(self.collectionView!.frame)
+               
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
-        
-        
-        
-        
         
         self.title = "Messages"
 
@@ -52,6 +60,7 @@ class MessageViewController:JSQMessagesViewController {
         // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        //nav!.frame.origin.y = -10
 
         
         self.senderId = PFUser.currentUser()!.objectId
@@ -107,15 +116,21 @@ class MessageViewController:JSQMessagesViewController {
         incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
         
         //  dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        
+        displayProducts()
+
         self.loadMessages()
         // })
-        
         
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+     
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -314,16 +329,19 @@ class MessageViewController:JSQMessagesViewController {
         }
         return incomingAvartar
     }
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+
         if (indexPath.item) % 2 == 0
         {
+            
             let message = messages[indexPath.row]
             return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         }
+
         return nil
     }
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+ 
         if (indexPath.item) % 2 == 0
         {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
@@ -332,7 +350,7 @@ class MessageViewController:JSQMessagesViewController {
     }
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
-        
+       // cell.frame.offsetInPlace(dx: 0, dy: self.view.frame.height*0.1)
         let message = messages[indexPath.row]
         
         if message.senderId == self.senderId
@@ -369,8 +387,7 @@ class MessageViewController:JSQMessagesViewController {
         
         let MyImageView : UIImageView = UIImageView()
         
-        //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
-        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height/1.7, whatIlikedView.frame.height/3,whatIlikedView.frame.height/3)
+        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.8,whatIlikedView.frame.height*0.8)
         MyImageView.image = image
         MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
         
@@ -378,16 +395,32 @@ class MessageViewController:JSQMessagesViewController {
         whatIlikedView.addSubview(MyImageView)
         
     }
-
+    func generateButton2(xOffset: CGFloat, image:UIImage) {
+        
+        let MyImageView : UIImageView = UIImageView()
+        
+        //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
+        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.8,whatIlikedView.frame.height*0.8)
+        MyImageView.image = image
+        MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
+        
+        MyImageView.clipsToBounds = true
+      //  whatIlikedView.addSubview(MyImageView)
+        
+    }
     
     /* for chatting window */
 
     
     func displayProducts()
     {
-        var offsetY :CGFloat = 0
+      //  var offsetY :CGFloat = (self.navigationController?.navigationBar.frame.height)! + 10.0
+        var offsetY :CGFloat = 0.0
+
         whatIlikedView.frame  = CGRectMake(0, offsetY, screenWidth, screenHeight*0.1)
         whatIlikedView.backgroundColor = UIColor.whiteColor()
+        
+        
         
         offsetY+=whatIlikedView.frame.height
         whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.3)
@@ -421,7 +454,8 @@ class MessageViewController:JSQMessagesViewController {
                                     self.generateButton(xOffset, image: image)
                                     xOffset+=screenWidth*0.1
                                 }
-                                self.navigationController?.navigationBar.addSubview(self.whatIlikedView)
+                               // self.collectionView?.addSubview(self.whatIlikedView)
+                                self.navigationController?.view.addSubview(self.whatIlikedView)
                             }
                             
                         }
@@ -435,7 +469,7 @@ class MessageViewController:JSQMessagesViewController {
                 print("errror")
             }
         }
-        
+        /*
         let query2:PFQuery = PFQuery(className: "imageUpload")
         query2.whereKey("user", equalTo: PFUser.currentUser()!)
         query2.whereKey("interesting", equalTo: incomingUser!.username!)
@@ -452,39 +486,24 @@ class MessageViewController:JSQMessagesViewController {
                             self.whatOthersinterested.append(image!)
                             if(objects!.count == self.whatOthersinterested.count  && objects!.count >= 1){
                                 
-                                var xOffset  = screenWidth*0.85 as CGFloat
-                              //  for (_,image) in self.whatOthersinterested.enumerate()
-                              //  {
-                                //    self.generateButton(xOffset, image: image)
-                                 //   xOffset-=screenWidth*0.1
-                               // }
+                                var xOffset  = screenWidth*0.03 as CGFloat
+                                for (_,image) in self.whatOthersinterested.enumerate()
+                              {
+                                self.generateButton2(xOffset, image: image)
+                                xOffset+=screenWidth*0.1
+                                }
                             }
                             
                         }
                     })
                 }
             }
-                
             else
-            {
-                
-                print("errror")
-            }
-            
-            
-            
-            
-            
-            
-        }
+            {print("errror")}
+         }
 
-        
-        
-        
-        
     }
-
-    
-    
+            */
+    }
     
 }

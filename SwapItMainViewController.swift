@@ -15,7 +15,7 @@ import pop
 class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaViewDelegate {
     var popview : PagedScrollViewController!
     @IBOutlet weak var kolodaView: KolodaView!
-    
+    var obj : NTWaterfallViewController!
     var index2:Int = 0
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -266,7 +266,12 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
         
     }
-
+    override func viewWillDisappear(animated: Bool) {
+        self.obj = NTWaterfallViewController()
+        
+        self.obj.getfavoritelist()
+       /// self.obj.collectionView?.reloadData()
+    }
     
 
 }

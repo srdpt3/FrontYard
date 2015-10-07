@@ -140,7 +140,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     self.showLoadEarlierMessagesHeader = NO;
 
-    self.topContentAdditionalInset = 0.0f;
+    //self.topContentAdditionalInset = 0.0f;
+    self.topContentAdditionalInset = 100.0f;
 
     [self jsq_updateCollectionViewInsets];
 

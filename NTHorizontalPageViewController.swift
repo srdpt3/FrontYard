@@ -308,11 +308,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     func LikeButtonPressed(sender:UIButton!)
     {
-        
-        print("otherObjID is \(otherObjID[indexnum])")
-        print("otherusers[indexnum]is \(otherusers[indexnum])")
 
-       
             if PFUser.currentUser() != nil{
             let user1 = PFUser.currentUser()!
             let query2 = PFQuery(className: "_User")
@@ -328,8 +324,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                         
                         var room = PFObject(className: "Room")
                         
-                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
-
+                     //   let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
+                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
                         let roomQuery = PFQuery(className:"Room", predicate: pred)
                         roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
                             if error == nil
@@ -339,7 +335,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                     room = results?.last as! PFObject
                                     messageVC!.room = room
                                     messageVC?.incomingUser = user2
-                                    messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
+                                  //  messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
                                     self.navigationController?.pushViewController(messageVC!, animated: true)
                                     
                                 }
@@ -349,13 +345,13 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                     room["user2"] = user2
                                     
                                //
-                                    room["item"] = self.otherObjID[self.indexnum]
+                                   // room["item"] = self.otherObjID[self.indexnum]
                                     
                                     room.saveInBackgroundWithBlock({ (success, error) -> Void in
                                         if error == nil{
                                             messageVC!.room = room
                                             messageVC?.incomingUser = user2
-                                            messageVC?.itemImageObj = self.otherObjID[self.indexnum]
+                                          //  messageVC?.itemImageObj = self.otherObjID[self.indexnum]
                                             
                                             /* msg send */
                                             let message = PFObject(className: "Message")

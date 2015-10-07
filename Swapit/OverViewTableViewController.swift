@@ -48,21 +48,24 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             
             self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
             self.navigationItem.setLeftBarButtonItem(logout, animated: false)
-         self.tableView.reloadData()
+            loadData()
 
         }
+       // self.tableView.reloadData()
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayPushMessages:", name: "ds", object: nil)
-        
+        //  self.tableView.reloadData()
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ds", object: nil)
+          self.tableView.reloadData()
         
     }
     func extraLeftItemDidPressed()
@@ -183,144 +186,115 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! OverviewTableViewCell
         cell.unreadindicator.hidden = true
- 
         let targetUser = users[indexPath.row]
         cell.nameLabel.text = targetUser.username
         
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
-        if(itemObj.count == self.rooms.count)
-        {
-     
-                let query2:PFQuery = PFQuery(className: "imageUpload")
-                query2.whereKey("objectId", equalTo: itemObj[indexPath.row] as String)
-                
-                query2.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-                    if error  == nil
-                    {
-                        //   print("objects?.count \(objects?.count)")
-                        for obj in objects!{
-                            
-                            
-                            let thumbNail2 = obj["image"] as! PFFile
-                            
-                            thumbNail2.getDataInBackgroundWithBlock({(imageData, error) -> Void in
-                                if (error == nil) {
-                                    
-                                    let image = UIImage(data:imageData!)
-                                    cell.profileImageView.image = image
-                                  
-
-                                }
+        //  let profileImageFile : PFFile! = user2["profileImage"] as! PFFile
+        
+        if let userImageFile = user2["profileImage"] as? PFFile {
+            
+            userImageFile.getDataInBackgroundWithBlock { (data, error) -> Void in
+                if error == nil{
+                    
+                    cell.profileImageView.image = UIImage(data:data!)
+                    
+                }
+            }
+        }
+        
+        
+        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+        
+        let roomQuery = PFQuery(className: "Room", predicate: pred)
+        
+        roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if error == nil
+            {
+                if results!.count > 0
+                {
+                    let messageQuery = PFQuery(className: "Message")
+                    let room = results?.last as? PFObject
+                    
+                    //New MSG avail
+                    
+                    let unreadQuery = PFQuery(className: "UnreadMessage")
+                    unreadQuery.whereKey("user", equalTo: PFUser.currentUser()!)
+                    unreadQuery.whereKey("room", equalTo: room!)
+                    unreadQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                        if error == nil
+                        {
+                            if results!.count > 0{
+                                cell.unreadindicator.hidden = false
                                 
-                            })
+                            }
+                            
+                        }
+                    })
+                    
+                    
+                    messageQuery.whereKey("room", equalTo: room!)
+                    messageQuery.limit = 1
+                    messageQuery.orderByDescending("createdAt")
+                    messageQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                        if error == nil
+                        {
+                            if results!.count > 0
+                            {
+                                let message = results?.last as? PFObject
+                                // var contentString : NSString! = message["content"] as! NSString!
+                                
+                                cell.lastMessageLabel.text  = message?["content"]  as? String
+                                
+                                
+                                let date = message?.createdAt
+                                let interval = NSDate().daysAfterDate(date)
+                                print("interval\(interval)")
+                                var dateString = ""
+                                
+                                if interval == 0
+                                {
+                                    dateString = "today"
+                                }
+                                    // }else if interval == 1
+                                    //  {
+                                    //      dateString = "yesterday"
+                                    //  }else if interval > 1
+                                    // {
+                                else
+                                {
+                                    let dateFormat = NSDateFormatter()
+                                    dateFormat.dateFormat = "mm/dd/yyyy"
+                                    dateString = dateFormat.stringFromDate(message!.createdAt!)
+                                    
+                                    
+                                }
+                                cell.dateLabel.text = dateString as? String!
+                            }
+                            else
+                            {
+                                cell.lastMessageLabel.text = "No messages"
+                            }
                             
                             
                         }
                         
-                    }
-                    else
-                    {
-                        
-                        print("errror")
-                    }
+                    })
+                    
+                    
                     
                 }
-            // let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
-            let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.itemObj[indexPath.row],user2,user1,self.itemObj[indexPath.row])
-            let roomQuery = PFQuery(className: "Room", predicate: pred)
-            // roomQuery.orderByDescending("updatedAt")
-                roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-                if error == nil
-                {
-                    if results!.count > 0
-                    {
-                        let messageQuery = PFQuery(className: "Message")
-                        let room = results?.last as? PFObject
-                        
-
-                        let unreadQuery = PFQuery(className: "UnreadMessage")
-                        unreadQuery.whereKey("user", equalTo: PFUser.currentUser()!)
-                        unreadQuery.whereKey("room", equalTo: room!)
-                        unreadQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-                            if error == nil
-                            {
-                                if results!.count > 0{
-                                    cell.unreadindicator.hidden = false
-                                    
-                                }
-                                
-                            }
-                        })
-                        
-                        
-                        messageQuery.whereKey("room", equalTo: room!)
-                        messageQuery.limit = 1
-                        messageQuery.orderByDescending("updatedAt")
-                        messageQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-                            if error == nil
-                            {
-                                if results!.count > 0
-                                {
-                                    let message = results?.last as? PFObject
-                                    // var contentString : NSString! = message["content"] as! NSString!
-                                    
-                                    cell.lastMessageLabel.text  = message?["content"]  as? String
-                                    
-                                    
-                                    let date = message?.createdAt
-                                    let interval = NSDate().daysAfterDate(date)
-                                    print("interval\(interval)")
-                                    var dateString = ""
-                                    
-                                    if interval == 0
-                                    {
-                                        dateString = "today"
-                                    }
-                                        // }else if interval == 1
-                                        //  {
-                                        //      dateString = "yesterday"
-                                        //  }else if interval > 1
-                                        // {
-                                    else
-                                    {
-                                        let dateFormat = NSDateFormatter()
-                                        dateFormat.dateFormat = "mm/dd/yyyy"
-                                        dateString = dateFormat.stringFromDate(message!.createdAt!)
-                                        
-                                        
-                                    }
-                                    cell.dateLabel.text = dateString as? String!
-                                }
-                                else
-                                {
-                                    cell.lastMessageLabel.text = "No messages"
-                                }
-                                
-                                
-                            }
-                            
-                        })
-                        
-                        
-                        
-                    }
-                    
-                }
+                
             }
-
-
-            //print(room["item"])
-            //cell.profileImageView.image = itemImage[indexPath.row]
         }
+        
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
         
         //   tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeigh
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -332,13 +306,10 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         let user1 = PFUser.currentUser()!
         let user2 = users[indexPath.row]
         
-       // let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
-        
-    let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.itemObj[indexPath.row],user2,user1,self.itemObj[indexPath.row])
-        
-        
+        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
         
         let roomQuery = PFQuery(className: "Room", predicate: pred)
+        
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
@@ -381,6 +352,44 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     func loadData()
     {
+        rooms = [PFObject]()
+        users = [PFUser]()
+        
+        self.tableView.reloadData()
+        
+        let pred = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
+        let roomQuery = PFQuery(className: "Room", predicate: pred)
+        roomQuery.orderByDescending("lastUpdated")
+        roomQuery.includeKey("user1")
+        roomQuery.includeKey("user2")
+        
+        roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+            if error == nil{
+                self.rooms = results as! [PFObject]
+                for room in self.rooms{
+                    let user1 = room.objectForKey("user1") as! PFUser
+                    let user2 = room["user2"] as! PFUser
+                    
+                    if user1.objectId != PFUser.currentUser()?.objectId
+                    {
+                        self.users.append(user1)
+                    }
+                    
+                    if user2.objectId != PFUser.currentUser()?.objectId
+                    {
+                        self.users.append(user2)
+                        
+                    }
+                }
+                self.tableView.reloadData()
+            }
+        }
+        
+    }
+    
+    /*
+    func loadData()
+    {
       // timer = NSTimer.scheduledTimerWithTimeInterval(4.0, target: self, selector: "endOfWork", userInfo: nil, repeats: true)
         print("load data called")
         rooms = [PFObject]()
@@ -392,11 +401,11 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
 
         let pred = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-      // roomQuery.orderByAscending("updatedAt")
-      roomQuery.orderByAscending("createdAt")
-      //  roomQuery.orderBySortDescriptor("updatedAt")
+        
+        roomQuery.addAscendingOrder("updatedAt")
         roomQuery.includeKey("user1")
         roomQuery.includeKey("user2")
+        roomQuery.limit = 100
         
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil{
@@ -465,7 +474,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         
     }
 
-
+    */
     
 
 

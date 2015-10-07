@@ -31,7 +31,10 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
     
+    override func viewDidAppear(animated: Bool) {
+        //self.obj.collectionView?.reloadData()
     
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +60,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         // collection.reloadData()
         
         
-        
-        getfavoritelist()
+          getfavoritelist()
+      
         
     }
     
@@ -113,6 +116,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         flowLayout.scrollDirection = .Horizontal
         return flowLayout
     }
+    override func viewWillAppear(animated: Bool) {
+        self.collectionView!.reloadData()
+
+    }
+    
     
     func viewWillAppearWithPageIndex(pageIndex : NSInteger) {
         var position : UICollectionViewScrollPosition = .CenteredHorizontally
@@ -149,7 +157,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         let query:PFQuery = PFQuery(className: "imageUpload")
-        query.addAscendingOrder("createdAt")
+        query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
         //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
         // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
