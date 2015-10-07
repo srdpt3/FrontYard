@@ -38,15 +38,17 @@ class MessageViewController:JSQMessagesViewController {
     
     var keepRef:JSQMessagesInputToolbar!
     var searchBar:UISearchBar!
-    /*
-    override func viewWillLayoutSubviews() {
-        let frame = self.view.frame
-        self.collectionView!.frame = CGRectMake(frame.origin.x, 100.0, frame.size.width, frame.size.height-barSize)
-    }
-    */
+
+    
+    
+    
     override func viewWillAppear(animated: Bool) {
 
         
+        var navBar = self.navigationController?.navigationBar
+        var navBarHeight = navBar?.frame.height
+
+        var pSetY = CGFloat(navBarHeight!)
         
        print(self.collectionView!.frame)
                
@@ -414,16 +416,16 @@ class MessageViewController:JSQMessagesViewController {
     
     func displayProducts()
     {
-      //  var offsetY :CGFloat = (self.navigationController?.navigationBar.frame.height)! + 10.0
-        var offsetY :CGFloat = 0.0
+     var offsetY :CGFloat = (self.navigationController?.navigationBar.frame.height)!
+       // var offsetY :CGFloat = screenHeight*0.15
 
         whatIlikedView.frame  = CGRectMake(0, offsetY, screenWidth, screenHeight*0.1)
         whatIlikedView.backgroundColor = UIColor.whiteColor()
         
-        
+
         
         offsetY+=whatIlikedView.frame.height
-        whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.3)
+        whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.1)
         whatOtherslikedView.backgroundColor = UIColor.whiteColor()
         
         
@@ -455,7 +457,10 @@ class MessageViewController:JSQMessagesViewController {
                                     xOffset+=screenWidth*0.1
                                 }
                                // self.collectionView?.addSubview(self.whatIlikedView)
-                                self.navigationController?.view.addSubview(self.whatIlikedView)
+                            //    self.view.addSubview(self.whatIlikedView)
+                                
+                                self.navigationController?.navigationBar.addSubview(self.whatIlikedView)
+                              
                             }
                             
                         }
@@ -469,7 +474,7 @@ class MessageViewController:JSQMessagesViewController {
                 print("errror")
             }
         }
-        /*
+        
         let query2:PFQuery = PFQuery(className: "imageUpload")
         query2.whereKey("user", equalTo: PFUser.currentUser()!)
         query2.whereKey("interesting", equalTo: incomingUser!.username!)
@@ -492,6 +497,8 @@ class MessageViewController:JSQMessagesViewController {
                                 self.generateButton2(xOffset, image: image)
                                 xOffset+=screenWidth*0.1
                                 }
+                                self.navigationController?.navigationBar.addSubview(self.whatOtherslikedView)
+
                             }
                             
                         }
@@ -503,7 +510,6 @@ class MessageViewController:JSQMessagesViewController {
          }
 
     }
-            */
-    }
+
     
 }
