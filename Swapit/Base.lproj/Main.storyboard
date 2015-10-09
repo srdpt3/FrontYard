@@ -331,7 +331,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cf2-3i-JBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-18680" y="-12643"/>
+            <point key="canvasLocation" x="-18630" y="-12671"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="CHk-0S-5rw">
@@ -646,7 +646,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCD-9j-x5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17852" y="-11934"/>
+            <point key="canvasLocation" x="-17864" y="-11946"/>
         </scene>
         <!--Waterfall View Controller-->
         <scene sceneID="ggM-ZL-yKW">
@@ -661,7 +661,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WAc-39-hTc"/>
+                    <navigationItem key="navigationItem" id="WAc-39-hTc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="J31-PL-R3S">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshButton:" destination="18X-Qp-RF2" id="INY-bo-dlR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXq-wl-9KU" sceneMemberID="firstResponder"/>
             </objects>

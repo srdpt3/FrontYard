@@ -20,6 +20,12 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate{
 
 class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDelegateWaterfallLayout, NTTransitionProtocol, NTWaterFallViewControllerProtocol{
     //    class var sharedInstance: NSInteger = 0 Are u kidding me?
+    @IBAction func refreshButton(sender: AnyObject) {
+        
+        
+        getfavoritelist()
+        
+    }
     var imageNameList : Array <NSString> = []
     let delegateHolder = NavigationControllerDelegate()
     
@@ -117,7 +123,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         return flowLayout
     }
     override func viewWillAppear(animated: Bool) {
-        self.collectionView!.reloadData()
+       // self.collectionView!.reloadData()
 
     }
     
@@ -153,6 +159,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     
     func getfavoritelist()
     {
+        
         
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)

@@ -304,136 +304,138 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         return self.pullOffset
     }
     
-    
-    
     func LikeButtonPressed(sender:UIButton!)
     {
-
-            if PFUser.currentUser() != nil{
-            let user1 = PFUser.currentUser()!
-            let query2 = PFQuery(className: "_User")
-            query2.whereKey("objectId", equalTo: otherusers[indexnum])
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
-                
-            query2.findObjectsInBackgroundWithBlock({ (result, error1) -> Void in
-                if error1 == nil
-                {
-                    if let userObject: AnyObject = result?[0] {
-                        let user2 = userObject as! PFUser
-                        
-                        var room = PFObject(className: "Room")
-                        
-                     //   let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
-                        let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
-                        let roomQuery = PFQuery(className:"Room", predicate: pred)
-                        roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-                            if error == nil
-                            {
-                                if results!.count > 0
-                                {
-                                    room = results?.last as! PFObject
-                                    messageVC!.room = room
-                                    messageVC?.incomingUser = user2
-                                  //  messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
-                                    self.navigationController?.pushViewController(messageVC!, animated: true)
+        
+       // var user2: PFUser!
+            let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[self.indexnum] as String)
+            imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"chat")
+            imageDBTable.saveEventually({ (success, error) -> Void in
+                if success == true {
+                    
+                    let query_user = PFQuery(className: "imageUpload")
+                    query_user.whereKey("objectId", equalTo: self.otherObjID[self.indexnum] )
+                    query_user.includeKey("user")
+                    query_user.findObjectsInBackgroundWithBlock({ (result_user, err) -> Void in
+                        if( err == nil )
+                        {
+                            print("result_user is \(result_user)")
+                      //      if let userObject = result_user as? PFObject{
+                            if let userObject = result_user!.last as? PFObject!{
+                                let user2 = userObject.objectForKey("user") as! PFUser!
+                               // user2 = userObject["user"] as! PFUser
+                              //  print("user is \(user)")
+                            
+                                if PFUser.currentUser() != nil{
+                                    let user1 = PFUser.currentUser()!
                                     
-                                }
-                                else
-                                {
-                                    room["user1"] = user1
-                                    room["user2"] = user2
+                                    let sb = UIStoryboard(name: "Main", bundle: nil)
+                                    let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
                                     
-                               //
-                                   // room["item"] = self.otherObjID[self.indexnum]
+                                    //let user2 = userObject as! PFUser
+                                    var room = PFObject(className: "Room")
                                     
-                                    room.saveInBackgroundWithBlock({ (success, error) -> Void in
-                                        if error == nil{
-                                            messageVC!.room = room
-                                            messageVC?.incomingUser = user2
-                                          //  messageVC?.itemImageObj = self.otherObjID[self.indexnum]
-                                            
-                                            /* msg send */
-                                            let message = PFObject(className: "Message")
-                                            message["content"] = "i am interesting in product";
-                                            message["room"] = room
-                                            message["user"] = PFUser.currentUser()!
-                                            
-                                            let msgACL = PFACL()
-                                            msgACL.setReadAccess(true, forRoleWithName: user1.objectId!)
-                                            msgACL.setReadAccess(true, forRoleWithName: user2.objectId!)
-                                            msgACL.setWriteAccess(true, forRoleWithName: user1.objectId!)
-                                            msgACL.setWriteAccess(true, forRoleWithName: user2.objectId!)
-                                            
-                                            message.ACL = msgACL
-                                            
-                                            message.saveInBackgroundWithBlock { (success, error) -> Void in
-                                                if error == nil
-                                                {
-                                                  //  self.loadMessages()
-                                                    
-                                                    let pushQuery = PFInstallation.query()
-                                                    pushQuery?.whereKey("user", equalTo: user2)
-                                                    
-                                                    let push = PFPush()
-                                                    push.setQuery(pushQuery)
-                                                    
-                                                    let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
-                                                    push.setData(pushDict)
-                                                    
-                                                    push.sendPushInBackgroundWithBlock(nil)
-                                                    
-                                                    
-                                                    room["lastUpdate"] = NSDate()
-                                                    room.saveInBackgroundWithBlock(nil)
-                                                    
-                                                    let unreadMsg = PFObject(className: "UnreadMessage")
-                                                    unreadMsg["user"] = user2
-                                                    unreadMsg["room"] = room
-                                                    
-                                                    unreadMsg.saveInBackgroundWithBlock(nil)
-                                                    
-
-                                                }
-                                                else
-                                                {
-                                                    
-                                                    print("Error sending msg\(error?.localizedDescription)")
-                                                    
-                                                }
+                                    //   let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
+                                    let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+                                    let roomQuery = PFQuery(className:"Room", predicate: pred)
+                                    roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                                        if error == nil
+                                        {
+                                            if results!.count > 0
+                                            {
+                                                room = results?.last as! PFObject
+                                                messageVC!.room = room
+                                                messageVC?.incomingUser = user2
+                                                //  messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
                                                 self.navigationController?.pushViewController(messageVC!, animated: true)
-
-                                               // self.finishSendingMessage()
+                                                
                                             }
-
-                                            
-                                            
+                                            else
+                                            {
+                                                room["user1"] = user1
+                                                room["user2"] = user2
+                                                
+                                                //
+                                                // room["item"] = self.otherObjID[self.indexnum]
+                                                
+                                                room.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                                    if error == nil{
+                                                        messageVC!.room = room
+                                                        messageVC?.incomingUser = user2
+                                                        //  messageVC?.itemImageObj = self.otherObjID[self.indexnum]
+                                                        
+                                                        /* msg send */
+                                                        let message = PFObject(className: "Message")
+                                                        message["content"] = "i am interesting in product";
+                                                        message["room"] = room
+                                                        message["user"] = PFUser.currentUser()!
+                                                        
+                                                        let msgACL = PFACL()
+                                                        msgACL.setReadAccess(true, forRoleWithName: user1.objectId!)
+                                                        msgACL.setReadAccess(true, forRoleWithName: user2.objectId!)
+                                                        msgACL.setWriteAccess(true, forRoleWithName: user1.objectId!)
+                                                        msgACL.setWriteAccess(true, forRoleWithName: user2.objectId!)
+                                                        
+                                                        message.ACL = msgACL
+                                                        
+                                                        message.saveInBackgroundWithBlock { (success, error) -> Void in
+                                                            if error == nil
+                                                            {
+                                                                //  self.loadMessages()
+                                                                
+                                                                let pushQuery = PFInstallation.query()
+                                                                pushQuery?.whereKey("user", equalTo: user2)
+                                                                
+                                                                let push = PFPush()
+                                                                push.setQuery(pushQuery)
+                                                                
+                                                                let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
+                                                                push.setData(pushDict)
+                                                                
+                                                                push.sendPushInBackgroundWithBlock(nil)
+                                                                
+                                                                
+                                                                room["lastUpdate"] = NSDate()
+                                                                room.saveInBackgroundWithBlock(nil)
+                                                                
+                                                                let unreadMsg = PFObject(className: "UnreadMessage")
+                                                                unreadMsg["user"] = user2
+                                                                unreadMsg["room"] = room
+                                                                
+                                                                unreadMsg.saveInBackgroundWithBlock(nil)
+                                                                
+                                                                
+                                                            }
+                                                            else
+                                                            {
+                                                                
+                                                                print("Error sending msg\(error?.localizedDescription)")
+                                                                
+                                                            }
+                                                            self.navigationController?.pushViewController(messageVC!, animated: true)
+                                                            
+                                                            // self.finishSendingMessage()
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                })
+                                            }
                                         }
                                         
                                     })
+                                    
+     
                                 }
-                                
-                                
                             }
-                            
-                        })
-                        
-                        
-                    }
-                   
-                    
-                    
-             
+ 
+                        }
+
+                    })
                 }
-            })
-            
-            
-            
-  
-        }
-   
-        
+        })
     }
-  
 
 }

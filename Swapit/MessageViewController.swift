@@ -39,18 +39,17 @@ class MessageViewController:JSQMessagesViewController {
     var keepRef:JSQMessagesInputToolbar!
     var searchBar:UISearchBar!
 
-    
-    
+    var scrollview2 : UIScrollView! = UIScrollView()
     
     override func viewWillAppear(animated: Bool) {
 
         
-        var navBar = self.navigationController?.navigationBar
-        var navBarHeight = navBar?.frame.height
+        let navBar = self.navigationController?.navigationBar
+        let navBarHeight = navBar?.frame.height
 
-        var pSetY = CGFloat(navBarHeight!)
+       // var pSetY = CGFloat(navBarHeight!)
         
-       print(self.collectionView!.frame)
+        
                
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
@@ -129,7 +128,7 @@ class MessageViewController:JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.hidden = true
     
      
         
@@ -389,12 +388,12 @@ class MessageViewController:JSQMessagesViewController {
         
         let MyImageView : UIImageView = UIImageView()
         
-        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.8,whatIlikedView.frame.height*0.8)
+        MyImageView.frame = CGRectMake(xOffset, self.scrollview2.frame.height*0.58, self.scrollview2.frame.height*0.4,self.scrollview2.frame.height*0.4)
         MyImageView.image = image
         MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
         
         MyImageView.clipsToBounds = true
-        whatIlikedView.addSubview(MyImageView)
+        scrollview2.addSubview(MyImageView)
         
     }
     func generateButton2(xOffset: CGFloat, image:UIImage) {
@@ -402,7 +401,7 @@ class MessageViewController:JSQMessagesViewController {
         let MyImageView : UIImageView = UIImageView()
         
         //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
-        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.8,whatIlikedView.frame.height*0.8)
+        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.4,whatIlikedView.frame.height*0.4)
         MyImageView.image = image
         MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
         
@@ -417,12 +416,17 @@ class MessageViewController:JSQMessagesViewController {
     func displayProducts()
     {
      var offsetY :CGFloat = (self.navigationController?.navigationBar.frame.height)!
+        
+        
        // var offsetY :CGFloat = screenHeight*0.15
 
-        whatIlikedView.frame  = CGRectMake(0, offsetY, screenWidth, screenHeight*0.1)
+        whatIlikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.2)
         whatIlikedView.backgroundColor = UIColor.whiteColor()
         
+        scrollview2.frame = CGRectMake(0, 0, screenWidth*0.4, screenHeight*0.2)
 
+        self.scrollview2.delegate = self
+       /// self.pageControl.currentPage = 0
         
         offsetY+=whatIlikedView.frame.height
         whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.1)
@@ -434,8 +438,8 @@ class MessageViewController:JSQMessagesViewController {
 
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.whereKey("user", equalTo: incomingUser)
-        query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
-
+        query.whereKey("chat", equalTo: PFUser.currentUser()!.username!)
+        var count : Int = 0
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error  == nil
             {
@@ -447,19 +451,24 @@ class MessageViewController:JSQMessagesViewController {
                         if (error == nil) {
                             let image = UIImage(data:imageData!)
                             self.whatIinterested.append(image!)
-                            print("whatIinterested \(self.whatIinterested.count)")
+
+                            count = self.whatIinterested.count
                             if(objects!.count == self.whatIinterested.count && objects!.count >= 1){
                                 
-                                var xOffset  = screenWidth*0.03 as CGFloat
+                                var xOffset  = screenWidth*0.05 as CGFloat
                                 for (_,image) in self.whatIinterested.enumerate()
                                 {
                                     self.generateButton(xOffset, image: image)
-                                    xOffset+=screenWidth*0.1
+                                    xOffset+=screenWidth*0.15
                                 }
                                // self.collectionView?.addSubview(self.whatIlikedView)
-                            //    self.view.addSubview(self.whatIlikedView)
+                               self.scrollview2.contentSize = CGSizeMake(self.scrollview2.frame.width * CGFloat(count/2), self.scrollview2.frame.height)
+                               // self.scrollview2.contentSize = CGSizeMake(self.scrollview2.frame.width , self.scrollview2.frame.height)
+
+                                self.whatIlikedView.addSubview(self.scrollview2)
+                               self.view.addSubview(self.whatIlikedView)
                                 
-                                self.navigationController?.navigationBar.addSubview(self.whatIlikedView)
+                           //   self.navigationController?.navigationBar.addSubview(self.scrollview2)
                               
                             }
                             
@@ -477,7 +486,7 @@ class MessageViewController:JSQMessagesViewController {
         
         let query2:PFQuery = PFQuery(className: "imageUpload")
         query2.whereKey("user", equalTo: PFUser.currentUser()!)
-        query2.whereKey("interesting", equalTo: incomingUser!.username!)
+        query2.whereKey("chat", equalTo: incomingUser!.username!)
         
         query2.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error  == nil
@@ -497,7 +506,7 @@ class MessageViewController:JSQMessagesViewController {
                                 self.generateButton2(xOffset, image: image)
                                 xOffset+=screenWidth*0.1
                                 }
-                                self.navigationController?.navigationBar.addSubview(self.whatOtherslikedView)
+                             //   self.navigationController?.navigationBar.addSubview(self.whatOtherslikedView)
 
                             }
                             
@@ -510,6 +519,6 @@ class MessageViewController:JSQMessagesViewController {
          }
 
     }
-
+  
     
 }
