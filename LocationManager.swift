@@ -418,7 +418,6 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         var urlString = "http://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
         
         urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        
         performOperationForURL(urlString, type: GeoCodingType.Geocoding)
         
     }

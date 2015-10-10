@@ -591,7 +591,12 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        self.DescTextView = textView
+        
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+            self.DescTextView = textView
+        }
         
         if(self.keyboardIsShowing)
         {
@@ -612,18 +617,11 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             
             let newLength:Int = (textView.text as NSString).length + (text as NSString).length - range.length
             let remainingChar:Int = 150 - newLength+1
-            
             charRemainingLabel.text = "\(remainingChar)"
-            
-            let currentText:NSString = textView.text
-         //   let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
-            
-            
             return (newLength > 150) ? false : true
             
             
     }
-    
     
     
     

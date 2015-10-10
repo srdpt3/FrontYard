@@ -45,12 +45,8 @@ class MessageViewController:JSQMessagesViewController {
 
         
         let navBar = self.navigationController?.navigationBar
-        let navBarHeight = navBar?.frame.height
-
        // var pSetY = CGFloat(navBarHeight!)
-        
-        
-               
+       
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
