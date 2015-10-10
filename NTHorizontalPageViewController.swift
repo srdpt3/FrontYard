@@ -8,12 +8,16 @@
 
 import Foundation
 import UIKit
+import CoreGraphics;
+
 import MapKit
 
 let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
 
-class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate{
+class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate,MKMapViewDelegate{
+    
+   
     
     var popview : PagedScrollViewController!
     
@@ -23,7 +27,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var itemTitle = [String]()
     var itemDesc = [String]()
     var otherObjID = [String]()
+    var otherlocation =  [PFGeoPoint]()
 
+    
     var pullOffset = CGPointZero
     
     
@@ -35,16 +41,11 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var otherusers = [String]()
 
 
-    
     var coreLocationManager = CLLocationManager()
-  //  var locationManager : LocationManager!
+    var locationManager : LocationManager!
     
     
     var map:MKMapView!  = MKMapView()
-    
-    
-    
-    
     
     
     init(collectionViewLayout layout: UICollectionViewLayout!, currentIndexPath indexPath: NSIndexPath){
@@ -70,8 +71,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         PassButton.addTarget(self, action: "passButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        
-        
         LikeButton.setTitle(" Chat with seller", forState: UIControlState.Normal)
         LikeButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         LikeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -84,8 +83,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         offsetY+=(PassButton.frame.height)
         
-        itemNameLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.6 , screenHeight/26))
-        PriceLabel = UILabel(frame: CGRectMake(screenWidth*0.52, offsetY, screenWidth*0.3, screenHeight/26))
+        itemNameLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.6 , screenHeight/27))
+        PriceLabel = UILabel(frame: CGRectMake(screenWidth*0.52, offsetY, screenWidth*0.3, screenHeight/27))
         
         
         itemNameLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
@@ -142,7 +141,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         super.viewDidLoad()
         
         coreLocationManager.delegate = self
-    //    locationManager = LocationManager.sharedInstance
+       locationManager = LocationManager.sharedInstance
         
         let autorizationCode = CLLocationManager.authorizationStatus()
         if autorizationCode == CLAuthorizationStatus.NotDetermined && coreLocationManager.respondsToSelector("requestAlwaysAuthorization") ||
@@ -159,54 +158,57 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         }
         else
         {
-            getLocation()
+           // getLocation()
         }
         
     }
-    
+    /*
     func getLocation()
     {
-     //   locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
-        //    self.displayLocation(CLLocation(latitude: latitude, longitude: longitude))
-       // }
+       locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+          self.displayLocation(CLLocation(latitude: latitude, longitude: longitude))
+        
+        
+      }
     }
-    
     func displayLocation(location:CLLocation)
     {
     
-        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude),
-            span: MKCoordinateSpanMake(0.05, 0.05)), animated: true)
-        let locationPinCoord = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locationPinCoord
-        map.addAnnotation(annotation)
-        map.showAnnotations([annotation], animated: true)
+       // map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude),
+          //  span: MKCoordinateSpanMake(0.05, 0.05)), animated: true)
+       // let locationPinCoord = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+       // let annotation = MKPointAnnotation()
+       // annotation.coordinate = locationPinCoord
+       // map.addAnnotation(annotation)
+       // map.showAnnotations([annotation], animated: true)
         
-        /*
+        
         locationManager.reverseGeocodeLocationWithCoordinates(location, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
             print(reverseGecodeInfo)
             let addr = reverseGecodeInfo?.objectForKey("locality") as! String
             print("addr is \(addr)")
-        })*/
+        })
  
     }
+    */
     
-    
-    /*
-    func locationManager(manager: CLLocationManager!,didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+   
+    func locationManager(manager: CLLocationManager,didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status != CLAuthorizationStatus.NotDetermined ||
            status != CLAuthorizationStatus.Denied || status != CLAuthorizationStatus.Restricted
         {
-            getLocation()
+         //   getLocation()
         }
     }
     
-    */
+ 
     override func viewDidAppear(animated: Bool) {
         
        // NSNotificationCenter.defaultCenter().postNotificationName("loaditems", object: nil)
 
-        getLocation()
+        //getLocation()
+        
+        
         
         
         let reportButton = UIButton(frame: CGRectMake(0 , screenHeight-(screenHeight/12), screenWidth,screenHeight/12))
@@ -226,26 +228,56 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         self.view.addSubview(map)
         self.view.addSubview(reportButton)
         
-        
-        
-        
     }
     
 
-    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay.isKindOfClass(MKCircle){
+         //   var polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            
+            let circleRender = MKCircleRenderer(overlay: overlay)
+          //  circleRender.strokeColor = UIColor.blueColor()
+          //  circleRender.lineWidth = 2
+            circleRender.fillColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 0.5)
+            return circleRender
+        }
+        
+        return nil
+    }
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let collectionCell: NTHorizontalPageViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(horizontalPageViewCellIdentify, forIndexPath: indexPath) as! NTHorizontalPageViewCell
       //  collectionCell.imageName = self.imageNameList[indexPath.row] as String
+        map.delegate = self
         
         collectionCell.imageFile = self.imageFile[indexPath.row]
-        
-      //  itemNameLabel.text = pricelabel[indexPath.row]
-        indexnum = indexPath.row
+                indexnum = indexPath.row
         self.PriceLabel.text = pricelabel[indexPath.row]as String
         self.descLabel.text = itemDesc[indexPath.row] as String
         self.itemNameLabel.text = itemTitle[indexPath.row] as String
+        
+        
+        
+        // Determine other user's location
+        let location = CLLocationCoordinate2D(latitude: otherlocation[indexPath.row].latitude,longitude: otherlocation[indexPath.row].longitude)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: location, span: span)
+        map.setRegion(region, animated: true)
+        
+        let locationFromGeoPoint: CLLocation  = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        locationManager.reverseGeocodeLocationWithCoordinates(locationFromGeoPoint, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+            print(reverseGecodeInfo)
+            let addr = reverseGecodeInfo?.objectForKey("locality") as! String
+            print("addr is \(addr)")
+        })
 
-
+    
+        
+      let newCircle = MKCircle(centerCoordinate: location, radius: 200 as CLLocationDistance)
+       map.removeOverlays(self.map.overlays)
+       map.addOverlay(newCircle)
+        
+        
+        
         collectionCell.tappedAction = {}
         collectionCell.pullAction = { offset in
             self.pullOffset = offset

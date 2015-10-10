@@ -28,7 +28,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     var imageNameList : Array <NSString> = []
     let delegateHolder = NavigationControllerDelegate()
-    
+    var otherlocation =  [PFGeoPoint]()
     var otherImageFiles = [PFFile]()
     var otherObjID = [String]()
     var otherUsers = [String]()
@@ -103,7 +103,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pageViewController.itemDesc = itemDesc
         pageViewController.otherusers = otherUsers
         pageViewController.otherObjID = otherObjID
-
+         pageViewController.otherlocation = otherlocation
+  
+        
+        
+        
         collectionView.setToIndexPath(indexPath)
         navigationController!.pushViewController(pageViewController, animated: true)
         
@@ -182,6 +186,41 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     let otheruser = obj["user"] as! PFObject
                     self.otherUsers.append(otheruser.objectId!)
                     let thumbNail = obj["image"] as! PFFile
+                    
+               //     let otherlocation  = otheruser["location"]as? PFGeoPoint
+                    // need to get location of others
+                    
+                    
+                  //  self.otherlocation.append(otherlocation!)
+                   print("otheruser \(otheruser.objectId)")
+                    let query2 = PFQuery(className: "_User")
+                    query2.whereKey("objectId", equalTo: otheruser.objectId!)
+                    
+                                       // query2.includeKey("location")
+                    query2.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
+                        
+                        if error2 == nil
+                        {
+                            for obj in result2! {
+                              //  let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
+                                   // let location = obj.objectForKey("location") as! PFGeoPoint!
+                                let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
+                                   self.otherlocation.append(location)
+                               
+
+                              
+
+                                
+                                
+                            }
+                        }
+                        
+                        
+                    })
+                    
+                    
+                    
+                    
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil

@@ -23,6 +23,7 @@
 		DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA321B955CEB00B76458 /* RangeSlider.swift */; };
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA361B960B5100B76458 /* photoViewNav.swift */; };
+		DAA20E2B1BC8B22300E9DED6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */; settings = {ASSET_TAGS = (); }; };
 		DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */; };
 		DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */; };
 		DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */; };
@@ -155,6 +156,7 @@
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
+		DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
 		DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTNavigationController.swift; sourceTree = "<group>"; };
 		DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */,
 				DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */,
 				DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */,
 				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
@@ -927,6 +930,7 @@
 				DAF94D831B7D03A4004D2660 /* MessageViewController.swift in Sources */,
 				DAF94D591B7A12EC004D2660 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				DAF94D751B7AF27F004D2660 /* LogginViewContoller.swift in Sources */,
+				DAA20E2B1BC8B22300E9DED6 /* LocationManager.swift in Sources */,
 				DAF94D501B7A12EC004D2660 /* UIView+JSQMessages.m in Sources */,
 				DAF94CD71B7A0B4B004D2660 /* JSQSystemSoundPlayer.m in Sources */,
 				DA76EA311B955C0900B76458 /* settingVC.swift in Sources */,
