@@ -25,7 +25,8 @@ class loaddataViewController: UIViewController {
 
         let nav = self.navigationController?.navigationBar
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        
+        self.navigationItem.setHidesBackButton(true, animated: false)
+
         //   nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         // nav?.backgroundColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
         

@@ -191,7 +191,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
-        query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
+     ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
 
         //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
         // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")

@@ -42,26 +42,28 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         // nav?.backgroundColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
-        let navigationBarAppearace = UINavigationBar.appearance()
-        // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-        
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.view.backgroundColor = UIColor.whiteColor()
+     //   self.navigationItem.title = "My Favorites"
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
         
         // 3
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .ScaleAspectFit
         
         
-        let followButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
+        
+        
+        
+      //  let followButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
         //followButton.setTitle(" Swit", forState: UIControlState.Normal)
-        followButton.setImage(UIImage(named: "mainlogo.png.gif"), forState: UIControlState.Normal)
-        followButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
-        followButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
+     ///   followButton.setImage(UIImage(named: "mainlogo.png.gif"), forState: UIControlState.Normal)
+     //  followButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
+      //  followButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
       //  followButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        self.navigationItem.titleView = followButton
+      //  self.navigationItem.titleView = followButton
         self.tabBarController?.tabBar.hidden = false
         
         
@@ -155,7 +157,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
-                    print("You liked: \(otherObjID[Int(index)])")
+                    print("You passed: \(otherObjID[Int(index)])")
                 }
             })
             

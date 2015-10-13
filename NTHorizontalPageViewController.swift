@@ -140,7 +140,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
         
         
-        
         collectionView.pagingEnabled = true
         collectionView.registerClass(NTHorizontalPageViewCell.self, forCellWithReuseIdentifier: horizontalPageViewCellIdentify)
         collectionView.setToIndexPath(indexPath)
@@ -225,16 +224,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
         //getLocation()
         
-        
-        
-        
-        let reportButton = UIButton(frame: CGRectMake(0 , screenHeight-(screenHeight/12), screenWidth,screenHeight/12))
-        reportButton.setTitle(" Report this product", forState: UIControlState.Normal)
-        reportButton.titleLabel?.textAlignment = NSTextAlignment.Center;
-        reportButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
-        reportButton.setTitleColor(UIColor(red: 181/255, green: 181/255, blue:181/255, alpha: 1.0), forState: UIControlState.Normal)
-        reportButton.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
-        reportButton.addTarget(self, action: "reportButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+
         
         
         self.view.addSubview(PassButton)
@@ -245,7 +235,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         self.view.addSubview(locationLabel)
         self.view.addSubview(locationimage)
         self.view.addSubview(map)
-        self.view.addSubview(reportButton)
         
     }
     
@@ -358,10 +347,64 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         return self.pullOffset
     }
     
-    func LikeButtonPressed(sender:UIButton!)
+    func passButtonPressed(sender:UIButton!)
     {
         
-       // var user2: PFUser!
+        let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[self.indexnum] as String)
+        imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"passed")
+        
+        imageDBTable.saveEventually({ (success, error) -> Void in
+            if success == true {
+                
+                let alert = UIAlertController(title: "I will pass this time", message: self.itemTitle[self.indexnum] as String, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+
+            }
+        })
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    func LikeButtonPressed(sender:UIButton!)
+    {
+        let query:PFQuery = PFQuery(className: "imageUpload")
+        query.whereKey("objectId", equalTo: otherObjID[self.indexnum] as String)
+      query.whereKey("passed", equalTo: PFUser.currentUser()!.username!)
+       // query.whereKey("passed", containsString: PFUser.currentUser()!.username!)
+        print(otherObjID[self.indexnum])
+        query.findObjectsInBackgroundWithBlock { (result, error) -> Void in
+            if error == nil
+            {
+                if result!.count > 0
+                {
+            
+                    let alert = UIAlertController(title: "Error", message: "You already have passed this product ", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    
+                    
+                    
+                }
+            
+            }
+        }
+            
+            
+            
+            
+    
+        ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
+        
+        
+        
+        
             let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[self.indexnum] as String)
             imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"chat")
             imageDBTable.saveEventually({ (success, error) -> Void in
@@ -377,19 +420,14 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                       //      if let userObject = result_user as? PFObject{
                             if let userObject = result_user!.last as? PFObject!{
                                 let user2 = userObject.objectForKey("user") as! PFUser!
-                               // user2 = userObject["user"] as! PFUser
-                              //  print("user is \(user)")
-                            
+
                                 if PFUser.currentUser() != nil{
                                     let user1 = PFUser.currentUser()!
                                     
                                     let sb = UIStoryboard(name: "Main", bundle: nil)
                                     let messageVC = sb.instantiateViewControllerWithIdentifier("MessageViewController") as? MessageViewController
                                     
-                                    //let user2 = userObject as! PFUser
                                     var room = PFObject(className: "Room")
-                                    
-                                    //   let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ AND item = %@ OR user1 = %@ AND user2 = %@  AND item = %@ ", user1,user2,self.otherObjID[self.indexnum],user2,user1,self.otherObjID[self.indexnum])
                                     let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
                                     let roomQuery = PFQuery(className:"Room", predicate: pred)
                                     roomQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
@@ -499,7 +537,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                                 let push = PFPush()
                                                                 push.setQuery(pushQuery)
                                                                 
-                                                                let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
+                                                                let pushDict = ["alert":"I am interesting in product", "badge":"increment","sound":""]
                                                                 push.setData(pushDict)
                                                                 
                                                                 push.sendPushInBackgroundWithBlock(nil)
