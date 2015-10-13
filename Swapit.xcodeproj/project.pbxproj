@@ -24,6 +24,7 @@
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA361B960B5100B76458 /* photoViewNav.swift */; };
 		DAA20E2B1BC8B22300E9DED6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */; settings = {ASSET_TAGS = (); }; };
+		DAA20E2F1BCAA25800E9DED6 /* location.svg in Resources */ = {isa = PBXBuildFile; fileRef = DAA20E2E1BCAA25800E9DED6 /* location.svg */; settings = {ASSET_TAGS = (); }; };
 		DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */; };
 		DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */; };
 		DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */; };
@@ -157,6 +158,7 @@
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
 		DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DAA20E2E1BCAA25800E9DED6 /* location.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = location.svg; sourceTree = "<group>"; };
 		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
 		DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTNavigationController.swift; sourceTree = "<group>"; };
 		DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewController.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
+				DAA20E2E1BCAA25800E9DED6 /* location.svg */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
@@ -808,6 +811,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAA20E2F1BCAA25800E9DED6 /* location.svg in Resources */,
 				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,

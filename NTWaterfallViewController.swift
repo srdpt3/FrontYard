@@ -36,10 +36,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var itemTitle = [String]()
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
+    var profileimage: [UIImage] = []
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
-    
+      //  self.collectionView!.reloadData()
     }
     
     override func viewDidLoad() {
@@ -64,9 +65,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.backgroundColor = UIColor.whiteColor()
         collection.registerClass(NTWaterfallViewCell.self, forCellWithReuseIdentifier: waterfallViewCellIdentify)
         // collection.reloadData()
-        
-        
-          getfavoritelist()
+                  getfavoritelist()
       
         
     }
@@ -84,6 +83,27 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         collectionCell.imageFile =  self.swipedImages[indexPath.row]
         
+        /*
+        let query = PFQuery(className: "_User")
+        query.whereKey("objectId", equalTo: otherUsers[indexPath.row])
+        query.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
+            
+            if error2 == nil
+            {
+                for obj in result2! {
+                    if let userImageFile = obj["profileImage"] as? PFFile {
+                        userImageFile.getDataInBackgroundWithBlock { (data, error3) -> Void in
+                            if error3 == nil{
+                                let profileImage = UIImage(data:data!)
+                                //self.profileimage.append(profileImage!)
+                                collectionCell.profileimageFile = profileImage
+                            }
+                        }
+                    }
+                }
+            }
+            })
+        */
         collectionCell.setNeedsLayout()
         return collectionCell;
     }
@@ -127,9 +147,10 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         return flowLayout
     }
     override func viewWillAppear(animated: Bool) {
-       // self.collectionView!.reloadData()
+      // self.collectionView!.reloadData()
 
     }
+    
     
     
     func viewWillAppearWithPageIndex(pageIndex : NSInteger) {
@@ -170,6 +191,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+        query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
+
         //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
         // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
         
@@ -186,12 +209,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     let otheruser = obj["user"] as! PFObject
                     self.otherUsers.append(otheruser.objectId!)
                     let thumbNail = obj["image"] as! PFFile
-                    
-               //     let otherlocation  = otheruser["location"]as? PFGeoPoint
-                    // need to get location of others
-                    
-                    
-                  //  self.otherlocation.append(otherlocation!)
+          
                    print("otheruser \(otheruser.objectId)")
                     let query2 = PFQuery(className: "_User")
                     query2.whereKey("objectId", equalTo: otheruser.objectId!)
@@ -206,21 +224,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                                    // let location = obj.objectForKey("location") as! PFGeoPoint!
                                 let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
                                    self.otherlocation.append(location)
-                               
 
-                              
-
-                                
-                                
+                                }
                             }
-                        }
-                        
-                        
                     })
-                    
-                    
-                    
-                    
+
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil

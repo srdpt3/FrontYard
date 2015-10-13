@@ -38,6 +38,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var itemNameLabel: UILabel = UILabel()
     var PriceLabel: UILabel = UILabel()
     var descLabel: UILabel = UILabel()
+    var locationLabel: UILabel = UILabel()
+    var locationimage: UIImageView = UIImageView()
+
+
     var otherusers = [String]()
 
 
@@ -100,17 +104,30 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/9))
         
         descLabel.text = "description"
-        descLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 10)
+        //descLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 10)
+        descLabel.font = UIFont.systemFontOfSize(13.0);
 
        // descLabel.sizeToFit()
         descLabel.numberOfLines = 5
        // descLabel.preferredMaxLayoutWidth = 150
         descLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        
         descLabel.textAlignment = NSTextAlignment.Left;
         descLabel.textColor = UIColor.blackColor()
+        descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/9))
+
+        
+
         
         offsetY+=(descLabel.frame.height)
+        locationimage = UIImageView(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.02, screenHeight/27))
+        locationLabel = UILabel(frame: CGRectMake(screenWidth*0.04, offsetY, screenWidth*0.5, screenHeight/27))
+        
+        locationLabel.font = UIFont.systemFontOfSize(12.0);
+        locationLabel.textColor = UIColor.lightGrayColor()
+        locationLabel.textAlignment = NSTextAlignment.Left;
+   ///   locationimage.image = UIImage(data: location.svg)
+        
+        offsetY+=(locationLabel.frame.height)
         map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/4))
 
         
@@ -225,6 +242,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         self.view.addSubview(itemNameLabel)
         self.view.addSubview(PriceLabel)
         self.view.addSubview(descLabel)
+        self.view.addSubview(locationLabel)
+        self.view.addSubview(locationimage)
         self.view.addSubview(map)
         self.view.addSubview(reportButton)
         
@@ -253,6 +272,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                 indexnum = indexPath.row
         self.PriceLabel.text = pricelabel[indexPath.row]as String
         self.descLabel.text = itemDesc[indexPath.row] as String
+        self.descLabel.font = UIFont.systemFontOfSize(13.0);
         self.itemNameLabel.text = itemTitle[indexPath.row] as String
         
         
@@ -266,8 +286,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         let locationFromGeoPoint: CLLocation  = CLLocation(latitude: location.latitude, longitude: location.longitude)
         locationManager.reverseGeocodeLocationWithCoordinates(locationFromGeoPoint, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
             print(reverseGecodeInfo)
-            let addr = reverseGecodeInfo?.objectForKey("locality") as! String
-            print("addr is \(addr)")
+            let local = reverseGecodeInfo?.objectForKey("locality") as! String
+            let sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
+
+            self.locationLabel.text = local+","+sublocal
         })
 
     
@@ -378,7 +400,63 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                 room = results?.last as! PFObject
                                                 messageVC!.room = room
                                                 messageVC?.incomingUser = user2
-                                                //  messageVC!.itemImageObj = self.otherObjID[self.indexnum] as String
+                                                
+                                                
+                                                messageVC!.room = room
+                                                messageVC?.incomingUser = user2
+                                                //  messageVC?.itemImageObj = self.otherObjID[self.indexnum]
+                                                
+                                                /* msg send */
+                                                let message = PFObject(className: "Message")
+                                                message["content"] = user1.username! + " is interesting in your " + self.itemTitle[self.indexnum] ;
+                                                message["room"] = room
+                                                message["user"] = PFUser.currentUser()!
+                                                
+                                                let msgACL = PFACL()
+                                                msgACL.setReadAccess(true, forRoleWithName: user1.objectId!)
+                                                msgACL.setReadAccess(true, forRoleWithName: user2.objectId!)
+                                                msgACL.setWriteAccess(true, forRoleWithName: user1.objectId!)
+                                                msgACL.setWriteAccess(true, forRoleWithName: user2.objectId!)
+                                                
+                                                message.ACL = msgACL
+                                                
+                                                message.saveInBackgroundWithBlock { (success, error) -> Void in
+                                                    if error == nil
+                                                    {
+                                                        //  self.loadMessages()
+                                                        
+                                                        let pushQuery = PFInstallation.query()
+                                                        pushQuery?.whereKey("user", equalTo: user2)
+                                                        
+                                                        let push = PFPush()
+                                                        push.setQuery(pushQuery)
+                                                        
+                                                        let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
+                                                        push.setData(pushDict)
+                                                        
+                                                        push.sendPushInBackgroundWithBlock(nil)
+                                                        
+                                                        
+                                                        room["lastUpdate"] = NSDate()
+                                                        room.saveInBackgroundWithBlock(nil)
+                                                        
+                                                        let unreadMsg = PFObject(className: "UnreadMessage")
+                                                        unreadMsg["user"] = user2
+                                                        unreadMsg["room"] = room
+                                                        
+                                                        unreadMsg.saveInBackgroundWithBlock(nil)
+                                                        
+                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                        print("Error sending msg\(error?.localizedDescription)")
+                                                        
+                                                    }
+                                                }
+                                                
+                                                
                                                 self.navigationController?.pushViewController(messageVC!, animated: true)
                                                 
                                             }
@@ -398,7 +476,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                         
                                                         /* msg send */
                                                         let message = PFObject(className: "Message")
-                                                        message["content"] = "i am interesting in product";
+                                                        message["content"] = "i am interesting in " + self.itemTitle[self.indexnum] + " product";
                                                         message["room"] = room
                                                         message["user"] = PFUser.currentUser()!
                                                         

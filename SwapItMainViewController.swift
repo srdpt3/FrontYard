@@ -140,6 +140,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         {
             let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[Int(index)] as String)
             imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"interesting")
+            
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
                     print("You liked: \(otherObjID[Int(index)])")
@@ -147,7 +148,18 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             })
        
         }
-        
+        else if (direction.hashValue == 1)
+        {
+            let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[Int(index)] as String)
+            imageDBTable.addUniqueObject(PFUser.currentUser()!.username!, forKey:"passed")
+            
+            imageDBTable.saveEventually({ (success, error) -> Void in
+                if success == true {
+                    print("You liked: \(otherObjID[Int(index)])")
+                }
+            })
+            
+        }
 
     }
     
