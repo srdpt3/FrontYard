@@ -55,6 +55,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         self.navigationItem.title = "My Favorites"
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
 
        
         let collection :UICollectionView = collectionView!;

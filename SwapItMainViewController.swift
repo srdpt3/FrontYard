@@ -168,7 +168,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         //Example: reloading
         print("no card")
-        kolodaView.resetCurrentCardNumber()
+   //     kolodaView.resetCurrentCardNumber()
         
     }
     
@@ -188,10 +188,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error  == nil
             {
-                print("count is \(objects!.count)")
-                print("Yasdfasdf: \(otherObjID[Int(index)])")
-
-                //  println(["obj_ptr"])")
                 for obj in objects!{
                     let thumbNail = obj["images"] as! PFFile
                     thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
@@ -281,10 +277,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
     }
     override func viewWillDisappear(animated: Bool) {
-        self.obj = NTWaterfallViewController()
-        
-        self.obj.getfavoritelist()
-       /// self.obj.collectionView?.reloadData()
     }
     
 

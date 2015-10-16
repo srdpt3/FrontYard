@@ -26,6 +26,7 @@ class NTTableViewCell : UITableViewCell{
         super.layoutSubviews()
         let imageView :UIImageView = self.imageView!;
         imageView.frame = CGRectZero
+        imageView.backgroundColor = UIColor.whiteColor()
         if (imageView.image != nil) {
            // let imageHeight = imageView.image!.size.height*screenWidth/imageView.image!.size.width
             imageView.frame = CGRectMake(0, 0, screenWidth, screenHeight/2.5)
@@ -56,7 +57,6 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.whiteColor()
-        
         contentView.addSubview(tableView)
         tableView.registerClass(NTTableViewCell.self, forCellReuseIdentifier: cellIdentify)
         tableView.delegate = self
@@ -64,8 +64,8 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
         
         let backgroundView = UIView(frame:CGRectZero)
         self.tableView.tableFooterView = backgroundView
-        self.tableView.backgroundColor = UIColor.clearColor()
-        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.backgroundColor = backgroundColor
+        self.tableView.separatorColor = backgroundColor
         
     }
 
@@ -111,7 +111,6 @@ class NTHorizontalPageViewCell : UICollectionViewCell, UITableViewDelegate, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tappedAction?()
-        print("tabbed")
 
     }
     

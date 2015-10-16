@@ -28,11 +28,7 @@ class ChooseTableViewController: PFQueryTableViewController , UISearchBarDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-    
-        
-        
-        print(self.view.frame.size.width)
-        print(self.view.frame.size.height)
+
     }
 
     override func queryForTable() -> PFQuery {

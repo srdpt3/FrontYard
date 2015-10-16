@@ -44,15 +44,31 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     var imageFiles = [PFFile]()
     var fragenImages = [UIImage] ()
     
-    let defaultbuttonImage = UIImage(named: "Photo")
+    let defaultbuttonImage = UIImage(named: "Old-Camera-icon.png")
     
     var kPreferredTextFieldToKeyboardOffset: CGFloat = 20.0
     var keyboardFrame: CGRect = CGRect.null
     var keyboardIsShowing: Bool = false
 
     
+    let cameraImagename : String = "Old-Camera-icon.png"
+    
     
     override func viewDidLoad() {
+        
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.addTarget(self, action: Selector("leftpressed"), forControlEvents: .TouchUpInside)
+        
+        //.... Set Right/Left Bar Button item
+        let leftbutton:UIBarButtonItem = UIBarButtonItem()
+        leftbutton.customView = btnName
+        self.navigationItem.leftBarButtonItem = leftbutton
+        
+        
+        
+        
         self.view.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1.0)
         let bounds = UIScreen.mainScreen().bounds
         let width = CGRectGetWidth(bounds)
@@ -89,21 +105,16 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         self.navigationItem.hidesBackButton = false
         self.tabBarController?.tabBar.hidden = true
         let nav = self.navigationController?.navigationBar
-        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
-        nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-        
-        let logoButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-        logoButton.setImage(UIImage(named: "main.gif"), forState: UIControlState.Normal)
-        logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        self.navigationItem.titleView = logoButton
-        
-        
+        self.navigationItem.title = "Item Upload"
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         
         // Image1 Button Frame
         image1.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image1.tag = 1
-        image1.setImage(UIImage(named: "Photo"), forState: .Normal)
+        image1.setImage(UIImage(named: cameraImagename), forState: .Normal)
         image1.addTarget(self, action: "image1Pressed:", forControlEvents: UIControlEvents.TouchUpInside)
         image1.clipsToBounds = true
         image1.layer.cornerRadius = 0.0
@@ -114,7 +125,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         buttonOffsetX=width*0.6
         image2.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image2.tag = 2
-        image2.setImage(UIImage(named: "Photo"), forState: .Normal)
+        image2.setImage(UIImage(named: cameraImagename), forState: .Normal)
         image2.addTarget(self, action: "image2Pressed:", forControlEvents: UIControlEvents.TouchUpInside)
         image2.clipsToBounds = true
         image2.layer.cornerRadius = 0.0
@@ -127,7 +138,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         image3.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image3.tag = 3
         
-        image3.setImage(UIImage(named: "Photo"), forState: .Normal)
+        image3.setImage(UIImage(named: cameraImagename), forState: .Normal)
         image3.addTarget(self, action: "image3Pressed:", forControlEvents: UIControlEvents.TouchUpInside)
         image3.clipsToBounds = true
         image3.layer.cornerRadius = 0.0
@@ -138,7 +149,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         buttonOffsetX=width*0.6
         image4.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image4.tag = 4
-        image4.setImage(UIImage(named: "Photo"), forState: .Normal)
+        image4.setImage(UIImage(named: cameraImagename), forState: .Normal)
         image4.addTarget(self, action: "image4Pressed:", forControlEvents: UIControlEvents.TouchUpInside)
         image4.clipsToBounds = true
         image4.layer.cornerRadius = 0.0
@@ -184,7 +195,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         Currency = UITextField(frame: CGRect(x: 0, y: buttonOffsetY, width: width*0.2, height: height/18));
         Currency.text = "USD($)"
-        Currency.font = UIFont(name: "Verdana", size: 16)
+      //  Currency.font = UIFont(name: "Verdana", size: 16)
+        Currency.font = UIFont.systemFontOfSize(15.0);
+       Currency.textColor = UIColor.lightGrayColor()
+        
         Currency.backgroundColor = UIColor.whiteColor()
         Currency.textAlignment = .Center
         Currency.layer.borderColor = UIColor.grayColor().CGColor
@@ -243,10 +257,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         // upload Button Frame
         
         uploadButton.frame = CGRectMake(0, CGFloat(height-height/12), width, (height/12))
-        uploadButton.setTitle(" Upload product", forState: UIControlState.Normal)
+        uploadButton.setTitle(" Upload Your Stuff", forState: UIControlState.Normal)
         uploadButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         uploadButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        uploadButton.backgroundColor = UIColor(red: 67.0/255.0, green: 179.0/255.0, blue: 229.0/255.0, alpha: 1)
+        uploadButton.backgroundColor = UIColor(red: 95/255.0, green: 211/225.0, blue: 174/255.0, alpha: 1)
         uploadButton.addTarget(self, action: "uploadPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         uploadButton.clipsToBounds = true
         uploadButton.layer.cornerRadius = 0.0
@@ -357,13 +371,13 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         actionSheet.addAction(UIAlertAction(title: "Reset to default", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
-            if image.currentImage == UIImage(named: "Photo")
+            if image.currentImage == UIImage(named: self.cameraImagename)
             {
                 print("It's default")
             }
             else
             {
-                let defaultbuttonImage = UIImage(named: "Photo")
+                let defaultbuttonImage = UIImage(named: self.cameraImagename)
                 image.setImage(defaultbuttonImage, forState: UIControlState.Normal)
                 
             }
@@ -451,10 +465,10 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                 myPost["images"] = image
                 myPost.saveInBackgroundWithBlock({ (success, error) -> Void in
                     if success == true {
-                        self.image1.setImage(UIImage(named: "Photo"), forState: .Normal)
-                        self.image2.setImage(UIImage(named: "Photo"), forState: .Normal)
-                        self.image3.setImage(UIImage(named: "Photo"), forState: .Normal)
-                        self.image4.setImage(UIImage(named: "Photo"), forState: .Normal)
+                        self.image1.setImage(UIImage(named: self.cameraImagename), forState: .Normal)
+                        self.image2.setImage(UIImage(named: self.cameraImagename), forState: .Normal)
+                        self.image3.setImage(UIImage(named: self.cameraImagename), forState: .Normal)
+                        self.image4.setImage(UIImage(named: self.cameraImagename), forState: .Normal)
                         self.Price.text = ""
                         self.itemTitleText.text = ""
                         self.DescTextView.text = ""
@@ -662,6 +676,13 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+    }
+    
+    func leftpressed()
+    {
+        
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
     

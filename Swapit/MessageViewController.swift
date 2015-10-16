@@ -41,6 +41,9 @@ class MessageViewController:JSQMessagesViewController {
 
     var scrollview2 : UIScrollView! = UIScrollView()
     
+    
+    
+    
     override func viewWillAppear(animated: Bool) {
 
         
@@ -57,8 +60,20 @@ class MessageViewController:JSQMessagesViewController {
         // nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         // nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        //nav!.frame.origin.y = -10
 
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.addTarget(self, action: Selector("leftpressed"), forControlEvents: .TouchUpInside)
+        
+        //.... Set Right/Left Bar Button item
+        let leftbutton:UIBarButtonItem = UIBarButtonItem()
+        leftbutton.customView = btnName
+        self.navigationItem.leftBarButtonItem = leftbutton
+        
+        
+        
+        
         
         self.senderId = PFUser.currentUser()!.objectId
         self.senderDisplayName = PFUser.currentUser()!.username
@@ -516,5 +531,11 @@ class MessageViewController:JSQMessagesViewController {
 
     }
   
+    func leftpressed()
+    {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
     
 }

@@ -206,8 +206,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
         tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
        tabBarController.tabBarView.backgroundColor = backgroundColor
-        tabBarController.tabBarView.tabBarColor  =  UIColor(red: 132/255.0, green: 216/225.0, blue: 192/255.0, alpha: 1)
-        
+       // tabBarController.tabBarView.tabBarColor  =  UIColor(red: 132/255.0, green: 216/225.0, blue: 192/255.0, alpha: 1)
+        tabBarController.tabBarView.tabBarColor  = UIColor(red: 95/255.0, green: 211/225.0, blue: 174/255.0, alpha: 1)
         tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight;
         tabBarController.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets;
         tabBarController.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets;

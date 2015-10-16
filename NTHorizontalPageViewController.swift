@@ -156,6 +156,18 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.whiteColor()
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.addTarget(self, action: Selector("leftpressed"), forControlEvents: .TouchUpInside)
+        
+        //.... Set Right/Left Bar Button item
+        let leftbutton:UIBarButtonItem = UIBarButtonItem()
+        leftbutton.customView = btnName
+        self.navigationItem.leftBarButtonItem = leftbutton
+        
+        
         coreLocationManager.delegate = self
        locationManager = LocationManager.sharedInstance
         
@@ -346,6 +358,14 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     func pageViewCellScrollViewContentOffset() -> CGPoint{
         return self.pullOffset
     }
+    
+    func leftpressed()
+    {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     
     func passButtonPressed(sender:UIButton!)
     {
