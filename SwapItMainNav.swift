@@ -8,7 +8,7 @@
 
 import UIKit
 
-var backgroundColor : UIColor = UIColor(red: 156/255.0, green: 153/225.0, blue: 225/255.0, alpha: 1)
+var backgroundColor : UIColor = UIColor(red: 156/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
 
 class SwapItMainNav: UINavigationController {
 

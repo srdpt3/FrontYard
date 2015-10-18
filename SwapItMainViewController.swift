@@ -48,12 +48,21 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     override func viewWillAppear(animated: Bool) {
         let nav = self.navigationController?.navigationBar
+        let navBarHeight = nav?.frame.height
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         self.view.backgroundColor = UIColor.whiteColor()
-        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-        nav?.barTintColor = backgroundColor
+       // nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+       // nav?.barTintColor = backgroundColor
+        
+        
+        let logoImage = UIImageView(frame: CGRectMake(0 , 0, self.view.frame.size.width*0.2, navBarHeight!))
+        logoImage.image = UIImage(named: "vendee_logo.png")
+      //  logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
+        self.navigationItem.titleView = logoImage
+        
+        
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .ScaleAspectFit
@@ -278,7 +287,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     func playpulse()
     {
         let currentUser = PFUser.currentUser()!
-        var constraints = [NSLayoutConstraint]()
         
         if let selfProfileImageFile = currentUser["profileImage"] as? PFFile{
                 selfProfileImageFile.getDataInBackgroundWithBlock({ (result, error) -> Void in
@@ -290,21 +298,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                 })
         }
         
-        // This constraint centers the imageView Horizontally in the screen
-        constraints.append(NSLayoutConstraint(item: userImage, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0.0))
-        
-        // Now we need to put the imageView at the top margin of the view
-        constraints.append(NSLayoutConstraint(item: userImage, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.TopMargin, multiplier: 1.0, constant: 0.0))
-        
-        // You should also set some constraint about the height of the imageView
-        // or attach it to some item placed right under it in the view such as the
-        // BottomMargin of the parent view or another object's Top attribute.
-        // As example, I set the height to 500.
-        constraints.append(NSLayoutConstraint(item: userImage, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 500.0))
-        
-        // The next line is to activate the constraints saved in the array
-        NSLayoutConstraint.activateConstraints(constraints)
-        
+
         
         
         multiLayer = PulsingHaloLayer()

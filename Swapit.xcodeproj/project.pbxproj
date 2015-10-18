@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		295CC0E633ACC2FB26DBF330 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837A97BFD1CA9F0BAD26B812 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DA006ED21BD4154D007C05D2 /* VendeeSplash2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */; settings = {ASSET_TAGS = (); }; };
 		DA5363C01B860F0200A5B911 /* photoUploadPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363BF1B860F0200A5B911 /* photoUploadPageVC.swift */; };
 		DA5363F41B8E276D00A5B911 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DA5363F31B8E276D00A5B911 /* Podfile */; };
 		DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363F91B8F9EB700A5B911 /* nav.swift */; };
@@ -17,7 +18,6 @@
 		DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA53642B1B92B8D500A5B911 /* OverlayView.xib */; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
 		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
-		DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */ = {isa = PBXBuildFile; fileRef = DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */; };
 		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
 		DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA321B955CEB00B76458 /* RangeSlider.swift */; };
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
@@ -143,6 +143,7 @@
 		53DB0F92EAF196BF7666F7CA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		837A97BFD1CA9F0BAD26B812 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		897F3CA997405CFBDC87CD9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VendeeSplash2.png; sourceTree = "<group>"; };
 		DA5363BF1B860F0200A5B911 /* photoUploadPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = photoUploadPageVC.swift; path = Swapit/photoUploadPageVC.swift; sourceTree = "<group>"; };
 		DA5363F31B8E276D00A5B911 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA5363F91B8F9EB700A5B911 /* nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nav.swift; sourceTree = "<group>"; };
@@ -152,7 +153,6 @@
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
 		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainNav.swift; sourceTree = "<group>"; };
-		DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mainlogo.png.gif; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
@@ -493,8 +493,8 @@
 				DAF94D821B7D03A4004D2660 /* MessageViewController.swift */,
 				DAF94C901B7981F6004D2660 /* Images.xcassets */,
 				DAF94D761B7AF451004D2660 /* main.gif */,
+				DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */,
 				DAF94D781B7AF46D004D2660 /* bar.gif */,
-				DA76EA2C1B953C0E00B76458 /* mainlogo.png.gif */,
 				DAF94D7A1B7AF472004D2660 /* barButton.gif */,
 				DAF94C921B7981F6004D2660 /* LaunchScreen.xib */,
 				DAA20E301BCCC99A00E9DED6 /* transition_both_directions-50.png */,
@@ -814,6 +814,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA006ED21BD4154D007C05D2 /* VendeeSplash2.png in Resources */,
 				DAA20E2F1BCAA25800E9DED6 /* location.svg in Resources */,
 				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
@@ -835,7 +836,6 @@
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
 				DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */,
-				DA76EA2D1B953C0E00B76458 /* mainlogo.png.gif in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
 			);

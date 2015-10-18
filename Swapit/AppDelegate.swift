@@ -194,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.rightBarItems = [item3, item4];
         
        // tabBarController.centerButtonImage = UIImage(named:"plus_icon")
-        tabBarController.centerButtonImage = UIImage(named:"bar.gif")
+        tabBarController.centerButtonImage = UIImage(named:"centerImage_blue")
         
         
         tabBarController.viewControllers = [favoriteView,SwapItMain,signUPVC,settingPage]
