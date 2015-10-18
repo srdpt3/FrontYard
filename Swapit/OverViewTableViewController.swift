@@ -22,6 +22,30 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
      var actInd : UIActivityIndicatorView!
 
     
+    @IBAction func doEdit(sender: AnyObject) {
+            if (self.tableView.editing) {
+                choosePartnerButoon.title = "Edit"
+                self.tableView.setEditing(false, animated: true)
+            } else {
+                choosePartnerButoon.title = "Done"
+                self.tableView.setEditing(true, animated: true)
+            }
+        
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            rooms.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if (self.tableView.editing) {
+            return UITableViewCellEditingStyle.Delete
+        }
+        return UITableViewCellEditingStyle.None
+    }
     
     
     
@@ -114,18 +138,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
             
             
         }))
-        
-        SettingactionSheet.addAction(UIAlertAction(title: "Upload my item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let photoUploadVC = sb.instantiateViewControllerWithIdentifier("photoViewController") as! photoUploadPageVC
-            //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-            self.navigationController?.pushViewController(photoUploadVC, animated: true)
-            
-            
-        }))
-        
-        
+
         SettingactionSheet.addAction(UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
             PFUser.logOut()

@@ -105,7 +105,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         self.navigationItem.hidesBackButton = false
         self.tabBarController?.tabBar.hidden = true
         let nav = self.navigationController?.navigationBar
-        self.navigationItem.title = "Item Upload"
+        self.navigationItem.title = "Selling Your Item"
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
@@ -162,7 +162,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         itemTitleLabel.frame = CGRectMake(width*0.01, buttonOffsetY, width, height/20)
         
-        itemTitleLabel.text = "ITEM TITLE"
+        itemTitleLabel.text = "Item Title"
         itemTitleLabel.textAlignment = NSTextAlignment.Natural;
         itemTitleLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         itemTitleLabel.font = itemTitleLabel.font.fontWithSize(16)
@@ -185,7 +185,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         buttonOffsetY+=(itemTitleText.frame.height)
         
         PriceLabel.frame = CGRectMake(width*0.01, buttonOffsetY, width, height/25)
-        PriceLabel.text = "PRICE"
+        PriceLabel.text = "Price"
         PriceLabel.textAlignment = NSTextAlignment.Natural;
         PriceLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         PriceLabel.font = PriceLabel.font.fontWithSize(16)

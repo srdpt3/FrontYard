@@ -45,7 +45,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view, typically from a nib.
         // self.navigationController!.delegate = delegateHolder
         self.navigationController!.delegate = nil
@@ -68,14 +67,20 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         // collection.reloadData()
                   getfavoritelist()
       
-        
+        collection.showsHorizontalScrollIndicator = false;
+        collection.showsVerticalScrollIndicator = false;
+        collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+        self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
         
         let image:UIImage! = swipedImages[indexPath.row]
-        let imageHeight = image.size.height*gridWidth/image.size.width
+       // let imageHeight = image.size.height*gridWidth/image.size.width
+        let imageHeight = (image.size.height+30)*gridWidth/image.size.width
+
         return CGSizeMake(gridWidth, imageHeight)
     }
     
@@ -83,6 +88,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         let collectionCell: NTWaterfallViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(waterfallViewCellIdentify, forIndexPath: indexPath) as! NTWaterfallViewCell
         
         collectionCell.imageFile =  self.swipedImages[indexPath.row]
+        collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
+        collectionCell.imageLabel2.text = "$\(self.pricelabel[indexPath.row]) "
         
         /*
         let query = PFQuery(className: "_User")
@@ -189,6 +196,12 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
+        itemTitle.removeAll(keepCapacity: false)
+        itemDesc.removeAll(keepCapacity: false)
+        pricelabel.removeAll(keepCapacity: false)
+        otherlocation.removeAll(keepCapacity: false)
+
+        
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
@@ -221,15 +234,12 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                         if error2 == nil
                         {
                             for obj in result2! {
-                              //  let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
-                                   // let location = obj.objectForKey("location") as! PFGeoPoint!
                                 let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
                                    self.otherlocation.append(location)
 
                                 }
                             }
                     })
-
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil

@@ -16,6 +16,8 @@ var itemTitle = [String]()
 var itemDesc = [String]()
 var imagesToswipe = [UIImage]()
 var numberOfCards: UInt = UInt(imagesToswipe.count)
+var minPrice : Int  = 0
+var maxPrice : Int  = 10000
 
 
 class loaddataViewController: UIViewController {
@@ -59,76 +61,11 @@ class loaddataViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         
+        print(minPrice)
+        print(maxPrice)
         
-        imagesToswipe.removeAll(keepCapacity: false)
-        otherObjID.removeAll(keepCapacity: false)
-        let query:PFQuery = PFQuery(className: "imageUpload")
-        query.addAscendingOrder("createdAt")
-        query.whereKey("user", notEqualTo: PFUser.currentUser()!)
-        query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
-            if error == nil
-            {
-                
-                ViewControllerUtils().showActivityIndicator(self.view)
-                
-                
-                let objects = results as! [PFObject]
-                for obj in objects{
-                    let thumbNail = obj["image"] as! PFFile
-                    thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
-                        
-                        if error2 == nil
-                        {
-                            let image = UIImage(data:imageData!)
-                            //image object implementation
-                            imagesToswipe.append(image!)
-                            let objId = obj.objectId! as String
-                            otherObjID.append(objId)
-                            
-                            
-                            
-                            
-                            if(objects.count == imagesToswipe.count ){
-                                
-                                ViewControllerUtils().hideActivityIndicator(self.view)
-                                print("imagesToswipe.count \(imagesToswipe.count)")
-                                numberOfCards = UInt(imagesToswipe.count)
-                                
-                                
-                                
-                                let sb = UIStoryboard(name: "Main", bundle: nil)
-                                let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
-                                overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-                                self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
-                                
-                                
-                                
-                                print("sadfasdfasdf")
-                                
-                            }
-                            
-                            
-                        }
-                        
-                        
-                        
-                    })
-                    
-                }
-                
-                
-            }
-            else
-            {
-                print("erorr in getfavoritelist ")
-            }
-            
-            
-        }
+        loaditems()
 
-        
-        
-        
         
     }
 
@@ -142,5 +79,96 @@ class loaddataViewController: UIViewController {
         //  actInd.stopAnimating()
     }
 
+    func loaditems()
+    {
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                PFUser.currentUser()!.saveInBackground()
+
+                let query = PFUser.query()!
+                query.whereKey("location", nearGeoPoint:geoPoint!)
+                query.whereKey("username",notEqualTo: PFUser.currentUser()!.username!)
+                query.limit = 100
+                
+                query.findObjectsInBackgroundWithBlock({ (users, error) -> Void in
+                    
+                    if error == nil
+                    {
+                        print(users!.count)
+                    //    for usr in user {
+                            imagesToswipe.removeAll(keepCapacity: false)
+                            otherObjID.removeAll(keepCapacity: false)
+                            let query2:PFQuery = PFQuery(className: "imageUpload")
+                            query2.addAscendingOrder("createdAt")
+                         //   query2.whereKey("user", equalTo: usr)
+                            query.whereKey("user",notEqualTo: PFUser.currentUser()!)
+                            query2.whereKey("user", containedIn: users as! [PFUser])
+                            query2.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
+                            query2.whereKey("interesting", notEqualTo: PFUser.currentUser()!.username!)
+                            query2.whereKey("chat", notEqualTo: PFUser.currentUser()!.username!)
+                        
+
+                            query2.findObjectsInBackgroundWithBlock { (results, error2) -> Void in
+                                if error2 == nil
+                                {
+                                    print("results!.count\(results!.count)")
+
+                                    ViewControllerUtils().showActivityIndicator(self.view)
+
+                                    let objects = results as! [PFObject]
+                                    for obj in objects{
+                                        let thumbNail = obj["image"] as! PFFile
+                                        thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
+                                            if error2 == nil
+                                            {
+                                                let image = UIImage(data:imageData!)
+                                                imagesToswipe.append(image!)
+                                                let objId = obj.objectId! as String
+                                                otherObjID.append(objId)
+                                                
+                                                if(results!.count == imagesToswipe.count ){
+                                                    
+                                                    ViewControllerUtils().hideActivityIndicator(self.view)
+                                                    print("imagesToswipe.count \(imagesToswipe.count)")
+                                                    numberOfCards = UInt(imagesToswipe.count)
+                                                    
+                                                    let sb = UIStoryboard(name: "Main", bundle: nil)
+                                                    let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+                                                    overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                                                    self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+                                                    
+                                                }
+                                                
+                                            }
+                                            
+                                        })
+                                        
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    print("erorr in getfavoritelist ")
+                                }
+                                
+                          //  }
+                        
+                        
+                        }
+                        
+                        
+                    }
+                    
+                    
+                })
+
+
+            }
+        }
+
+    }
+    
 
 }

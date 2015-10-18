@@ -18,11 +18,29 @@ class settingVC: UIViewController {
     var RangeView : UIView = UIView()
     var price: UILabel! = UILabel()
     let rangeSlider1 = RangeSlider(frame: CGRectZero)
+    var itemManage :UIButton = UIButton()
     var contactDeveloper :UIButton = UIButton()
     var shareApp :UIButton = UIButton()
     var rateApp :UIButton = UIButton()
     
-    
+
+    @IBAction func saveButtonpressed(sender: AnyObject) {
+        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
+
+        minPrice = Int(round(rangeSlider1.lowerValue))
+        maxPrice = Int(round(rangeSlider1.upperValue))
+
+       /// print(minPrice)
+       /// /print(maxPrice)
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
+
+        
+        
+    }
     //  UIBarButtonItem(title: "CUSTOM", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,20 +56,32 @@ class settingVC: UIViewController {
         self.navigationItem.title = "Setting"
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+
         
         
-        let myBackButton:UIButton = UIButton()
-        myBackButton.addTarget(self, action: "SwipeScreen:", forControlEvents: UIControlEvents.TouchUpInside)
-        myBackButton.imageView!.image = UIImage(named: "chats_icon")
-       // myBackButton.setTitle("<<", forState: UIControlState.Normal)
-       // myBackButton.setTitleColor(UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0), forState: UIControlState.Normal)
-      //  myBackButton.sizeToFit()
-        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
-        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
+        
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.addTarget(self, action: Selector("leftpressed:"), forControlEvents: .TouchUpInside)
+        
+        //.... Set Right/Left Bar Button item
+        let leftbutton:UIBarButtonItem = UIBarButtonItem()
+        leftbutton.customView = btnName
+        self.navigationItem.leftBarButtonItem = leftbutton
+        
+        
+        
+        
+        
         
         let navBarHeight = nav?.frame.height
         imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*(1/3))
         profileimageView.frame = CGRectMake(width/2, imageViewContent.frame.height/2, 100,100)
+        
+        
+        
         
         //imageView
         let blur:UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
@@ -85,7 +115,7 @@ class settingVC: UIViewController {
         
         
         //Price Search Range
-        let rangeViewHeightOffset = height*(1/3)+navBarHeight!
+        var rangeViewHeightOffset = height*(1/3)+navBarHeight!
         let margin: CGFloat = 10.0
         
         rangeSlider1.frame = CGRect(x: margin, y: margin + topLayoutGuide.length + 50, width: view.bounds.width - 2.0 * margin, height: 31.0)
@@ -93,28 +123,44 @@ class settingVC: UIViewController {
         
         // minPrice.text = "\(Int(round(rangeSlider1.lowerValue)))"
         // maxPrice.text = "\(Int(round(rangeSlider1.upperValue)))"
-        SearchLabel.frame = CGRectMake(width*0.01, rangeViewHeightOffset, width, height*(1/12))
+        SearchLabel.frame = CGRectMake(width*0.01, rangeViewHeightOffset, width, height*(1/24))
         
-        SearchLabel.text = "SEARCH PRICE RANGE"
+        SearchLabel.text = "Search Price Range"
         SearchLabel.textAlignment = NSTextAlignment.Natural;
         SearchLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         SearchLabel.font = SearchLabel.font.fontWithSize(15)
         
 
-        
-        price.frame = CGRectMake(width/4, rangeViewHeightOffset+height*(1/10), width, height*(1/12))
+        rangeViewHeightOffset+=(SearchLabel.frame.height)
+        price.frame = CGRectMake(width/4, rangeViewHeightOffset, width, height*(1/12))
         
         
         price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
         price.textColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
         price.font = price.font.fontWithSize(16)
-        RangeView.frame = CGRectMake(0, rangeViewHeightOffset+height*(1/12) , width, height*(1/6))
+        RangeView.frame = CGRectMake(0, rangeViewHeightOffset , width, height*(1/6))
         RangeView.backgroundColor = UIColor.whiteColor()
         RangeView.addSubview(rangeSlider1)
         
         
         //Contact Developer
-        let buttonOffset = height-height*(1/4)
+        var buttonOffset = height-height*(1/3)
+        
+        
+        
+        itemManage.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
+        itemManage.setTitle(" Manage Items", forState: UIControlState.Normal)
+        itemManage.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
+        itemManage.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
+        itemManage.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        itemManage.addTarget(self, action: "ManageItems:", forControlEvents: UIControlEvents.TouchUpInside)
+        itemManage.clipsToBounds = true
+        itemManage.layer.cornerRadius = 0.0
+        itemManage.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+        itemManage.layer.borderWidth = 0.5;
+
+        
+        buttonOffset+=(itemManage.frame.height)
         contactDeveloper.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         contactDeveloper.setTitle(" Contact Developer", forState: UIControlState.Normal)
         
@@ -128,6 +174,7 @@ class settingVC: UIViewController {
         contactDeveloper.layer.borderWidth = 0.5;
         
         //Share App
+        buttonOffset+=(contactDeveloper.frame.height)
         shareApp.frame = CGRectMake(0, height-height*(1/6), width, height*(1/12))
         shareApp.setTitle(" Share this App", forState: UIControlState.Normal)
         shareApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
@@ -137,6 +184,8 @@ class settingVC: UIViewController {
         
         shareApp.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         shareApp.layer.borderWidth = 0.25;
+        
+        buttonOffset+=(shareApp.frame.height)
         
         //Rate App
         rateApp.frame = CGRectMake(0, height-height*(1/12), width, height*(1/12))
@@ -156,6 +205,8 @@ class settingVC: UIViewController {
         self.view.addSubview(SearchLabel)
         self.view.addSubview(RangeView)
         self.view.addSubview(price)
+        self.view.addSubview(itemManage)
+
         self.view.addSubview(contactDeveloper)
         self.view.addSubview(shareApp)
         self.view.addSubview(rateApp)
@@ -165,13 +216,12 @@ class settingVC: UIViewController {
         
     }
     
-    func SwipeScreen(sender:UIBarButtonItem){
+    func leftpressed(sender:UIBarButtonItem){
         
-        //self.tabBarController?.selectedIndex = 2
-       // self.tabBarController?.tabBar.hidden = false
+
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = false
-        appDelegate.tabBarController?.selectedIndex = 2
+        appDelegate.tabBarController?.selectedIndex = 1
         
         
     }
@@ -189,6 +239,38 @@ class settingVC: UIViewController {
         UIApplication.sharedApplication().openURL(url!)
     }
     
+    
+    @IBAction func ManageItems(sender:UIButton!)
+    {
+        let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "List Item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let photoUploadVC = sb.instantiateViewControllerWithIdentifier("photoViewController") as! photoUploadPageVC
+            //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationController?.pushViewController(photoUploadVC, animated: true)
+            
+            
+        }))
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "Delete Item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
+            profileVC.change = true
+            //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationController?.pushViewController(profileVC, animated: true)
+            
+            
+        }))
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel  , handler: nil))
+        self.presentViewController(SettingactionSheet, animated: true, completion: nil)
+
+    }
     
     
     

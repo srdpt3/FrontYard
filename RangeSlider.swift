@@ -82,7 +82,7 @@ class RangeSlider: UIControl {
         }
     }
     
-    var maximumValue: Double = 2000 {
+    var maximumValue: Double = 10000 {
         willSet(newValue) {
             assert(newValue > minimumValue, "RangeSlider: maximumValue should be greater than minimumValue")
         }
@@ -92,7 +92,7 @@ class RangeSlider: UIControl {
         
     }
     
-    var lowerValue: Double = 10 {
+    var lowerValue: Double = Double(minPrice) {
         didSet(newValue) {
             if newValue < minimumValue {
                 lowerValue = minimumValue
@@ -101,7 +101,7 @@ class RangeSlider: UIControl {
         }
     }
     
-    var upperValue: Double = 1500 {
+    var upperValue: Double = Double(maxPrice) {
         didSet(newValue) {
             if newValue > maximumValue {
                 upperValue = maximumValue
