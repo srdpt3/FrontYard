@@ -8,14 +8,14 @@
 
 import UIKit
 
-class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewProtocol{
+class viewProfileCell :UICollectionViewCell, NTTansitionWaterfallGridViewProtocol{
     var imageName : String?
     var imageFile:UIImage!
     var profileimageFile:UIImage!
     
     var imageLabel:UILabel! = UILabel()
     var imageLabel2:UILabel! = UILabel()
-
+    
     var profileimageView : UIImageView  = UIImageView()
     var imageViewContent : UIImageView = UIImageView()
     required init(coder aDecoder: NSCoder) {
@@ -23,14 +23,14 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-      //  backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+        //  backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-      //  imageViewContent.addSubview(profileimageView)
-       // contentView.addSubview(imageViewContent)
+        //  imageViewContent.addSubview(profileimageView)
+        // contentView.addSubview(imageViewContent)
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         contentView.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         /*
         imageViewContent.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
@@ -41,10 +41,10 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         
         // self.profileimage.image = UIImage(data:data!)
         
-     //   imageViewContent.image = UIImage(named: imageName!)
+        //   imageViewContent.image = UIImage(named: imageName!)
         imageViewContent.image = imageFile
-     //   profileimageView.image = profileimageFile
-*/
+        //   profileimageView.image = profileimageFile
+        */
         
         imageViewContent.frame = CGRectMake(0, 0, frame.size.width, frame.size.height-30)
         
@@ -57,8 +57,8 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         contentView.addSubview(imageLabel2)
         
         
-      //  imageLabel.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-       // imageLabel2.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        //  imageLabel.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        // imageLabel2.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         
         
         imageLabel.backgroundColor = UIColor.whiteColor()
@@ -66,7 +66,7 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 10.0;
-    //    contentView.layer.borderColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0).CGColor
+        //    contentView.layer.borderColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1.0).CGColor
         
         contentView.layer.borderColor = UIColor.whiteColor().CGColor
         
@@ -86,7 +86,7 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         
         
         
-
+        
     }
     
     func snapShotForTransition() -> UIView! {

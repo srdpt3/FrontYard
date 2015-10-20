@@ -54,11 +54,11 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
 
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
-        let navigationBarAppearace = UINavigationBar.appearance()
-        
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationItem.title = "Conversations"
-        
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
 
@@ -81,6 +81,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayPushMessages:", name: "ds", object: nil)
         //  self.tableView.reloadData()
         

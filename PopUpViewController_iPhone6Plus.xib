@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -22,6 +22,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K9-bf-qnf">
                             <rect key="frame" x="58" y="336" width="203" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="1wk-yc-7zh"/>
                             </constraints>
@@ -35,9 +36,11 @@
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yDP-ZJ-klu">
                             <rect key="frame" x="57" y="20" width="206" height="178"/>
+                            <animations/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="4bq-P4-Htc">
                             <rect key="frame" x="20" y="206" width="280" height="110"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="110" id="8Fa-Ix-wEn"/>
                             </constraints>
@@ -46,6 +49,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="4bq-P4-Htc" firstAttribute="leading" secondItem="HxJ-fg-egd" secondAttribute="leading" constant="20" symbolic="YES" id="MHj-51-oxy"/>
@@ -61,6 +65,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HxJ-fg-egd" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8Bl-ag-Tfq"/>

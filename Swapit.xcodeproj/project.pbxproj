@@ -23,9 +23,10 @@
 		DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA341B955FE200B76458 /* SettingVCNav.swift */; };
 		DA76EA371B960B5200B76458 /* photoViewNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA361B960B5100B76458 /* photoViewNav.swift */; };
 		DAA20E2B1BC8B22300E9DED6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */; settings = {ASSET_TAGS = (); }; };
-		DAA20E2F1BCAA25800E9DED6 /* location.svg in Resources */ = {isa = PBXBuildFile; fileRef = DAA20E2E1BCAA25800E9DED6 /* location.svg */; settings = {ASSET_TAGS = (); }; };
 		DAA20E311BCCC99A00E9DED6 /* transition_both_directions-50.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA20E301BCCC99A00E9DED6 /* transition_both_directions-50.png */; settings = {ASSET_TAGS = (); }; };
 		DAA20E331BCCCC2500E9DED6 /* icon_arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */; settings = {ASSET_TAGS = (); }; };
+		DAA555921BD5E9DD009719B5 /* viewProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA555911BD5E9DD009719B5 /* viewProfile.swift */; settings = {ASSET_TAGS = (); }; };
+		DAA555941BD5EA91009719B5 /* viewProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA555931BD5EA91009719B5 /* viewProfileCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */; };
 		DAE786461B9E747B0077EAA2 /* NTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */; };
 		DAE786471B9E747B0077EAA2 /* NTHorizontalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */; };
@@ -152,15 +153,16 @@
 		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
-		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapItMainNav.swift; sourceTree = "<group>"; };
+		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
 		DA76EA321B955CEB00B76458 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		DA76EA341B955FE200B76458 /* SettingVCNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVCNav.swift; sourceTree = "<group>"; };
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
 		DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		DAA20E2E1BCAA25800E9DED6 /* location.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = location.svg; sourceTree = "<group>"; };
 		DAA20E301BCCC99A00E9DED6 /* transition_both_directions-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transition_both_directions-50.png"; sourceTree = "<group>"; };
 		DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrow_left.png; sourceTree = "<group>"; };
+		DAA555911BD5E9DD009719B5 /* viewProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewProfile.swift; sourceTree = "<group>"; };
+		DAA555931BD5EA91009719B5 /* viewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewProfileCell.swift; sourceTree = "<group>"; };
 		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
 		DAE786431B9E747B0077EAA2 /* NTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTNavigationController.swift; sourceTree = "<group>"; };
 		DAE786441B9E747B0077EAA2 /* NTHorizontalPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTHorizontalPageViewController.swift; sourceTree = "<group>"; };
@@ -412,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				DAE786501B9E74AB0077EAA2 /* CHTCollectionViewWaterfallLayout.swift */,
-				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
 				DAE786521B9E74E70077EAA2 /* NTWaterfallViewCell.swift */,
 				DAE786531B9E74E70077EAA2 /* NTHorizontalPageViewCell.swift */,
 				DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */,
@@ -444,6 +445,8 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DAA555931BD5EA91009719B5 /* viewProfileCell.swift */,
+				DAA555911BD5E9DD009719B5 /* viewProfile.swift */,
 				DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */,
 				DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */,
 				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
@@ -452,7 +455,6 @@
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
-				DAA20E2E1BCAA25800E9DED6 /* location.svg */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
 				DA5363F91B8F9EB700A5B911 /* nav.swift */,
@@ -480,6 +482,7 @@
 		DAF94C831B7981F5004D2660 /* Swapit */ = {
 			isa = PBXGroup;
 			children = (
+				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
 				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
 				DA3109421BAF040D00DD9F26 /* Utils */,
 				DA3109411BAEE9BF00DD9F26 /* Setting */,
@@ -815,7 +818,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA006ED21BD4154D007C05D2 /* VendeeSplash2.png in Resources */,
-				DAA20E2F1BCAA25800E9DED6 /* location.svg in Resources */,
 				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
@@ -964,6 +966,7 @@
 				DA5363C01B860F0200A5B911 /* photoUploadPageVC.swift in Sources */,
 				DAE786541B9E74E70077EAA2 /* NTWaterfallViewCell.swift in Sources */,
 				DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */,
+				DAA555941BD5EA91009719B5 /* viewProfileCell.swift in Sources */,
 				DAF94D641B7A12EC004D2660 /* JSQMessagesCollectionView.m in Sources */,
 				DAF94D4D1B7A12EC004D2660 /* UIColor+JSQMessages.m in Sources */,
 				DAF94D5B1B7A12EC004D2660 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
@@ -971,6 +974,7 @@
 				DAF94D611B7A12EC004D2660 /* JSQPhotoMediaItem.m in Sources */,
 				DAE7867A1BA486E00077EAA2 /* FBShimmeringLayer.m in Sources */,
 				DAF94D4F1B7A12EC004D2660 /* UIImage+JSQMessages.m in Sources */,
+				DAA555921BD5E9DD009719B5 /* viewProfile.swift in Sources */,
 				DAF94D551B7A12EC004D2660 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */,
 				DAF94D811B7CB3B8004D2660 /* OverviewTableViewCell.swift in Sources */,
@@ -1121,7 +1125,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swapit;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swift-bridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1146,7 +1150,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swapit;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swift-bridge.h";
 				TARGETED_DEVICE_FAMILY = 1;

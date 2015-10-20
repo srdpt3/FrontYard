@@ -19,18 +19,23 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         super.viewDidLoad()
         self.delegate = self
         
-        //self.signUpController?.delegate = self
-        self.logInView?.logo = UIImageView(image: UIImage(named: "main.gif"))
+        self.view.backgroundColor = UIColor.whiteColor()
+        let nav = self.navigationController?.navigationBar
+        self.navigationItem.title = "Welcome"
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        self.logInView?.logo = UIImageView(image: UIImage(named: "vendee_logo.png"))
         // self.signUpController?.signUpView?.logo = UIImageView(image: UIImage(named: "main.gif"))
         self.logInView!.logo?.contentMode = .Center
+        self.logInView!.logo?.contentMode = UIViewContentMode.ScaleAspectFit
         // self.signUpController?.signUpView?.logo?.contentMode = UIViewContentMode.Center
         
         self.logInView?.signUpButton?.removeTarget(self, action: nil, forControlEvents: UIControlEvents.AllEvents)
-        
         self.logInView?.signUpButton?.addTarget(self, action: "displaySignUpbutton", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        //   let loader = LiquidLoader(frame: CGRectMake(100, 100, 100, 100), effect: .GrowCircle(UIColor.whiteColor()))
-        //    var loader = LiquidLoader(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height), effect: .GrowCircle(UIColor.whiteColor()))
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "VendeeSplash3")!)
+
         
     }
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {

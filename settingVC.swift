@@ -70,11 +70,7 @@ class settingVC: UIViewController {
         let leftbutton:UIBarButtonItem = UIBarButtonItem()
         leftbutton.customView = btnName
         self.navigationItem.leftBarButtonItem = leftbutton
-        
-        
-        
-        
-        
+
         
         let navBarHeight = nav?.frame.height
         imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*(1/3))

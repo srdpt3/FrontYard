@@ -103,7 +103,7 @@ class loaddataViewController: UIViewController {
                             let query2:PFQuery = PFQuery(className: "imageUpload")
                             query2.addAscendingOrder("createdAt")
                          //   query2.whereKey("user", equalTo: usr)
-                            query.whereKey("user",notEqualTo: PFUser.currentUser()!)
+                            query2.whereKey("user",notEqualTo: PFUser.currentUser()!)
                             query2.whereKey("user", containedIn: users as! [PFUser])
                             query2.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
                             query2.whereKey("interesting", notEqualTo: PFUser.currentUser()!.username!)
@@ -114,37 +114,49 @@ class loaddataViewController: UIViewController {
                                 if error2 == nil
                                 {
                                     print("results!.count\(results!.count)")
-
-                                    ViewControllerUtils().showActivityIndicator(self.view)
-
-                                    let objects = results as! [PFObject]
-                                    for obj in objects{
-                                        let thumbNail = obj["image"] as! PFFile
-                                        thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
-                                            if error2 == nil
-                                            {
-                                                let image = UIImage(data:imageData!)
-                                                imagesToswipe.append(image!)
-                                                let objId = obj.objectId! as String
-                                                otherObjID.append(objId)
-                                                
-                                                if(results!.count == imagesToswipe.count ){
+                                    if (results!.count == 0)
+                                    {
+                                        let sb = UIStoryboard(name: "Main", bundle: nil)
+                                        let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+                                        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                                        self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+                                        
+                                    }
+                                    else{
+                                        ViewControllerUtils().showActivityIndicator(self.view)
+                                        
+                                        let objects = results as! [PFObject]
+                                        for obj in objects{
+                                            let thumbNail = obj["image"] as! PFFile
+                                            thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) ->
+                                                Void in
+                                                if error2 == nil
+                                                {
+                                                    let image = UIImage(data:imageData!)
                                                     
-                                                    ViewControllerUtils().hideActivityIndicator(self.view)
+                                                    imagesToswipe.append(image!)
+                                                    let objId = obj.objectId! as String
+                                                    otherObjID.append(objId)
                                                     print("imagesToswipe.count \(imagesToswipe.count)")
-                                                    numberOfCards = UInt(imagesToswipe.count)
-                                                    
-                                                    let sb = UIStoryboard(name: "Main", bundle: nil)
-                                                    let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
-                                                    overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-                                                    self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+
+                                                    if(results!.count == imagesToswipe.count ){
+                                                        
+                                                        ViewControllerUtils().hideActivityIndicator(self.view)
+                                                        numberOfCards = UInt(imagesToswipe.count)
+                                                        
+                                                        let sb = UIStoryboard(name: "Main", bundle: nil)
+                                                        let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
+                                                        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                                                        self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+                                                        
+                                                    }
                                                     
                                                 }
                                                 
-                                            }
+                                            })
                                             
-                                        })
-                                        
+                                        }
+
                                     }
                                     
                                 }
@@ -152,10 +164,6 @@ class loaddataViewController: UIViewController {
                                 {
                                     print("erorr in getfavoritelist ")
                                 }
-                                
-                          //  }
-                        
-                        
                         }
                         
                         

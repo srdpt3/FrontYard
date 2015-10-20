@@ -22,18 +22,37 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     var multiLayer3:PulsingHaloLayer!
     var multiLayer4:PulsingHaloLayer!
     
+    @IBOutlet var NoButton: UIButton!
     
+    @IBOutlet var YesButton: UIButton!
     var userImage: UIImageView!
     
     var index2:Int = 0
-    
-    //MARK: Lifecycle
+    var remainingCards: Int = 0
+
+    override func viewDidAppear(animated: Bool) {
+        remainingCards = Int(numberOfCards)
+        print("numberOfCards \(numberOfCards)")
+        print("remainingCards \(remainingCards)")
+
+        if numberOfCards == 0
+        {
+            YesButton.alpha = 0
+            NoButton.alpha = 0
+            playpulse()
+            loadMoreImages()
+        }
+       
+
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
  
         userImage = UIImageView(frame: CGRectMake(50, 0, self.view.frame.width-100, self.view.frame.height-100))
         popview = PagedScrollViewController()
-        print("numberOfCards \(numberOfCards)")
+
         kolodaView.dataSource = self
         kolodaView.delegate = self
       //  self.view.backgroundColor = UIColor.grayColor()
@@ -41,7 +60,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
      self.view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
 
         // loader.hide()
-        
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
     }
 
@@ -57,25 +75,19 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
        // nav?.barTintColor = backgroundColor
         
         
-        let logoImage = UIImageView(frame: CGRectMake(0 , 0, self.view.frame.size.width*0.2, navBarHeight!))
+        let logoImage = UIImageView(frame: CGRectMake(0 , 0, self.view.frame.size.width*0.1, navBarHeight!))
         logoImage.image = UIImage(named: "vendee_logo.png")
+        logoImage.contentMode = .Center
+        logoImage.contentMode = UIViewContentMode.ScaleAspectFit
       //  logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
         self.navigationItem.titleView = logoImage
         
         
-        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .ScaleAspectFit
+
+
         
-        //  let followButton = UIButton(frame: CGRectMake(0 , 0, 98, 32))
-        //followButton.setTitle(" Swit", forState: UIControlState.Normal)
-     ///   followButton.setImage(UIImage(named: "mainlogo.png.gif"), forState: UIControlState.Normal)
-     //  followButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 25.0)
-      //  followButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-      //  followButton.addTarget(self, action: "FrontYard:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        
-      //  self.navigationItem.titleView = followButton
         self.tabBarController?.tabBar.hidden = false
         
     }
@@ -142,7 +154,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         }
 
         print("direction is \(direction.hashValue)")
-        // index2 = Int(index)
         
         if (direction.hashValue == 2)
         {
@@ -152,6 +163,12 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
                     print("You liked: \(otherObjID[Int(index)])")
+                    self.remainingCards--
+                    if(self.remainingCards == 0){
+                        numberOfCards = UInt(self.remainingCards)
+
+                        self.kolodaDidRunOutOfCards(self.kolodaView)
+                    }
                 }
             })
        
@@ -164,6 +181,13 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
                     print("You passed: \(otherObjID[Int(index)])")
+                    self.remainingCards--
+                    if(self.remainingCards == 0){
+                        numberOfCards = UInt(self.remainingCards)
+                        self.kolodaDidRunOutOfCards(self.kolodaView)
+                        
+                    }
+                    
                 }
             })
             
@@ -174,13 +198,17 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     func kolodaDidRunOutOfCards(koloda: KolodaView) {
         //Example: reloading
         print("no card")
-        playpulse()
-            // dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        loadMoreImages()
+        YesButton.alpha = 0
+        NoButton.alpha = 0
+
+        if(remainingCards == 0){
+            playpulse()
+            loadMoreImages()
+        }
+
    //     kolodaView.resetCurrentCardNumber()
         
     }
-    
     
     
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {
@@ -306,9 +334,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         multiLayer3 = PulsingHaloLayer()
         multiLayer4 = PulsingHaloLayer()
         
-        multiLayer2.radius = 60
-        multiLayer3.radius = 150
-        multiLayer4.radius = 200
+        multiLayer2.radius = 40
+        multiLayer3.radius = 130
+        multiLayer4.radius = 180
         
         multiLayer.position = userImage.center;
         multiLayer2.position = userImage.center;
@@ -336,6 +364,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     func loadMoreImages()
     {
+        imagesToswipe.removeAll(keepCapacity: false)
+        otherObjID.removeAll(keepCapacity: false)
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
             if error == nil {
@@ -351,9 +381,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                     
                     if error == nil
                     {
-                        print(users!.count)
-                        imagesToswipe.removeAll(keepCapacity: false)
-                        otherObjID.removeAll(keepCapacity: false)
+
                         let query2:PFQuery = PFQuery(className: "imageUpload")
                         query2.addAscendingOrder("createdAt")
                         //   query2.whereKey("user", equalTo: usr)
@@ -383,7 +411,29 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                                                 self.stoppulse()
                                                 print("imagesToswipe.count \(imagesToswipe.count)")
                                                 numberOfCards = UInt(imagesToswipe.count)
+                                                self.remainingCards = Int(numberOfCards)
+
                                                 self.kolodaView.resetCurrentCardNumber()
+                                                
+                                                self.NoButton.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                                                self.YesButton.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                                                
+
+                                                UIView.animateWithDuration(2.0,
+                                                    delay: 0,
+                                                    usingSpringWithDamping: 0.20,
+                                                    initialSpringVelocity: 6.00,
+                                                    options: UIViewAnimationOptions.AllowUserInteraction,
+                                                    animations: {
+                                                        self.YesButton.alpha = 1
+                                                        self.NoButton.alpha = 1
+
+                                                        self.NoButton.transform = CGAffineTransformIdentity
+                                                        self.YesButton.transform = CGAffineTransformIdentity
+                                                        
+                                                    }, completion: nil)
+                                                
+                                                
                                                 
                                             }
                                             

@@ -17,7 +17,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="unH-zi-2MR">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VendeeSplash2.png" translatesAutoresizingMaskIntoConstraints="NO" id="unH-zi-2MR">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                     <animations/>
                 </imageView>
@@ -39,6 +39,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LogginBackground" width="640" height="1136"/>
+        <image name="VendeeSplash2.png" width="2048" height="2048"/>
     </resources>
 </document>

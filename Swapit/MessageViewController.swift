@@ -41,15 +41,14 @@ class MessageViewController:JSQMessagesViewController {
 
     var scrollview2 : UIScrollView! = UIScrollView()
     
+    var moreClicked : Bool = false
     
     
     
     override func viewWillAppear(animated: Bool) {
 
-        
-        let navBar = self.navigationController?.navigationBar
-       // var pSetY = CGFloat(navBarHeight!)
-       
+
+        moreClicked = false
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
@@ -72,7 +71,16 @@ class MessageViewController:JSQMessagesViewController {
         self.navigationItem.leftBarButtonItem = leftbutton
         
         
+        let btnName2: UIButton = UIButton()
+        btnName2.setImage(UIImage(named: "btn_menu"), forState: .Normal)
+        btnName2.tintColor = UIColor.whiteColor()
+        btnName2.frame = CGRectMake(0, 0, 20, 20)
+        btnName2.addTarget(self, action: Selector("rightpressed"), forControlEvents: .TouchUpInside)
         
+        //.... Set Right/Left Bar Button item
+        let rightbutton:UIBarButtonItem = UIBarButtonItem()
+        rightbutton.customView = btnName2
+        self.navigationItem.rightBarButtonItem = rightbutton
         
         
         self.senderId = PFUser.currentUser()!.objectId
@@ -124,7 +132,7 @@ class MessageViewController:JSQMessagesViewController {
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         
-        outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0))
+        outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(backgroundColor)
         incomingBubbleImage = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.lightGrayColor())
         
         //  dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -368,7 +376,7 @@ class MessageViewController:JSQMessagesViewController {
         if message.senderId == self.senderId
         {
             
-            cell.textView!.textColor = UIColor.blackColor()
+            cell.textView!.textColor = UIColor.whiteColor()
         }
         else
         {
@@ -386,7 +394,15 @@ class MessageViewController:JSQMessagesViewController {
     
     override func viewWillDisappear(animated: Bool) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.tabBarController.tabBarView.hidden = false
+        if(moreClicked)
+        {
+            appDelegate.tabBarController.tabBarView.hidden = true
+        }
+        else
+        {
+            appDelegate.tabBarController.tabBarView.hidden = false
+        }
+        
         
         
     }
@@ -535,6 +551,41 @@ class MessageViewController:JSQMessagesViewController {
     {
         
         self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
+    func rightpressed()
+    {
+        let SettingactionSheet = UIAlertController(title: "More Option", message: "Select an option", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "View Profile", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            self.moreClicked = true
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let profileVC = sb.instantiateViewControllerWithIdentifier("viewProfile") as? viewProfile
+            profileVC?.otherUser = self.incomingUser
+            self.navigationController?.pushViewController(profileVC!, animated: true)
+
+            
+            
+        }))
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            
+            let addBlock = PFObject(className: "Block")
+            addBlock.setObject(PFUser.currentUser()!, forKey: "user")
+            addBlock.setObject(self.incomingUser, forKey: "blocked")
+            addBlock.saveInBackground()
+            
+            
+        }))
+        
+        SettingactionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel  , handler: nil))
+        self.presentViewController(SettingactionSheet, animated: true, completion: nil)
+        
+      
+        
         
     }
     

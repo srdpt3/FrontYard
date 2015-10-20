@@ -29,6 +29,15 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         super.viewDidLoad()
 
          self.navigationItem.rightBarButtonItem = doneBarButtonItem
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.addTarget(self, action: Selector("leftpressed"), forControlEvents: .TouchUpInside)
+        
+        //.... Set Right/Left Bar Button item
+        let leftbutton:UIBarButtonItem = UIBarButtonItem()
+        leftbutton.customView = btnName
+        self.navigationItem.leftBarButtonItem = leftbutton
         
         
         if change
@@ -264,5 +273,11 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func leftpressed()
+    {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
     }
 }

@@ -78,7 +78,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         LikeButton.setTitle(" Chat with seller", forState: UIControlState.Normal)
         LikeButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         LikeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        LikeButton.backgroundColor = UIColor(red: 156/255, green: 173/255, blue: 225/255, alpha: 1.0)
+        LikeButton.backgroundColor = backgroundColor
         
         LikeButton.clipsToBounds = true
         LikeButton.layer.cornerRadius = 10.0;
