@@ -45,10 +45,6 @@
 		DAE7868B1BA911250077EAA2 /* loaddataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */; };
 		DAE786F01BAC799B0077EAA2 /* PagedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */; };
 		DAE786F21BAC799B0077EAA2 /* ScrollViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */; };
-		DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */; };
-		DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */; };
-		DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */; };
-		DAE786FB1BAE3C780077EAA2 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */; };
 		DAE786FC1BAE3C780077EAA2 /* PopUpViewControllerSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */; };
 		DAEDC88B1B7EB20700258E30 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */; };
 		DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94C861B7981F6004D2660 /* AppDelegate.swift */; };
@@ -127,7 +123,6 @@
 		DAF94D7F1B7B5F10004D2660 /* ChooseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D7E1B7B5F10004D2660 /* ChooseTableViewController.swift */; };
 		DAF94D811B7CB3B8004D2660 /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */; };
 		DAF94D831B7D03A4004D2660 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF94D821B7D03A4004D2660 /* MessageViewController.swift */; };
-		DAFD2C021BC02FC80086E069 /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFD2C011BC02FC80086E069 /* RefreshContents.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,10 +181,6 @@
 		DAE7868A1BA911250077EAA2 /* loaddataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = loaddataViewController.swift; path = ../loaddataViewController.swift; sourceTree = "<group>"; };
 		DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollViewController.swift; sourceTree = "<group>"; };
 		DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewContainer.swift; sourceTree = "<group>"; };
-		DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPad.xib; sourceTree = "<group>"; };
-		DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6.xib; sourceTree = "<group>"; };
-		DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController_iPhone6Plus.xib; sourceTree = "<group>"; };
-		DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewControllerSwift.swift; sourceTree = "<group>"; };
 		DAEDC8891B7EB20700258E30 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		DAEDC88A1B7EB20700258E30 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
@@ -318,7 +309,6 @@
 		DAF94D7E1B7B5F10004D2660 /* ChooseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTableViewController.swift; sourceTree = "<group>"; };
 		DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverviewTableViewCell.swift; path = "../../../Documents/untitled folder/OverviewTableViewCell.swift"; sourceTree = "<group>"; };
 		DAF94D821B7D03A4004D2660 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		DAFD2C011BC02FC80086E069 /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,11 +437,6 @@
 			children = (
 				DAA555931BD5EA91009719B5 /* viewProfileCell.swift */,
 				DAA555911BD5E9DD009719B5 /* viewProfile.swift */,
-				DAE786F31BAE3C770077EAA2 /* PopUpViewController_iPad.xib */,
-				DAE786F41BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib */,
-				DAE786F51BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib */,
-				DAE786F61BAE3C780077EAA2 /* PopUpViewController.xib */,
-				DAFD2C011BC02FC80086E069 /* RefreshContents.xib */,
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
@@ -818,26 +803,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA006ED21BD4154D007C05D2 /* VendeeSplash2.png in Resources */,
-				DAE786F91BAE3C780077EAA2 /* PopUpViewController_iPhone6.xib in Resources */,
 				DAF94D791B7AF46D004D2660 /* bar.gif in Resources */,
 				DAF94C8F1B7981F6004D2660 /* Main.storyboard in Resources */,
 				DAF94D7B1B7AF472004D2660 /* barButton.gif in Resources */,
 				DAA20E311BCCC99A00E9DED6 /* transition_both_directions-50.png in Resources */,
 				DAF94D731B7A12EC004D2660 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				DAF94D491B7A12EC004D2660 /* JSQMessagesAssets.bundle in Resources */,
-				DAFD2C021BC02FC80086E069 /* RefreshContents.xib in Resources */,
 				DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */,
 				DAF94D6E1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				DAA20E331BCCCC2500E9DED6 /* icon_arrow_left.png in Resources */,
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
-				DAE786FB1BAE3C780077EAA2 /* PopUpViewController.xib in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
-				DAE786F81BAE3C780077EAA2 /* PopUpViewController_iPad.xib in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				DAF94D771B7AF451004D2660 /* main.gif in Resources */,
-				DAE786FA1BAE3C780077EAA2 /* PopUpViewController_iPhone6Plus.xib in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
 			);
