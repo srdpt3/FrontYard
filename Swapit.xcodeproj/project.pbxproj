@@ -16,6 +16,8 @@
 		DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */; };
 		DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */; };
 		DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA53642B1B92B8D500A5B911 /* OverlayView.xib */; };
+		DA59FB251BD7FD9F006892FB /* myItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB241BD7FD9E006892FB /* myItemView.swift */; settings = {ASSET_TAGS = (); }; };
+		DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
 		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
 		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
@@ -147,6 +149,8 @@
 		DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainViewController.swift; path = ../SwapItMainViewController.swift; sourceTree = "<group>"; };
 		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		DA59FB241BD7FD9E006892FB /* myItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemView.swift; sourceTree = "<group>"; };
+		DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemViewCell.swift; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
 		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
@@ -155,7 +159,7 @@
 		DA76EA361B960B5100B76458 /* photoViewNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoViewNav.swift; sourceTree = "<group>"; };
 		DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DAA20E301BCCC99A00E9DED6 /* transition_both_directions-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "transition_both_directions-50.png"; sourceTree = "<group>"; };
-		DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_arrow_left.png; sourceTree = "<group>"; };
+		DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_arrow_left.png; path = ../icon_arrow_left.png; sourceTree = "<group>"; };
 		DAA555911BD5E9DD009719B5 /* viewProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewProfile.swift; sourceTree = "<group>"; };
 		DAA555931BD5EA91009719B5 /* viewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewProfileCell.swift; sourceTree = "<group>"; };
 		DAE786421B9E747B0077EAA2 /* NTWaterfallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTWaterfallViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +439,8 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */,
+				DA59FB241BD7FD9E006892FB /* myItemView.swift */,
 				DAA555931BD5EA91009719B5 /* viewProfileCell.swift */,
 				DAA555911BD5E9DD009719B5 /* viewProfile.swift */,
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
@@ -446,7 +452,6 @@
 				DAF94CD21B7A0AC8004D2660 /* Helper */,
 				DAF94CCD1B7A0448004D2660 /* FrameWorks */,
 				DA5363F31B8E276D00A5B911 /* Podfile */,
-				DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */,
 				DAF94C831B7981F5004D2660 /* Swapit */,
 				DAF94C9C1B7981F6004D2660 /* SwapitTests */,
 				DAF94C821B7981F5004D2660 /* Products */,
@@ -480,6 +485,7 @@
 				DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */,
 				DAF94D821B7D03A4004D2660 /* MessageViewController.swift */,
 				DAF94C901B7981F6004D2660 /* Images.xcassets */,
+				DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */,
 				DAF94D761B7AF451004D2660 /* main.gif */,
 				DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */,
 				DAF94D781B7AF46D004D2660 /* bar.gif */,
@@ -926,6 +932,8 @@
 				DA76EA311B955C0900B76458 /* settingVC.swift in Sources */,
 				DAF94D5D1B7A12EC004D2660 /* JSQMediaItem.m in Sources */,
 				DAF94D6C1B7A12EC004D2660 /* JSQMessagesLabel.m in Sources */,
+				DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */,
+				DA59FB251BD7FD9F006892FB /* myItemView.swift in Sources */,
 				DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */,
 				DAF94D4E1B7A12EC004D2660 /* UIDevice+JSQMessages.m in Sources */,
 				DAF94D651B7A12EC004D2660 /* JSQMessagesCollectionViewCell.m in Sources */,

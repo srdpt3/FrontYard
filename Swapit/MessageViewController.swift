@@ -8,9 +8,11 @@
 
 import UIKit
 import FoldingTabBar
+import CoreGraphics;
 
 
-class MessageViewController:JSQMessagesViewController {
+
+class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,MKMapViewDelegate {
     
      private let barSize : CGFloat = 100.0
     var room:PFObject!
@@ -42,8 +44,10 @@ class MessageViewController:JSQMessagesViewController {
     var scrollview2 : UIScrollView! = UIScrollView()
     
     var moreClicked : Bool = false
+    var userlocation:String!
     
     
+    var locationManager : LocationManager!
     
     override func viewWillAppear(animated: Bool) {
 
@@ -147,6 +151,8 @@ class MessageViewController:JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager = LocationManager.sharedInstance
+
         self.tabBarController?.tabBar.hidden = true
     
      
@@ -157,7 +163,8 @@ class MessageViewController:JSQMessagesViewController {
         super.viewDidAppear(animated)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadMessages", name: "reloadMessages", object: nil)
-        
+        print("userlocation \(userlocation)")
+
         
     }
     
@@ -564,8 +571,29 @@ class MessageViewController:JSQMessagesViewController {
             self.moreClicked = true
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let profileVC = sb.instantiateViewControllerWithIdentifier("viewProfile") as? viewProfile
-            profileVC?.otherUser = self.incomingUser
-            self.navigationController?.pushViewController(profileVC!, animated: true)
+            
+            var userlocation : String!
+            
+            let location = CLLocationCoordinate2D(latitude: self.incomingUser["location"]!.latitude,longitude: self.incomingUser["location"]!.longitude)
+            let locationFromGeoPoint: CLLocation  = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            self.locationManager.reverseGeocodeLocationWithCoordinates(locationFromGeoPoint, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+                print(reverseGecodeInfo)
+                let local = reverseGecodeInfo?.objectForKey("locality") as! String
+                let sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
+                userlocation = "\(sublocal),\(local)"
+                print("self.userLocation \(userlocation)")
+                
+                profileVC?.otherUser = self.incomingUser
+                profileVC?.userLocation = userlocation
+                
+                self.navigationController?.pushViewController(profileVC!, animated: true)
+                
+            })
+            
+           
+           
+
+            
 
             
             

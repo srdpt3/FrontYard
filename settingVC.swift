@@ -255,10 +255,10 @@ class settingVC: UIViewController {
         SettingactionSheet.addAction(UIAlertAction(title: "Delete Item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
-            profileVC.change = true
+            let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
             //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-            self.navigationController?.pushViewController(profileVC, animated: true)
+            self.navigationController?.pushViewController(myItemVC, animated: true)
+            
             
             
         }))

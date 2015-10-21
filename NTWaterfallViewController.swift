@@ -143,6 +143,9 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         
     }
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.hidesBarsOnSwipe = false
+    }
     
     func pageViewControllerLayout () -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
@@ -156,7 +159,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     override func viewWillAppear(animated: Bool) {
       // self.collectionView!.reloadData()
-
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     

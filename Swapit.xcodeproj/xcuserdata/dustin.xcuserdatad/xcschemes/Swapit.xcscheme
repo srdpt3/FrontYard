@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAF94C801B7981F5004D2660"
-               BuildableName = "Vendee.app"
+               BuildableName = "Swapit.app"
                BlueprintName = "Swapit"
                ReferencedContainer = "container:Swapit.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF94C801B7981F5004D2660"
-            BuildableName = "Vendee.app"
+            BuildableName = "Swapit.app"
             BlueprintName = "Swapit"
             ReferencedContainer = "container:Swapit.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF94C801B7981F5004D2660"
-            BuildableName = "Vendee.app"
+            BuildableName = "Swapit.app"
             BlueprintName = "Swapit"
             ReferencedContainer = "container:Swapit.xcodeproj">
          </BuildableReference>
@@ -110,7 +110,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF94C801B7981F5004D2660"
-            BuildableName = "Vendee.app"
+            BuildableName = "Swapit.app"
             BlueprintName = "Swapit"
             ReferencedContainer = "container:Swapit.xcodeproj">
          </BuildableReference>

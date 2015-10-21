@@ -9,12 +9,23 @@
 import UIKit
 
 
-let ViewCellIdentify2 = "ViewCellIdentify2"
+let ViewCellIdentify3 = "ViewCellIdentify3"
 
 
+extension UIView {
+    func fadeIn(duration: NSTimeInterval = 1.0, delay: NSTimeInterval = 0.0, completion: ((Bool) -> Void) = {(finished: Bool) -> Void in}) {
+        UIView.animateWithDuration(duration, delay: delay, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.alpha = 1.0
+            }, completion: completion)  }
+    
+    func fadeOut(duration: NSTimeInterval = 1.0, delay: NSTimeInterval = 0.0, completion: (Bool) -> Void = {(finished: Bool) -> Void in}) {
+        UIView.animateWithDuration(duration, delay: delay, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.alpha = 0.0
+            }, completion: completion)
+    }
+}
 
-
-class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallLayout, NTTransitionProtocol, NTWaterFallViewControllerProtocol{
+class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLayout, NTTransitionProtocol, NTWaterFallViewControllerProtocol{
     //    class var sharedInstance: NSInteger = 0 Are u kidding me?
     @IBAction func refreshButton(sender: AnyObject) {
         getThumnails()
@@ -41,13 +52,13 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     var otherImages: [UIImage] = []
     
     var profileimage: UIImage!
-
-
-
+    
+    
+    
     var otherUser : PFUser!
     var userLocation :String!
-
-
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
@@ -56,7 +67,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let width = CGRectGetWidth(bounds)
         let height = CGRectGetHeight(bounds)
         
@@ -64,7 +75,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
-       
+        
         
         self.navigationItem.title = "User Profile"
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
@@ -82,21 +93,21 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         
         
         
-      let navBarHeight = nav?.frame.height
+        let navBarHeight = nav?.frame.height
         imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*0.1)
         profileimageView.frame = CGRectMake(width*0.05, 0, self.imageViewContent.frame.height ,self.imageViewContent.frame.height)
-      //  namelabel.frame = CGRectMake(width*0.2, 0, 100 ,40)
-
-       namelabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.1, width*0.4 ,self.imageViewContent.frame.height*0.4)
-      // locationLabel.frame = CGRectMake(width*0.05, 0, self.imageViewContent.frame.height ,self.imageViewContent.frame.height)
-       numItemsLabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.45, width*0.7 ,self.imageViewContent.frame.height*0.5)
+        //  namelabel.frame = CGRectMake(width*0.2, 0, 100 ,40)
+        
+        namelabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.1, width*0.4 ,self.imageViewContent.frame.height*0.4)
+        // locationLabel.frame = CGRectMake(width*0.05, 0, self.imageViewContent.frame.height ,self.imageViewContent.frame.height)
+        numItemsLabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.45, width*0.7 ,self.imageViewContent.frame.height*0.5)
         
         //imageView
         let blur:UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let effectView:UIVisualEffectView = UIVisualEffectView (effect: blur)
         effectView.frame = CGRectMake(0, 0, width, height*0.1)
         
-         //let user = PFUser.currentUser()!
+        //let user = PFUser.currentUser()!
         
         if let userImageFile = otherUser["profileImage"] as? PFFile {
             
@@ -104,7 +115,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                 if error == nil{
                     
                     self.profileimageView.image = UIImage(data:data!)
-                   // self.profileimageView.center  = CGPointMake(self.imageViewContent.frame.width/2, (self.imageViewContent.frame.height)/2)
+                    // self.profileimageView.center  = CGPointMake(self.imageViewContent.frame.width/2, (self.imageViewContent.frame.height)/2)
                     self.profileimageView.layer.cornerRadius = self.profileimageView.frame.size.width/2
                     self.profileimageView.clipsToBounds = true
                     
@@ -118,11 +129,11 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         namelabel.textColor = UIColor.whiteColor()
         numItemsLabel.textColor = UIColor.whiteColor()
         numItemsLabel.font = numItemsLabel.font.fontWithSize(12)
-
+        
         namelabel.text = otherUser.username!
         //numItemsLabel.text = "Items: 2";
-
-
+        
+        
         
         
         
@@ -130,11 +141,11 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         self.imageViewContent.addSubview(profileimageView)
         self.imageViewContent.addSubview(namelabel)
         self.imageViewContent.addSubview(numItemsLabel)
-
-       // self.view.addSubview(imageViewContent)
+        
+        // self.view.addSubview(imageViewContent)
         
         
-       self.navigationController?.navigationBar.addSubview(imageViewContent)
+        self.navigationController?.navigationBar.addSubview(imageViewContent)
         
         
         let collection :UICollectionView = collectionView!;
@@ -154,10 +165,10 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     }
     
     // Determine other user's location
- 
-
-
- 
+    
+    
+    
+    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
@@ -170,23 +181,23 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        let collectionCell: viewProfileCell = collectionView.dequeueReusableCellWithReuseIdentifier(ViewCellIdentify2, forIndexPath: indexPath) as! viewProfileCell
+        let collectionCell: myItemViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(ViewCellIdentify3, forIndexPath: indexPath) as! myItemViewCell
         
         
         if (indexPath.row > 7){
-              //  self.navigationController?.navigationBarHidden = true
+            //  self.navigationController?.navigationBarHidden = true
             self.navigationController?.navigationBar.fadeOut()
             
             
             
         }
         else if indexPath.row == 0 {
-           // self.navigationController?.navigationBarHidden = false
+            // self.navigationController?.navigationBarHidden = false
             self.navigationController?.navigationBar.fadeIn()
-
-        
+            
+            
         }
-    
+        
         
         collectionCell.imageFile =  self.otherImages[indexPath.row]
         collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
@@ -306,8 +317,8 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("user", equalTo: otherUser)
-  
-
+        
+        
         ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
         
         //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
@@ -326,7 +337,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                     }
                     
                 }
-                   
+                    
                 else
                 {
                     if(self.userLocation != nil)
@@ -335,33 +346,33 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                     }
                     
                 }
-
+                
                 
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
-              //      let otheruser = obj["user"] as! PFObject
-                //    self.otherUsers.append(otheruser["user"])
+                    //      let otheruser = obj["user"] as! PFObject
+                    //    self.otherUsers.append(otheruser["user"])
                     let thumbNail = obj["image"] as! PFFile
                     
-                   // print(self.otherUser["location"] as! PFGeoPoint)
-                                     //  let query2 = PFQuery(className: "_User")
-                   // query2.whereKey("objectId", equalTo: otheruser.objectId!)
-                   // self.otherlocation.append(otherUser["location"] as! PFGeoPoint)
+                    // print(self.otherUser["location"] as! PFGeoPoint)
+                    //  let query2 = PFQuery(className: "_User")
+                    // query2.whereKey("objectId", equalTo: otheruser.objectId!)
+                    // self.otherlocation.append(otherUser["location"] as! PFGeoPoint)
                     // query2.includeKey("location")
                     /*query2.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
-                        
-                        if error2 == nil
-                        {
-                            for obj in result2! {
-                                let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
-                                self.otherlocation.append(otherUser["location"])
-                                
-                            }
-                        }
+                    
+                    if error2 == nil
+                    {
+                    for obj in result2! {
+                    let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
+                    self.otherlocation.append(otherUser["location"])
+                    
+                    }
+                    }
                     })
-                   */
+                    */
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil
@@ -378,9 +389,9 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                             self.otherObjID.append(objId)
                             if(objects.count == self.otherImages.count ){
                                 let collection :UICollectionView = self.collectionView!;
-
-                               // self.numItemsLabel.text = "Items: \(self.otherImages.count) @\(self.userLocation)"
-
+                                
+                                // self.numItemsLabel.text = "Items: \(self.otherImages.count) @\(self.userLocation)"
+                                
                                 collection.reloadData()
                             }
                             

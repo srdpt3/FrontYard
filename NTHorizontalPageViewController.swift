@@ -237,7 +237,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         //getLocation()
         
 
-        
+        self.navigationController?.navigationBarHidden = false
         
         self.view.addSubview(PassButton)
         self.view.addSubview(LikeButton)
@@ -513,8 +513,9 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                         
                                                     }
                                                 }
-                                                
-                                                
+                                               // print("userlocation \(self.locationLabel.text)")
+
+                                              //  messageVC?.userlocation = self.locationLabel.text
                                                 self.navigationController?.pushViewController(messageVC!, animated: true)
                                                 
                                             }

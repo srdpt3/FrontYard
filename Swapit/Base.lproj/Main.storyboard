@@ -67,7 +67,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4F018A8D-E9DA-4246-88E6-9C1CBF67B7DD" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="69318162-1BE1-44B0-BB49-06E51C8427B3" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <animations/>
                                                     <constraints>
@@ -473,7 +473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ME-ZG-WIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16180" y="-13707"/>
+            <point key="canvasLocation" x="-16132" y="-13707"/>
         </scene>
         <!--Folding Tab Bar Controller-->
         <scene sceneID="gZ5-PL-bui">
@@ -778,11 +778,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXC-qo-9v9" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16673" y="-12931"/>
+            <point key="canvasLocation" x="-16903" y="-12911"/>
+        </scene>
+        <!--My Item View-->
+        <scene sceneID="djd-U7-YXV">
+            <objects>
+                <viewController storyboardIdentifier="myItemView" id="Yh1-Ua-Cdf" customClass="myItemView" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmW-LY-YaW"/>
+                        <viewControllerLayoutGuide type="bottom" id="yK2-hg-If2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GB3-z3-CaL" customClass="UICollectionView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QSZ-bu-2sM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="7ao-iY-3LV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshButton:" destination="Yh1-Ua-Cdf" id="YcE-Tq-NPf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HOy-1b-xoh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16205" y="-12911"/>
         </scene>
     </scenes>
     <resources>
-        <image name="4F018A8D-E9DA-4246-88E6-9C1CBF67B7DD" width="72" height="72">
+        <image name="69318162-1BE1-44B0-BB49-06E51C8427B3" width="72" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
