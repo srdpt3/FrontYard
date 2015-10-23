@@ -140,6 +140,12 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         
         collectionView.setToIndexPath(indexPath)
+        let transition : CATransition = CATransition()
+        transition.duration = 0.6;
+        transition.type = kCATransitionFade;
+        transition.subtype = kCATransitionFromLeft;
+
+        navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
         navigationController!.pushViewController(pageViewController, animated: true)
         
         

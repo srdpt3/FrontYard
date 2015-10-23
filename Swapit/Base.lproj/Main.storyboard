@@ -67,7 +67,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A07CF053-5087-48FC-9DB4-A2BC7874C693" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4847116B-DD08-4C19-BDB7-60CC8F7D414A" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <animations/>
                                                     <constraints>
@@ -809,7 +809,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="A07CF053-5087-48FC-9DB4-A2BC7874C693" width="72" height="72">
+        <image name="4847116B-DD08-4C19-BDB7-60CC8F7D414A" width="72" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

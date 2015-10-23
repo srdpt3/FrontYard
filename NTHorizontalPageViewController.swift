@@ -361,7 +361,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     func leftpressed()
     {
-        
+   
         self.navigationController?.popViewControllerAnimated(true)
         
     }

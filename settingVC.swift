@@ -23,6 +23,21 @@ class settingVC: UIViewController {
     var shareApp :UIButton = UIButton()
     var rateApp :UIButton = UIButton()
     
+    
+    
+    let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
+    
+    override func loadView() {
+        // calling self.view later on will return a UIView!, but we can simply call
+        // self.scrollView to adjust properties of the scroll view:
+        self.view = self.scrollView
+        self.scrollView.showsHorizontalScrollIndicator = false;
+        self.scrollView.showsVerticalScrollIndicator = false;
+        // setup the scroll view
+       // self.scrollView.contentSize = CGSize(width:1234, height: 5678)
+        // etc...
+    }
+
 
     @IBAction func saveButtonpressed(sender: AnyObject) {
         price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
@@ -60,20 +75,29 @@ class settingVC: UIViewController {
 
         
         
-        
+        /*
         let btnName: UIButton = UIButton()
-        btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
+      //  btnName.setTitle("LogOut", forState: UIControlState.Normal)
+     //   btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
         btnName.frame = CGRectMake(0, 0, 20, 20)
         btnName.addTarget(self, action: Selector("leftpressed:"), forControlEvents: .TouchUpInside)
         
         //.... Set Right/Left Bar Button item
         let leftbutton:UIBarButtonItem = UIBarButtonItem()
         leftbutton.customView = btnName
+        leftbutton.title = "LogOut"
+        */
+
+        let leftbutton  = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: Selector("logoutPressed:"))
+        leftbutton.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = leftbutton
 
+      //  scrollview = UIScrollView(frame: view.bounds)
         
-        let navBarHeight = nav?.frame.height
-        imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*(1/3))
+   //     let navBarHeight = nav?.frame.height
+      //  imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*(1/3))
+        imageViewContent.frame = CGRectMake(0, 0, width, height*(1/3))
+
         profileimageView.frame = CGRectMake(width/2, imageViewContent.frame.height/2, 100,100)
         
         
@@ -98,7 +122,7 @@ class settingVC: UIViewController {
                 if error == nil{
                     
                     self.profileimageView.image = UIImage(data:data!)
-                    self.profileimageView.center  = CGPointMake(self.imageViewContent.frame.width/2, (self.imageViewContent.frame.height+navBarHeight!)/2)
+                    self.profileimageView.center  = CGPointMake(self.imageViewContent.frame.width/2, (self.imageViewContent.frame.height)/2)
                     self.profileimageView.layer.cornerRadius = self.profileimageView.frame.size.width/2
                     self.profileimageView.clipsToBounds = true
                     
@@ -111,7 +135,8 @@ class settingVC: UIViewController {
         
         
         //Price Search Range
-        var rangeViewHeightOffset = height*(1/3)+navBarHeight!
+        //var rangeViewHeightOffset = height*(1/3)+navBarHeight!
+        var rangeViewHeightOffset = height*(1/3)
         let margin: CGFloat = 10.0
         
         rangeSlider1.frame = CGRect(x: margin, y: margin + topLayoutGuide.length + 50, width: view.bounds.width - 2.0 * margin, height: 31.0)
@@ -140,9 +165,8 @@ class settingVC: UIViewController {
         
         
         //Contact Developer
-        var buttonOffset = height-height*(1/3)
         
-        
+        var buttonOffset = rangeViewHeightOffset + RangeView.frame.height
         
         itemManage.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         itemManage.setTitle(" Manage Items", forState: UIControlState.Normal)
@@ -171,7 +195,7 @@ class settingVC: UIViewController {
         
         //Share App
         buttonOffset+=(contactDeveloper.frame.height)
-        shareApp.frame = CGRectMake(0, height-height*(1/6), width, height*(1/12))
+        shareApp.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         shareApp.setTitle(" Share this App", forState: UIControlState.Normal)
         shareApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         shareApp.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
@@ -184,19 +208,20 @@ class settingVC: UIViewController {
         buttonOffset+=(shareApp.frame.height)
         
         //Rate App
-        rateApp.frame = CGRectMake(0, height-height*(1/12), width, height*(1/12))
+        rateApp.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         rateApp.setTitle(" Rate this App", forState: UIControlState.Normal)
         rateApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         rateApp.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
         rateApp.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         rateApp.addTarget(self, action: "ratethisapp:", forControlEvents: UIControlEvents.TouchUpInside)
         rateApp.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
-        rateApp.layer.borderColor = UIColor.lightGrayColor().CGColor
+       // rateApp.layer.borderColor = UIColor.lightGrayColor().CGColor
         rateApp.layer.borderWidth = 0.25;
         
         
         self.imageViewContent.addSubview(effectView)
         self.imageViewContent.addSubview(profileimageView)
+        /*
         self.view.addSubview(imageViewContent)
         self.view.addSubview(SearchLabel)
         self.view.addSubview(RangeView)
@@ -206,18 +231,52 @@ class settingVC: UIViewController {
         self.view.addSubview(contactDeveloper)
         self.view.addSubview(shareApp)
         self.view.addSubview(rateApp)
+
+        scrollview.addSubview(imageViewContent)
+        scrollview.addSubview(SearchLabel)
+        scrollview.addSubview(RangeView)
+        scrollview.addSubview(price)
+        scrollview.addSubview(itemManage)
         
+        scrollview.addSubview(contactDeveloper)
+        scrollview.addSubview(shareApp)
+        scrollview.addSubview(rateApp)*/
+        self.scrollView.addSubview(imageViewContent)
+        self.scrollView.addSubview(SearchLabel)
+        self.scrollView.addSubview(RangeView)
+        self.scrollView.addSubview(price)
+        self.scrollView.addSubview(itemManage)
         
-        
-        
+        self.scrollView.addSubview(contactDeveloper)
+        self.scrollView.addSubview(shareApp)
+        self.scrollView.addSubview(rateApp)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+
     }
     
-    func leftpressed(sender:UIBarButtonItem){
+    func logoutPressed(sender:UIBarButtonItem){
         
-
+        PFUser.logOut()
+        imagesToswipe.removeAll(keepCapacity: false)
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.tabBarController.tabBarView.hidden = false
-        appDelegate.tabBarController?.selectedIndex = 1
+        appDelegate.tabBarController.tabBarView.hidden = true
+        
+        
+        appDelegate.window?.makeKeyAndVisible()
+        
+        // self.navigationController?.pushViewController(logginVC, animated: true)
+        self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
+        
+        
+        
+        print("logout")
+
+        
+        
         
         
     }
@@ -302,7 +361,7 @@ class settingVC: UIViewController {
     
     @IBAction func ratethisapp(sender:UIButton!)
     {
-        print("reportButtonPressed  tapped")
+        print("rateButton  tapped")
         
     }
     
@@ -310,8 +369,10 @@ class settingVC: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.tabBarController.tabBarView.hidden = true
+        appDelegate.tabBarController.tabBarView.hidden = false
         self.tabBarController?.tabBar.hidden = true
+        self.scrollView.setContentOffset(CGPointMake(0,0), animated: true)
+        
     }
     
     override func didReceiveMemoryWarning() {
