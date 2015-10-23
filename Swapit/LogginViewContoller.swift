@@ -64,11 +64,30 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     func showChatOverview()
     {
 
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
-        
+        if PFUser.currentUser()?.objectForKey("emailVerified")?.boolValue == true
+        {
+            
+            PFGeoPoint.geoPointForCurrentLocationInBackground {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                if error == nil {
+                    PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                    PFUser.currentUser()!.saveInBackground()
+                }
+            }
+            
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+            //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationController?.pushViewController(overViewVC, animated: true)
+        }
+        else {
+            
+            let alert = UIAlertController(title: "Error", message: "Please verify your email ", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
         
     }
     
@@ -94,26 +113,30 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         imagesToswipe.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         
-        
+       // let currentUser = PFUser.currentUser()!
         
         if PFUser.currentUser() != nil
         {
-            //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
-            PFGeoPoint.geoPointForCurrentLocationInBackground {
-                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-                if error == nil {
-                    PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
-                    PFUser.currentUser()!.saveInBackground()
+
+            if PFUser.currentUser()?.objectForKey("emailVerified")?.boolValue == true
+            {
+                
+                PFGeoPoint.geoPointForCurrentLocationInBackground {
+                    (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                    if error == nil {
+                        PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
+                        PFUser.currentUser()!.saveInBackground()
+                    }
                 }
+                
+                
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+                //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                self.navigationController?.pushViewController(overViewVC, animated: true)
             }
-            
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-            //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-            self.navigationController?.pushViewController(overViewVC, animated: true)
-            
-            
+           
+            //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
             
         }
         

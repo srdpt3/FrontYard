@@ -246,28 +246,33 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
     }
     func showChatOverview()
     {
-     /*
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("ChatOverView") as! OverViewTableViewController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
-       */
+
+
+      //  let alert = UIAlertController(title: "Thank You", message: "Link has been sent to your e-mail. Please verify it", preferredStyle: UIAlertControllerStyle.Alert)
+     //   alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+      //  self.presentViewController(alert, animated: true, completion: nil)
         
-        PFGeoPoint.geoPointForCurrentLocationInBackground {
-            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-            if error == nil {
-                PFUser.currentUser()!.setValue(geoPoint, forKey: "location")
-                PFUser.currentUser()!.saveInBackground()
-            }
+        let alertController = UIAlertController(title: "Thank you for signing up", message: "Please verify your e-mail", preferredStyle: .Alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+           // self.navigationController?.popViewControllerAnimated(true)
+                print("ok")
+            self.navigationController?.popViewControllerAnimated(true)
         }
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-        //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
         
+        // Add the actions
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+   //     let sb = UIStoryboard(name: "Main", bundle: nil)
+    //    let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
+        // self.navigationController?.pushViewController(logginVC, animated: true)
+      //  self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
         
-        
-        
+
+ 123
         
     }
     override func didReceiveMemoryWarning() {
