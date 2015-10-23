@@ -71,7 +71,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        choosePartnerButoon.title = "Edit"
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
         self.navigationItem.title = "Conversations"
@@ -391,13 +391,13 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         
         
         
-        
-        
         self.tableView.reloadData()
         
         let pred = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
         let roomQuery = PFQuery(className: "Room", predicate: pred)
         roomQuery.whereKey("hide", notEqualTo: PFUser.currentUser()!.username!)
+        roomQuery.whereKey("Blocked", notEqualTo: PFUser.currentUser()!.username!)
+
         roomQuery.addDescendingOrder("updatedAt")
       //  roomQuery.orderByDescending("updatedAt")
 

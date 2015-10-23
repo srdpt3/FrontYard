@@ -279,12 +279,12 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         
     }
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
+        let user1 = PFUser.currentUser()!
+        let user2 = incomingUser
         
         if( hide )
         {
-            let user1 = PFUser.currentUser()!
-            let user2 = incomingUser
+
             let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
             let roomQuery = PFQuery(className: "Room", predicate: pred)
         
@@ -295,6 +295,8 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                     {
                         let room = results?.last as? PFObject
                         room?.removeObject(self.incomingUser.username!, forKey: "hide")
+                        room?.removeObject(PFUser.currentUser()!.username!, forKey: "hide")
+
                       //  room!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"hide")
                         room?.saveEventually()
                         
@@ -334,9 +336,26 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                 let pushDict = ["alert":text, "badge":"increment","sound":""]
                 push.setData(pushDict)
                 
-                push.sendPushInBackgroundWithBlock(nil)
+                let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+                let roomQuery = PFQuery(className: "Room", predicate: pred)
+              //  roomQuery.whereKey("Blocked", notEqualTo: user2)
+                roomQuery.whereKey("Blocked", equalTo: user2.username!)
                 
-                
+                roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                    if error == nil
+                    {
+                        print("result for push is \(results!.count)")
+                        print("user2 \(user2.username)")
+
+                        if results!.count == 0
+                        {
+                            //send push only he didnt blocked the room
+                            push.sendPushInBackgroundWithBlock(nil)
+                            
+                        }
+                    }
+                }
+
                 self.room["lastUpdate"] = NSDate()
                 self.room.saveInBackgroundWithBlock(nil)
                 
@@ -629,10 +648,30 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         
         SettingactionSheet.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
             
+            /*
             let addBlock = PFObject(className: "Block")
             addBlock.setObject(PFUser.currentUser()!, forKey: "user")
             addBlock.setObject(self.incomingUser, forKey: "blocked")
             addBlock.saveInBackground()
+            */
+            let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", PFUser.currentUser()!, self.incomingUser,self.incomingUser,PFUser.currentUser()!)
+            
+            let roomQuery = PFQuery(className: "Room", predicate: pred)
+            
+            roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                if error == nil
+                {
+                    if results!.count > 0
+                    {
+                        let room = results?.last as? PFObject
+                        room!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"Blocked")
+                        room?.saveEventually()
+                        
+                    }
+                }
+            }
+            
+            
             
                      
             
