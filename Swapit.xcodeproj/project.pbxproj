@@ -18,6 +18,8 @@
 		DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA53642B1B92B8D500A5B911 /* OverlayView.xib */; };
 		DA59FB251BD7FD9F006892FB /* myItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB241BD7FD9E006892FB /* myItemView.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		DA59FB2B1BD8A2E4006892FB /* CozyLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */; settings = {ASSET_TAGS = (); }; };
+		DA59FB2D1BD8A3C9006892FB /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */; settings = {ASSET_TAGS = (); }; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
 		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
 		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
@@ -151,6 +153,8 @@
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		DA59FB241BD7FD9E006892FB /* myItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemView.swift; sourceTree = "<group>"; };
 		DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemViewCell.swift; sourceTree = "<group>"; };
+		DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CozyLoadingActivity.swift; path = Swapit/CozyLoadingActivity.swift; sourceTree = "<group>"; };
+		DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
 		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 		DA3109421BAF040D00DD9F26 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */,
+				DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */,
 				DAE786881BA90A100077EAA2 /* ViewControllerUtils.swift */,
 				DAE786EC1BAC799A0077EAA2 /* PagedScrollViewController.swift */,
 			);
@@ -439,6 +445,7 @@
 		DAF94C781B7981F5004D2660 = {
 			isa = PBXGroup;
 			children = (
+				DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */,
 				DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */,
 				DA59FB241BD7FD9E006892FB /* myItemView.swift */,
 				DAA555931BD5EA91009719B5 /* viewProfileCell.swift */,
@@ -552,7 +559,6 @@
 		DAF94CD21B7A0AC8004D2660 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */,
 				DAE7867D1BA487830077EAA2 /* PulsingHaloLayer.h */,
 				DAE7867E1BA487830077EAA2 /* PulsingHaloLayer.m */,
 				DAE7867C1BA486E60077EAA2 /* FBShimmering */,
@@ -911,6 +917,7 @@
 				DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */,
 				DAF94D6B1B7A12EC004D2660 /* JSQMessagesInputToolbar.m in Sources */,
 				DAF94C871B7981F6004D2660 /* AppDelegate.swift in Sources */,
+				DA59FB2B1BD8A2E4006892FB /* CozyLoadingActivity.swift in Sources */,
 				DAE786451B9E747B0077EAA2 /* NTWaterfallViewController.swift in Sources */,
 				DA76EA331B955CEB00B76458 /* RangeSlider.swift in Sources */,
 				DAF94D581B7A12EC004D2660 /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -933,6 +940,7 @@
 				DAF94D5D1B7A12EC004D2660 /* JSQMediaItem.m in Sources */,
 				DAF94D6C1B7A12EC004D2660 /* JSQMessagesLabel.m in Sources */,
 				DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */,
+				DA59FB2D1BD8A3C9006892FB /* ProgressHUD.swift in Sources */,
 				DA59FB251BD7FD9F006892FB /* myItemView.swift in Sources */,
 				DAE7867F1BA487830077EAA2 /* PulsingHaloLayer.m in Sources */,
 				DAF94D4E1B7A12EC004D2660 /* UIDevice+JSQMessages.m in Sources */,

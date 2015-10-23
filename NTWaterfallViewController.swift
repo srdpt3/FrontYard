@@ -37,6 +37,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
     var profileimage: [UIImage] = []
+    var activityView: UIActivityIndicatorView!
+
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
@@ -71,7 +73,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-
+        
+        activityView = UIActivityIndicatorView()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
@@ -205,19 +208,20 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         otherlocation.removeAll(keepCapacity: false)
 
         
+        
+        
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
-     ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
 
-        //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
-        // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
-        
-        //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
                 let objects = results as! [PFObject]
+                
+                self.activityView.startAnimating()
+                
+                
                 
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
@@ -231,7 +235,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     let query2 = PFQuery(className: "_User")
                     query2.whereKey("objectId", equalTo: otheruser.objectId!)
                     
-                                       // query2.includeKey("location")
                     query2.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
                         
                         if error2 == nil
@@ -258,6 +261,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.swipedImages.count ){
+                                self.activityView.stopAnimating()
+
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
                             }

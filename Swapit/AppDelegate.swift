@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
 
         self.tabBarController?.tabBar.hidden = true
-        
+    
         return true
     }
     

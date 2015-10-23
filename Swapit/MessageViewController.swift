@@ -48,6 +48,7 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
     
     
     var locationManager : LocationManager!
+    var hide:Bool = true
     
     override func viewWillAppear(animated: Bool) {
 
@@ -278,6 +279,33 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         
     }
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        
+        
+        if( hide )
+        {
+            let user1 = PFUser.currentUser()!
+            let user2 = incomingUser
+            let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
+            let roomQuery = PFQuery(className: "Room", predicate: pred)
+        
+            roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                if error == nil
+                {
+                    if results!.count > 0
+                    {
+                        let room = results?.last as? PFObject
+                        room?.removeObject(self.incomingUser.username!, forKey: "hide")
+                      //  room!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"hide")
+                        room?.saveEventually()
+                        
+                    }
+                }
+            }
+            hide = false
+        }
+        
+        
+        
         let message = PFObject(className: "Message")
         message["content"] = text;
         message["room"] = room
@@ -599,12 +627,14 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
             
         }))
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
             
             let addBlock = PFObject(className: "Block")
             addBlock.setObject(PFUser.currentUser()!, forKey: "user")
             addBlock.setObject(self.incomingUser, forKey: "blocked")
             addBlock.saveInBackground()
+            
+                     
             
             
         }))

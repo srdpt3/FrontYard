@@ -147,7 +147,7 @@ class settingVC: UIViewController {
         itemManage.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         itemManage.setTitle(" Manage Items", forState: UIControlState.Normal)
         itemManage.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
-        itemManage.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
+        itemManage.setTitleColor(UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1), forState: UIControlState.Normal)
         itemManage.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         itemManage.addTarget(self, action: "ManageItems:", forControlEvents: UIControlEvents.TouchUpInside)
         itemManage.clipsToBounds = true
@@ -252,7 +252,7 @@ class settingVC: UIViewController {
             
         }))
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Delete Item", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "Delete Item", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView

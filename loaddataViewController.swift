@@ -25,6 +25,12 @@ class loaddataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        CozyLoadingActivity.Settings.CLASuccessText = ""
+        CozyLoadingActivity.Settings.CLASuccessIcon = ""
+        CozyLoadingActivity.Settings.CLATextColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
+        CozyLoadingActivity.Settings.CLAActivityColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
+        CozyLoadingActivity.show("Loading...", sender: self, disableUI: false)
+        
         let nav = self.navigationController?.navigationBar
         nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -123,7 +129,7 @@ class loaddataViewController: UIViewController {
                                         
                                     }
                                     else{
-                                        ViewControllerUtils().showActivityIndicator(self.view)
+  
                                         
                                         let objects = results as! [PFObject]
                                         for obj in objects{
@@ -141,13 +147,14 @@ class loaddataViewController: UIViewController {
 
                                                     if(results!.count == imagesToswipe.count ){
                                                         
-                                                        ViewControllerUtils().hideActivityIndicator(self.view)
+                                                      //  ViewControllerUtils().hideActivityIndicator(self.view)
                                                         numberOfCards = UInt(imagesToswipe.count)
-                                                        
                                                         let sb = UIStoryboard(name: "Main", bundle: nil)
                                                         let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
                                                         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
                                                         self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+                                                        CozyLoadingActivity.hide(success: true, animated: true)
+
                                                         
                                                     }
                                                     

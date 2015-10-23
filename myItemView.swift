@@ -42,10 +42,8 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     
     var imageNameList : Array <NSString> = []
     let delegateHolder = NavigationControllerDelegate()
-    var otherlocation =  [PFGeoPoint]()
     var otherImageFiles = [PFFile]()
     var otherObjID = [String]()
-    var otherUsers = [PFUser]()
     var pricelabel = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
@@ -57,8 +55,10 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     
     var otherUser : PFUser!
     var userLocation :String!
+ 
     
-    
+    var currentUser = PFUser.currentUser()!
+    var cozy :  CozyLoadingActivity!
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
@@ -67,9 +67,11 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let width = CGRectGetWidth(bounds)
         let height = CGRectGetHeight(bounds)
+        
+        let progressHUD = ProgressHUD(text: "Delete Photo")
+        self.view.addSubview(progressHUD)
         
         self.navigationController!.delegate = nil
         
@@ -77,7 +79,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         let nav = self.navigationController?.navigationBar
         
         
-        self.navigationItem.title = "User Profile"
+        self.navigationItem.title = "My Item List"
         nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
         nav?.barTintColor = backgroundColor
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
@@ -109,7 +111,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         
         //let user = PFUser.currentUser()!
         
-        if let userImageFile = otherUser["profileImage"] as? PFFile {
+        if let userImageFile = currentUser["profileImage"] as? PFFile {
             
             userImageFile.getDataInBackgroundWithBlock { (data, error) -> Void in
                 if error == nil{
@@ -130,8 +132,8 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         numItemsLabel.textColor = UIColor.whiteColor()
         numItemsLabel.font = numItemsLabel.font.fontWithSize(12)
         
-        namelabel.text = otherUser.username!
-        //numItemsLabel.text = "Items: 2";
+        namelabel.text = currentUser.username!
+        numItemsLabel.text = "Select The Item To Delete";
         
         
         
@@ -154,7 +156,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         collection.frame = CGRectMake(10, imageViewContent.frame.height, screenWidth-19, screenHeight-imageViewContent.frame.height)
         collection.setCollectionViewLayout(CHTCollectionViewWaterfallLayout(), animated: false)
         collection.backgroundColor = UIColor.whiteColor()
-        collection.registerClass(viewProfileCell.self, forCellWithReuseIdentifier: ViewCellIdentify2)
+        collection.registerClass(myItemViewCell.self, forCellWithReuseIdentifier: ViewCellIdentify3)
         // collection.reloadData()
         getThumnails()
         
@@ -234,6 +236,72 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
+        let uiAlert = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(uiAlert, animated: true, completion: nil)
+        uiAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { action in
+            
+            CozyLoadingActivity.Settings.CLASuccessText = "Done"
+            CozyLoadingActivity.show("Deleting...", sender: self, disableUI: false)
+            
+            
+            
+            // var query = PFQuery(className: "imageUpload")
+   
+            let query = PFQuery(className:"Post")
+            query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:self.otherObjID[indexPath.row]))
+            query.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                if error == nil
+                {
+                    let objects = results as? [PFObject]
+                    
+                    for obj in objects!
+                    {
+                        obj.deleteInBackgroundWithBlock { (success, error
+                            ) -> Void in
+                            if (success) {
+                                // The object has been saved.
+                                CozyLoadingActivity.hide(success: true, animated: true)
+                                print("success")
+                                
+                            } else {
+                                // There was a problem, check error.description
+                                print(error)
+                            }
+                            
+                        }
+
+                    }
+                    
+                    
+                }
+                else
+                {
+                    print(error)
+                }
+            })
+            
+            let object: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: self.otherObjID[indexPath.row])
+            object.deleteInBackgroundWithBlock { (success, error
+                ) -> Void in
+                if (success) {
+                    print ("sucess")
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                } else {
+                    // There was a problem, check error.description
+                    print(error)
+                }
+                
+            }
+            
+            
+        }))
+        
+        uiAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+            print("Click of cancel button")
+        }))
+
+        
         /*
         let pageViewController =
         NTHorizontalPageViewController(collectionViewLayout: pageViewControllerLayout(), currentIndexPath:indexPath)
@@ -311,41 +379,15 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         itemTitle.removeAll(keepCapacity: false)
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
-        otherlocation.removeAll(keepCapacity: false)
-        
         
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
-        query.whereKey("user", equalTo: otherUser)
-        
-        
-        ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
-        
-        //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
-        // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
-        
-        //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
+        query.whereKey("user", equalTo: currentUser)
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
                 let objects = results as! [PFObject]
-                self.numItemsLabel.text = "Items: \(results!.count) @\(self.userLocation)"
-                if (results?.count == 0){
-                    if(self.userLocation != nil)
-                    {
-                        self.numItemsLabel.text = "No Item Found @\(self.userLocation)"
-                    }
-                    
-                }
-                    
-                else
-                {
-                    if(self.userLocation != nil)
-                    {
-                        self.numItemsLabel.text = "Items: \(results!.count) @\(self.userLocation)"
-                    }
-                    
-                }
+
                 
                 
                 for obj in objects{

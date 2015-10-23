@@ -29,6 +29,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     var index2:Int = 0
     var remainingCards: Int = 0
+    
+    var finishLoading : Bool = false
 
     override func viewDidAppear(animated: Bool) {
         remainingCards = Int(numberOfCards)
@@ -50,6 +52,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        
+        
         userImage = UIImageView(frame: CGRectMake(50, 0, self.view.frame.width-100, self.view.frame.height-100))
         popview = PagedScrollViewController()
 
@@ -125,16 +129,21 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         index2 = Int(index)
         print(index2)
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
-        imageView.image = imagesToswipe[index2]
+     if(imagesToswipe.count > 0)
+     {
+            imageView.image = imagesToswipe[index2]
         
-        imageView.layer.cornerRadius = 5
-       imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
+            imageView.layer.cornerRadius = 5
+            imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
       //  imageView.layer.borderColor = UIColor.clearColor().CGColor
-        imageView.layer.borderWidth = 2;
+            imageView.layer.borderWidth = 2;
         
-        imageView.clipsToBounds = true
-
-        
+            imageView.clipsToBounds = true
+    }
+    else
+    {
+         self.kolodaDidRunOutOfCards(self.kolodaView)
+    }
         return imageView
 
         
@@ -395,6 +404,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                             if error2 == nil
                             {
                                 print("results!.count\(results!.count)")
+
+                                self.finishLoading = true
                                 let objects = results as! [PFObject]
                                 for obj in objects{
                                     let thumbNail = obj["image"] as! PFFile

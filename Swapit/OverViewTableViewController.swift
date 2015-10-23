@@ -35,9 +35,29 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            rooms.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+
+            
+            let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", PFUser.currentUser()!,users[indexPath.row],users[indexPath.row],PFUser.currentUser()!)
+            let roomQuery = PFQuery(className: "Room", predicate: pred)
+            
+            roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
+                if error == nil
+                {
+                    if results!.count > 0
+                    {
+                        let room = results?.last as? PFObject
+                        room!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"hide")
+                        room?.saveEventually()
+
+                    }
+                }
+            }
+            
+            
         }
+        rooms.removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        return 
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -223,7 +243,7 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)
         
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-        
+
         roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
@@ -251,7 +271,8 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                     
                     messageQuery.whereKey("room", equalTo: room!)
                     messageQuery.limit = 1
-                    messageQuery.orderByDescending("createdAt")
+                    messageQuery.addDescendingOrder("createdAt")
+                  //  messageQuery.addAscendingOrder("updatedAt")
                     messageQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
                         if error == nil
                         {
@@ -263,29 +284,28 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
                                 cell.lastMessageLabel.text  = message?["content"]  as? String
                                 
                                 
-                                let date = message?.createdAt
+                                let date = message?.updatedAt
                                 let interval = NSDate().daysAfterDate(date)
                                 print("interval\(interval)")
                                 var dateString = ""
                                 
                                 if interval == 0
                                 {
-                                    dateString = "today"
+                                     dateString = "today"
                                 }
-                                    // }else if interval == 1
-                                    //  {
-                                    //      dateString = "yesterday"
-                                    //  }else if interval > 1
-                                    // {
-                                else
+                                else if interval == 1
+                                {
+                                     dateString = "yesterday"
+                                }
+                                else if interval > 1
                                 {
                                     let dateFormat = NSDateFormatter()
-                                    dateFormat.dateFormat = "mm/dd/yyyy"
-                                    dateString = dateFormat.stringFromDate(message!.createdAt!)
+                                    dateFormat.dateFormat = "MM/dd/yyyy"
+                                    dateString = dateFormat.stringFromDate(message!.updatedAt!) as String
                                     
                                     
                                 }
-                                cell.dateLabel.text = dateString as? String!
+                                cell.dateLabel.text = dateString
                             }
                             else
                             {
@@ -369,11 +389,18 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
         rooms = [PFObject]()
         users = [PFUser]()
         
+        
+        
+        
+        
         self.tableView.reloadData()
         
         let pred = NSPredicate(format: "user1 = %@ OR user2 = %@", PFUser.currentUser()!, PFUser.currentUser()!)
         let roomQuery = PFQuery(className: "Room", predicate: pred)
-        roomQuery.orderByDescending("lastUpdated")
+        roomQuery.whereKey("hide", notEqualTo: PFUser.currentUser()!.username!)
+        roomQuery.addDescendingOrder("updatedAt")
+      //  roomQuery.orderByDescending("updatedAt")
+
         roomQuery.includeKey("user1")
         roomQuery.includeKey("user2")
         
