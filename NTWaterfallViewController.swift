@@ -71,8 +71,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-        
-        
+
         
     }
     
@@ -202,6 +201,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     func getfavoritelist()
     {
         
+        CozyLoadingActivity.Settings.CLASuccessText = ""
+        CozyLoadingActivity.Settings.CLASuccessIcon = ""
+        CozyLoadingActivity.Settings.CLATextColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
+        CozyLoadingActivity.Settings.CLAActivityColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
+        CozyLoadingActivity.show("Loading...", sender: self, disableUI: false)
         
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
@@ -210,9 +214,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pricelabel.removeAll(keepCapacity: false)
         otherlocation.removeAll(keepCapacity: false)
 
-        CozyLoadingActivity.Settings.CLASuccessText = "Done"
-        CozyLoadingActivity.show("Loading...", sender: self, disableUI: false)
-        
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
@@ -259,9 +260,10 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.swipedImages.count ){
-                                CozyLoadingActivity.hide(success: true, animated: true)
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
+                                CozyLoadingActivity.hide(success: true, animated: true)
+
                             }
                             
                             

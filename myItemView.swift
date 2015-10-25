@@ -135,20 +135,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         namelabel.text = currentUser.username!
  
         
-        
-        
-        
-        
-        self.imageViewContent.addSubview(effectView)
-        self.imageViewContent.addSubview(profileimageView)
-        self.imageViewContent.addSubview(namelabel)
-        self.imageViewContent.addSubview(numItemsLabel)
-        
-        // self.view.addSubview(imageViewContent)
-        
-        
-        self.navigationController?.navigationBar.addSubview(imageViewContent)
-        
+
         
         let collection :UICollectionView = collectionView!;
         // collection.frame = screenBounds
@@ -164,6 +151,17 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+        
+         self.imageViewContent.addSubview(effectView)
+        self.imageViewContent.addSubview(profileimageView)
+        self.imageViewContent.addSubview(namelabel)
+        self.imageViewContent.addSubview(numItemsLabel)
+        
+        // self.view.addSubview(imageViewContent)
+        
+        
+        self.navigationController?.navigationBar.addSubview(imageViewContent)
+        
     }
     
     // Determine other user's location
