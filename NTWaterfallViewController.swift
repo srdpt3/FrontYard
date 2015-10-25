@@ -43,7 +43,9 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     override func viewDidAppear(animated: Bool) {
   
     }
-    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return UIStatusBarAnimation.Fade
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -123,7 +125,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
-        
+
         let pageViewController =
         NTHorizontalPageViewController(collectionViewLayout: pageViewControllerLayout(), currentIndexPath:indexPath)
         pageViewController.imageFile = swipedImages
@@ -146,10 +148,10 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         
         
-        
     }
     override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.hidesBarsOnSwipe = false
+
+        
     }
     
     func pageViewControllerLayout () -> UICollectionViewFlowLayout {
@@ -164,7 +166,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     override func viewWillAppear(animated: Bool) {
       // self.collectionView!.reloadData()
-        self.navigationController?.hidesBarsOnSwipe = true
+      //  self.navigationController?.hidesBarsOnSwipe = true
     }
     
     

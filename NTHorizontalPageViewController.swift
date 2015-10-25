@@ -17,8 +17,6 @@ let horizontalPageViewCellIdentify = "horizontalPageViewCellIdentify"
 
 class NTHorizontalPageViewController : UICollectionViewController, NTTransitionProtocol ,NTHorizontalPageViewControllerProtocol,CLLocationManagerDelegate,MKMapViewDelegate{
     
-   
-    
     var popview : PagedScrollViewController!
     
     var indexnum : Int = Int()
@@ -57,6 +55,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         super.init(collectionViewLayout:layout)
         let collectionView :UICollectionView = self.collectionView!;
         
+        collectionView.backgroundColor = UIColor.whiteColor()
         popview = PagedScrollViewController()
 
        
@@ -156,6 +155,20 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        
+        
+        
+        self.view.backgroundColor = UIColor.whiteColor()
+        let nav = self.navigationController?.navigationBar
+        self.navigationItem.title = "My asdfsadf"
+        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
+        nav?.barTintColor = backgroundColor
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+
+        
+        
+        
         
         self.view.backgroundColor = UIColor.whiteColor()
         let btnName: UIButton = UIButton()
@@ -360,7 +373,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     func pageViewCellScrollViewContentOffset() -> CGPoint{
         return self.pullOffset
     }
-    
+
     func leftpressed()
     {
    
