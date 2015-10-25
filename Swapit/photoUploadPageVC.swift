@@ -49,10 +49,18 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     var kPreferredTextFieldToKeyboardOffset: CGFloat = 20.0
     var keyboardFrame: CGRect = CGRect.null
     var keyboardIsShowing: Bool = false
-
-    
     let cameraImagename : String = "Old-Camera-icon.png"
     
+    let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
+
+    override func loadView() {
+        // calling self.view later on will return a UIView!, but we can simply call
+        // self.scrollView to adjust properties of the scroll view:
+        self.view = self.scrollView
+        self.scrollView.showsHorizontalScrollIndicator = false;
+        self.scrollView.showsVerticalScrollIndicator = false;
+        
+    }
     
     override func viewDidLoad() {
         
@@ -78,7 +86,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         //   DescTextiew.contentVerticalAlignment  = scrollRangeToVisible:NSMakeRange(0, 1)
         DescTextView.contentInset = UIEdgeInsetsMake(0,0,0,0.0);
         DescTextView.sizeToFit()
-        self.automaticallyAdjustsScrollViewInsets = false
+       // self.automaticallyAdjustsScrollViewInsets = false
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -98,7 +106,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         }
         
         var buttonOffsetX = width*0.1
-        var buttonOffsetY  = width/5
+        var buttonOffsetY  = 0.0 as CGFloat
         // println(width)
         //println(height)
         
@@ -225,38 +233,44 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         buttonOffsetY+=(Price.frame.height)
         DescLabel.frame = CGRectMake(width*0.01, buttonOffsetY, width, height/25)
         
-        DescLabel.text = "DESCRIPTION"
-        DescLabel.textAlignment = NSTextAlignment.Natural;
+        DescLabel.text = "Description"
+        DescLabel.textAlignment = NSTextAlignment.Left;
         DescLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
-        DescLabel.font = itemTitleLabel.font.fontWithSize(16)
+        
+        //DescLabel.font = itemTitleLabel.font.fontWithSize(16)
+        DescLabel.font = UIFont(name: "Verdana", size: 16)
         
         
         buttonOffsetY+=(DescLabel.frame.height)
         
         DescTextView = UITextView(frame: CGRect(x: 0, y: buttonOffsetY, width: width, height: height/6));
-        self.view.addSubview(DescTextView)
         DescTextView.layer.borderColor = UIColor.grayColor().CGColor
         DescTextView.layer.borderWidth = 0.0
         DescTextView.layer.cornerRadius = 0
         DescTextView.delegate = self
-        DescTextView.becomeFirstResponder()
+        DescTextView.text = "Short Description of item"
+        DescTextView.textColor = UIColor.lightGrayColor()
+        
+     //   DescTextView.becomeFirstResponder()
+        
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        self.view.addGestureRecognizer(tap)
-        self.view.addSubview(DescTextView)
+       self.view.addGestureRecognizer(tap)
+      //  self.view.addSubview(DescTextView)
         
         
         buttonOffsetY+=(DescTextView.frame.height)
-        charRemainingLabel.frame = CGRectMake(width*0.5, buttonOffsetY, width*0.4, height/30)
+        charRemainingLabel.frame = CGRectMake(width*0.5, buttonOffsetY, width*0.4, height/25)
         
         //charRemainingLabel.text = "Remaining Characters"
         charRemainingLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
-        charRemainingLabel.font = itemTitleLabel.font.fontWithSize(11)
+        charRemainingLabel.font = itemTitleLabel.font.fontWithSize(13)
         
         
         
         // upload Button Frame
+        buttonOffsetY+=(charRemainingLabel.frame.height)
         
-        uploadButton.frame = CGRectMake(0, CGFloat(height-height/12), width, (height/12))
+        uploadButton.frame = CGRectMake(0, CGFloat(buttonOffsetY), width, (height/10))
         uploadButton.setTitle(" Upload Your Stuff", forState: UIControlState.Normal)
         uploadButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         uploadButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -267,23 +281,22 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         uploadButton.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         uploadButton.layer.borderWidth = 0.5;
         
-        
-        
-        
-        self.view.addSubview(image1)
-        self.view.addSubview(image2)
-        self.view.addSubview(image3)
-        self.view.addSubview(image4)
-        self.view.addSubview(itemTitleLabel)
-        self.view.addSubview(itemTitleText)
-        self.view.addSubview(PriceLabel)
-        self.view.addSubview(Currency)
-        self.view.addSubview(Price)
-        self.view.addSubview(DescLabel)
-        self.view.addSubview(DescTextView)
-        self.view.addSubview(uploadButton)
-        self.view.addSubview(charRemainingLabel)
-        
+ 
+        self.scrollView.addSubview(image1)
+        self.scrollView.addSubview(image2)
+        self.scrollView.addSubview(image3)
+        self.scrollView.addSubview(image4)
+        self.scrollView.addSubview(itemTitleLabel)
+        self.scrollView.addSubview(itemTitleText)
+        self.scrollView.addSubview(PriceLabel)
+        self.scrollView.addSubview(Currency)
+        self.scrollView.addSubview(Price)
+        self.scrollView.addSubview(DescLabel)
+        self.scrollView.addSubview(DescTextView)
+        self.scrollView.addSubview(uploadButton)
+        self.scrollView.addSubview(charRemainingLabel)
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
+
         
         
         var pickerview2: UIPickerView = UIPickerView()
@@ -445,7 +458,6 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             
         }
         else{
-            ViewControllerUtils().showActivityIndicator(self.view)
             
             PFUser.currentUser()!.save()
             
@@ -473,16 +485,20 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                         self.itemTitleText.text = ""
                         self.DescTextView.text = ""
                         
-                        //  updateMyImage()
+                        let sb = UIStoryboard(name: "Main", bundle: nil)
+                        let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
+                        //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
+                        
+                        self.navigationController!.pushViewController(myItemVC, animated: true)
+                        
                     }
                     
                 })
                 //  myPost.addUniqueObject(imageFile, forKey: "images")
                 
             }
-            ViewControllerUtils().hideActivityIndicator(self.view)
             
-            self.navigationController?.popToRootViewControllerAnimated(true)
+           // self.navigationController?.popToRootViewControllerAnimated(true)
         }
         
     }
@@ -532,7 +548,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         appDelegate.tabBarController.tabBarView.hidden = true
         self.tabBarController?.tabBar.hidden = true
         
-        
+       self.scrollView.setContentOffset(CGPointMake(0,0), animated: true)
+   
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

@@ -23,8 +23,6 @@ class settingVC: UIViewController {
     var shareApp :UIButton = UIButton()
     var rateApp :UIButton = UIButton()
     
-    
-    
     let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
     
     override func loadView() {
@@ -64,23 +62,7 @@ class settingVC: UIViewController {
         barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
         
         self.navigationItem.leftBarButtonItem = leftbutton
-        
-        /*
-        let logoutButton: UIButton = UIButton()
-        logoutButton.setImage(UIImage(named: "logout"), forState: .Normal)
-        logoutButton.tintColor = UIColor.whiteColor()
-        logoutButton.backgroundColor =  UIColor.whiteColor()
-        logoutButton.frame = CGRectMake(0, 0, 20, 20)
-        logoutButton.addTarget(self, action: Selector("logoutPressed:"), forControlEvents: .TouchUpInside)
-        
-        let leftlogoutButtonItem:UIBarButtonItem = UIBarButtonItem()
-        leftlogoutButtonItem.customView = logoutButton
-
-        self.navigationItem.leftBarButtonItem = leftlogoutButtonItem
-        
-        */
-        
-        
+ 
         
         let btnName: UIButton = UIButton()
         btnName.setImage(UIImage(named: "icon_share"), forState: .Normal)
@@ -93,11 +75,7 @@ class settingVC: UIViewController {
         
         
         let rightSaveBarButtonItem  = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
-        // leftbutton.
         rightSaveBarButtonItem.tintColor = UIColor.whiteColor()
-//        let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "saveButtonpressed:")
-        
-        
         self.navigationItem.setRightBarButtonItems([rightSaveBarButtonItem,rightShareBarButtonItem], animated: true)
         
         
@@ -118,10 +96,8 @@ class settingVC: UIViewController {
         
         
         //get profile image
-        
         let user = PFUser.currentUser()!
 
-        
         //  let profileImageFile : PFFile! = user2["profileImage"] as! PFFile
         
         if let userImageFile = user["profileImage"] as? PFFile {
@@ -139,7 +115,6 @@ class settingVC: UIViewController {
                 }
             }
         }
-        
         
         
         //Price Search Range
@@ -204,11 +179,11 @@ class settingVC: UIViewController {
         //Share App
         buttonOffset+=(contactDeveloper.frame.height)
         shareApp.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
-        shareApp.setTitle(" Share this App", forState: UIControlState.Normal)
+        shareApp.setTitle(" About", forState: UIControlState.Normal)
         shareApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         shareApp.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
         shareApp.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        shareApp.addTarget(self, action: "sharethisapp:", forControlEvents: UIControlEvents.TouchUpInside)
+        shareApp.addTarget(self, action: "aboutThisApp:", forControlEvents: UIControlEvents.TouchUpInside)
         
         shareApp.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         shareApp.layer.borderWidth = 0.25;
@@ -315,13 +290,7 @@ class settingVC: UIViewController {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
             //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-            
-            let transition : CATransition = CATransition()
-            transition.duration = 0.8
-            transition.type = kCATransitionFade;
-            transition.subtype = kCATransitionFromLeft;
-            
-            self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+
             self.navigationController!.pushViewController(myItemVC, animated: true)
             
             
@@ -347,16 +316,15 @@ class settingVC: UIViewController {
             let fb = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
             // Set the text for facebook share.
-            fb.setInitialText("Swapit")
+            fb.setInitialText("VenDee")
             
             // add an image if needed.
-            fb.addImage(UIImage(named: "main.gif"))
+            fb.addImage(UIImage(named: "vendee_logo.png"))
             
             // display composer view controller
             self.presentViewController(fb, animated: true, completion:nil)
         } else {
             // Display alert if Facebook not configured.
- 
             let av = UIAlertController(title: "Message", message: "Facebook not configured on your device. Go to Settings -> Facebook and log in to share", preferredStyle: UIAlertControllerStyle.Alert)
             av.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(av, animated: true, completion: nil)
@@ -387,9 +355,10 @@ class settingVC: UIViewController {
         
         
     }
-    
-    
-    
+    func aboutThisApp(sender: AnyObject)
+    {
+        print("tomorr")
+    }
     
     override func viewWillAppear(animated: Bool) {
         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
