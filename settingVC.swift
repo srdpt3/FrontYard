@@ -24,7 +24,8 @@ class settingVC: UIViewController {
     var rateApp :UIButton = UIButton()
     
     let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
-    
+    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
     override func loadView() {
         // calling self.view later on will return a UIView!, but we can simply call
         // self.scrollView to adjust properties of the scroll view:
@@ -226,7 +227,6 @@ class settingVC: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
         let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = true
         
         
@@ -250,6 +250,8 @@ class settingVC: UIViewController {
     
     func changeProfileImage(img: AnyObject)
     {
+        
+        appDelegate.tabBarController.tabBarView.hidden = true
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
         profileVC.change = true
@@ -361,7 +363,6 @@ class settingVC: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController.tabBarView.hidden = false
         self.tabBarController?.tabBar.hidden = true
         self.scrollView.setContentOffset(CGPointMake(0,0), animated: true)

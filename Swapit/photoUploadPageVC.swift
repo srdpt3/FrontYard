@@ -106,7 +106,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         }
         
         var buttonOffsetX = width*0.1
-        var buttonOffsetY  = 0.0 as CGFloat
+        var buttonOffsetY  = height*0.01 as CGFloat
         // println(width)
         //println(height)
         
@@ -141,7 +141,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         image2.layer.borderWidth = 0.5
         
         buttonOffsetX = width*0.1
-        buttonOffsetY+=width*0.3
+        buttonOffsetY+=width*0.315
         // Image3 Button Frame
         image3.frame = CGRectMake(CGFloat(buttonOffsetX), CGFloat(buttonOffsetY), width*0.3, width*0.3)
         image3.tag = 3

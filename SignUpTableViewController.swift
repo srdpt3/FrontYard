@@ -48,6 +48,10 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
             
             username.text = PFUser.currentUser()?.username
             emailTextField.text = PFUser.currentUser()?.email
+            username.enabled = false
+            emailTextField.enabled = false
+            
+            
             firstnameTextField.text = currentUser["firstName"]as? String
             lastnameTextField.text = currentUser["lastName"] as? String
             
@@ -77,12 +81,12 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         let profileImageData = UIImageJPEGRepresentation(profileImage.image!,0.6)
         let profileImagefile = PFFile(data: profileImageData!)
         
-        if (username.text != "" && emailTextField.text != "" && lastnameTextField.text != "" &&
+        if ( lastnameTextField.text != "" &&
             firstnameTextField.text != "")
         {
             
-            currentUser.username = username.text
-            currentUser.email = emailTextField.text
+         //   currentUser.username = username.text
+          //  currentUser.email = emailTextField.text
             
             
             currentUser["firstName"] = firstnameTextField.text
@@ -271,8 +275,6 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         // self.navigationController?.pushViewController(logginVC, animated: true)
       //  self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
         
-
- 123
         
     }
     override func didReceiveMemoryWarning() {
