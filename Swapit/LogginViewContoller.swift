@@ -26,7 +26,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         nav?.barTintColor = backgroundColor
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        self.logInView?.logo = UIImageView(image: UIImage(named: "vendee_logo.png"))
+        self.logInView?.logo = UIImageView(image: UIImage(named: "vendee_logo_white"))
         // self.signUpController?.signUpView?.logo = UIImageView(image: UIImage(named: "main.gif"))
         self.logInView!.logo?.contentMode = .Center
         self.logInView!.logo?.contentMode = UIViewContentMode.ScaleAspectFit
@@ -34,8 +34,27 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
         self.logInView?.signUpButton?.removeTarget(self, action: nil, forControlEvents: UIControlEvents.AllEvents)
         self.logInView?.signUpButton?.addTarget(self, action: "displaySignUpbutton", forControlEvents: UIControlEvents.TouchUpInside)
-       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "VendeeSplash3")!)
-
+        // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "VendeeSplash3")!)
+        
+        
+        logInView?.passwordForgottenButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "b80264c12c88eac19d5e4c8597d051e1.jpg")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        
+        
+        
+        // make the buttons classier
+        //  customizeButton(logInView?.facebookButton!)
+        //  customizeButton(logInView?.twitterButton!)
+        customizeButton(logInView?.signUpButton!)
+        
+        
+        
+        
         
     }
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
@@ -63,7 +82,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
     }*/
     func showChatOverview()
     {
-
+        
         if PFUser.currentUser()?.objectForKey("emailVerified")?.boolValue == true
         {
             
@@ -113,11 +132,11 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         imagesToswipe.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         
-       // let currentUser = PFUser.currentUser()!
+        // let currentUser = PFUser.currentUser()!
         
         if PFUser.currentUser() != nil
         {
-
+            
             if PFUser.currentUser()?.objectForKey("emailVerified")?.boolValue == true
             {
                 
@@ -135,13 +154,30 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
                 //     overViewVC.navigationItem.setHidesBackButton(true, animated: false)
                 self.navigationController?.pushViewController(overViewVC, animated: true)
             }
-           
+            
             //JTSplashView.splashViewWithBackgroundColor(nil, circleColor: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0), circleSize: nil)
             
         }
         
     }
-    
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
+    func customizeButton(button: UIButton!) {
+        button.setBackgroundImage(nil, forState: .Normal)
+        button.backgroundColor = UIColor.clearColor()
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.whiteColor().CGColor
+    }
     override func viewWillDisappear(animated: Bool) {
         
         

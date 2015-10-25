@@ -20,6 +20,9 @@
 		DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB2B1BD8A2E4006892FB /* CozyLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB2D1BD8A3C9006892FB /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */; settings = {ASSET_TAGS = (); }; };
+		DA59FB311BDD2AFA006892FB /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB301BDD2AFA006892FB /* background.jpg */; settings = {ASSET_TAGS = (); }; };
+		DA59FB351BDD3E55006892FB /* blue_blur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB341BDD3E55006892FB /* blue_blur.jpg */; settings = {ASSET_TAGS = (); }; };
+		DA59FB391BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */; settings = {ASSET_TAGS = (); }; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
 		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
 		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
@@ -151,6 +154,9 @@
 		DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemViewCell.swift; sourceTree = "<group>"; };
 		DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CozyLoadingActivity.swift; path = Swapit/CozyLoadingActivity.swift; sourceTree = "<group>"; };
 		DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		DA59FB301BDD2AFA006892FB /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images.xcassets/icons/background.jpg; sourceTree = "<group>"; };
+		DA59FB341BDD3E55006892FB /* blue_blur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_blur.jpg; path = Images.xcassets/icons/blue_blur.jpg; sourceTree = "<group>"; };
+		DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = b80264c12c88eac19d5e4c8597d051e1.jpg; path = Swapit/Images.xcassets/icons/b80264c12c88eac19d5e4c8597d051e1.jpg; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
 		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
@@ -389,6 +395,7 @@
 				DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */,
 				DAF94D741B7AF27F004D2660 /* LogginViewContoller.swift */,
 				DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */,
+				DA59FB301BDD2AFA006892FB /* background.jpg */,
 			);
 			name = "Login&SignUp";
 			sourceTree = "<group>";
@@ -444,6 +451,7 @@
 				DAA555911BD5E9DD009719B5 /* viewProfile.swift */,
 				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
+				DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
@@ -472,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
+				DA59FB341BDD3E55006892FB /* blue_blur.jpg */,
 				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
 				DA3109421BAF040D00DD9F26 /* Utils */,
 				DA3109411BAEE9BF00DD9F26 /* Setting */,
@@ -811,11 +820,14 @@
 				DAA20E331BCCCC2500E9DED6 /* icon_arrow_left.png in Resources */,
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				DA59FB311BDD2AFA006892FB /* background.jpg in Resources */,
 				DAF94C911B7981F6004D2660 /* Images.xcassets in Resources */,
 				DAF94D531B7A12EC004D2660 /* JSQMessagesViewController.xib in Resources */,
 				DAF94D671B7A12EC004D2660 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
+				DA59FB351BDD3E55006892FB /* blue_blur.jpg in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
+				DA59FB391BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
