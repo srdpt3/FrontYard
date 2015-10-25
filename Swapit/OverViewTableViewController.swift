@@ -13,7 +13,6 @@ import FoldingTabBar
 class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     
     @IBOutlet var choosePartnerButoon: UIBarButtonItem!
-    @IBOutlet var logout: UIBarButtonItem!
     
     var rooms = [PFObject]()
     var users = [PFUser]()
@@ -91,7 +90,6 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
 
             
             self.navigationItem.setRightBarButtonItem(choosePartnerButoon, animated: false)
-            self.navigationItem.setLeftBarButtonItem(logout, animated: false)
             loadData()
 
         }
@@ -145,48 +143,6 @@ class OverViewTableViewController: UITableViewController,YALTabBarInteracting{
     }
     
     
-    @IBAction func settingButtonPressed(sender: AnyObject) {
-        
-        let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        SettingactionSheet.addAction(UIAlertAction(title: "Change profile", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
-            profileVC.change = true
-            //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-            self.navigationController?.pushViewController(profileVC, animated: true)
-            
-            
-        }))
-
-        SettingactionSheet.addAction(UIAlertAction(title: "Log out", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
-            
-            PFUser.logOut()
-            imagesToswipe.removeAll(keepCapacity: false)
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            
-            let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
-            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.tabBarController.tabBarView.hidden = true
-            
-            
-            appDelegate.window?.makeKeyAndVisible()
-            
-            // self.navigationController?.pushViewController(logginVC, animated: true)
-            self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
-            
-            
-            
-            print("logout")
-            
-        }))
-        
-        SettingactionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel  , handler: nil))
-        self.presentViewController(SettingactionSheet, animated: true, completion: nil)
-        
-    }
     
     func LogoutButton() {
         PFUser.logOut()

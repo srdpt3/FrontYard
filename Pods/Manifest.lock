@@ -1,19 +1,16 @@
 PODS:
   - FoldingTabBar (1.0.1)
-  - Google-Material-Design-Icons-Swift (1.0.1)
-  - Koloda (2.0.1):
+  - Koloda (2.0.3):
     - pop (~> 1.0)
   - pop (1.0.8)
 
 DEPENDENCIES:
   - FoldingTabBar (~> 1.0.1)
-  - Google-Material-Design-Icons-Swift (~> 1.0.1)
   - Koloda (~> 2.0.1)
 
 SPEC CHECKSUMS:
   FoldingTabBar: 3e04c49dbe2b02c529561a4182bf017b928d04d2
-  Google-Material-Design-Icons-Swift: ff587db57d713061f66b8457229d1af2cae84c56
-  Koloda: e9f23f5bce90e7a0f0f5a06dfdb69e6285851895
+  Koloda: ae8e90ca29c709572eb948a3ce0ca44db62f8344
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

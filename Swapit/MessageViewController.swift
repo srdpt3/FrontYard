@@ -42,6 +42,8 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
     var searchBar:UISearchBar!
 
     var scrollview2 : UIScrollView! = UIScrollView()
+    var scrollview3 : UIScrollView! = UIScrollView()
+
     
     var moreClicked : Bool = false
     var userlocation:String!
@@ -131,10 +133,7 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                 })
                 
             }
-            
-            
         }
-        
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         
         outgoingBubbleImage = bubbleFactory.outgoingMessagesBubbleImageWithColor(backgroundColor)
@@ -155,6 +154,20 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         locationManager = LocationManager.sharedInstance
 
         self.tabBarController?.tabBar.hidden = true
+        whatIlikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.2)
+        whatIlikedView.backgroundColor = UIColor.whiteColor()
+        
+        
+        scrollview2.frame = CGRectMake(0, 0, whatIlikedView.frame.width*0.4, screenHeight*0.2)
+        scrollview3.frame = CGRectMake(whatIlikedView.frame.width*0.6, 0, whatIlikedView.frame.width*0.4, screenHeight*0.2)
+        scrollview2.showsHorizontalScrollIndicator = false;
+        scrollview2.showsVerticalScrollIndicator = false;
+        scrollview3.showsHorizontalScrollIndicator = false;
+        scrollview3.showsVerticalScrollIndicator = false;
+        
+        self.scrollview2.delegate = self
+        self.scrollview3.delegate = self
+
     
      
         
@@ -162,9 +175,7 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadMessages", name: "reloadMessages", object: nil)
-        print("userlocation \(userlocation)")
 
         
     }
@@ -482,12 +493,12 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         let MyImageView : UIImageView = UIImageView()
         
         //  WhatMyImageView.frame  = CGRectMake(xOffset,screenHeight, xOffset+20, screenHeight*0.25)
-        MyImageView.frame = CGRectMake(xOffset, whatIlikedView.frame.height*0.1, whatIlikedView.frame.height*0.4,whatIlikedView.frame.height*0.4)
+        MyImageView.frame = CGRectMake(xOffset, self.scrollview3.frame.height*0.58, self.scrollview3.frame.height*0.4,self.scrollview2.frame.height*0.4)
         MyImageView.image = image
         MyImageView.layer.cornerRadius = MyImageView.frame.size.width/2
         
         MyImageView.clipsToBounds = true
-      //  whatIlikedView.addSubview(MyImageView)
+        scrollview3.addSubview(MyImageView)
         
     }
     
@@ -496,23 +507,8 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
     
     func displayProducts()
     {
-     var offsetY :CGFloat = (self.navigationController?.navigationBar.frame.height)!
-        
-        
-       // var offsetY :CGFloat = screenHeight*0.15
 
-        whatIlikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.2)
-        whatIlikedView.backgroundColor = UIColor.whiteColor()
-        
-        scrollview2.frame = CGRectMake(0, 0, screenWidth*0.4, screenHeight*0.2)
 
-        self.scrollview2.delegate = self
-       /// self.pageControl.currentPage = 0
-        
-        offsetY+=whatIlikedView.frame.height
-        whatOtherslikedView.frame  = CGRectMake(0, 0, screenWidth, screenHeight*0.1)
-        whatOtherslikedView.backgroundColor = UIColor.whiteColor()
-        
         
         whatIinterested.removeAll(keepCapacity: false)
         whatOthersinterested.removeAll(keepCapacity: false)
@@ -542,14 +538,8 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                                     self.generateButton(xOffset, image: image)
                                     xOffset+=screenWidth*0.15
                                 }
-                               // self.collectionView?.addSubview(self.whatIlikedView)
-                               self.scrollview2.contentSize = CGSizeMake(self.scrollview2.frame.width * CGFloat(count/2), self.scrollview2.frame.height)
-                               // self.scrollview2.contentSize = CGSizeMake(self.scrollview2.frame.width , self.scrollview2.frame.height)
-
-                                self.whatIlikedView.addSubview(self.scrollview2)
-                               self.view.addSubview(self.whatIlikedView)
-                                
-                           //   self.navigationController?.navigationBar.addSubview(self.scrollview2)
+                               self.scrollview2.contentSize = CGSizeMake(self.whatIlikedView.frame.height*0.4 * CGFloat(count)+CGFloat(screenWidth*0.1), self.scrollview2.frame.height)
+                               self.whatIlikedView.addSubview(self.scrollview2)
                               
                             }
                             
@@ -557,7 +547,6 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                     })
                 }
             }
-                
             else
             {
                 
@@ -567,11 +556,13 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
         
         let query2:PFQuery = PFQuery(className: "imageUpload")
         query2.whereKey("user", equalTo: PFUser.currentUser()!)
-        query2.whereKey("chat", equalTo: incomingUser!.username!)
-        
+        query2.whereKey("chat", equalTo: incomingUser.username!)
+        var count2 : Int = 0
         query2.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error  == nil
             {
+                
+                print("objects count is \(objects!.count)")
                 for obj in objects!{
                     let thumbNail = obj["image"] as! PFFile
                     
@@ -579,16 +570,19 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                         if (error == nil) {
                             let image = UIImage(data:imageData!)
                             self.whatOthersinterested.append(image!)
-                            if(objects!.count == self.whatOthersinterested.count  && objects!.count >= 1){
+                            
+                            count2 = self.whatOthersinterested.count
+                            if(objects!.count == self.whatOthersinterested.count && objects!.count >= 1){
                                 
-                                var xOffset  = screenWidth*0.03 as CGFloat
+                                var xOffset  = screenWidth*0.05 as CGFloat
                                 for (_,image) in self.whatOthersinterested.enumerate()
-                              {
-                                self.generateButton2(xOffset, image: image)
-                                xOffset+=screenWidth*0.1
+                                {
+                                    self.generateButton2(xOffset, image: image)
+                                    xOffset+=screenWidth*0.15
                                 }
-                             //   self.navigationController?.navigationBar.addSubview(self.whatOtherslikedView)
-
+                                self.scrollview3.contentSize = CGSizeMake(self.whatIlikedView.frame.height*0.4 * CGFloat(count2)+CGFloat(screenWidth*0.1), self.scrollview3.frame.height)
+                                self.whatIlikedView.addSubview(self.scrollview3)
+                                
                             }
                             
                         }
@@ -596,8 +590,12 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                 }
             }
             else
-            {print("errror")}
-         }
+            {
+                
+                print("errror")
+            }
+        }
+        self.view.addSubview(self.whatIlikedView)
 
     }
   
@@ -625,15 +623,29 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
             let locationFromGeoPoint: CLLocation  = CLLocation(latitude: location.latitude, longitude: location.longitude)
             self.locationManager.reverseGeocodeLocationWithCoordinates(locationFromGeoPoint, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
                 print(reverseGecodeInfo)
-                let local = reverseGecodeInfo?.objectForKey("locality") as! String
-                let sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
-                userlocation = "\(sublocal),\(local)"
-                print("self.userLocation \(userlocation)")
-                
-                profileVC?.otherUser = self.incomingUser
-                profileVC?.userLocation = userlocation
-                
-                self.navigationController?.pushViewController(profileVC!, animated: true)
+                if( reverseGecodeInfo != nil)
+                {
+                    let local = reverseGecodeInfo?.objectForKey("locality") as! String
+                    let sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
+                    userlocation = "\(sublocal),\(local)"
+                    profileVC?.otherUser = self.incomingUser
+                    profileVC?.userLocation = userlocation
+                    
+                    
+                    let transition : CATransition = CATransition()
+                    transition.duration = 0.8
+                    transition.type = kCATransitionFade;
+                    transition.subtype = kCATransitionFromLeft;
+                    
+                    self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+                    self.navigationController!.pushViewController(profileVC!, animated: true)
+                    
+                    
+                   // self.navigationController?.pushViewController(profileVC!, animated: true)
+                    
+                    
+                }
+
                 
             })
             
@@ -641,22 +653,20 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
            
 
             
-
             
             
         }))
         
         SettingactionSheet.addAction(UIAlertAction(title: "Block User", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
             
-            /*
-            let addBlock = PFObject(className: "Block")
-            addBlock.setObject(PFUser.currentUser()!, forKey: "user")
-            addBlock.setObject(self.incomingUser, forKey: "blocked")
-            addBlock.saveInBackground()
-            */
-            let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", PFUser.currentUser()!, self.incomingUser,self.incomingUser,PFUser.currentUser()!)
             
-            let roomQuery = PFQuery(className: "Room", predicate: pred)
+            let uiAlert = UIAlertController(title: "Block", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.Alert)
+            self.presentViewController(uiAlert, animated: true, completion: nil)
+            uiAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { action in
+                
+                let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", PFUser.currentUser()!, self.incomingUser,self.incomingUser,PFUser.currentUser()!)
+            
+                let roomQuery = PFQuery(className: "Room", predicate: pred)
             
             roomQuery.findObjectsInBackgroundWithBlock { (results, error) -> Void in
                 if error == nil
@@ -665,7 +675,16 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                     {
                         let room = results?.last as? PFObject
                         room!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"Blocked")
-                        room?.saveEventually()
+                      //  room?.saveEventually()
+                        room!.saveInBackgroundWithBlock { (success, error) -> Void in
+                            if(error == nil)
+                            {
+                                 self.navigationController?.popViewControllerAnimated(true)
+                            }
+                        }
+
+                      
+                        
                         
                     }
                 }
@@ -673,8 +692,10 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
             
             
             
-                     
-            
+            }))
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+                print("Blocl canceled")
+            }))
             
         }))
         

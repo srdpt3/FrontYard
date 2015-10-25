@@ -46,12 +46,13 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
 
     var otherUser : PFUser!
     var userLocation :String!
-
+    var popview : PagedScrollViewController!
 
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
         //  self.collectionView!.reloadData()
+        
     }
     
     override func viewDidLoad() {
@@ -87,7 +88,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         profileimageView.frame = CGRectMake(width*0.05, 0, self.imageViewContent.frame.height ,self.imageViewContent.frame.height)
       //  namelabel.frame = CGRectMake(width*0.2, 0, 100 ,40)
 
-       namelabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.1, width*0.4 ,self.imageViewContent.frame.height*0.4)
+       namelabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.1, width*0.7 ,self.imageViewContent.frame.height*0.4)
       // locationLabel.frame = CGRectMake(width*0.05, 0, self.imageViewContent.frame.height ,self.imageViewContent.frame.height)
        numItemsLabel.frame = CGRectMake(width*0.3, self.imageViewContent.frame.height*0.45, width*0.7 ,self.imageViewContent.frame.height*0.5)
         
@@ -117,14 +118,14 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         
         namelabel.textColor = UIColor.whiteColor()
         numItemsLabel.textColor = UIColor.whiteColor()
+        namelabel.font = namelabel.font.fontWithSize(13)
         numItemsLabel.font = numItemsLabel.font.fontWithSize(12)
 
-        namelabel.text = otherUser.username!
-        //numItemsLabel.text = "Items: 2";
+        if(userLocation != nil)
+        {
+            namelabel.text = "\(otherUser.username!) @\(self.userLocation)"
+        }
 
-
-        
-        
         
         self.imageViewContent.addSubview(effectView)
         self.imageViewContent.addSubview(profileimageView)
@@ -161,7 +162,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
         
-        
+        popview = PagedScrollViewController()
         let image:UIImage! = otherImages[indexPath.row]
         // let imageHeight = image.size.height*gridWidth/image.size.width
         let imageHeight = (image.size.height+30)*gridWidth/image.size.width
@@ -173,7 +174,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         let collectionCell: viewProfileCell = collectionView.dequeueReusableCellWithReuseIdentifier(ViewCellIdentify2, forIndexPath: indexPath) as! viewProfileCell
         
         
-        if (indexPath.row > 7){
+        if (indexPath.row > 5){
               //  self.navigationController?.navigationBarHidden = true
             self.navigationController?.navigationBar.fadeOut()
             
@@ -220,30 +221,41 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return otherImages.count;
     }
-    
+
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
-        /*
-        let pageViewController =
-        NTHorizontalPageViewController(collectionViewLayout: pageViewControllerLayout(), currentIndexPath:indexPath)
-        pageViewController.imageFile = swipedImages
-        pageViewController.pricelabel = pricelabel
-        pageViewController.itemTitle = itemTitle
-        pageViewController.itemDesc = itemDesc
-        pageViewController.otherusers = otherUsers
-        pageViewController.otherObjID = otherObjID
-        pageViewController.otherlocation = otherlocation
-        
-        
-        
-        
-        collectionView.setToIndexPath(indexPath)
-        navigationController!.pushViewController(pageViewController, animated: true)
-        
-        */
-        
-        
-    }
+        detailImages.removeAll(keepCapacity: false)
+        let query = PFQuery(className:"Post")
+        query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[indexPath.row]))
+        query.addAscendingOrder("createdAt")
+        //query.whereKey("obj_ptr", equalTo: objID[indexPath.row])
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error  == nil
+            {
+                for obj in objects!{
+                    let thumbNail = obj["images"] as! PFFile
+                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
+                        if (error == nil) {
+                            let image = UIImage(data:imageData!)
+                            detailImages.append(image!)
+                            if(detailImages.count == objects!.count )
+                            {
+                                
+                                self.popview.showInView(self.view, animated: true)
+                                
+                            }
+                            
+                            
+                        }
+                    })//getDataInBackgroundWithBlock - end
+                }
+                
+                
+                
+            }
+            
+        }
+      }
     
     func pageViewControllerLayout () -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
@@ -257,7 +269,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     }
     override func viewWillAppear(animated: Bool) {
         // self.collectionView!.reloadData()
-        
+        self.navigationController?.navigationBar.fadeIn()
     }
     
     
@@ -301,38 +313,25 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
         otherlocation.removeAll(keepCapacity: false)
-        
-        
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("user", equalTo: otherUser)
   
 
-        ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
-        
-        //  query.whereKey("interesting", containsString: PFUser.currentUser()!.username!)
-        // query.whereKey(PFUser.currentUser()!.username!, containedIn: "interesting")
-        
-        //     query.whereKey("user", notEqualTo: PFUser.currentUser()!)
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
             {
                 let objects = results as! [PFObject]
-                self.numItemsLabel.text = "Items: \(results!.count) @\(self.userLocation)"
+                self.numItemsLabel.text = "Items: \(results!.count)"
                 if (results?.count == 0){
-                    if(self.userLocation != nil)
-                    {
-                        self.numItemsLabel.text = "No Item Found @\(self.userLocation)"
-                    }
+
+                        self.numItemsLabel.text = "No Item Found"
                     
                 }
                    
                 else
                 {
-                    if(self.userLocation != nil)
-                    {
-                        self.numItemsLabel.text = "Items: \(results!.count) @\(self.userLocation)"
-                    }
+                        self.numItemsLabel.text = "Items: \(results!.count)"
                     
                 }
 
@@ -341,27 +340,8 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
-              //      let otheruser = obj["user"] as! PFObject
-                //    self.otherUsers.append(otheruser["user"])
                     let thumbNail = obj["image"] as! PFFile
-                    
-                   // print(self.otherUser["location"] as! PFGeoPoint)
-                                     //  let query2 = PFQuery(className: "_User")
-                   // query2.whereKey("objectId", equalTo: otheruser.objectId!)
-                   // self.otherlocation.append(otherUser["location"] as! PFGeoPoint)
-                    // query2.includeKey("location")
-                    /*query2.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
-                        
-                        if error2 == nil
-                        {
-                            for obj in result2! {
-                                let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
-                                self.otherlocation.append(otherUser["location"])
-                                
-                            }
-                        }
-                    })
-                   */
+
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil
@@ -372,14 +352,11 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                             self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
-                            // self.otherUsers.append(otheruser)
                             
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.otherImages.count ){
                                 let collection :UICollectionView = self.collectionView!;
-
-                               // self.numItemsLabel.text = "Items: \(self.otherImages.count) @\(self.userLocation)"
 
                                 collection.reloadData()
                             }

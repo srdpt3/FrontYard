@@ -58,7 +58,6 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
  
     
     var currentUser = PFUser.currentUser()!
-    var cozy :  CozyLoadingActivity!
     
     override func viewDidAppear(animated: Bool) {
         //self.obj.collectionView?.reloadData()
@@ -70,8 +69,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         let width = CGRectGetWidth(bounds)
         let height = CGRectGetHeight(bounds)
         
-        let progressHUD = ProgressHUD(text: "Delete Photo")
-        self.view.addSubview(progressHUD)
+        
         
         self.navigationController!.delegate = nil
         
@@ -130,10 +128,12 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         
         namelabel.textColor = UIColor.whiteColor()
         numItemsLabel.textColor = UIColor.whiteColor()
-        numItemsLabel.font = numItemsLabel.font.fontWithSize(12)
         
+        numItemsLabel.font = numItemsLabel.font.fontWithSize(12)
+        namelabel.font = namelabel.font.fontWithSize(13)
+
         namelabel.text = currentUser.username!
-        numItemsLabel.text = "Select The Item To Delete";
+ 
         
         
         
@@ -186,7 +186,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         let collectionCell: myItemViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(ViewCellIdentify3, forIndexPath: indexPath) as! myItemViewCell
         
         
-        if (indexPath.row > 7){
+        if (indexPath.row > 5){
             //  self.navigationController?.navigationBarHidden = true
             self.navigationController?.navigationBar.fadeOut()
             
@@ -205,27 +205,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
         collectionCell.imageLabel2.text = "$\(self.pricelabel[indexPath.row]) "
         
-        /*
-        let query = PFQuery(className: "_User")
-        query.whereKey("objectId", equalTo: otherUsers[indexPath.row])
-        query.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
-        
-        if error2 == nil
-        {
-        for obj in result2! {
-        if let userImageFile = obj["profileImage"] as? PFFile {
-        userImageFile.getDataInBackgroundWithBlock { (data, error3) -> Void in
-        if error3 == nil{
-        let profileImage = UIImage(data:data!)
-        //self.profileimage.append(profileImage!)
-        collectionCell.profileimageFile = profileImage
-        }
-        }
-        }
-        }
-        }
-        })
-        */
+
         collectionCell.setNeedsLayout()
         return collectionCell;
     }
@@ -246,7 +226,6 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
             
             
             // var query = PFQuery(className: "imageUpload")
-   
             let query = PFQuery(className:"Post")
             query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:self.otherObjID[indexPath.row]))
             query.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
@@ -261,6 +240,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                             if (success) {
                                 // The object has been saved.
                                 CozyLoadingActivity.hide(success: true, animated: true)
+                            
                                 print("success")
                                 
                             } else {
@@ -387,8 +367,15 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
             if error == nil
             {
                 let objects = results as! [PFObject]
-
                 
+                if( objects.count == 0)
+                {
+                    self.numItemsLabel.text = "No Item Found To Delete"
+                }
+                else
+                {
+                    self.numItemsLabel.text = "Select The Item To Delete";
+                }
                 
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
@@ -397,24 +384,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                     //      let otheruser = obj["user"] as! PFObject
                     //    self.otherUsers.append(otheruser["user"])
                     let thumbNail = obj["image"] as! PFFile
-                    
-                    // print(self.otherUser["location"] as! PFGeoPoint)
-                    //  let query2 = PFQuery(className: "_User")
-                    // query2.whereKey("objectId", equalTo: otheruser.objectId!)
-                    // self.otherlocation.append(otherUser["location"] as! PFGeoPoint)
-                    // query2.includeKey("location")
-                    /*query2.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
-                    
-                    if error2 == nil
-                    {
-                    for obj in result2! {
-                    let location: PFGeoPoint  = obj["location"] as! PFGeoPoint
-                    self.otherlocation.append(otherUser["location"])
-                    
-                    }
-                    }
-                    })
-                    */
+    
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                         
                         if error2 == nil

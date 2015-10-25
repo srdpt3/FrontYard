@@ -190,6 +190,8 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
                 if (finished)
                 {
                     self.view.removeFromSuperview()
+                 
+
                 }
         });
     }
@@ -198,6 +200,7 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
         // 1
             removeAnimate()
+
     }
 
    
@@ -235,9 +238,9 @@ class PagedScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+
         pageViews.removeAll(keepCapacity: false)
         self.pageControl.removeFromSuperview()
         self.scrollView.removeFromSuperview()
-        print("did disappear")
     }
 }

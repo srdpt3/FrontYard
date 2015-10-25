@@ -49,8 +49,8 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         imageViewContent.frame = CGRectMake(0, 0, frame.size.width, frame.size.height-30)
         
         
-        imageLabel.frame =  CGRectMake(0, frame.size.height-30, frame.size.width*0.6, 30)
-        imageLabel2.frame =  CGRectMake(frame.size.width*0.59, frame.size.height-30, frame.size.width*0.42, 30)
+        imageLabel.frame =  CGRectMake(0, frame.size.height-30, frame.size.width*0.7, 30)
+        imageLabel2.frame =  CGRectMake(frame.size.width*0.69, frame.size.height-30, frame.size.width*0.32, 30)
         
         contentView.addSubview(imageViewContent)
         contentView.addSubview(imageLabel)

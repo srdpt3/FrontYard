@@ -1,1 +1,0 @@
-GOOGLE_MATERIAL_DESIGN_ICONS_SWIFT_OTHER_LDFLAGS = -framework "CoreText" -framework "UIKit"

@@ -37,12 +37,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
     var profileimage: [UIImage] = []
-    var activityView: UIActivityIndicatorView!
-
+    
+    let progressHUD = ProgressHUD(text: "Loading...")
     
     override func viewDidAppear(animated: Bool) {
-        //self.obj.collectionView?.reloadData()
-      //  self.collectionView!.reloadData()
+  
     }
     
     override func viewDidLoad() {
@@ -66,15 +65,15 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.setCollectionViewLayout(CHTCollectionViewWaterfallLayout(), animated: false)
         collection.backgroundColor = UIColor.whiteColor()
         collection.registerClass(NTWaterfallViewCell.self, forCellWithReuseIdentifier: waterfallViewCellIdentify)
-        // collection.reloadData()
-                  getfavoritelist()
+        getfavoritelist()
       
         collection.showsHorizontalScrollIndicator = false;
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         
-        activityView = UIActivityIndicatorView()
+        
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
@@ -135,13 +134,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pageViewController.otherusers = otherUsers
         pageViewController.otherObjID = otherObjID
          pageViewController.otherlocation = otherlocation
-  
+          collectionView.setToIndexPath(indexPath)
         
         
-        
-        collectionView.setToIndexPath(indexPath)
         let transition : CATransition = CATransition()
-        transition.duration = 0.6;
+        transition.duration = 0.8
         transition.type = kCATransitionFade;
         transition.subtype = kCATransitionFromLeft;
 
@@ -213,8 +210,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         pricelabel.removeAll(keepCapacity: false)
         otherlocation.removeAll(keepCapacity: false)
 
-        
-        
+        CozyLoadingActivity.Settings.CLASuccessText = "Done"
+        CozyLoadingActivity.show("Loading...", sender: self, disableUI: false)
         
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
@@ -224,11 +221,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
             if error == nil
             {
                 let objects = results as! [PFObject]
-                
-                self.activityView.startAnimating()
-                
-                
-                
+
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
@@ -237,7 +230,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     self.otherUsers.append(otheruser.objectId!)
                     let thumbNail = obj["image"] as! PFFile
           
-                   print("otheruser \(otheruser.objectId)")
                     let query2 = PFQuery(className: "_User")
                     query2.whereKey("objectId", equalTo: otheruser.objectId!)
                     
@@ -267,8 +259,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.swipedImages.count ){
-                                self.activityView.stopAnimating()
-
+                                CozyLoadingActivity.hide(success: true, animated: true)
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
                             }

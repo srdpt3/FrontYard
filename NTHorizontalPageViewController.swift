@@ -48,7 +48,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var coreLocationManager = CLLocationManager()
     var locationManager : LocationManager!
     
-    
+    var local = ""
+     var sublocal = ""
     var map:MKMapView!  = MKMapView()
     
     
@@ -286,11 +287,12 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         let locationFromGeoPoint: CLLocation  = CLLocation(latitude: location.latitude, longitude: location.longitude)
         locationManager.reverseGeocodeLocationWithCoordinates(locationFromGeoPoint, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-            print(reverseGecodeInfo)
-            let local = reverseGecodeInfo?.objectForKey("locality") as! String
-            let sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
+            if( reverseGecodeInfo != nil){
+                self.local = reverseGecodeInfo?.objectForKey("locality") as! String
+                self.sublocal = reverseGecodeInfo?.objectForKey("subLocality") as! String
 
-            self.locationLabel.text = local+","+sublocal
+                self.locationLabel.text = self.local+","+self.sublocal
+            }
         })
 
     
@@ -489,7 +491,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                         let push = PFPush()
                                                         push.setQuery(pushQuery)
                                                         
-                                                        let pushDict = ["alert":"i am interesting in product", "badge":"increment","sound":""]
+                                                        let pushDict = ["alert":"\(user1.username!)"+": Hi! I interesting your Item" , "badge":"increment","sound":""]
                                                         push.setData(pushDict)
                                                         
                                                         push.sendPushInBackgroundWithBlock(nil)
@@ -535,7 +537,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                                                         
                                                         /* msg send */
                                                         let message = PFObject(className: "Message")
-                                                        message["content"] = "i am interesting in " + self.itemTitle[self.indexnum] + " product";
+                                                        message["content"] = "Hi !I am interesting in " + self.itemTitle[self.indexnum];
                                                         message["room"] = room
                                                         message["user"] = PFUser.currentUser()!
                                                         

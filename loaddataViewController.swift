@@ -143,17 +143,27 @@ class loaddataViewController: UIViewController {
                                                     imagesToswipe.append(image!)
                                                     let objId = obj.objectId! as String
                                                     otherObjID.append(objId)
-                                                    print("imagesToswipe.count \(imagesToswipe.count)")
-
                                                     if(results!.count == imagesToswipe.count ){
                                                         
-                                                      //  ViewControllerUtils().hideActivityIndicator(self.view)
                                                         numberOfCards = UInt(imagesToswipe.count)
+                                                        
+                                                         CozyLoadingActivity.hide(success: true, animated: true)
                                                         let sb = UIStoryboard(name: "Main", bundle: nil)
                                                         let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
                                                         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-                                                        self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
-                                                        CozyLoadingActivity.hide(success: true, animated: true)
+                                                     //   self.navigationController?.presentViewController(overViewVC, animated: true,completion:nil)
+                                                        
+                                                        let transition : CATransition = CATransition()
+                                                        transition.duration = 1
+                                                        transition.type = kCATransitionFade;
+                                                        transition.subtype = kCATransitionFromTop;
+                                                        
+                                                        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+                                                        self.navigationController!.presentViewController(overViewVC, animated: true,completion:nil)
+                                                        
+                                                        
+                                                        
+                                                       
 
                                                         
                                                     }

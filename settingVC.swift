@@ -33,29 +33,11 @@ class settingVC: UIViewController {
         self.view = self.scrollView
         self.scrollView.showsHorizontalScrollIndicator = false;
         self.scrollView.showsVerticalScrollIndicator = false;
-        // setup the scroll view
-       // self.scrollView.contentSize = CGSize(width:1234, height: 5678)
-        // etc...
+
     }
+   
 
 
-    @IBAction func saveButtonpressed(sender: AnyObject) {
-        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
-
-        minPrice = Int(round(rangeSlider1.lowerValue))
-        maxPrice = Int(round(rangeSlider1.upperValue))
-
-       /// print(minPrice)
-       /// /print(maxPrice)
-        
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
-
-        
-        
-    }
     //  UIBarButtonItem(title: "CUSTOM", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,32 +57,58 @@ class settingVC: UIViewController {
 
         
         
-        /*
-        let btnName: UIButton = UIButton()
-      //  btnName.setTitle("LogOut", forState: UIControlState.Normal)
-     //   btnName.setImage(UIImage(named: "icon_arrow_left.png"), forState: .Normal)
-        btnName.frame = CGRectMake(0, 0, 20, 20)
-        btnName.addTarget(self, action: Selector("leftpressed:"), forControlEvents: .TouchUpInside)
-        
-        //.... Set Right/Left Bar Button item
-        let leftbutton:UIBarButtonItem = UIBarButtonItem()
-        leftbutton.customView = btnName
-        leftbutton.title = "LogOut"
-        */
-
         let leftbutton  = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: Selector("logoutPressed:"))
+       // leftbutton.
         leftbutton.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = leftbutton
-
-      //  scrollview = UIScrollView(frame: view.bounds)
+        let barButtonItemApperance = UIBarButtonItem.appearance()
+        barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
         
-   //     let navBarHeight = nav?.frame.height
-      //  imageViewContent.frame = CGRectMake(0, navBarHeight!, width, height*(1/3))
-        imageViewContent.frame = CGRectMake(0, 0, width, height*(1/3))
+        self.navigationItem.leftBarButtonItem = leftbutton
+        
+        /*
+        let logoutButton: UIButton = UIButton()
+        logoutButton.setImage(UIImage(named: "logout"), forState: .Normal)
+        logoutButton.tintColor = UIColor.whiteColor()
+        logoutButton.backgroundColor =  UIColor.whiteColor()
+        logoutButton.frame = CGRectMake(0, 0, 20, 20)
+        logoutButton.addTarget(self, action: Selector("logoutPressed:"), forControlEvents: .TouchUpInside)
+        
+        let leftlogoutButtonItem:UIBarButtonItem = UIBarButtonItem()
+        leftlogoutButtonItem.customView = logoutButton
 
+        self.navigationItem.leftBarButtonItem = leftlogoutButtonItem
+        
+        */
+        
+        
+        
+        let btnName: UIButton = UIButton()
+        btnName.setImage(UIImage(named: "icon_share"), forState: .Normal)
+        btnName.frame = CGRectMake(0, 0, 20, 20)
+        btnName.tintColor = UIColor.whiteColor()
+        btnName.addTarget(self, action: Selector("sharethisapp:"), forControlEvents: .TouchUpInside)
+        
+        let rightShareBarButtonItem:UIBarButtonItem = UIBarButtonItem()
+        rightShareBarButtonItem.customView = btnName
+        
+        
+        let rightSaveBarButtonItem  = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
+        // leftbutton.
+        rightSaveBarButtonItem.tintColor = UIColor.whiteColor()
+//        let rightSaveBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Save, target: self, action: "saveButtonpressed:")
+        
+        
+        self.navigationItem.setRightBarButtonItems([rightSaveBarButtonItem,rightShareBarButtonItem], animated: true)
+        
+        
+        imageViewContent.frame = CGRectMake(0, 0, width, height*(1/3))
         profileimageView.frame = CGRectMake(width/2, imageViewContent.frame.height/2, 100,100)
         
-        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("changeProfileImage:"))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        self.imageViewContent.userInteractionEnabled = true
+        self.imageViewContent.addGestureRecognizer(tapGestureRecognizer)
+
         
         
         //imageView
@@ -127,7 +135,7 @@ class settingVC: UIViewController {
                     self.profileimageView.clipsToBounds = true
                     
                     self.imageViewContent.image = UIImage(data:data!)
-                    
+
                 }
             }
         }
@@ -221,26 +229,7 @@ class settingVC: UIViewController {
         
         self.imageViewContent.addSubview(effectView)
         self.imageViewContent.addSubview(profileimageView)
-        /*
-        self.view.addSubview(imageViewContent)
-        self.view.addSubview(SearchLabel)
-        self.view.addSubview(RangeView)
-        self.view.addSubview(price)
-        self.view.addSubview(itemManage)
-
-        self.view.addSubview(contactDeveloper)
-        self.view.addSubview(shareApp)
-        self.view.addSubview(rateApp)
-
-        scrollview.addSubview(imageViewContent)
-        scrollview.addSubview(SearchLabel)
-        scrollview.addSubview(RangeView)
-        scrollview.addSubview(price)
-        scrollview.addSubview(itemManage)
-        
-        scrollview.addSubview(contactDeveloper)
-        scrollview.addSubview(shareApp)
-        scrollview.addSubview(rateApp)*/
+ 
         self.scrollView.addSubview(imageViewContent)
         self.scrollView.addSubview(SearchLabel)
         self.scrollView.addSubview(RangeView)
@@ -271,11 +260,8 @@ class settingVC: UIViewController {
         // self.navigationController?.pushViewController(logginVC, animated: true)
         self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
         
-        
-        
         print("logout")
 
-        
         
         
         
@@ -286,6 +272,19 @@ class settingVC: UIViewController {
         price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
         
     }
+    
+    func changeProfileImage(img: AnyObject)
+    {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = sb.instantiateViewControllerWithIdentifier("signupVC") as! SignUpTableViewController
+        profileVC.change = true
+        //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+
+    }
+    
+    
+    
     
     @IBAction func contactDeveloper(sender:UIButton!)
     {
@@ -316,7 +315,14 @@ class settingVC: UIViewController {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
             //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-            self.navigationController?.pushViewController(myItemVC, animated: true)
+            
+            let transition : CATransition = CATransition()
+            transition.duration = 0.8
+            transition.type = kCATransitionFade;
+            transition.subtype = kCATransitionFromLeft;
+            
+            self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+            self.navigationController!.pushViewController(myItemVC, animated: true)
             
             
             
@@ -330,7 +336,7 @@ class settingVC: UIViewController {
     
     
     
-    @IBAction func sharethisapp(sender:UIButton!)
+    func sharethisapp(sender: AnyObject)
     {
         
         
@@ -364,6 +370,24 @@ class settingVC: UIViewController {
         print("rateButton  tapped")
         
     }
+    func saveButtonpressed(sender: AnyObject) {
+        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
+        
+        minPrice = Int(round(rangeSlider1.lowerValue))
+        maxPrice = Int(round(rangeSlider1.upperValue))
+        
+        /// print(minPrice)
+        /// /print(maxPrice)
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+        self.navigationController?.pushViewController(overViewVC, animated: true)
+        
+        
+        
+    }
+    
     
     
     

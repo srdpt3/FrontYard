@@ -67,7 +67,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BA6F81E8-B8AB-4263-86B0-29EA2139297A" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2ED41274-179D-43D0-BF23-E9736CEDD7B7" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-Oe-lAY">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <animations/>
                                                     <constraints>
@@ -280,6 +280,11 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="att-Rv-Hgm"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chat" translatesAutoresizingMaskIntoConstraints="NO" id="6zj-30-XTB">
                                             <rect key="frame" x="13" y="5" width="60" height="60"/>
@@ -300,14 +305,17 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-ay-yDJ">
                                             <rect key="frame" x="456" y="9" width="136" height="21"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPG-ME-9cZ">
-                                            <rect key="frame" x="81" y="37" width="347" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPG-ME-9cZ">
+                                            <rect key="frame" x="81" y="58" width="300" height="0.0"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="300" id="gV4-io-hR7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                             <color key="textColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -351,17 +359,10 @@
                                 <action selector="doEdit:" destination="Zcu-04-hgw" id="wEH-Qc-tpt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem systemItem="action" id="hxY-J6-Zzq">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="settingButtonPressed:" destination="Zcu-04-hgw" id="TPP-fa-xFd"/>
-                            </connections>
-                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="UWI-ao-mVq"/>
                     <connections>
                         <outlet property="choosePartnerButoon" destination="ObL-OR-NQA" id="ZeN-AR-4em"/>
-                        <outlet property="logout" destination="hxY-J6-Zzq" id="rHj-Iy-Kc6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cf2-3i-JBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -573,22 +574,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vr-hh-WCF">
                                 <rect key="frame" x="87" y="495" width="200" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29d-Ew-E2o">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <animations/>
-                                        <state key="normal" image="no"/>
-                                        <state key="highlighted" image="btn_skip_pressed"/>
-                                        <connections>
-                                            <action selector="leftButtonTapped" destination="oGa-GY-IJg" eventType="touchUpInside" id="JPo-E1-kzu"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBx-r4-1xR">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBx-r4-1xR">
                                         <rect key="frame" x="150" y="0.0" width="50" height="50"/>
                                         <animations/>
                                         <state key="normal" image="yes"/>
                                         <state key="highlighted" image="btn_like_pressed"/>
                                         <connections>
                                             <action selector="rightButtonTapped" destination="oGa-GY-IJg" eventType="touchUpInside" id="vMh-ej-HGg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29d-Ew-E2o">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <animations/>
+                                        <state key="normal" image="no"/>
+                                        <state key="highlighted" image="btn_skip_pressed"/>
+                                        <connections>
+                                            <action selector="leftButtonTapped" destination="oGa-GY-IJg" eventType="touchUpInside" id="JPo-E1-kzu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -809,7 +810,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BA6F81E8-B8AB-4263-86B0-29EA2139297A" width="72" height="72">
+        <image name="2ED41274-179D-43D0-BF23-E9736CEDD7B7" width="72" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
