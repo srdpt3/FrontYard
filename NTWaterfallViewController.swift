@@ -240,7 +240,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                 let objects = results as! [PFObject]
 
                 if (objects.count == 0){
-                    let alert = UIAlertController(title: "Hey", message: "No Favorite Items Yet... ", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "No Favorite Items...", message: "Swipe Something To The Right! ", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                     self.collectionView!.reloadData()

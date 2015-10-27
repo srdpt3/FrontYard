@@ -17,7 +17,7 @@ KolodaView is a class designed to simplify the implementation of Tinder like car
 Supported OS & SDK Versions
 -----------------------------
 
-* Supported build target - iOS 9.0 (Xcode 7)
+* Supported build target - iOS 8.0 (Xcode 6.2)
 
 
 ARC Compatibility
@@ -29,7 +29,7 @@ KolodaView requires ARC.
 ------------------
 
 ```ruby
-pod 'Koloda', '~> 2.0.3'
+pod 'Koloda', '~> 1.1.2'
 ```
 
 Thread Safety
@@ -153,10 +153,6 @@ Return a pop frame animation to be applied to backround cards after swipe. This 
 
 Release Notes
 ----------------
-
-Version 2.0
-
-- Swift 2.0 support
 
 Version 1.1
 

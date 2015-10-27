@@ -52,6 +52,7 @@ public protocol KolodaViewDataSource:class {
 }
 
 public protocol KolodaViewDelegate:class {
+    
     func kolodaDidSwipedCardAtIndex(koloda: KolodaView,index: UInt, direction: SwipeResultDirection)
     func kolodaDidRunOutOfCards(koloda: KolodaView)
     func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt)
@@ -59,18 +60,7 @@ public protocol KolodaViewDelegate:class {
     func kolodaShouldMoveBackgroundCard(koloda: KolodaView) -> Bool
     func kolodaShouldTransparentizeNextCard(koloda: KolodaView) -> Bool
     func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation?
-    func kolodaDraggedCard(koloda: KolodaView, finishPercent: CGFloat, direction: SwipeResultDirection)
-}
-
-public extension KolodaViewDelegate {
-    func kolodaDidSwipedCardAtIndex(koloda: KolodaView,index: UInt, direction: SwipeResultDirection) {}
-    func kolodaDidRunOutOfCards(koloda: KolodaView) {}
-    func kolodaDidSelectCardAtIndex(koloda: KolodaView, index: UInt) {}
-    func kolodaShouldApplyAppearAnimation(koloda: KolodaView) -> Bool {return true}
-    func kolodaShouldMoveBackgroundCard(koloda: KolodaView) -> Bool {return true}
-    func kolodaShouldTransparentizeNextCard(koloda: KolodaView) -> Bool {return true}
-    func kolodaBackgroundCardAnimation(koloda: KolodaView) -> POPPropertyAnimation? {return nil}
-    func kolodaDraggedCard(koloda: KolodaView, finishPercent: CGFloat, direction: SwipeResultDirection) {}
+    
 }
 
 public class KolodaView: UIView, DraggableCardDelegate {
@@ -95,12 +85,12 @@ public class KolodaView: UIView, DraggableCardDelegate {
     public var alphaValueSemiTransparent: CGFloat = defaultAlphaValueSemiTransparent
     
     //MARK: Lifecycle
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
         configure()
     }
     
-    override public init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
@@ -214,7 +204,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
                 //For fully visible next card, when moving top card
                 if let shouldTransparentize = delegate?.kolodaShouldTransparentizeNextCard(self) where shouldTransparentize == true {
                     if index == 1 {
-                        card.alpha = alphaValueSemiTransparent + (alphaValueOpaque - alphaValueSemiTransparent) * percent/100
+                        card.alpha = alphaValueOpaque
                     }
                 }
             }
@@ -270,13 +260,12 @@ public class KolodaView: UIView, DraggableCardDelegate {
     
     //MARK: DraggableCardDelegate
     
-    func cardDraggedWithFinishPercent(card: DraggableCardView, percent: CGFloat, direction: SwipeResultDirection) {
+    func cardDraggedWithFinishPercent(card: DraggableCardView, percent: CGFloat) {
         animating = true
         
         if let shouldMove = delegate?.kolodaShouldMoveBackgroundCard(self) where shouldMove == true {
             self.moveOtherCardsWithFinishPercent(percent)
         }
-        delegate?.kolodaDraggedCard(self, finishPercent: percent, direction: direction)
     }
     
     func cardSwippedInDirection(card: DraggableCardView, direction: SwipeResultDirection) {
@@ -459,6 +448,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
             let cardsToAdd = min(missingCardsCount, countOfCards - currentCardNumber)
             
             for index in 1...cardsToAdd {
+                let nextCardIndex = countOfVisibleCards - cardsToAdd + index - 1
                 let nextCardView = DraggableCardView(frame: frameForCardAtIndex(UInt(index)))
                 
                 nextCardView.alpha = alphaValueSemiTransparent
@@ -548,11 +538,4 @@ public class KolodaView: UIView, DraggableCardDelegate {
         reloadData()
     }
     
-    public func viewForCardAtIndex(index: Int) -> UIView? {
-        if visibleCards.count + currentCardNumber > index && index >= currentCardNumber {
-            return visibleCards[index - currentCardNumber].contentView
-        } else {
-            return nil
-        }
-    }
 }

@@ -1114,7 +1114,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Koloda-aiwqsvohpllzjngogxgllljrfhuw/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Swapit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
 				PRODUCT_NAME = Swapit;
@@ -1139,7 +1139,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Koloda-aiwqsvohpllzjngogxgllljrfhuw/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Swapit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
 				PRODUCT_NAME = Swapit;

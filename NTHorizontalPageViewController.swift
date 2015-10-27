@@ -122,22 +122,22 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         
         
-        var offsetX = profileimageView.frame.width + screenWidth*0.03
+        var offsetX = profileimageView.frame.width + screenWidth*0.04
         
         
         NameLabel = UILabel(frame: CGRectMake(offsetX, offsetY, screenWidth*0.2, screenHeight/22))
         NameLabel.font = UIFont.systemFontOfSize(13.0);
-        NameLabel.textColor = UIColor.lightGrayColor()
+        NameLabel.textColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
       //  nameLabel.textAlignment = NSTextAlignment.Left;
         NameLabel.text = "aaaaa"
         
         offsetX+=NameLabel.frame.width
         
-        locationLabel = UILabel(frame: CGRectMake(offsetX, offsetY, screenWidth*0.5, screenHeight/22))
+        locationLabel = UILabel(frame: CGRectMake(screenWidth*0.5, offsetY, screenWidth*0.48, screenHeight/22))
         
         locationLabel.font = UIFont.systemFontOfSize(12.0);
         locationLabel.textColor = UIColor.lightGrayColor()
-        locationLabel.textAlignment = NSTextAlignment.Left;
+        locationLabel.textAlignment = NSTextAlignment.Right;
    ///   locationimage.image = UIImage(data: location.svg)
         
         offsetY+=(locationLabel.frame.height+5)

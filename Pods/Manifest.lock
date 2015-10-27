@@ -1,16 +1,16 @@
 PODS:
   - FoldingTabBar (1.0.1)
-  - Koloda (2.0.3):
+  - Koloda (1.1.2):
     - pop (~> 1.0)
   - pop (1.0.8)
 
 DEPENDENCIES:
   - FoldingTabBar (~> 1.0.1)
-  - Koloda (~> 2.0.1)
+  - Koloda (~> 1.1.2)
 
 SPEC CHECKSUMS:
   FoldingTabBar: 3e04c49dbe2b02c529561a4182bf017b928d04d2
-  Koloda: ae8e90ca29c709572eb948a3ce0ca44db62f8344
+  Koloda: 19b54bfb56c3b9e4e946c750b1c3bc771298d7ca
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
 
 COCOAPODS: 0.39.0

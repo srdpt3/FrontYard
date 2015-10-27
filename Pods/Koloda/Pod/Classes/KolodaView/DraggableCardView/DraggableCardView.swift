@@ -11,7 +11,7 @@ import pop
 
 protocol DraggableCardDelegate: class {
     
-    func cardDraggedWithFinishPercent(card: DraggableCardView, percent: CGFloat, direction: SwipeResultDirection)
+    func cardDraggedWithFinishPercent(card: DraggableCardView, percent: CGFloat)
     func cardSwippedInDirection(card: DraggableCardView, direction: SwipeResultDirection)
     func cardWasReset(card: DraggableCardView)
     func cardTapped(card: DraggableCardView)
@@ -35,7 +35,7 @@ public class DraggableCardView: UIView {
     weak var delegate: DraggableCardDelegate?
     
     private var overlayView: OverlayView?
-    private(set) var contentView: UIView?
+    private var contentView: UIView?
     
     private var panGestureRecognizer: UIPanGestureRecognizer!
     private var tapGestureRecognizer: UITapGestureRecognizer!
@@ -45,7 +45,6 @@ public class DraggableCardView: UIView {
     private var xDistanceFromCenter: CGFloat = 0.0
     private var yDistanceFromCenter: CGFloat = 0.0
     private var actionMargin: CGFloat = 0.0
-    private var firstTouch = true
     
     //MARK: Lifecycle
     init() {
@@ -53,8 +52,8 @@ public class DraggableCardView: UIView {
         setup()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
         setup()
     }
     
@@ -191,10 +190,7 @@ public class DraggableCardView: UIView {
         
         switch gestureRecognizer.state {
         case .Began:
-            if firstTouch {
-                originalLocation = center
-                firstTouch = false
-            }
+            originalLocation = center
             dragBegin = true
             
             animationDirection = touchLocation.y >= frame.size.height / 2 ? -1.0 : 1.0
@@ -219,9 +215,7 @@ public class DraggableCardView: UIView {
             
             updateOverlayWithFinishPercent(xDistanceFromCenter / frame.size.width)
             //100% - for proportion
-            var dragDirection = SwipeResultDirection.None
-            dragDirection = xDistanceFromCenter > 0 ? .Right : .Left
-            delegate?.cardDraggedWithFinishPercent(self, percent: min(fabs(xDistanceFromCenter * 100 / frame.size.width), 100), direction: dragDirection)
+            delegate?.cardDraggedWithFinishPercent(self, percent: min(fabs(xDistanceFromCenter * 100 / frame.size.width), 100))
             
             break
         case .Ended:
@@ -302,6 +296,7 @@ public class DraggableCardView: UIView {
     }
     
     private func resetViewPositionAndTransformations() {
+        userInteractionEnabled = false
         self.delegate?.cardWasReset(self)
         
         let resetPositionAnimation = POPSpringAnimation(propertyNamed: kPOPLayerPosition)
@@ -312,6 +307,7 @@ public class DraggableCardView: UIView {
         resetPositionAnimation.completionBlock = {
             (_, _) in
             
+            self.userInteractionEnabled = true
             self.dragBegin = false
         }
         
@@ -319,7 +315,7 @@ public class DraggableCardView: UIView {
         
         UIView.animateWithDuration(cardResetAnimationDuration,
             delay: 0.0,
-            options: [.CurveLinear, .AllowUserInteraction],
+            options: .CurveLinear,
             animations: {
                 self.transform = CGAffineTransformMakeRotation(0)
                 self.overlayView?.alpha = 0

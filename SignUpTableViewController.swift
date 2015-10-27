@@ -81,28 +81,29 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         let profileImageData = UIImageJPEGRepresentation(profileImage.image!,0.6)
         let profileImagefile = PFFile(data: profileImageData!)
         
-        if ( lastnameTextField.text != "" &&
-            firstnameTextField.text != "")
+        if ( lastnameTextField.text != "" )
         {
-            
+            currentUser["firstName"] = firstnameTextField.text
+        }
+        if ( firstnameTextField.text != "")
+        {
+            currentUser["lastName"] = lastnameTextField.text
+        }
+        
          //   currentUser.username = username.text
           //  currentUser.email = emailTextField.text
-            
-            
-            currentUser["firstName"] = firstnameTextField.text
-            currentUser["lastName"] = lastnameTextField.text
+        
             currentUser["profileImage"] = profileImagefile
             
             currentUser.saveInBackgroundWithBlock({ (success, error) -> Void in
                 if error == nil{
                   
-                   
                     
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 
-            })
-        }
+                })
+        
         /*
         else
         {
