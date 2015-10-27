@@ -44,7 +44,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     let delegateHolder = NavigationControllerDelegate()
     var otherImageFiles = [PFFile]()
     var otherObjID = [String]()
-    var pricelabel = [String]()
+    var pricelabel = [Int]()
     var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
@@ -205,19 +205,19 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         if (self.currency[indexPath.row] == "￦")
         {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
             {
-                currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
                 price_display = "\(currency_exchange)만"
             }
             else
         {
-                currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
                 price_display = "\(currency_exchange)"
             
             }
         }
         else
         {
-            price_display = self.pricelabel[indexPath.row]
+            price_display = "\(self.pricelabel[indexPath.row])"
         }
         
         
@@ -399,7 +399,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
-                    let pricelabel = obj["price"]! as! String
+                    let pricelabel = obj["price"]!
                     let currency = obj["Currency"]! as! String
                     //      let otheruser = obj["user"] as! PFObject
                     //    self.otherUsers.append(otheruser["user"])
@@ -414,7 +414,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                             self.otherImages.append(image!)
                             self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
-                            self.pricelabel.append(pricelabel)
+                            self.pricelabel.append(Int(pricelabel as! NSNumber))
                             self.currency.append(currency)
                             // self.otherUsers.append(otheruser)
                             

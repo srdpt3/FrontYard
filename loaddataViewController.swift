@@ -71,8 +71,7 @@ class loaddataViewController: UIViewController {
         maxPrice = currentUser["maxPrice"] as! Int
         //currentUser["profileImage"] = profileImagefile
             
-         print(minPrice)
-         print(maxPrice)
+
          loaditems()
      
 
@@ -117,11 +116,15 @@ class loaddataViewController: UIViewController {
                             imagesToswipe.removeAll(keepCapacity: false)
                             otherObjID.removeAll(keepCapacity: false)
                             let query2:PFQuery = PFQuery(className: "imageUpload")
-                            query2.whereKey("minPrice", greaterThanOrEqualTo: minPrice)
-                            query2.whereKey("maxPrice", lessThanOrEqualTo: maxPrice)
+                            print(minPrice)
+                            print(maxPrice)
+                            query2.whereKey("price", greaterThanOrEqualTo: minPrice)
+                            query2.whereKey("price", lessThanOrEqualTo: maxPrice)
                             query2.addAscendingOrder("createdAt")
                          //   query2.whereKey("user", equalTo: usr)
                             query2.whereKey("user",notEqualTo: PFUser.currentUser()!)
+                            query2.whereKey("Block",notEqualTo: PFUser.currentUser()!.username!)
+
                             query2.whereKey("user", containedIn: users as! [PFUser])
                             query2.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
                             query2.whereKey("interesting", notEqualTo: PFUser.currentUser()!.username!)

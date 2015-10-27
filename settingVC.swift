@@ -58,7 +58,7 @@ class settingVC: UIViewController {
 
         
         
-        let leftbutton  = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: Selector("logoutPressed:"))
+        let leftbutton  = UIBarButtonItem(title: "LOGOUT", style: .Plain, target: self, action: Selector("logoutPressed:"))
        // leftbutton.
         leftbutton.tintColor = UIColor.whiteColor()
         let barButtonItemApperance = UIBarButtonItem.appearance()
@@ -77,7 +77,7 @@ class settingVC: UIViewController {
         rightShareBarButtonItem.customView = btnName
         
         
-        let rightSaveBarButtonItem  = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
+        let rightSaveBarButtonItem  = UIBarButtonItem(title: "SAVE", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
         rightSaveBarButtonItem.tintColor = UIColor.whiteColor()
         self.navigationItem.setRightBarButtonItems([rightSaveBarButtonItem,rightShareBarButtonItem], animated: true)
         

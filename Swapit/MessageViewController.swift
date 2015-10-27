@@ -344,7 +344,7 @@ class MessageViewController:JSQMessagesViewController,CLLocationManagerDelegate,
                 let push = PFPush()
                 push.setQuery(pushQuery)
                 
-                let pushDict = ["alert":text, "badge":"increment","sound":""]
+                let pushDict = ["alert":text, "badge":"Increment","sound":""]
                 push.setData(pushDict)
                 
                 let pred = NSPredicate(format: "user1 = %@ AND user2 = %@ OR user1 = %@ AND user2 = %@", user1,user2,user2,user1)

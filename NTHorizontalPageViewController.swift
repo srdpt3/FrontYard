@@ -21,7 +21,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     var indexnum : Int = Int()
     var imageFile = [UIImage]()
-    var pricelabel = [String]()
+    var pricelabel = [Int]()
     var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
@@ -145,7 +145,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
    
         
-        let rightbutton  = UIBarButtonItem(title: "Report", style: .Plain, target: self, action: Selector("reportPressed:"))
+        let rightbutton  = UIBarButtonItem(title: "FLAG", style: .Plain, target: self, action: Selector("reportPressed:"))
         rightbutton.tintColor = UIColor.whiteColor()
         let barButtonItemApperance = UIBarButtonItem.appearance()
         barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
@@ -294,19 +294,19 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         if (self.currency[indexPath.row] == "￦")
         {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
         {
-            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
             price_display = "\(currency_exchange)만원"
         }
         else
         {
-            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
             price_display = "\(currency_exchange)원"
             
             }
         }
         else
         {
-            price_display = self.pricelabel[indexPath.row]
+            price_display = "\(self.pricelabel[indexPath.row])"
         }
         
               self.PriceLabel.text = "\(currency[indexPath.row])\(price_display)"
@@ -467,20 +467,35 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     func reportPressed(sender:UIBarButtonItem){
         
-        imagesToswipe.removeAll(keepCapacity: false)
+        let uiAlert = UIAlertController(title: "Block Content", message: "Are you sure you want to report this content and user?", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(uiAlert, animated: true, completion: nil)
+        uiAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { action in
+            
+            let query = PFQuery(className:"imageUpload")
+            query.whereKey("objectId", equalTo:self.otherObjID[self.indexnum])
+            query.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                if error == nil
+                {
+                        let obj = results?.last as? PFObject
+                        obj!.addUniqueObject(PFUser.currentUser()!.username!, forKey:"Block")
+                        obj!.saveInBackgroundWithBlock { (success, error) -> Void in
+                        if(error == nil)
+                        {
+                            print(" blcoked ")
+                        }
+                    }
+
+                }
+            })
+
+            
+        }))
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        
-        let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
-              // self.navigationController?.pushViewController(logginVC, animated: true)
-        self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
-        
-        print("logout")
-        
+        uiAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+            print("Click of cancel button")
+        }))
 
     }
-    
-    
     func LikeButtonPressed(sender:UIButton!)
     {
         let query:PFQuery = PFQuery(className: "imageUpload")

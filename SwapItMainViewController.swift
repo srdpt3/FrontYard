@@ -33,25 +33,17 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     var finishLoading : Bool = false
 
     override func viewDidAppear(animated: Bool) {
-        remainingCards = Int(numberOfCards)
-        print("numberOfCards \(numberOfCards)")
-        print("remainingCards \(remainingCards)")
+   
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            // self.imageFiles.removeAll(keepCapacity: false)
+            if self.remainingCards == 0
+            {
+                print("viewdidA")
+                self.kolodaDidRunOutOfCards(self.kolodaView)
+            }
 
+        })
         
-        
-        multiLayer = PulsingHaloLayer()
-        multiLayer2 = PulsingHaloLayer()
-        multiLayer3 = PulsingHaloLayer()
-        multiLayer4 = PulsingHaloLayer()
-        
-        if numberOfCards == 0
-        {
-            YesButton.alpha = 0
-            NoButton.alpha = 0
-            playpulse()
-            loadMoreImages()
-        }
-       
 
         
         
@@ -59,8 +51,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     override func viewDidLoad() {
         super.viewDidLoad()
  
-
         
+ 
         
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         userImage = UIImageView(frame: CGRectMake(50, 0, self.view.frame.width-100, self.view.frame.height-100))
@@ -100,6 +92,15 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
 
         
         self.tabBarController?.tabBar.hidden = false
+        
+        
+        remainingCards = Int(numberOfCards)
+        print("numberOfCards \(numberOfCards)")
+        print("remainingCards \(remainingCards)")
+        
+        
+        
+    
         
     }
     
@@ -342,11 +343,16 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                 })
         }
         
-
+        multiLayer = PulsingHaloLayer()
+        multiLayer2 = PulsingHaloLayer()
+        multiLayer3 = PulsingHaloLayer()
+        multiLayer4 = PulsingHaloLayer()
+        
         
         multiLayer2.radius = 40
         multiLayer3.radius = 130
         multiLayer4.radius = 180
+        
         
         multiLayer.position = userImage.center;
         multiLayer2.position = userImage.center;
@@ -393,10 +399,11 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                     {
 
                         let query2:PFQuery = PFQuery(className: "imageUpload")
+                        query2.whereKey("price", greaterThanOrEqualTo: minPrice)
+                        query2.whereKey("price", lessThanOrEqualTo: maxPrice)
                         query2.addAscendingOrder("createdAt")
-                        query2.whereKey("minPrice", greaterThanOrEqualTo: minPrice)
-                        query2.whereKey("maxPrice", lessThanOrEqualTo: maxPrice)
                         query2.whereKey("user",notEqualTo: PFUser.currentUser()!)
+                        query2.whereKey("Block",notEqualTo: PFUser.currentUser()!.username!)
                         query2.whereKey("user", containedIn: users as! [PFUser])
                         query2.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
                         query2.whereKey("interesting", notEqualTo: PFUser.currentUser()!.username!)

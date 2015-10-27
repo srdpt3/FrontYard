@@ -450,7 +450,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                 price_display = Price.text!
             }
             
-            imageDBTable["price"] =  price_display
+            imageDBTable["price"] =  Int(price_display)
             imageDBTable["Currency"] = current
             for (_,image) in imageFiles.enumerate()
             {
