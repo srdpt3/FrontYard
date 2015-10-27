@@ -9,7 +9,7 @@
 import UIKit
 
 let waterfallViewCellIdentify = "waterfallViewCellIdentify"
-
+var block_trigger : Bool = false
 class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate{
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
         let transition = NTTransition()
@@ -171,6 +171,13 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     override func viewWillAppear(animated: Bool) {
       // self.collectionView!.reloadData()
+        
+       if(block_trigger)
+       {
+           print("trigger")
+            getfavoritelist()
+       }
+        
         self.navigationController?.hidesBarsOnSwipe = true
     }
     
@@ -225,6 +232,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
+        query.whereKey("Block",notEqualTo: PFUser.currentUser()!.username!)
 
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
@@ -235,12 +243,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     let alert = UIAlertController(title: "Hey", message: "No Favorite Items Yet... ", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
-                    
+                    self.collectionView!.reloadData()
+
                      CozyLoadingActivity.hide(success: true, animated: true)
                 }
-
                 for obj in objects{
-                    print("obj is \(obj)")
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]!
@@ -281,6 +288,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             if(objects.count == self.swipedImages.count ){
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
+                                block_trigger = false
                                 CozyLoadingActivity.hide(success: true, animated: true)
 
                             }

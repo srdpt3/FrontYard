@@ -57,12 +57,12 @@ class settingVC: UIViewController {
         nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
 
         
+
         
-        let leftbutton  = UIBarButtonItem(title: "LOGOUT", style: .Plain, target: self, action: Selector("logoutPressed:"))
+        let leftbutton  = UIBarButtonItem(title: "LogOut", style: .Plain, target: self, action: Selector("logoutPressed:"))
        // leftbutton.
         leftbutton.tintColor = UIColor.whiteColor()
-        let barButtonItemApperance = UIBarButtonItem.appearance()
-        barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
+
         
         self.navigationItem.leftBarButtonItem = leftbutton
  
@@ -77,7 +77,7 @@ class settingVC: UIViewController {
         rightShareBarButtonItem.customView = btnName
         
         
-        let rightSaveBarButtonItem  = UIBarButtonItem(title: "SAVE", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
+        let rightSaveBarButtonItem  = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
         rightSaveBarButtonItem.tintColor = UIColor.whiteColor()
         self.navigationItem.setRightBarButtonItems([rightSaveBarButtonItem,rightShareBarButtonItem], animated: true)
         

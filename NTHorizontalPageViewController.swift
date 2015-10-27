@@ -145,10 +145,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
 
    
         
-        let rightbutton  = UIBarButtonItem(title: "FLAG", style: .Plain, target: self, action: Selector("reportPressed:"))
+        let rightbutton  = UIBarButtonItem(title: "Flag", style: .Plain, target: self, action: Selector("reportPressed:"))
         rightbutton.tintColor = UIColor.whiteColor()
-        let barButtonItemApperance = UIBarButtonItem.appearance()
-        barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
+     //   let barButtonItemApperance = UIBarButtonItem.appearance()
+     //   barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
         
         self.navigationItem.rightBarButtonItem = rightbutton
         
@@ -482,6 +482,17 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                         if(error == nil)
                         {
                             print(" blcoked ")
+                            block_trigger = true
+                            self.navigationController?.popViewControllerAnimated(true)
+
+                            
+                            //let sb = UIStoryboard(name: "Main", bundle: nil)
+                           // let favoriteView = sb.instantiateViewControllerWithIdentifier("WaterfallViewController") as! NTNavigationController
+                            
+                            // self.navigationController?.pushViewController(logginVC, animated: true)
+                           // self.parentViewController?.presentViewController(favoriteView, animated: true, completion: nil)
+                            
+                            
                         }
                     }
 

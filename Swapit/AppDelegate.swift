@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
        // UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
         UIApplication.sharedApplication().statusBarStyle = .LightContent
+        let barButtonItemApperance = UIBarButtonItem.appearance()
+        barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
         
         let notificationTypes:UIUserNotificationType = UIUserNotificationType.Alert.union(UIUserNotificationType.Badge ).union(UIUserNotificationType.Sound)
         let notificationSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
