@@ -37,7 +37,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
     var charRemainingLabel: UILabel! = UILabel()
     
     
-    
+    var current : String  = ""
     var pickerData: [String] = [String]()
     
     var buttonTag : Int = 0
@@ -92,7 +92,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         
-        pickerData = ["USD($)", "KRW(￦)", "EURO(€)"]
+        pickerData = ["USD($)", "KRW(￦)"]
         
         for subview in self.view.subviews
         {
@@ -235,10 +235,11 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         DescLabel.text = "Description"
         DescLabel.textAlignment = NSTextAlignment.Left;
+        DescLabel.numberOfLines = 5
         DescLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
         
         //DescLabel.font = itemTitleLabel.font.fontWithSize(16)
-        DescLabel.font = UIFont(name: "Verdana", size: 16)
+        DescLabel.font = DescLabel.font.fontWithSize(13)
         
         
         buttonOffsetY+=(DescLabel.frame.height)
@@ -263,7 +264,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         //charRemainingLabel.text = "Remaining Characters"
         charRemainingLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
-        charRemainingLabel.font = itemTitleLabel.font.fontWithSize(13)
+        charRemainingLabel.font = itemTitleLabel.font.fontWithSize(14)
         
         
         
@@ -305,39 +306,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         
         
         Currency.inputView = pickerview2
-        
-        
-        
-        
-        //  Price.textContainer.lineFragmentPadding = 0;
-        //  self.view.addSubview(uploadButton)
-        //  self.view.addSubview(pickerbutton)
-        
-        /*
-        
-        
-        
-        // DescTextView.delegate = self
-        buttonOffsetY+=(height/6)
-        
-        
-        
-        self.view.addSubview(image1)
-        self.view.addSubview(image2)
-        self.view.addSubview(image3)
-        self.view.addSubview(image4)
-        self.view.addSubview(uploadButton)
-        self.view.addSubview(pickerbutton)
-        
-        //     image1.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        //    image1.addTarget(self, action: "image1pressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        //     image1.clipsToBounds = true
-        //  image1.layer.cornerRadius = 0.0
-        //     image1.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
-        ////  image1.layer.borderWidth = 0.5;
-        
-        */
-        
+
     }
     @IBAction func image1Pressed(sender: AnyObject) {
         buttonTag = image1.tag
@@ -467,7 +436,22 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             imageDBTable["image"] = imageFiles[0]
             imageDBTable["description"] =  DescTextView.text
             imageDBTable["itemname"] =  itemTitleText.text
-            imageDBTable["price"] =  Price.text
+            
+            
+            var currency_exchange : Int = 0
+            var price_display :  String  = ""
+            if (current == "￦")
+            {
+                currency_exchange = Int((Double(Price.text!)! * 0.001))
+                price_display = "\(currency_exchange)"
+            }
+            else
+            {
+                price_display = Price.text!
+            }
+            
+            imageDBTable["price"] =  price_display
+            imageDBTable["Currency"] = current
             for (_,image) in imageFiles.enumerate()
             {
                 // Create the post
@@ -647,9 +631,9 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         replacementText text: String) -> Bool{
             
             let newLength:Int = (textView.text as NSString).length + (text as NSString).length - range.length
-            let remainingChar:Int = 150 - newLength+1
+            let remainingChar:Int = 100 - newLength+1
             charRemainingLabel.text = "\(remainingChar)"
-            return (newLength > 150) ? false : true
+            return (newLength > 100) ? false : true
             
             
     }
@@ -682,11 +666,8 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
         {
             self.Currency.text = "￦"
         }
-        else if(row == 2)
-        {
-            self.Currency.text = "€"
-        }
-        
+
+        current = Currency.text!
     }
     
     

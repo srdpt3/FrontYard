@@ -179,11 +179,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     //    var item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: nil, rightItemImage: nil)
         let item1 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "star"), leftItemImage: nil, rightItemImage: nil)
-
-       // var item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
         let item2 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: nil, rightItemImage: nil)
-        let item3 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "chats_icon"), leftItemImage: UIImage(named: "search_icon"), rightItemImage: UIImage(named: "new_chat_icon"))
-    //    var item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "settings_icon"), leftItemImage: nil, rightItemImage: nil)
+        let item3 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "chats_icon"),leftItemImage: nil, rightItemImage: nil)
         let item4 : YALTabBarItem = YALTabBarItem(itemImage: UIImage(named: "gear"), leftItemImage: nil, rightItemImage: nil)
 
         

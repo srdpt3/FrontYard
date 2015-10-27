@@ -103,6 +103,7 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
                 
             })
         }
+        /*
         else
         {
             
@@ -111,7 +112,7 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             
-        }
+        }*/
         
     }
     
@@ -186,8 +187,9 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         let profileImageData = UIImageJPEGRepresentation(profileImage.image!,0.6)
         let profileImagefile = PFFile(data: profileImageData!)
         
-        if (username.text != "" && passwordTestField.text != "" && emailTextField.text != "" && lastnameTextField.text != "" &&
-            firstnameTextField.text != "" && repeatPasswordTextField.text != "")
+        if (username.text != "" && passwordTestField.text != "" && emailTextField.text != "" && repeatPasswordTextField.text != "")
+       // if (username.text != "" && passwordTestField.text != "" && emailTextField.text != "" && lastnameTextField.text != "" &&
+           // firstnameTextField.text != "" && repeatPasswordTextField.text != "")
         {
             
             let user = PFUser()
@@ -204,9 +206,18 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
                 
             }
             
-            user["firstName"] = firstnameTextField.text
-            user["lastName"] = lastnameTextField.text
+            if ( lastnameTextField.text != "" )
+            {
+                user["lastName"] = lastnameTextField.text
+            }
+            if ( firstnameTextField.text != "")
+            {
+                user["firstName"] = firstnameTextField.text
+            }
+            
             user["profileImage"] = profileImagefile
+            user["minPrice"] = 0
+            user["maxPrice"] = 50000
             
             user.signUpInBackgroundWithBlock({ (success, error) -> Void in
                 if error == nil

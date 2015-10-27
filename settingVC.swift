@@ -17,6 +17,8 @@ class settingVC: UIViewController {
     var SearchLabel : UILabel = UILabel()
     var RangeView : UIView = UIView()
     var price: UILabel! = UILabel()
+    var currency: UILabel! = UILabel()
+    
     let rangeSlider1 = RangeSlider(frame: CGRectZero)
     var itemManage :UIButton = UIButton()
     var contactDeveloper :UIButton = UIButton()
@@ -137,12 +139,24 @@ class settingVC: UIViewController {
         
 
         rangeViewHeightOffset+=(SearchLabel.frame.height)
-        price.frame = CGRectMake(width/4, rangeViewHeightOffset, width, height*(1/12))
+        price.frame = CGRectMake(width*0.2, rangeViewHeightOffset, width*0.75, height*(1/12))
         
         
-        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
+        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue))) "
+        
+         //
+        currency.frame = CGRectMake(width*0.25, rangeViewHeightOffset+height*(1/20), width*0.5, height*(1/20))
+        
+        
         price.textColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
-        price.font = price.font.fontWithSize(16)
+        price.font = price.font.fontWithSize(15)
+        price.textAlignment = NSTextAlignment.Left;
+        currency.textColor = UIColor.lightGrayColor()
+        currency.font = price.font.fontWithSize(12)
+        
+        currency.text = "1 USD($) = 1000 KRW(￦)"
+        currency.textAlignment = NSTextAlignment.Center;
+        
         RangeView.frame = CGRectMake(0, rangeViewHeightOffset , width, height*(1/6))
         RangeView.backgroundColor = UIColor.whiteColor()
         RangeView.addSubview(rangeSlider1)
@@ -210,6 +224,7 @@ class settingVC: UIViewController {
         self.scrollView.addSubview(SearchLabel)
         self.scrollView.addSubview(RangeView)
         self.scrollView.addSubview(price)
+        self.scrollView.addSubview(currency)
         self.scrollView.addSubview(itemManage)
         
         self.scrollView.addSubview(contactDeveloper)
@@ -341,18 +356,29 @@ class settingVC: UIViewController {
         
     }
     func saveButtonpressed(sender: AnyObject) {
-        price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
+      //  price.text = "    Min: $\(Int(round(rangeSlider1.lowerValue))) - Max: $\(Int(round(rangeSlider1.upperValue)))"
         
         minPrice = Int(round(rangeSlider1.lowerValue))
         maxPrice = Int(round(rangeSlider1.upperValue))
         
-        /// print(minPrice)
-        /// /print(maxPrice)
+        let currentUser = PFUser.currentUser()!
+        currentUser["minPrice"] = minPrice
+        currentUser["maxPrice"] = maxPrice
+            
+        currentUser.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if error == nil{
+                   // self.navigationController?.popViewControllerAnimated(true)
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
+                overViewVC.navigationItem.setHidesBackButton(true, animated: false)
+                self.navigationController?.pushViewController(overViewVC, animated: true)
+
+                    
+            }
+                
+         })
+
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let overViewVC = sb.instantiateViewControllerWithIdentifier("loaddataViewController") as! loaddataViewController
-        overViewVC.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationController?.pushViewController(overViewVC, animated: true)
         
         
         

@@ -22,6 +22,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     var indexnum : Int = Int()
     var imageFile = [UIImage]()
     var pricelabel = [String]()
+    var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
     var otherObjID = [String]()
@@ -50,7 +51,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
      var sublocal = ""
     var map:MKMapView!  = MKMapView()
     
-    
+    var NameLabel: UILabel!
+
+   var profileimageView: UIImageView!
+
     init(collectionViewLayout layout: UICollectionViewLayout!, currentIndexPath indexPath: NSIndexPath){
         super.init(collectionViewLayout:layout)
         let collectionView :UICollectionView = self.collectionView!;
@@ -58,13 +62,13 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         collectionView.backgroundColor = UIColor.whiteColor()
         popview = PagedScrollViewController()
 
-       
+      //  collectionView.frame = (frame: CGRectMake(0, 0, screenWidth , screenHeight*0.5))
         var offsetY = screenHeight/2.2
         PassButton = UIButton(frame: CGRectMake(screenWidth*0.02, CGFloat(offsetY), screenWidth*0.4 , screenHeight/20))
-        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.45, CGFloat(offsetY), screenWidth*0.5 , screenHeight/20))
+        LikeButton = UIButton(frame: CGRectMake(screenWidth*0.45, CGFloat(offsetY), screenWidth*0.53 , screenHeight/20))
         
         
-        PassButton.setTitle(" I will pass", forState: UIControlState.Normal)
+        PassButton.setTitle(" I Will Pass", forState: UIControlState.Normal)
         PassButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         PassButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Highlighted)
         PassButton.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1.0)
@@ -75,7 +79,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         PassButton.addTarget(self, action: "passButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        LikeButton.setTitle(" Chat with seller", forState: UIControlState.Normal)
+        LikeButton.setTitle(" Chat With A Seller", forState: UIControlState.Normal)
         LikeButton.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 40.0)
         LikeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         LikeButton.backgroundColor = backgroundColor
@@ -87,57 +91,66 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
         offsetY+=(PassButton.frame.height)
         
-        itemNameLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.6 , screenHeight/27))
+        itemNameLabel = UILabel(frame: CGRectMake(screenWidth*0.02, offsetY, screenWidth*0.6 , screenHeight/27))
         PriceLabel = UILabel(frame: CGRectMake(screenWidth*0.52, offsetY, screenWidth*0.3, screenHeight/27))
         
-        
-        itemNameLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
-        
+        itemNameLabel.font = UIFont.boldSystemFontOfSize(14)
         
         PriceLabel.text="$123 "
-        PriceLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 12)
         PriceLabel.textAlignment = NSTextAlignment.Right;
         PriceLabel.textColor = UIColor(red: 85/255, green: 178/255, blue: 229/255, alpha: 1.0)
         
         
         offsetY+=(itemNameLabel.frame.height)
-        descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/9))
-        
+        descLabel = UILabel(frame: CGRectMake(screenWidth*0.02, offsetY, screenWidth*0.8, screenHeight/12))
         descLabel.text = "description"
-        //descLabel.font = UIFont(name: "HevelticaNeue-UltraLight", size: 10)
-        descLabel.font = UIFont.systemFontOfSize(13.0);
 
-       // descLabel.sizeToFit()
-        descLabel.numberOfLines = 5
-       // descLabel.preferredMaxLayoutWidth = 150
-        descLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        descLabel.textAlignment = NSTextAlignment.Left;
-        descLabel.textColor = UIColor.blackColor()
-        descLabel = UILabel(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.8, screenHeight/9))
-
-        
-
+       
         
         offsetY+=(descLabel.frame.height)
-        locationimage = UIImageView(frame: CGRectMake(screenWidth*0.01, offsetY, screenWidth*0.02, screenHeight/27))
-        locationLabel = UILabel(frame: CGRectMake(screenWidth*0.04, offsetY, screenWidth*0.5, screenHeight/27))
+       profileimageView  = UIImageView(frame: CGRectMake(screenWidth*0.02,offsetY, 30,30))
+        
+      // profileimageView.frame = CGRectMake(screenWidth*0.05,screenWidth*0.3, 50,50)
+      //  profileimageView.center  = CGPointMake(self.imageViewContent.frame.width/6, (self.imageViewContent.frame.height)*0.9)
+        profileimageView.layer.cornerRadius = profileimageView.frame.size.width/2
+        profileimageView.clipsToBounds = true
+        
+        // self.profileimage.image = UIImage(data:data!)
+        
+        
+        profileimageView.image = UIImage(named: "centerImage_blue")
+        
+        
+        
+        var offsetX = profileimageView.frame.width + screenWidth*0.03
+        
+        
+        NameLabel = UILabel(frame: CGRectMake(offsetX, offsetY, screenWidth*0.2, screenHeight/22))
+        NameLabel.font = UIFont.systemFontOfSize(13.0);
+        NameLabel.textColor = UIColor.lightGrayColor()
+      //  nameLabel.textAlignment = NSTextAlignment.Left;
+        NameLabel.text = "aaaaa"
+        
+        offsetX+=NameLabel.frame.width
+        
+        locationLabel = UILabel(frame: CGRectMake(offsetX, offsetY, screenWidth*0.5, screenHeight/22))
         
         locationLabel.font = UIFont.systemFontOfSize(12.0);
         locationLabel.textColor = UIColor.lightGrayColor()
         locationLabel.textAlignment = NSTextAlignment.Left;
    ///   locationimage.image = UIImage(data: location.svg)
         
-        offsetY+=(locationLabel.frame.height)
-        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/4))
+        offsetY+=(locationLabel.frame.height+5)
+        map = MKMapView(frame: CGRectMake(0, offsetY, screenWidth, screenHeight/5))
 
+   
         
-        //  LabelFrame.addSubview(imageLabel)
-        //  LabelFrame.addSubview(imageLabel2)
-        //   self.view.addSubview(imageLabel)
-        //self.view.addSubview(imageLabel2)
-
-      //  self.view.addSubview(DistanceLabel)
-
+        let rightbutton  = UIBarButtonItem(title: "Report", style: .Plain, target: self, action: Selector("reportPressed:"))
+        rightbutton.tintColor = UIColor.whiteColor()
+        let barButtonItemApperance = UIBarButtonItem.appearance()
+        barButtonItemApperance.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Apple SD Gothic Neo", size: 19)!], forState: UIControlState.Normal)
+        
+        self.navigationItem.rightBarButtonItem = rightbutton
         
         
         collectionView.pagingEnabled = true
@@ -155,20 +168,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        
-        
-        
-        self.view.backgroundColor = UIColor.whiteColor()
-        let nav = self.navigationController?.navigationBar
-        self.navigationItem.title = "My asdfsadf"
-        nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
-        nav?.barTintColor = backgroundColor
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
 
-        
-        
-        
+
         
         self.view.backgroundColor = UIColor.whiteColor()
         let btnName: UIButton = UIButton()
@@ -249,9 +250,7 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
        // NSNotificationCenter.defaultCenter().postNotificationName("loaditems", object: nil)
 
         //getLocation()
-        
 
-        self.navigationController?.navigationBarHidden = false
         
         self.view.addSubview(PassButton)
         self.view.addSubview(LikeButton)
@@ -259,7 +258,10 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         self.view.addSubview(PriceLabel)
         self.view.addSubview(descLabel)
         self.view.addSubview(locationLabel)
-        self.view.addSubview(locationimage)
+        self.view.addSubview(NameLabel)
+       // self.view.addSubview(locationimage)
+        self.view.addSubview(profileimageView)
+
         self.view.addSubview(map)
         
     }
@@ -284,14 +286,75 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         map.delegate = self
         
         collectionCell.imageFile = self.imageFile[indexPath.row]
-                indexnum = indexPath.row
-        self.PriceLabel.text = pricelabel[indexPath.row]as String
-        self.descLabel.text = itemDesc[indexPath.row] as String
-        self.descLabel.font = UIFont.systemFontOfSize(13.0);
+        indexnum = indexPath.row
+        
+        var currency_exchange : Int = 0
+        var price_display :  String  = ""
+
+        if (self.currency[indexPath.row] == "￦")
+        {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+            price_display = "\(currency_exchange)만원"
+        }
+        else
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+            price_display = "\(currency_exchange)원"
+            
+            }
+        }
+        else
+        {
+            price_display = self.pricelabel[indexPath.row]
+        }
+        
+              self.PriceLabel.text = "\(currency[indexPath.row])\(price_display)"
+        
+        self.descLabel.text = itemDesc[indexPath.row]
+        descLabel.numberOfLines = 0
+
+        descLabel.font = UIFont.systemFontOfSize(12)
+        descLabel.lineBreakMode = NSLineBreakMode.ByClipping
+        descLabel.textAlignment = NSTextAlignment.Left;
+        descLabel.textColor = UIColor.darkGrayColor()
+        descLabel.preferredMaxLayoutWidth = self.view.frame.width*0.8
+        descLabel.numberOfLines = 0
+
+
         self.itemNameLabel.text = itemTitle[indexPath.row] as String
+
         
-        
-        
+        let query = PFQuery(className: "_User")
+        query.whereKey("objectId", equalTo: otherusers[indexPath.row])
+        query.findObjectsInBackgroundWithBlock { (result, Error) -> Void in
+            
+            if(Error == nil)
+            {
+                for obj in result! {
+                   self.NameLabel.text = obj.username as String!
+                   // self.NameLabel.text = "asdfsadF"
+                    print("obj.username \(obj.username)")
+                    if let userImageFile = obj["profileImage"] as? PFFile {
+                        userImageFile.getDataInBackgroundWithBlock { (data, error3) -> Void in
+                            if error3 == nil{
+                                let profileImage = UIImage(data:data!)
+                                //self.profileimage.append(profileImage!)
+                                self.profileimageView.image = profileImage
+                                
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+            
+            
+            
+            
+        }
+
         // Determine other user's location
         let location = CLLocationCoordinate2D(latitude: otherlocation[indexPath.row].latitude,longitude: otherlocation[indexPath.row].longitude)
         let span = MKCoordinateSpanMake(0.01, 0.01)
@@ -352,8 +415,6 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
                 }
                 
             }
-
-            
             
         }
         collectionCell.setNeedsLayout()
@@ -404,6 +465,20 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
         
     }
     
+    func reportPressed(sender:UIBarButtonItem){
+        
+        imagesToswipe.removeAll(keepCapacity: false)
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        
+        let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
+              // self.navigationController?.pushViewController(logginVC, animated: true)
+        self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)
+        
+        print("logout")
+        
+
+    }
     
     
     func LikeButtonPressed(sender:UIButton!)
@@ -430,14 +505,8 @@ class NTHorizontalPageViewController : UICollectionViewController, NTTransitionP
             
             }
         }
-            
-            
-            
-            
-    
+
         ///   query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
-        
-        
         
         
             let imageDBTable: PFObject = PFObject(withoutDataWithClassName: "imageUpload", objectId: otherObjID[self.indexnum] as String)

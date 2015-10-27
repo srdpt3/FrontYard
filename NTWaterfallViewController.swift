@@ -33,12 +33,12 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var otherObjID = [String]()
     var otherUsers = [String]()
     var pricelabel = [String]()
+    var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
-    var profileimage: [UIImage] = []
+   // var profileimage: [UIImage] = []
     
-    let progressHUD = ProgressHUD(text: "Loading...")
     
     override func viewDidAppear(animated: Bool) {
   
@@ -92,29 +92,29 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         
         collectionCell.imageFile =  self.swipedImages[indexPath.row]
         collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
-        collectionCell.imageLabel2.text = "$\(self.pricelabel[indexPath.row]) "
-        
-        /*
-        let query = PFQuery(className: "_User")
-        query.whereKey("objectId", equalTo: otherUsers[indexPath.row])
-        query.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
+        var currency_exchange : Int = 0
+        var price_display :  String  = ""
+        if (self.currency[indexPath.row] == "￦")
+        {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+            price_display = "\(currency_exchange)만"
+        }
+        else
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+            price_display = "\(currency_exchange)"
             
-            if error2 == nil
-            {
-                for obj in result2! {
-                    if let userImageFile = obj["profileImage"] as? PFFile {
-                        userImageFile.getDataInBackgroundWithBlock { (data, error3) -> Void in
-                            if error3 == nil{
-                                let profileImage = UIImage(data:data!)
-                                //self.profileimage.append(profileImage!)
-                                collectionCell.profileimageFile = profileImage
-                            }
-                        }
-                    }
-                }
             }
-            })
-        */
+        }
+        else
+        {
+            price_display = self.pricelabel[indexPath.row]
+        }
+        
+        
+        collectionCell.imageLabel2.text = "\(self.currency[indexPath.row])\(price_display)"
+
         collectionCell.setNeedsLayout()
         return collectionCell;
     }
@@ -125,11 +125,15 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
+        self.navigationController?.navigationBarHidden = false
+
+        self.navigationController?.hidesBarsOnSwipe = false
 
         let pageViewController =
         NTHorizontalPageViewController(collectionViewLayout: pageViewControllerLayout(), currentIndexPath:indexPath)
         pageViewController.imageFile = swipedImages
         pageViewController.pricelabel = pricelabel
+        pageViewController.currency = currency
         pageViewController.itemTitle = itemTitle
         pageViewController.itemDesc = itemDesc
         pageViewController.otherusers = otherUsers
@@ -144,8 +148,9 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         transition.subtype = kCATransitionFromLeft;
 
         navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        navigationController!.pushViewController(pageViewController, animated: true)
-        
+       navigationController!.pushViewController(pageViewController, animated: true)
+      //  navigationController!.presentViewController(pageViewController, animated: true,completion: nil)
+
         
         
     }
@@ -166,7 +171,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     override func viewWillAppear(animated: Bool) {
       // self.collectionView!.reloadData()
-      //  self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     
@@ -214,6 +219,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         itemTitle.removeAll(keepCapacity: false)
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
+        currency.removeAll(keepCapacity: false)
         otherlocation.removeAll(keepCapacity: false)
 
         let query:PFQuery = PFQuery(className: "imageUpload")
@@ -225,10 +231,20 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
             {
                 let objects = results as! [PFObject]
 
+                if (objects.count == 0){
+                    let alert = UIAlertController(title: "Hey", message: "No Favorite Items Yet... ", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                     CozyLoadingActivity.hide(success: true, animated: true)
+                }
+
                 for obj in objects{
+                    print("obj is \(obj)")
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
+                    let currency = obj["Currency"]! as! String
                     let otheruser = obj["user"] as! PFObject
                     self.otherUsers.append(otheruser.objectId!)
                     let thumbNail = obj["image"] as! PFFile
@@ -257,6 +273,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                             self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
+                            self.currency.append(currency)
                             // self.otherUsers.append(otheruser)
                             
                             let objId = obj.objectId! as String

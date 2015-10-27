@@ -45,6 +45,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     var otherImageFiles = [PFFile]()
     var otherObjID = [String]()
     var pricelabel = [String]()
+    var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
     var otherImages: [UIImage] = []
@@ -197,11 +198,30 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
             
             
         }
-        
-        
         collectionCell.imageFile =  self.otherImages[indexPath.row]
         collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
-        collectionCell.imageLabel2.text = "$\(self.pricelabel[indexPath.row]) "
+        var currency_exchange : Int = 0
+        var price_display :  String  = ""
+        if (self.currency[indexPath.row] == "￦")
+        {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
+            {
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+                price_display = "\(currency_exchange)만"
+            }
+            else
+        {
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+                price_display = "\(currency_exchange)"
+            
+            }
+        }
+        else
+        {
+            price_display = self.pricelabel[indexPath.row]
+        }
+        
+        
+        collectionCell.imageLabel2.text = "\(self.currency[indexPath.row])\(price_display)"
         
 
         collectionCell.setNeedsLayout()
@@ -357,7 +377,8 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         itemTitle.removeAll(keepCapacity: false)
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
-        
+        currency.removeAll(keepCapacity: false)
+
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
         query.whereKey("user", equalTo: currentUser)
@@ -379,6 +400,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
+                    let currency = obj["Currency"]! as! String
                     //      let otheruser = obj["user"] as! PFObject
                     //    self.otherUsers.append(otheruser["user"])
                     let thumbNail = obj["image"] as! PFFile
@@ -393,6 +415,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                             self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
+                            self.currency.append(currency)
                             // self.otherUsers.append(otheruser)
                             
                             let objId = obj.objectId! as String

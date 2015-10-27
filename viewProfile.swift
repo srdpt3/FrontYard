@@ -36,6 +36,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     var otherObjID = [String]()
     var otherUsers = [PFUser]()
     var pricelabel = [String]()
+    var currency = [String]()
     var itemTitle = [String]()
     var itemDesc = [String]()
     var otherImages: [UIImage] = []
@@ -50,9 +51,8 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
 
     
     override func viewDidAppear(animated: Bool) {
-        //self.obj.collectionView?.reloadData()
-        //  self.collectionView!.reloadData()
-        
+
+
     }
     
     override func viewDidLoad() {
@@ -175,45 +175,42 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         
         
         if (indexPath.row > 5){
-              //  self.navigationController?.navigationBarHidden = true
+          
             self.navigationController?.navigationBar.fadeOut()
             
             
             
         }
-        else if indexPath.row == 0 {
+        else if (indexPath.row == 0)  {
            // self.navigationController?.navigationBarHidden = false
             self.navigationController?.navigationBar.fadeIn()
 
         
         }
-    
-        
         collectionCell.imageFile =  self.otherImages[indexPath.row]
         collectionCell.imageLabel.text = " \(self.itemTitle[indexPath.row])"
-        collectionCell.imageLabel2.text = "$\(self.pricelabel[indexPath.row]) "
-        
-        /*
-        let query = PFQuery(className: "_User")
-        query.whereKey("objectId", equalTo: otherUsers[indexPath.row])
-        query.findObjectsInBackgroundWithBlock({ (result2, error2) -> Void in
-        
-        if error2 == nil
+        var currency_exchange : Int = 0
+        var price_display :  String  = ""
+        if (self.currency[indexPath.row] == "￦")
+        {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
         {
-        for obj in result2! {
-        if let userImageFile = obj["profileImage"] as? PFFile {
-        userImageFile.getDataInBackgroundWithBlock { (data, error3) -> Void in
-        if error3 == nil{
-        let profileImage = UIImage(data:data!)
-        //self.profileimage.append(profileImage!)
-        collectionCell.profileimageFile = profileImage
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 0.1)
+            price_display = "\(currency_exchange)만"
         }
+        else
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row])! * 1000)
+            price_display = "\(currency_exchange)"
+            
+            }
         }
+        else
+        {
+            price_display = self.pricelabel[indexPath.row]
         }
-        }
-        }
-        })
-        */
+        
+        
+        collectionCell.imageLabel2.text = "\(self.currency[indexPath.row])\(price_display)"
         collectionCell.setNeedsLayout()
         return collectionCell;
     }
@@ -223,7 +220,10 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        
+      
+        //self.navigationController?.navigationBar.fadeOut()
+
+
         detailImages.removeAll(keepCapacity: false)
         let query = PFQuery(className:"Post")
         query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[indexPath.row]))
@@ -269,7 +269,11 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
     }
     override func viewWillAppear(animated: Bool) {
         // self.collectionView!.reloadData()
-        self.navigationController?.navigationBar.fadeIn()
+
+       //  self.navigationController?.navigationBar.hidden = false
+
+      //  self.navigationController?.navigationBarHidden = false
+      //  self.navigationController?.navigationBar.fadeIn()
     }
     
     
@@ -312,6 +316,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         itemTitle.removeAll(keepCapacity: false)
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
+        currency.removeAll(keepCapacity: false)
         otherlocation.removeAll(keepCapacity: false)
         let query:PFQuery = PFQuery(className: "imageUpload")
         query.addDescendingOrder("updatedAt")
@@ -340,6 +345,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                     let itemTitle = obj["itemname"]! as! String
                     let itemDesc = obj["description"]! as! String
                     let pricelabel = obj["price"]! as! String
+                    let currency = obj["Currency"]! as! String
                     let thumbNail = obj["image"] as! PFFile
 
                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
@@ -352,7 +358,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
                             self.itemTitle.append(itemTitle)
                             self.itemDesc.append(itemDesc)
                             self.pricelabel.append(pricelabel)
-                            
+                            self.currency.append(currency)
                             let objId = obj.objectId! as String
                             self.otherObjID.append(objId)
                             if(objects.count == self.otherImages.count ){
@@ -386,7 +392,7 @@ class viewProfile:UICollectionViewController,CHTCollectionViewDelegateWaterfallL
         
         imageViewContent.removeFromSuperview()
     }
-    
+
     func leftpressed()
     {
         

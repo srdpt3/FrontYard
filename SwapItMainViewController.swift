@@ -37,6 +37,13 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         print("numberOfCards \(numberOfCards)")
         print("remainingCards \(remainingCards)")
 
+        
+        
+        multiLayer = PulsingHaloLayer()
+        multiLayer2 = PulsingHaloLayer()
+        multiLayer3 = PulsingHaloLayer()
+        multiLayer4 = PulsingHaloLayer()
+        
         if numberOfCards == 0
         {
             YesButton.alpha = 0
@@ -52,16 +59,16 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     override func viewDidLoad() {
         super.viewDidLoad()
  
+
         
         
+        self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         userImage = UIImageView(frame: CGRectMake(50, 0, self.view.frame.width-100, self.view.frame.height-100))
         popview = PagedScrollViewController()
-
         kolodaView.dataSource = self
         kolodaView.delegate = self
-      //  self.view.backgroundColor = UIColor.grayColor()
 
-     self.view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+   //  self.view.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
 
         // loader.hide()
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
@@ -337,12 +344,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         
 
         
-        
-        multiLayer = PulsingHaloLayer()
-        multiLayer2 = PulsingHaloLayer()
-        multiLayer3 = PulsingHaloLayer()
-        multiLayer4 = PulsingHaloLayer()
-        
         multiLayer2.radius = 40
         multiLayer3.radius = 130
         multiLayer4.radius = 180
@@ -393,8 +394,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
 
                         let query2:PFQuery = PFQuery(className: "imageUpload")
                         query2.addAscendingOrder("createdAt")
-                        //   query2.whereKey("user", equalTo: usr)
-                        query.whereKey("user",notEqualTo: PFUser.currentUser()!)
+                        query2.whereKey("minPrice", greaterThanOrEqualTo: minPrice)
+                        query2.whereKey("maxPrice", lessThanOrEqualTo: maxPrice)
+                        query2.whereKey("user",notEqualTo: PFUser.currentUser()!)
                         query2.whereKey("user", containedIn: users as! [PFUser])
                         query2.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
                         query2.whereKey("interesting", notEqualTo: PFUser.currentUser()!.username!)
@@ -420,7 +422,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                                             if(results!.count == imagesToswipe.count ){
                                                 
                                                 self.stoppulse()
-                                                print("imagesToswipe.count \(imagesToswipe.count)")
                                                 numberOfCards = UInt(imagesToswipe.count)
                                                 self.remainingCards = Int(numberOfCards)
 

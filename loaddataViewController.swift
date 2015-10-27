@@ -16,8 +16,8 @@ var itemTitle = [String]()
 var itemDesc = [String]()
 var imagesToswipe = [UIImage]()
 var numberOfCards: UInt = UInt(imagesToswipe.count)
-var minPrice : Int  = 0
-var maxPrice : Int  = 10000
+var minPrice : Int!
+var maxPrice : Int!
 
 
 class loaddataViewController: UIViewController {
@@ -66,11 +66,21 @@ class loaddataViewController: UIViewController {
     }
     override func viewWillAppear(animated: Bool) {
         
+        let currentUser = PFUser.currentUser()!
+        minPrice = currentUser["minPrice"] as! Int
+        maxPrice = currentUser["maxPrice"] as! Int
+        //currentUser["profileImage"] = profileImagefile
+            
+         print(minPrice)
+         print(maxPrice)
+         loaditems()
+     
+
         
-        print(minPrice)
-        print(maxPrice)
+
+     
         
-        loaditems()
+        
 
         
     }
@@ -107,6 +117,8 @@ class loaddataViewController: UIViewController {
                             imagesToswipe.removeAll(keepCapacity: false)
                             otherObjID.removeAll(keepCapacity: false)
                             let query2:PFQuery = PFQuery(className: "imageUpload")
+                            query2.whereKey("minPrice", greaterThanOrEqualTo: minPrice)
+                            query2.whereKey("maxPrice", lessThanOrEqualTo: maxPrice)
                             query2.addAscendingOrder("createdAt")
                          //   query2.whereKey("user", equalTo: usr)
                             query2.whereKey("user",notEqualTo: PFUser.currentUser()!)
@@ -122,6 +134,7 @@ class loaddataViewController: UIViewController {
                                     print("results!.count\(results!.count)")
                                     if (results!.count == 0)
                                     {
+                                        CozyLoadingActivity.hide(success: true, animated: true)
                                         let sb = UIStoryboard(name: "Main", bundle: nil)
                                         let overViewVC = sb.instantiateViewControllerWithIdentifier("tableMainView") as! YALFoldingTabBarController
                                         overViewVC.navigationItem.setHidesBackButton(true, animated: false)
@@ -139,7 +152,6 @@ class loaddataViewController: UIViewController {
                                                 if error2 == nil
                                                 {
                                                     let image = UIImage(data:imageData!)
-                                                    
                                                     imagesToswipe.append(image!)
                                                     let objId = obj.objectId! as String
                                                     otherObjID.append(objId)
@@ -160,12 +172,7 @@ class loaddataViewController: UIViewController {
                                                         
                                                         self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
                                                         self.navigationController!.presentViewController(overViewVC, animated: true,completion:nil)
-                                                        
-                                                        
-                                                        
-                                                       
 
-                                                        
                                                     }
                                                     
                                                 }

@@ -11,12 +11,10 @@ import UIKit
 class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewProtocol{
     var imageName : String?
     var imageFile:UIImage!
-    var profileimageFile:UIImage!
     
     var imageLabel:UILabel! = UILabel()
     var imageLabel2:UILabel! = UILabel()
 
-    var profileimageView : UIImageView  = UIImageView()
     var imageViewContent : UIImageView = UIImageView()
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -25,8 +23,6 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         super.init(frame: frame)
       //  backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-      //  imageViewContent.addSubview(profileimageView)
-       // contentView.addSubview(imageViewContent)
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -49,8 +45,8 @@ class NTWaterfallViewCell :UICollectionViewCell, NTTansitionWaterfallGridViewPro
         imageViewContent.frame = CGRectMake(0, 0, frame.size.width, frame.size.height-30)
         
         
-        imageLabel.frame =  CGRectMake(0, frame.size.height-30, frame.size.width*0.7, 30)
-        imageLabel2.frame =  CGRectMake(frame.size.width*0.69, frame.size.height-30, frame.size.width*0.32, 30)
+        imageLabel.frame =  CGRectMake(0, frame.size.height-30, frame.size.width*0.6, 30)
+        imageLabel2.frame =  CGRectMake(frame.size.width*0.59, frame.size.height-30, frame.size.width*0.42, 30)
         
         contentView.addSubview(imageViewContent)
         contentView.addSubview(imageLabel)
