@@ -12,6 +12,7 @@ import pop
 
 //var numberOfCards: UInt = UInt(imagesToswipe.count)
 
+
 class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaViewDelegate {
     var popview : PagedScrollViewController!
     @IBOutlet weak var kolodaView: KolodaView!
@@ -21,7 +22,10 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     var multiLayer2:PulsingHaloLayer!
     var multiLayer3:PulsingHaloLayer!
     var multiLayer4:PulsingHaloLayer!
+//var FBshimmering : FBShimmeringView!
     
+    var FBshimmering2 : FBShimmeringView!
+    var loadingLabel: UILabel!
     @IBOutlet var NoButton: UIButton!
     
     @IBOutlet var YesButton: UIButton!
@@ -50,9 +54,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        
- 
+        loadingLabel = UILabel(frame: CGRectMake(0 , self.view.frame.size.height*0.8, self.view.frame.size.width, self.view.frame.size.height*0.1))
+        loadingLabel.textAlignment = NSTextAlignment.Center;
+        loadingLabel.text = "Searching..."
         
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
         userImage = UIImageView(frame: CGRectMake(50, 0, self.view.frame.width-100, self.view.frame.height-100))
@@ -70,7 +74,9 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     override func viewWillAppear(animated: Bool) {
         let nav = self.navigationController?.navigationBar
         let navBarHeight = nav?.frame.height
-        nav?.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+
+        
+        nav?.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
         self.view.backgroundColor = UIColor.whiteColor()
@@ -83,8 +89,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         logoImage.contentMode = .Center
         logoImage.contentMode = UIViewContentMode.ScaleAspectFit
       //  logoButton.setTitleColor(UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0), forState: UIControlState.Normal)
-        self.navigationItem.titleView = logoImage
-        
+
+         self.navigationItem.titleView = logoImage
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .ScaleAspectFit
@@ -125,6 +131,15 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
        
+        let PriceLabel = UILabel(frame: CGRectMake(koloda.frame.size.width*0.05,koloda.frame.size.height*0.05,koloda.frame.size.width*0.25 , 30))
+
+        
+        PriceLabel.textAlignment = NSTextAlignment.Center;
+        PriceLabel.textColor = UIColor.whiteColor()
+        PriceLabel.clipsToBounds = true
+        PriceLabel.layer.cornerRadius = 10.0;
+        PriceLabel.backgroundColor = backgroundColor
+        
         let imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
         imageView.backgroundColor = UIColor.whiteColor()
         
@@ -133,12 +148,14 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         imageView.autoresizingMask  = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
         
     //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
-
         index2 = Int(index)
         print(index2)
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
      if(imagesToswipe.count > 0)
      {
+            imageView.addSubview(PriceLabel)
+
+            PriceLabel.text="$\(itemPrice[index2]) "
             imageView.image = imagesToswipe[index2]
         
             imageView.layer.cornerRadius = 5
@@ -232,8 +249,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
        // UIApplication.sharedApplication().openURL(NSURL(string: "http://us.blizzard.com/en-us/games/hots/landing/")!)
         
         
-        
-        
         detailImages.removeAll(keepCapacity: false)
         let query = PFQuery(className:"Post")
         query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[Int(index)]))
@@ -287,46 +302,6 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     }
     
 
-    /*
-    
-    func loadMoreImages(index: Int)
-    {
-        
-        
-        detailImages.removeAll(keepCapacity: false)
-        let query = PFQuery(className:"Post")
-        query.whereKey("obj_ptr", equalTo: PFObject(withoutDataWithClassName:"imageUpload", objectId:otherObjID[index]))
-        query.addAscendingOrder("createdAt")
-        //query.whereKey("obj_ptr", equalTo: objID[indexPath.row])
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error  == nil
-            {
-                print("count is \(objects!.count)")
-                
-                //  println(["obj_ptr"])")
-                for obj in objects!{
-                    let thumbNail = obj["images"] as! PFFile
-                    thumbNail.getDataInBackgroundWithBlock({(imageData, error) -> Void in
-                        if (error == nil) {
-                            let image = UIImage(data:imageData!)
-                            detailImages.append(image!)
-                            if(detailImages.count == objects!.count )
-                            {
-                               /* do something */
-                            }
-                            
-                            
-                        }
-                    })//getDataInBackgroundWithBlock - end
-                }
-                
-                
-                
-            }
-            
-        }
-
-    }*/
     override func viewWillDisappear(animated: Bool) {
     }
     func playpulse()
@@ -365,6 +340,20 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         view.layer.insertSublayer(multiLayer4, below: userImage.layer)
         
         
+        
+        self.FBshimmering2 = FBShimmeringView(frame: CGRectMake(0 , self.view.frame.size.height*0.8, self.view.frame.size.width, self.view.frame.size.height*0.1))
+        self.view.addSubview(self.FBshimmering2)
+        
+
+        
+        
+        self.FBshimmering2.contentView = loadingLabel
+        self.FBshimmering2.shimmering = true
+        self.FBshimmering2.shimmeringBeginFadeDuration = 0.1;
+        self.FBshimmering2.shimmeringOpacity = 0.1;
+        
+        self.view.addSubview(loadingLabel)
+        
         //view.layer.insertSublayer(multiLayer, below: userImage.layer)
         
     }
@@ -375,12 +364,14 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         multiLayer2.removeFromSuperlayer()
         multiLayer3.removeFromSuperlayer()
         multiLayer4.removeFromSuperlayer()
-        userImage.removeFromSuperview()
+       // userImage.removeFromSuperview()
+        loadingLabel.removeFromSuperview()
     }
     
     func loadMoreImages()
     {
         imagesToswipe.removeAll(keepCapacity: false)
+        itemPrice.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         PFGeoPoint.geoPointForCurrentLocationInBackground {
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -417,12 +408,16 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                                 self.finishLoading = true
                                 let objects = results as! [PFObject]
                                 for obj in objects{
+                                    
+                                    let pricelabel = obj["price"]!
                                     let thumbNail = obj["image"] as! PFFile
                                     thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) -> Void in
                                         if error2 == nil
                                         {
                                             let image = UIImage(data:imageData!)
                                             imagesToswipe.append(image!)
+                                            itemPrice.append(Int(pricelabel as! NSNumber))
+
                                             let objId = obj.objectId! as String
                                             otherObjID.append(objId)
                                             
@@ -465,7 +460,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
                             }
                             else
                             {
-                                print("erorr in getfavoritelist ")
+                                print("erorr on getting Images ")
                             }
                             
                             //  }

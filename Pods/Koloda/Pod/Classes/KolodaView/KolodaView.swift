@@ -448,7 +448,7 @@ public class KolodaView: UIView, DraggableCardDelegate {
             let cardsToAdd = min(missingCardsCount, countOfCards - currentCardNumber)
             
             for index in 1...cardsToAdd {
-                let nextCardIndex = countOfVisibleCards - cardsToAdd + index - 1
+                _ = countOfVisibleCards - cardsToAdd + index - 1
                 let nextCardView = DraggableCardView(frame: frameForCardAtIndex(UInt(index)))
                 
                 nextCardView.alpha = alphaValueSemiTransparent

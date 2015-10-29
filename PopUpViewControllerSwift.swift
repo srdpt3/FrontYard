@@ -30,11 +30,10 @@ import QuartzCore
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
      //   self.popUpView.layer.cornerRadius = 5
       //  self.popUpView.layer.shadowOpacity = 0.8
       //  self.popUpView.layer.shadowOffset = CGSizeMake(0.0, 0.0)
-        
         
         self.scrollView = UIScrollView()
         self.scrollView.frame = CGRect(x: 0, y: 0, width: 200  , height: 300)

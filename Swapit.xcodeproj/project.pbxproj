@@ -16,13 +16,13 @@
 		DA5364221B92B42000A5B911 /* SwapItMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */; };
 		DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */; };
 		DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA53642B1B92B8D500A5B911 /* OverlayView.xib */; };
+		DA5471321BE043DC002BAC80 /* aboutPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5471311BE043DC002BAC80 /* aboutPageVC.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB251BD7FD9F006892FB /* myItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB241BD7FD9E006892FB /* myItemView.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB271BD7FDBB006892FB /* myItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB2B1BD8A2E4006892FB /* CozyLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB2D1BD8A3C9006892FB /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */; settings = {ASSET_TAGS = (); }; };
 		DA59FB311BDD2AFA006892FB /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB301BDD2AFA006892FB /* background.jpg */; settings = {ASSET_TAGS = (); }; };
 		DA59FB351BDD3E55006892FB /* blue_blur.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB341BDD3E55006892FB /* blue_blur.jpg */; settings = {ASSET_TAGS = (); }; };
-		DA59FB391BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */; settings = {ASSET_TAGS = (); }; };
 		DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */; };
 		DA76EA2B1B95354700B76458 /* SwapItMainNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */; };
 		DA76EA311B955C0900B76458 /* settingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA76EA301B955C0900B76458 /* settingVC.swift */; };
@@ -148,15 +148,15 @@
 		DA5363F91B8F9EB700A5B911 /* nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nav.swift; sourceTree = "<group>"; };
 		DA5363FB1B8FB0A300A5B911 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mainViewController.swift; path = ../mainViewController.swift; sourceTree = "<group>"; };
 		DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainViewController.swift; path = ../SwapItMainViewController.swift; sourceTree = "<group>"; };
-		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
+		DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleOverlayView.swift; path = ../ExampleOverlayView.swift; sourceTree = "<group>"; };
 		DA53642B1B92B8D500A5B911 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		DA5471311BE043DC002BAC80 /* aboutPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutPageVC.swift; sourceTree = "<group>"; };
 		DA59FB241BD7FD9E006892FB /* myItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemView.swift; sourceTree = "<group>"; };
 		DA59FB261BD7FDBB006892FB /* myItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myItemViewCell.swift; sourceTree = "<group>"; };
 		DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CozyLoadingActivity.swift; path = Swapit/CozyLoadingActivity.swift; sourceTree = "<group>"; };
 		DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		DA59FB301BDD2AFA006892FB /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images.xcassets/icons/background.jpg; sourceTree = "<group>"; };
 		DA59FB341BDD3E55006892FB /* blue_blur.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_blur.jpg; path = Images.xcassets/icons/blue_blur.jpg; sourceTree = "<group>"; };
-		DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = b80264c12c88eac19d5e4c8597d051e1.jpg; path = Swapit/Images.xcassets/icons/b80264c12c88eac19d5e4c8597d051e1.jpg; sourceTree = "<group>"; };
 		DA64DC681B80C65D00E5B7D3 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpTableViewController.swift; path = ../SignUpTableViewController.swift; sourceTree = "<group>"; };
 		DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwapItMainNav.swift; path = ../SwapItMainNav.swift; sourceTree = "<group>"; };
 		DA76EA301B955C0900B76458 /* settingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingVC.swift; sourceTree = "<group>"; };
@@ -369,6 +369,7 @@
 			children = (
 				DA76EA341B955FE200B76458 /* SettingVCNav.swift */,
 				DA76EA301B955C0900B76458 /* settingVC.swift */,
+				DA5471311BE043DC002BAC80 /* aboutPageVC.swift */,
 				DA76EA321B955CEB00B76458 /* RangeSlider.swift */,
 			);
 			name = Setting;
@@ -378,6 +379,7 @@
 		DA3109421BAF040D00DD9F26 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
 				DA59FB2C1BD8A3C9006892FB /* ProgressHUD.swift */,
 				DA59FB2A1BD8A2E4006892FB /* CozyLoadingActivity.swift */,
 				DAA20E2A1BC8B22300E9DED6 /* LocationManager.swift */,
@@ -449,9 +451,6 @@
 				DA59FB241BD7FD9E006892FB /* myItemView.swift */,
 				DAA555931BD5EA91009719B5 /* viewProfileCell.swift */,
 				DAA555911BD5E9DD009719B5 /* viewProfile.swift */,
-				DAE786F71BAE3C780077EAA2 /* PopUpViewControllerSwift.swift */,
-				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
-				DA59FB381BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg */,
 				DAE786EE1BAC799B0077EAA2 /* ScrollViewContainer.swift */,
 				DAF94C8D1B7981F6004D2660 /* Main.storyboard */,
 				DA53642B1B92B8D500A5B911 /* OverlayView.xib */,
@@ -459,7 +458,7 @@
 				DAF94CD21B7A0AC8004D2660 /* Helper */,
 				DAF94CCD1B7A0448004D2660 /* FrameWorks */,
 				DA5363F31B8E276D00A5B911 /* Podfile */,
-				DAF94C831B7981F5004D2660 /* Swapit */,
+				DAF94C831B7981F5004D2660 /* VenDee */,
 				DAF94C9C1B7981F6004D2660 /* SwapitTests */,
 				DAF94C821B7981F5004D2660 /* Products */,
 				F1D9F2A7B7800B2D9AA384DD /* Pods */,
@@ -476,9 +475,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DAF94C831B7981F5004D2660 /* Swapit */ = {
+		DAF94C831B7981F5004D2660 /* VenDee */ = {
 			isa = PBXGroup;
 			children = (
+				DA5364231B92B48500A5B911 /* ExampleOverlayView.swift */,
 				DA76EA2A1B95354700B76458 /* SwapItMainNav.swift */,
 				DA59FB341BDD3E55006892FB /* blue_blur.jpg */,
 				DA5364211B92B42000A5B911 /* SwapItMainViewController.swift */,
@@ -499,6 +499,7 @@
 				DAF94C881B7981F6004D2660 /* Swapit.xcdatamodeld */,
 				DAF94C841B7981F6004D2660 /* Supporting Files */,
 			);
+			name = VenDee;
 			path = Swapit;
 			sourceTree = "<group>";
 		};
@@ -827,7 +828,6 @@
 				DA5363F41B8E276D00A5B911 /* Podfile in Resources */,
 				DA59FB351BDD3E55006892FB /* blue_blur.jpg in Resources */,
 				DAF94D711B7A12EC004D2660 /* JSQMessagesToolbarContentView.xib in Resources */,
-				DA59FB391BDD4790006892FB /* b80264c12c88eac19d5e4c8597d051e1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +908,7 @@
 				DA76EA351B955FE200B76458 /* SettingVCNav.swift in Sources */,
 				DAF94D5F1B7A12EC004D2660 /* JSQMessagesAvatarImage.m in Sources */,
 				DAF94D631B7A12EC004D2660 /* JSQMessagesCellTextView.m in Sources */,
+				DA5471321BE043DC002BAC80 /* aboutPageVC.swift in Sources */,
 				DAF94D701B7A12EC004D2660 /* JSQMessagesToolbarContentView.m in Sources */,
 				DA64DC691B80C65D00E5B7D3 /* SignUpTableViewController.swift in Sources */,
 				DA5364261B92B48500A5B911 /* ExampleOverlayView.swift in Sources */,
@@ -1114,7 +1115,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Koloda-aiwqsvohpllzjngogxgllljrfhuw/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Swapit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
 				PRODUCT_NAME = Swapit;
@@ -1139,7 +1140,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Koloda-aiwqsvohpllzjngogxgllljrfhuw/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Swapit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dustin.demoapp;
 				PRODUCT_NAME = Swapit;

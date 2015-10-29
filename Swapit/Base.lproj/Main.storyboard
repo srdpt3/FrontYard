@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-19866" y="-13747"/>
+            <point key="canvasLocation" x="-19891" y="-13782"/>
         </scene>
         <!--Loaddata View Controller-->
         <scene sceneID="aaZ-5y-1su">
@@ -451,6 +451,26 @@
             </objects>
             <point key="canvasLocation" x="-18605" y="-14347"/>
         </scene>
+        <!--About PageVC-->
+        <scene sceneID="Oc0-OQ-9FE">
+            <objects>
+                <viewController storyboardIdentifier="aboutPageVC" id="GdH-Aw-ojL" customClass="aboutPageVC" customModule="Swapit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OGe-pK-DXy"/>
+                        <viewControllerLayoutGuide type="bottom" id="ssv-EJ-ok0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Aup-X7-W5a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gF1-2r-66H"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y61-HE-jfu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17819" y="-14427"/>
+        </scene>
         <!--setting-->
         <scene sceneID="C5s-9p-1Gt">
             <objects>
@@ -516,7 +536,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L20-eF-gwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20517" y="-13747"/>
+            <point key="canvasLocation" x="-20513" y="-13782"/>
         </scene>
         <!--Item-->
         <scene sceneID="OLf-ev-4GA">
@@ -579,7 +599,7 @@
                                         <rect key="frame" x="150" y="0.0" width="50" height="50"/>
                                         <animations/>
                                         <state key="normal" image="yes"/>
-                                        <state key="highlighted" image="btn_like_pressed"/>
+                                        <state key="highlighted" image="yes"/>
                                         <connections>
                                             <action selector="rightButtonTapped" destination="oGa-GY-IJg" eventType="touchUpInside" id="vMh-ej-HGg"/>
                                         </connections>
@@ -588,7 +608,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <animations/>
                                         <state key="normal" image="no"/>
-                                        <state key="highlighted" image="btn_skip_pressed"/>
+                                        <state key="highlighted" image="no"/>
                                         <connections>
                                             <action selector="leftButtonTapped" destination="oGa-GY-IJg" eventType="touchUpInside" id="JPo-E1-kzu"/>
                                         </connections>
@@ -814,8 +834,6 @@
     </scenes>
     <resources>
         <image name="Chat" width="427" height="640"/>
-        <image name="btn_like_pressed" width="32" height="32"/>
-        <image name="btn_skip_pressed" width="32" height="32"/>
         <image name="btn_undo" width="21" height="21"/>
         <image name="no" width="1000" height="1000"/>
         <image name="person-icon (1)" width="256" height="256"/>

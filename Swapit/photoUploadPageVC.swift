@@ -448,6 +448,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
             else
             {
                 price_display = Price.text!
+                current = "$"
             }
             
             imageDBTable["price"] =  Int(price_display)
@@ -469,11 +470,7 @@ class photoUploadPageVC: UIViewController , UIImagePickerControllerDelegate, UIN
                         self.itemTitleText.text = ""
                         self.DescTextView.text = ""
                         
-                        let sb = UIStoryboard(name: "Main", bundle: nil)
-                        let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
-                        //  signUPVC.navigationItem.setHidesBackButton(true, animated: false)
-                        
-                        self.navigationController!.pushViewController(myItemVC, animated: true)
+                        self.navigationController?.popViewControllerAnimated(true)
                         
                     }
                     

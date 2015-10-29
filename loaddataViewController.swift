@@ -11,13 +11,15 @@ import FoldingTabBar
 var otherImageFiles = [PFFile]()
 var otherObjID = [String]()
 var otherUsers = [String]()
-var pricelabel = [String]()
+//var pricelabel = [String]()
 var itemTitle = [String]()
 var itemDesc = [String]()
 var imagesToswipe = [UIImage]()
+var itemPrice = [Int]()
 var numberOfCards: UInt = UInt(imagesToswipe.count)
 var minPrice : Int!
 var maxPrice : Int!
+
 
 
 class loaddataViewController: UIViewController {
@@ -25,6 +27,7 @@ class loaddataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         CozyLoadingActivity.Settings.CLASuccessText = ""
         CozyLoadingActivity.Settings.CLASuccessIcon = ""
         CozyLoadingActivity.Settings.CLATextColor = UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1)
@@ -73,13 +76,7 @@ class loaddataViewController: UIViewController {
             
 
          loaditems()
-     
 
-        
-
-     
-        
-        
 
         
     }
@@ -114,10 +111,10 @@ class loaddataViewController: UIViewController {
                         print(users!.count)
                     //    for usr in user {
                             imagesToswipe.removeAll(keepCapacity: false)
+                            itemPrice.removeAll(keepCapacity: false)
                             otherObjID.removeAll(keepCapacity: false)
                             let query2:PFQuery = PFQuery(className: "imageUpload")
-                            print(minPrice)
-                            print(maxPrice)
+  
                             query2.whereKey("price", greaterThanOrEqualTo: minPrice)
                             query2.whereKey("price", lessThanOrEqualTo: maxPrice)
                             query2.addAscendingOrder("createdAt")
@@ -149,6 +146,7 @@ class loaddataViewController: UIViewController {
                                         
                                         let objects = results as! [PFObject]
                                         for obj in objects{
+                                            let pricelabel = obj["price"]!
                                             let thumbNail = obj["image"] as! PFFile
                                             thumbNail.getDataInBackgroundWithBlock({ (imageData, error2) ->
                                                 Void in
@@ -156,6 +154,8 @@ class loaddataViewController: UIViewController {
                                                 {
                                                     let image = UIImage(data:imageData!)
                                                     imagesToswipe.append(image!)
+                                                    itemPrice.append(Int(pricelabel as! NSNumber))
+
                                                     let objId = obj.objectId! as String
                                                     otherObjID.append(objId)
                                                     if(results!.count == imagesToswipe.count ){

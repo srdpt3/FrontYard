@@ -14,7 +14,11 @@ class settingVC: UIViewController {
     
     var imageViewContent : UIImageView = UIImageView()
     var profileimageView : UIImageView = UIImageView()
+   // var facebookimageView : UIImageView = UIImageView()
+   // var twitterimageView : UIImageView = UIImageView()
+
     var SearchLabel : UILabel = UILabel()
+
     var RangeView : UIView = UIView()
     var price: UILabel! = UILabel()
     var currency: UILabel! = UILabel()
@@ -62,19 +66,10 @@ class settingVC: UIViewController {
         let leftbutton  = UIBarButtonItem(title: "LogOut", style: .Plain, target: self, action: Selector("logoutPressed:"))
        // leftbutton.
         leftbutton.tintColor = UIColor.whiteColor()
-
-        
         self.navigationItem.leftBarButtonItem = leftbutton
  
-        
-        let btnName: UIButton = UIButton()
-        btnName.setImage(UIImage(named: "icon_share"), forState: .Normal)
-        btnName.frame = CGRectMake(0, 0, 20, 20)
-        btnName.tintColor = UIColor.whiteColor()
-        btnName.addTarget(self, action: Selector("sharethisapp:"), forControlEvents: .TouchUpInside)
-        
-        let rightShareBarButtonItem:UIBarButtonItem = UIBarButtonItem()
-        rightShareBarButtonItem.customView = btnName
+        let rightShareBarButtonItem:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: Selector("sharethisapp:"))
+        rightShareBarButtonItem.tintColor = UIColor.whiteColor()
         
         
         let rightSaveBarButtonItem  = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: Selector("saveButtonpressed:"))
@@ -129,7 +124,6 @@ class settingVC: UIViewController {
         rangeSlider1.addTarget(self, action: "rangeSliderValueChanged:", forControlEvents: .ValueChanged)
         
         // minPrice.text = "\(Int(round(rangeSlider1.lowerValue)))"
-        // maxPrice.text = "\(Int(round(rangeSlider1.upperValue)))"
         SearchLabel.frame = CGRectMake(width*0.01, rangeViewHeightOffset, width, height*(1/24))
         
         SearchLabel.text = "Search Price Range"
@@ -166,7 +160,7 @@ class settingVC: UIViewController {
         
         var buttonOffset = rangeViewHeightOffset + RangeView.frame.height
         
-        itemManage.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
+        itemManage.frame = CGRectMake(0, buttonOffset+height*(1/24), width, height*(1/12))
         itemManage.setTitle(" Manage Items", forState: UIControlState.Normal)
         itemManage.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         itemManage.setTitleColor(UIColor(red: 67/255.0, green: 178/225.0, blue: 229/255.0, alpha: 1), forState: UIControlState.Normal)
@@ -179,6 +173,7 @@ class settingVC: UIViewController {
 
         
         buttonOffset+=(itemManage.frame.height)
+        /*
         contactDeveloper.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
         contactDeveloper.setTitle(" Contact Developer", forState: UIControlState.Normal)
         
@@ -189,11 +184,11 @@ class settingVC: UIViewController {
         contactDeveloper.clipsToBounds = true
         contactDeveloper.layer.cornerRadius = 0.0
         contactDeveloper.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
-        contactDeveloper.layer.borderWidth = 0.5;
+        contactDeveloper.layer.borderWidth = 0.5;*/
         
         //Share App
-        buttonOffset+=(contactDeveloper.frame.height)
-        shareApp.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
+      //  buttonOffset+=(contactDeveloper.frame.height)
+        shareApp.frame = CGRectMake(0, buttonOffset+height*(1/12), width, height*(1/12))
         shareApp.setTitle(" About", forState: UIControlState.Normal)
         shareApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         shareApp.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
@@ -203,10 +198,14 @@ class settingVC: UIViewController {
         shareApp.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
         shareApp.layer.borderWidth = 0.25;
         
-        buttonOffset+=(shareApp.frame.height)
+        buttonOffset+=(shareApp.frame.height)+10
         
+        
+        
+
+        /*
         //Rate App
-        rateApp.frame = CGRectMake(0, buttonOffset, width, height*(1/12))
+        rateApp.frame = CGRectMake(0, buttonOffset, width, height*(1/10))
         rateApp.setTitle(" Rate this App", forState: UIControlState.Normal)
         rateApp.titleLabel?.font = UIFont(name: "HevelticaNeue-UltraLight", size: 30.0)
         rateApp.setTitleColor(UIColor(red: 116/255, green: 116/255, blue:116/255, alpha: 1.0), forState: UIControlState.Normal)
@@ -216,7 +215,19 @@ class settingVC: UIViewController {
        // rateApp.layer.borderColor = UIColor.lightGrayColor().CGColor
         rateApp.layer.borderWidth = 0.25;
         
+        facebookimageView.frame = CGRectMake(width/4, buttonOffset,  height*(1/10) , height*(1/10))
+        twitterimageView.frame = CGRectMake(width*0.75, buttonOffset,  height*(1/10) , height*(1/10))
         
+        facebookimageView.layer.cornerRadius = facebookimageView.frame.size.width/2
+        facebookimageView.clipsToBounds = true
+        facebookimageView.image = UIImage(named: "facebook")
+           
+        twitterimageView.layer.cornerRadius = twitterimageView.frame.size.width/2
+        twitterimageView.clipsToBounds = true
+        twitterimageView.image = UIImage(named: "Twitter")
+        
+        */
+
         self.imageViewContent.addSubview(effectView)
         self.imageViewContent.addSubview(profileimageView)
  
@@ -229,7 +240,8 @@ class settingVC: UIViewController {
         
         self.scrollView.addSubview(contactDeveloper)
         self.scrollView.addSubview(shareApp)
-        self.scrollView.addSubview(rateApp)
+
+
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, self.scrollView.frame.height)
 
     }
@@ -275,17 +287,7 @@ class settingVC: UIViewController {
 
     }
     
-    
-    
-    
-    @IBAction func contactDeveloper(sender:UIButton!)
-    {
-        let email = "srdpt3@gmail.com"
-        let url = NSURL(string: "mailto:\(email)")
-        UIApplication.sharedApplication().openURL(url!)
-    }
-    
-    
+
     @IBAction func ManageItems(sender:UIButton!)
     {
         let SettingactionSheet = UIAlertController(title: "Setting Menu", message: "Select what you want to do", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -302,7 +304,7 @@ class settingVC: UIViewController {
             
         }))
         
-        SettingactionSheet.addAction(UIAlertAction(title: "Delete Item", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
+        SettingactionSheet.addAction(UIAlertAction(title: "View My Item", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let myItemVC = sb.instantiateViewControllerWithIdentifier("myItemView") as! myItemView
@@ -385,7 +387,10 @@ class settingVC: UIViewController {
     }
     func aboutThisApp(sender: AnyObject)
     {
-        print("tomorr")
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let about = sb.instantiateViewControllerWithIdentifier("aboutPageVC") as! aboutPageVC
+        self.navigationController?.pushViewController(about, animated: true)
+
     }
     
     override func viewWillAppear(animated: Bool) {

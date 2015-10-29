@@ -234,7 +234,7 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
         
-        let uiAlert = UIAlertController(title: "Delete", message: "Are you sure?", preferredStyle: UIAlertControllerStyle.Alert)
+        let uiAlert = UIAlertController(title: "Delete", message: "Are you sure to remove your item?", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(uiAlert, animated: true, completion: nil)
         uiAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { action in
             
@@ -259,11 +259,11 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                                 // The object has been saved.
                                 CozyLoadingActivity.hide(success: true, animated: true)
                             
-                                print("success")
                                 
                             } else {
                                 // There was a problem, check error.description
-                                print(error)
+ 
+                                
                             }
                             
                         }
@@ -283,7 +283,12 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
                 ) -> Void in
                 if (success) {
                     print ("sucess")
-                    self.navigationController?.popViewControllerAnimated(true)
+                    let collection :UICollectionView = self.collectionView!;
+                    
+                    
+                    collection.reloadData()
+                    self.getThumnails()
+                    //self.navigationController?.popViewControllerAnimated(true)
                     
                 } else {
                     // There was a problem, check error.description

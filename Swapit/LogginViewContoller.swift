@@ -12,12 +12,15 @@ import FoldingTabBar
 
 class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate{
     
-    
-    
+
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.delegate = self
+        
+        
+   
         
         self.view.backgroundColor = UIColor.whiteColor()
         let nav = self.navigationController?.navigationBar
@@ -39,8 +42,7 @@ class LogginViewContoller: PFLogInViewController, PFLogInViewControllerDelegate,
         
         logInView?.passwordForgottenButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
-        
-        
+ 
         let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size
         let imageObbj:UIImage! =   self.imageResize(UIImage(named: "b80264c12c88eac19d5e4c8597d051e1.jpg")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
         self.view.backgroundColor = UIColor(patternImage:imageObbj)
