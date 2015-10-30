@@ -196,49 +196,55 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
             let user = PFUser()
             user.username = username.text
             user.email = emailTextField.text
-            
-            if passwordTestField.text == repeatPasswordTextField.text{
+            print(passwordTestField.text)
+            print(repeatPasswordTextField.text)
+
+            if passwordTestField!.text == repeatPasswordTextField!.text{
                 
                 user.password = passwordTestField.text
+                
+                if ( lastnameTextField.text != "" )
+                {
+                    user["lastName"] = lastnameTextField.text
+                }
+                if ( firstnameTextField.text != "")
+                {
+                    user["firstName"] = firstnameTextField.text
+                }
+                
+                user["profileImage"] = profileImagefile
+                user["minPrice"] = 0
+                user["maxPrice"] = 50000
+                
+                user.signUpInBackgroundWithBlock({ (success, error) -> Void in
+                    if error == nil
+                    {
+                        let roleACL = PFACL()
+                        let role = PFRole(name: user.objectId!, acl: roleACL)
+                        
+                        role.users.addObject(user)
+                        role.saveInBackgroundWithBlock(nil)
+                        
+                        
+                        
+                        let installation:PFInstallation = PFInstallation.currentInstallation()
+                        installation["user"] = PFUser.currentUser()
+                        installation.saveInBackgroundWithBlock(nil)
+                        
+                        self.showChatOverview()
+                        
+                    }
+                })
+                
+                
+                
             }else{
                 let alert = UIAlertController(title: "Check your password again!", message: "Password does not match", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                
             }
             
-            if ( lastnameTextField.text != "" )
-            {
-                user["lastName"] = lastnameTextField.text
-            }
-            if ( firstnameTextField.text != "")
-            {
-                user["firstName"] = firstnameTextField.text
-            }
-            
-            user["profileImage"] = profileImagefile
-            user["minPrice"] = 0
-            user["maxPrice"] = 50000
-            
-            user.signUpInBackgroundWithBlock({ (success, error) -> Void in
-                if error == nil
-                {
-                    let roleACL = PFACL()
-                    let role = PFRole(name: user.objectId!, acl: roleACL)
-                    
-                    role.users.addObject(user)
-                    role.saveInBackgroundWithBlock(nil)
-                    
-                    
-                    
-                    let installation:PFInstallation = PFInstallation.currentInstallation()
-                    installation["user"] = PFUser.currentUser()
-                    installation.saveInBackgroundWithBlock(nil)
-                    
-                    self.showChatOverview()
-                    
-                }
-            })
+
         }
         else
         {
@@ -282,7 +288,7 @@ class SignUpTableViewController: UITableViewController , UIImagePickerController
         alertController.addAction(okAction)
         self.presentViewController(alertController, animated: true, completion: nil)
 
-   //     let sb = UIStoryboard(name: "Main", bundle: nil)
+   //     let sb = UIStoryboard(name: "Main", bundle: nil) g b g g
     //    let logginVC = sb.instantiateViewControllerWithIdentifier("mainViewController") as! mainViewController
         // self.navigationController?.pushViewController(logginVC, animated: true)
       //  self.parentViewController?.presentViewController(logginVC, animated: true, completion: nil)

@@ -191,7 +191,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name(이름)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-cN-iDI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name(Optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ec-cN-iDI">
                                                     <rect key="frame" x="16" y="7" width="547" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -209,7 +209,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name(성)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vtl-hU-hK0">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name(Optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vtl-hU-hK0">
                                                     <rect key="frame" x="16" y="7" width="547" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
