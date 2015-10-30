@@ -204,25 +204,24 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         var price_display :  String  = ""
         if (self.currency[indexPath.row] == "￦")
         {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
-            {
-                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
-                price_display = "\(currency_exchange)만"
-            }
-            else
         {
-                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
-                price_display = "\(currency_exchange)"
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
+            price_display = "\(currency_exchange)만원"
+        }
+        else
+        {
+            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
+            price_display = "\(currency_exchange)"
             
             }
         }
         else
         {
-            price_display = "\(self.pricelabel[indexPath.row])"
+            price_display = "\(self.currency[indexPath.row])\(self.pricelabel[indexPath.row])"
         }
         
         
-        collectionCell.imageLabel2.text = "\(self.currency[indexPath.row])\(price_display)"
-        
+        collectionCell.imageLabel2.text = "\(price_display)"
 
         collectionCell.setNeedsLayout()
         return collectionCell;

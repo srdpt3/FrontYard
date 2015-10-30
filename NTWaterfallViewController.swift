@@ -10,6 +10,8 @@ import UIKit
 
 let waterfallViewCellIdentify = "waterfallViewCellIdentify"
 var block_trigger : Bool = false
+var update_status:Bool = false
+
 class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate{
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
         let transition = NTTransition()
@@ -17,6 +19,7 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate{
         return  transition
     }
 }
+
 
 class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDelegateWaterfallLayout, NTTransitionProtocol, NTWaterFallViewControllerProtocol{
     //    class var sharedInstance: NSInteger = 0 Are u kidding me?
@@ -37,9 +40,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     var itemTitle = [String]()
     var itemDesc = [String]()
     var swipedImages: [UIImage] = []
-   // var profileimage: [UIImage] = []
-    
-    
+    var noitemLabel: UILabel!
+    var FBshimmering : FBShimmeringView!
     override func viewDidAppear(animated: Bool) {
   
     }
@@ -48,7 +50,6 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         // self.navigationController!.delegate = delegateHolder
         self.navigationController!.delegate = nil
         
@@ -67,14 +68,16 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.setCollectionViewLayout(CHTCollectionViewWaterfallLayout(), animated: false)
         collection.backgroundColor = UIColor.whiteColor()
         collection.registerClass(NTWaterfallViewCell.self, forCellWithReuseIdentifier: waterfallViewCellIdentify)
-        getfavoritelist()
       
         collection.showsHorizontalScrollIndicator = false;
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
 
-        
+        noitemLabel = UILabel(frame: CGRectMake(0 , self.view.frame.size.height*0.8, self.view.frame.size.width, self.view.frame.size.height*0.1))
+        noitemLabel.textAlignment = NSTextAlignment.Center;
+        noitemLabel.text = "No Items..."
+
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
@@ -96,24 +99,24 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         var price_display :  String  = ""
         if (self.currency[indexPath.row] == "￦")
         {   if (Double(self.pricelabel[indexPath.row]) >= 10  )
-        {
-            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
-            price_display = "\(currency_exchange)만"
-        }
-        else
-        {
-            currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
-            price_display = "\(currency_exchange)"
+            {
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 0.1)
+                price_display = "\(currency_exchange)만원"
+            }
+            else
+            {
+                currency_exchange = Int(Double(self.pricelabel[indexPath.row]) * 1000)
+                price_display = "\(currency_exchange)"
             
             }
         }
         else
         {
-            price_display = "\(self.pricelabel[indexPath.row])"
+            price_display = "\(self.currency[indexPath.row])\(self.pricelabel[indexPath.row])"
         }
         
         
-        collectionCell.imageLabel2.text = "\(self.currency[indexPath.row])\(price_display)"
+        collectionCell.imageLabel2.text = "\(price_display)"
 
         collectionCell.setNeedsLayout()
         return collectionCell;
@@ -172,10 +175,11 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
     override func viewWillAppear(animated: Bool) {
       // self.collectionView!.reloadData()
         
-       if(block_trigger)
+       if(block_trigger || update_status )
        {
            print("trigger")
             getfavoritelist()
+        
        }
         
         self.navigationController?.hidesBarsOnSwipe = true
@@ -233,6 +237,9 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         query.addDescendingOrder("updatedAt")
         query.whereKey("interesting", equalTo: PFUser.currentUser()!.username!)
         query.whereKey("Block",notEqualTo: PFUser.currentUser()!.username!)
+        query.whereKey("passed", notEqualTo: PFUser.currentUser()!.username!)
+        query.whereKey("chat", notEqualTo: PFUser.currentUser()!.username!)
+        
 
         query.findObjectsInBackgroundWithBlock { (results, error) -> Void in
             if error == nil
@@ -246,6 +253,24 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                     self.collectionView!.reloadData()
 
                      CozyLoadingActivity.hide(success: true, animated: true)
+                    
+                    self.FBshimmering = FBShimmeringView(frame: CGRectMake(0 , self.view.frame.size.height*0.8, self.view.frame.size.width, self.view.frame.size.height*0.1))
+                    self.view.addSubview(self.FBshimmering)
+                    
+                    
+                    
+                    
+                    self.FBshimmering.contentView = self.noitemLabel
+                    self.FBshimmering.shimmering = true
+                    self.FBshimmering.shimmeringBeginFadeDuration = 0.1;
+                    self.FBshimmering.shimmeringOpacity = 0.1;
+                    
+                    self.view.addSubview(self.noitemLabel)
+                    
+                    
+                    
+                    
+                    
                 }
                 for obj in objects{
                     let itemTitle = obj["itemname"]! as! String
@@ -289,6 +314,8 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
                                 let collection :UICollectionView = self.collectionView!;
                                 collection.reloadData()
                                 block_trigger = false
+                                update_status = false
+                                self.noitemLabel.removeFromSuperview()
                                 CozyLoadingActivity.hide(success: true, animated: true)
 
                             }

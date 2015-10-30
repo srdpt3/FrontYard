@@ -197,6 +197,7 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
                     print("You liked: \(otherObjID[Int(index)])")
+                    update_status = true
                     self.remainingCards--
                     if(self.remainingCards == 0){
                         numberOfCards = UInt(self.remainingCards)
@@ -215,6 +216,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
             imageDBTable.saveEventually({ (success, error) -> Void in
                 if success == true {
                     print("You passed: \(otherObjID[Int(index)])")
+                    update_status = true
+
                     self.remainingCards--
                     if(self.remainingCards == 0){
                         numberOfCards = UInt(self.remainingCards)
