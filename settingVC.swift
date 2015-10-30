@@ -335,8 +335,8 @@ class settingVC: UIViewController {
             let fb = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             
             // Set the text for facebook share.
-            fb.setInitialText("VenDee")
-            
+            fb.setInitialText("Vendee is the simplest way to sell/buy items by just swiping")
+
             // add an image if needed.
             fb.addImage(UIImage(named: "vendee_logo.png"))
             
