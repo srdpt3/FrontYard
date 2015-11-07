@@ -17,6 +17,8 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
     var popview : PagedScrollViewController!
     @IBOutlet weak var kolodaView: KolodaView!
     
+    var imageViewContent : UIImageView = UIImageView()
+    
     var obj : NTWaterfallViewController!
     var multiLayer:PulsingHaloLayer!
     var multiLayer2:PulsingHaloLayer!
@@ -68,6 +70,17 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
 
         // loader.hide()
         self.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        
+        
+        
+        //imageView
+        let blur:UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let effectView:UIVisualEffectView = UIVisualEffectView (effect: blur)
+        effectView.frame = CGRectMake(0, 0,self.view.frame.size.width, view.frame.size.height)
+        
+       // self.view.addSubview(effectView)
+        
+
     }
 
     
@@ -79,7 +92,13 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         nav?.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
         
         nav?.tintColor = UIColor(red: 31/255, green: 96/255, blue: 246/255, alpha: 1.0)
-        self.view.backgroundColor = UIColor.whiteColor()
+       self.view.backgroundColor = UIColor.whiteColor()
+        
+        /*
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size
+        let imageObbj:UIImage! =   self.imageResize(UIImage(named: "04_blurred_bg.jpg")!, sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+        */
        // nav?.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0 , blue: 149.0/255.0, alpha: 1)
        // nav?.barTintColor = backgroundColor
         
@@ -141,8 +160,14 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         PriceLabel.backgroundColor = backgroundColor
         
         let imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
-        imageView.backgroundColor = UIColor.whiteColor()
+       // imageView.backgroundColor = UIColor.whiteColor()
         
+       imageViewContent.frame = CGRectMake(0, 0, self.view.frame.size.width, view.frame.size.height)
+
+
+
+        
+        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size
 
         
         imageView.autoresizingMask  = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
@@ -153,6 +178,11 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
      // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
      if(imagesToswipe.count > 0)
      {
+        
+        let imageObbj:UIImage! =   self.imageResize(imagesToswipe[index2], sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
+        self.view.backgroundColor = UIColor(patternImage:imageObbj)
+          //  self.view.addSubview(effectView)
+    
             imageView.addSubview(PriceLabel)
 
             PriceLabel.text="$\(itemPrice[index2]) "
@@ -482,7 +512,17 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         }
         
     }
-    
-    
+
+    func imageResize (imageObj:UIImage, sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        imageObj.drawInRect(CGRect(origin: CGPointZero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage
+    }
 }
 

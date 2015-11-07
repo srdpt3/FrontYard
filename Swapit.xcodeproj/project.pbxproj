@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		295CC0E633ACC2FB26DBF330 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837A97BFD1CA9F0BAD26B812 /* Pods.framework */; };
 		DA006ED21BD4154D007C05D2 /* VendeeSplash2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */; settings = {ASSET_TAGS = (); }; };
+		DA3CEC0A1BE5411E00AD0C0A /* 04_blurred_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA3CEC091BE5411E00AD0C0A /* 04_blurred_bg.jpg */; settings = {ASSET_TAGS = (); }; };
 		DA5363C01B860F0200A5B911 /* photoUploadPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363BF1B860F0200A5B911 /* photoUploadPageVC.swift */; };
 		DA5363F41B8E276D00A5B911 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DA5363F31B8E276D00A5B911 /* Podfile */; };
 		DA5363FA1B8F9EB700A5B911 /* nav.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5363F91B8F9EB700A5B911 /* nav.swift */; };
@@ -143,6 +144,7 @@
 		837A97BFD1CA9F0BAD26B812 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		897F3CA997405CFBDC87CD9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VendeeSplash2.png; sourceTree = "<group>"; };
+		DA3CEC091BE5411E00AD0C0A /* 04_blurred_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04_blurred_bg.jpg; sourceTree = "<group>"; };
 		DA5363BF1B860F0200A5B911 /* photoUploadPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = photoUploadPageVC.swift; path = Swapit/photoUploadPageVC.swift; sourceTree = "<group>"; };
 		DA5363F31B8E276D00A5B911 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA5363F91B8F9EB700A5B911 /* nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nav.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				DAF94D7E1B7B5F10004D2660 /* ChooseTableViewController.swift */,
 				DAF94D801B7CB3B8004D2660 /* OverviewTableViewCell.swift */,
 				DAF94D821B7D03A4004D2660 /* MessageViewController.swift */,
+				DA3CEC091BE5411E00AD0C0A /* 04_blurred_bg.jpg */,
 				DAF94C901B7981F6004D2660 /* Images.xcassets */,
 				DAA20E321BCCCC2500E9DED6 /* icon_arrow_left.png */,
 				DA006ED11BD4154C007C05D2 /* VendeeSplash2.png */,
@@ -819,6 +822,7 @@
 				DAF94C941B7981F6004D2660 /* LaunchScreen.xib in Resources */,
 				DAF94D6E1B7A12EC004D2660 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				DAA20E331BCCCC2500E9DED6 /* icon_arrow_left.png in Resources */,
+				DA3CEC0A1BE5411E00AD0C0A /* 04_blurred_bg.jpg in Resources */,
 				DA53642C1B92B8D500A5B911 /* OverlayView.xib in Resources */,
 				DAF94D691B7A12EC004D2660 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				DA59FB311BDD2AFA006892FB /* background.jpg in Resources */,

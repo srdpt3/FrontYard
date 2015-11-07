@@ -185,17 +185,16 @@ class myItemView:UICollectionViewController,CHTCollectionViewDelegateWaterfallLa
         let collectionCell: myItemViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(ViewCellIdentify3, forIndexPath: indexPath) as! myItemViewCell
         
         
-        if (indexPath.row > 5){
+        if (indexPath.row > 6){
             //  self.navigationController?.navigationBarHidden = true
             self.navigationController?.navigationBar.fadeOut()
             
             
             
         }
-        else if indexPath.row == 0 {
+        else {
             // self.navigationController?.navigationBarHidden = false
             self.navigationController?.navigationBar.fadeIn()
-            
             
         }
         collectionCell.imageFile =  self.otherImages[indexPath.row]

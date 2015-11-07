@@ -73,7 +73,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         collection.showsVerticalScrollIndicator = false;
         collection.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
         self.view.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-
+        getfavoritelist()
         noitemLabel = UILabel(frame: CGRectMake(0 , self.view.frame.size.height*0.8, self.view.frame.size.width, self.view.frame.size.height*0.1))
         noitemLabel.textAlignment = NSTextAlignment.Center;
         noitemLabel.text = "No Items..."
