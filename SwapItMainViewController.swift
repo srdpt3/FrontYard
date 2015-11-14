@@ -148,10 +148,11 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         return numberOfCards
     }
     
+ 
     func kolodaViewForCardAtIndex(koloda: KolodaView, index: UInt) -> UIView {
-       
+        
         let PriceLabel = UILabel(frame: CGRectMake(koloda.frame.size.width*0.05,koloda.frame.size.height*0.05,koloda.frame.size.width*0.25 , 30))
-
+        
         
         PriceLabel.textAlignment = NSTextAlignment.Center;
         PriceLabel.textColor = UIColor.whiteColor()
@@ -160,49 +161,41 @@ class SwapItMainViewController: UIViewController, KolodaViewDataSource, KolodaVi
         PriceLabel.backgroundColor = backgroundColor
         
         let imageView = UIImageView(frame: CGRectMake(0, 0, koloda.frame.size.width, koloda.frame.size.height))
-       // imageView.backgroundColor = UIColor.whiteColor()
+        imageView.backgroundColor = UIColor.whiteColor()
         
-       imageViewContent.frame = CGRectMake(0, 0, self.view.frame.size.width, view.frame.size.height)
-
-
-
         
-        let mainScreenSize : CGSize = UIScreen.mainScreen().bounds.size
-
         
         imageView.autoresizingMask  = UIViewAutoresizing.FlexibleBottomMargin.union(UIViewAutoresizing.FlexibleHeight).union(UIViewAutoresizing.FlexibleRightMargin).union(UIViewAutoresizing.FlexibleLeftMargin).union(UIViewAutoresizing.FlexibleTopMargin ).union(UIViewAutoresizing.FlexibleWidth)
         
-    //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        //   imageView.contentMode = UIViewContentMode.ScaleAspectFill
         index2 = Int(index)
         print(index2)
-     // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
-     if(imagesToswipe.count > 0)
-     {
-        
-        let imageObbj:UIImage! =   self.imageResize(imagesToswipe[index2], sizeChange: CGSizeMake(mainScreenSize.width, mainScreenSize.height))
-        self.view.backgroundColor = UIColor(patternImage:imageObbj)
-          //  self.view.addSubview(effectView)
-    
+        // imageView.image = UIImage(named: "Card_like_\(index + 1)")!
+        if(imagesToswipe.count > 0)
+        {
             imageView.addSubview(PriceLabel)
-
+            
             PriceLabel.text="$\(itemPrice[index2]) "
             imageView.image = imagesToswipe[index2]
-        
+            
             imageView.layer.cornerRadius = 5
             imageView.layer.borderColor = UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0).CGColor
-      //  imageView.layer.borderColor = UIColor.clearColor().CGColor
+            //  imageView.layer.borderColor = UIColor.clearColor().CGColor
             imageView.layer.borderWidth = 2;
-        
+            
             imageView.clipsToBounds = true
-    }
-    else
-    {
-         self.kolodaDidRunOutOfCards(self.kolodaView)
-    }
+        }
+        else
+        {
+            self.kolodaDidRunOutOfCards(self.kolodaView)
+        }
         return imageView
-
+        
         
     }
+    
+    
+    
     func kolodaViewForCardOverlayAtIndex(koloda: KolodaView, index: UInt) -> OverlayView? {
         return NSBundle.mainBundle().loadNibNamed("OverlayView",
             owner: self, options: nil)[0] as? OverlayView

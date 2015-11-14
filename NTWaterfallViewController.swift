@@ -228,6 +228,7 @@ class NTWaterfallViewController:UICollectionViewController,CHTCollectionViewDele
         swipedImages.removeAll(keepCapacity: false)
         otherObjID.removeAll(keepCapacity: false)
         itemTitle.removeAll(keepCapacity: false)
+        otherUsers.removeAll(keepCapacity: false)
         itemDesc.removeAll(keepCapacity: false)
         pricelabel.removeAll(keepCapacity: false)
         currency.removeAll(keepCapacity: false)

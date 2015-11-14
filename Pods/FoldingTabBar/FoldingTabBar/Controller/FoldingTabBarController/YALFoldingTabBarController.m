@@ -159,8 +159,6 @@
     id<YALTabBarInteracting>viewController = [self currentInteractingViewController];
     if ([viewController respondsToSelector:@selector(extraLeftItemDidPress)]) {
         [viewController extraLeftItemDidPress];
-       
-        
     }
 }
 
@@ -169,7 +167,6 @@
     if ([viewController respondsToSelector:@selector(extraRightItemDidPress)]) {
         [viewController extraRightItemDidPress];
     }
-  
 }
 
 - (void)itemInTabBarViewPressed:(YALFoldingTabBar *)tabBarView atIndex:(NSUInteger)index {

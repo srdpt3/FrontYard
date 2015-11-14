@@ -326,7 +326,7 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
         UIView *dotView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, YALBottomSelectedDotDefaultSize,YALBottomSelectedDotDefaultSize)];
         dotView.center = CGPointMake(button.center.x, button.center.y + YALBottomSelectedDotOffset);
         dotView.layer.cornerRadius = CGRectGetHeight(dotView.frame) / 2.f;
-        dotView.backgroundColor = [UIColor blackColor];
+        dotView.backgroundColor = self.dotColor ? self.dotColor : [UIColor blackColor];
         dotView.hidden = YES;
         [self.mainView addSubview:dotView];
         [self.allAdditionalButtonsBottomView addObject:dotView];
@@ -462,9 +462,6 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
     if ([self.delegate respondsToSelector:@selector(extraLeftItemDidPressInTabBarView:)]) {
         [self.delegate extraLeftItemDidPressInTabBarView:self];
     }
-    
-    NSLog(@"left pressed");
- 
 }
 
 - (void)extraRightButtonDidPress {
@@ -623,6 +620,13 @@ typedef NS_ENUM(NSUInteger, YALAnimatingState) {
 }
 
 #pragma mark - Mutators
+
+- (void)setTabBarColor:(UIColor *)tabBarColor {
+    _tabBarColor = tabBarColor;
+    self.mainView.backgroundColor = self.tabBarColor;
+    self.extraLeftButton.backgroundColor = self.tabBarColor;
+    self.extraRightButton.backgroundColor = self.tabBarColor;
+}
 
 - (void)setCollapsedFrame:(CGRect)collapsedFrame {
     _collapsedFrame = collapsedFrame;
